@@ -7,7 +7,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
+using Timer = System.Windows.Forms.Timer;
 
 namespace VirtualMeetingMonitor
 {
@@ -17,6 +19,7 @@ namespace VirtualMeetingMonitor
         private readonly Network network = new Network();
         private readonly VirtualMeeting meeting = new VirtualMeeting();
         readonly Timer timer = new Timer();
+        private bool call_running = false;
         private const string LogFileName = "meetings.txt";
         //google sheets integration
        
@@ -24,6 +27,8 @@ namespace VirtualMeetingMonitor
         static readonly string ApplicationName = "Virtual Meeting teste";
         static readonly string SpreadsheetId = "1zWxyFh-0jkeN4pU9engXjOaDloM4torbEn286ShwL14";
         static readonly string sheet = "roberto-roboto";
+        private const int timeout = 5000;
+
         static SheetsService service;
         public enum Days
         {
@@ -53,7 +58,7 @@ namespace VirtualMeetingMonitor
 
             network.OutsideUDPTafficeReceived += Network_OutsideUDPTafficeReceived;
             network.StartListening();
-
+          
             meeting.OnMeetingStarted += Meeting_OnMeetingStarted;
             meeting.OnMeetingEnded += Meeting_OnMeetingEnded;
 
@@ -158,6 +163,7 @@ namespace VirtualMeetingMonitor
 
           ///  onAirSign.TurnOn(hue, sat);
             LogMeeting("Started");
+            call_running = true;
             BackColor = System.Drawing.Color.Green;
 
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form));
@@ -169,17 +175,60 @@ namespace VirtualMeetingMonitor
             EnedTxt.Text = "";
         }
 
-        private void Meeting_OnMeetingEnded()
+
+
+  
+        public void WriteTextSafe(string text)
         {
-         //   onAirSign.TurnOff();
-            CreateEntry();
+            if (EnedTxt.InvokeRequired)
+            {
+                // Call this same method but append THREAD2 to the text
+                Action safeWrite = delegate { WriteTextSafe($"{text} (THREAD2)"); };
+                EnedTxt.Invoke(safeWrite);
+            }
+            else
+                EnedTxt.Text = text;
+        }
+        private void EndMeeting()
+        {
+   
+
             LogMeeting("Ended  ");
             BackColor = System.Drawing.Color.DarkGray;
 
-            EnedTxt.Text = DateTime.Now.ToString("MM/dd H:mm:ss");
+            WriteTextSafe(DateTime.Now.ToString("MM/dd H:mm:ss"));
 
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form));
             notifyIcon.Icon = ((Icon)(resources.GetObject("notifyIcon.Icon")));
+        }
+        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            Console.WriteLine("Timer iniciado. Aguardando timeout.");
+            Thread.Sleep(1000);
+            Console.WriteLine("Tempo terminado.");
+            if (!call_running)
+            {
+                EndMeeting();
+                Console.WriteLine(" chamada foi fechada.");
+            }
+            else
+            {
+                call_running = true;
+                Console.WriteLine("A chamada voltou.");
+              //  backgroundWorker1.CancelAsync();
+            }
+
+
+        }
+        private void Meeting_OnMeetingEnded()
+        {
+            //   onAirSign.TurnOff();
+            // CreateEntry();
+            call_running = false;
+
+            backgroundWorker1.RunWorkerAsync();
+           
+
         }
 
         private void LogMeeting(string Msg)
@@ -255,5 +304,12 @@ namespace VirtualMeetingMonitor
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            EndMeeting();
+        }
+
+      
     }
 }

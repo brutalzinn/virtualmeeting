@@ -51,6 +51,8 @@
             this.InboundTxt = new System.Windows.Forms.Label();
             this.OutboundTxt = new System.Windows.Forms.Label();
             this.TotalTxt = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -249,12 +251,28 @@
             this.TotalTxt.TabIndex = 14;
             this.TotalTxt.Text = "422";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(163, 39);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(82, 49);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(366, 129);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.TotalTxt);
             this.Controls.Add(this.OutboundTxt);
             this.Controls.Add(this.InboundTxt);
@@ -305,6 +323,8 @@
         private System.Windows.Forms.Label OutboundTxt;
         private System.Windows.Forms.Label TotalTxt;
         private System.Windows.Forms.ToolStripMenuItem openLogToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
