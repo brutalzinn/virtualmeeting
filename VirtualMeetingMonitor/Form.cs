@@ -156,7 +156,7 @@ namespace VirtualMeetingMonitor
                 hue = 0;
             }
 
-            onAirSign.TurnOn(hue, sat);
+          ///  onAirSign.TurnOn(hue, sat);
             LogMeeting("Started");
             BackColor = System.Drawing.Color.Green;
 
@@ -171,7 +171,7 @@ namespace VirtualMeetingMonitor
 
         private void Meeting_OnMeetingEnded()
         {
-            onAirSign.TurnOff();
+         //   onAirSign.TurnOff();
             CreateEntry();
             LogMeeting("Ended  ");
             BackColor = System.Drawing.Color.DarkGray;
