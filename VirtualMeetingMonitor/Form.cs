@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Google.Apis.Auth.OAuth2;
+using Google.Apis.Services;
+using Google.Apis.Sheets.v4;
+using Google.Apis.Sheets.v4.Data;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -13,8 +18,28 @@ namespace VirtualMeetingMonitor
         private readonly VirtualMeeting meeting = new VirtualMeeting();
         readonly Timer timer = new Timer();
         private const string LogFileName = "meetings.txt";
-
-
+        //google sheets integration
+       
+        static readonly string[] Scopes = { SheetsService.Scope.Spreadsheets };
+        static readonly string ApplicationName = "Virtual Meeting teste";
+        static readonly string SpreadsheetId = "1zWxyFh-0jkeN4pU9engXjOaDloM4torbEn286ShwL14";
+        static readonly string sheet = "roberto-roboto";
+        static SheetsService service;
+        public enum Days
+        {
+            Sunday = 0,
+            Monday = 1,
+            Tuesday = 2,
+            Wednesday = 3,
+            Thursday = 4,
+            Friday = 5,
+            Saturday = 6,
+        }
+        public enum CustomDays
+        {
+            Monday = 1,
+            Wednesday = 3,
+        }
         public Form()
         {
             InitializeComponent();
@@ -40,7 +65,72 @@ namespace VirtualMeetingMonitor
             InboundTxt.Text = "";
             OutboundTxt.Text = "";
             TotalTxt.Text = "";
-            BackColor = Color.DarkGray;
+            BackColor = System.Drawing.Color.DarkGray;
+            GoogleCredential credential;
+            using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
+            {
+                credential = GoogleCredential.FromStream(stream)
+                    .CreateScoped(Scopes);
+            }
+
+            // Create Google Sheets API service.
+            service = new SheetsService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+            //DateTime thisDay = DateTime.Today;
+            //int todayName = (int)thisDay.DayOfWeek;
+            //Console.WriteLine(setHours(todayName));
+            // ReadEntries();
+            // CreateEntry();
+        }
+        static string setHours(int day)
+        {
+            if (Enum.IsDefined(typeof(CustomDays), day))
+            {
+                return "7:00 - 12:00";
+            }
+            else
+            {
+                return "9:00 - 12:00";
+            }
+        }
+        static void CreateEntry()
+        {
+            DateTime thisDay = DateTime.Today;
+            int todayName = (int)thisDay.DayOfWeek;
+            var range = $"{sheet}!A:C";
+            var valueRange = new ValueRange();
+
+            var oblist = new List<object>() { thisDay.ToString("d"), setHours(todayName) };
+            valueRange.Values = new List<IList<object>> { oblist };
+
+            var appendRequest = service.Spreadsheets.Values.Append(valueRange, SpreadsheetId, range);
+            appendRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.USERENTERED;
+            var appendReponse = appendRequest.Execute();
+        }
+
+        static void ReadEntries()
+        {
+            var range = $"{sheet}!A:C";
+            SpreadsheetsResource.ValuesResource.GetRequest request =
+                    service.Spreadsheets.Values.Get(SpreadsheetId, range);
+
+            var response = request.Execute();
+            IList<IList<object>> values = response.Values;
+            if (values != null && values.Count > 0)
+            {
+                foreach (var row in values)
+                {
+                    // Print columns A to F, which correspond to indices 0 and 4.
+                    Console.WriteLine("{0}", row[0]);
+                }
+            }
+            else
+            {
+                Console.WriteLine("No data found.");
+            }
         }
 
         private void Network_OutsideUDPTafficeReceived(IPHeader ipHeader)
@@ -68,7 +158,7 @@ namespace VirtualMeetingMonitor
 
             onAirSign.TurnOn(hue, sat);
             LogMeeting("Started");
-            BackColor = Color.Green;
+            BackColor = System.Drawing.Color.Green;
 
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form));
             notifyIcon.Icon = ((Icon)(resources.GetObject("$this.Icon")));
@@ -82,8 +172,9 @@ namespace VirtualMeetingMonitor
         private void Meeting_OnMeetingEnded()
         {
             onAirSign.TurnOff();
+            CreateEntry();
             LogMeeting("Ended  ");
-            BackColor = Color.DarkGray;
+            BackColor = System.Drawing.Color.DarkGray;
 
             EnedTxt.Text = DateTime.Now.ToString("MM/dd H:mm:ss");
 
