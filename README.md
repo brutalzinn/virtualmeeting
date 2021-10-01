@@ -9,6 +9,7 @@ and will be used to detect my join to zoom meeting and write a log to a google s
     Thanks to Michael Hawkins to give us a cool project to detect virtual meetings.
 
     Thanks to Marcos Placona to writes a cool article about how to integrate google sheets with c#
+    
 
 # Requeriments
 
