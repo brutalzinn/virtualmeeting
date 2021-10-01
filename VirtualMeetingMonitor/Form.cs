@@ -109,6 +109,7 @@ namespace VirtualMeetingMonitor
             {
                 showHelper("https://raw.githubusercontent.com/wiki/brutalzinn/zoom-monitor-googlesheets/Welcome-to-VirtualMeetingMonitor.md");
                 Properties.Settings.Default.firstRun = false;
+                Properties.Settings.Default.Save();
             }
             //DateTime thisDay = DateTime.Today;
             //int todayName = (int)thisDay.DayOfWeek;
@@ -254,11 +255,21 @@ namespace VirtualMeetingMonitor
         {
             MessageBox.Show(text);
         }
+        static async System.Threading.Tasks.Task ShowWindwosNotificationController()
+        {
+            await Launcher.LaunchUriAsync(new System.Uri("ms-settings:notifications"));
+
+        }
+        public void errorNotification()
+        {
+            NotificationEnabled = false;
+            ShowWindwosNotificationController().Wait();
+
+        }
         public  void CheckNotification()
         {
             var notifier = ToastNotificationManagerCompat.CreateToastNotifier();
             var setting = notifier.Setting;
-
             switch (setting)
             {
                 case NotificationSetting.Enabled:
@@ -272,7 +283,7 @@ namespace VirtualMeetingMonitor
                          "and enable this application in the " +
                 
                          "'Get notifications from these senders' list.");
-                    NotificationEnabled = false;
+                    errorNotification();
                     // await Launcher.LaunchUriAsync(new System.Uri("ms-settings:notifications"));
 
                     break;
@@ -282,21 +293,21 @@ namespace VirtualMeetingMonitor
                          "and set " +
          
                          "'Get notifications from apps and other senders' to On.");
-                    NotificationEnabled = false;
+                    errorNotification();
 
                     break;
 
                 case NotificationSetting.DisabledByGroupPolicy:
                     Warn("Your system administrator has prevented us from " +
                          "showing notifications.");
-                    NotificationEnabled = false;
+                    errorNotification();
 
                     break;
 
                 case NotificationSetting.DisabledByManifest:
                     Warn("Oops. We forgot to ask the operating system for permission " +
                          "to display toast notifications. Please file a bug.");
-                    NotificationEnabled = false;
+                    errorNotification();
 
                     break;
 

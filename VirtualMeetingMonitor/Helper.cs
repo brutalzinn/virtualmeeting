@@ -22,7 +22,10 @@ namespace VirtualMeetingMonitor
 
         private void Helper_Load(object sender, EventArgs e)
         {
-            webBrowser1.DocumentText = Markdown.ToHtml(markdown); ;
+            byte[] bytes = Encoding.Default.GetBytes(markdown);
+            string myString = Encoding.UTF8.GetString(bytes);
+            webBrowser1.DocumentText = Markdown.ToHtml(myString);
+
 
         }
 
