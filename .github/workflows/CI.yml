@@ -91,7 +91,7 @@ jobs:
       run: mkdir _build
       
     - name: Build the Solution
-      run: msbuild VirtualMeetingMonitor.sln /p:platform="Any CPU" /p:configuration="Release /p:DeleteExistingFiles=True /p:OutputPath="../_build"
+      run: msbuild VirtualMeetingMonitor.sln /p:platform="Any CPU" /p:configuration="Release" /p:DeleteExistingFiles=True /p:OutputPath="../_build"
       
     - name: Upload Release   
       uses: dsaltares/fetch-gh-release-asset@master
