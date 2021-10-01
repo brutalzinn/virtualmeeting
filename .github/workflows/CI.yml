@@ -95,10 +95,10 @@ jobs:
       
     - name: Upload Release   
       uses: dsaltares/fetch-gh-release-asset@master
-       with:
-         version: "tags/v0.1.18"
-         file: "plague-linux.zip"
-         target: "../_build"
-         token: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        version: "tags/v0.1.18"
+        file: "plague-linux.zip"
+        target: "../_build"
+        token: ${{ secrets.GITHUB_TOKEN }}
 
 
