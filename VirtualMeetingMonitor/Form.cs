@@ -2,6 +2,7 @@
 using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
 using Google.Apis.Sheets.v4.Data;
+using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,6 +10,10 @@ using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using Windows.ApplicationModel.Activation;
+using Windows.Data.Xml.Dom;
+using Windows.Foundation.Collections;
+using Windows.UI.Notifications;
 using Timer = System.Windows.Forms.Timer;
 
 namespace VirtualMeetingMonitor
@@ -25,6 +30,10 @@ namespace VirtualMeetingMonitor
        
         static readonly string[] Scopes = { SheetsService.Scope.Spreadsheets };
         static readonly string ApplicationName = "Virtual Meeting teste";
+        static readonly string GoogleSecret = "client_secret.json";
+        private  bool GoogleEnabled = false;
+        private bool DevMode = false;
+
         static readonly string SpreadsheetId = "1zWxyFh-0jkeN4pU9engXjOaDloM4torbEn286ShwL14";
         static readonly string sheet = "roberto-roboto";
         private int timeout = Properties.Settings.Default.timeout;
@@ -71,20 +80,28 @@ namespace VirtualMeetingMonitor
             OutboundTxt.Text = "";
             TotalTxt.Text = "";
             BackColor = System.Drawing.Color.DarkGray;
+            if (File.Exists(GoogleSecret))
+            {
             GoogleCredential credential;
-            using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
+            using (var stream = new FileStream(GoogleSecret, FileMode.Open, FileAccess.Read))
             {
                 credential = GoogleCredential.FromStream(stream)
                     .CreateScoped(Scopes);
             }
-
             // Create Google Sheets API service.
             service = new SheetsService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
                 ApplicationName = ApplicationName,
             });
+            GoogleEnabled = true;
             WriteTextSafe(Status, CheckGoogleConnection() ? "Google Sheets API Connected." : "Error with google sheets api.");
+            }
+            else
+            {
+                GoogleEnabled = false;
+                WriteTextSafe(Status,  "Google API Key not found. Check github README for more details about it.");
+            }
             //DateTime thisDay = DateTime.Today;
             //int todayName = (int)thisDay.DayOfWeek;
             //Console.WriteLine(setHours(todayName));
@@ -104,6 +121,7 @@ namespace VirtualMeetingMonitor
         }
         static void CreateEntry()
         {
+          
             DateTime thisDay = DateTime.Today;
             int todayName = (int)thisDay.DayOfWeek;
             var range = $"{sheet}!A:C";
@@ -238,7 +256,11 @@ namespace VirtualMeetingMonitor
             LogMeeting("Ended  ");
             try
             {
-            CreateEntry();
+                if (GoogleEnabled)
+                {
+                    CreateEntry();
+
+                }
             }
             catch
             {
@@ -254,19 +276,24 @@ namespace VirtualMeetingMonitor
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             Console.WriteLine("Timer iniciado. Aguardando timeout.");
-            Thread.Sleep(timeout);
-            Console.WriteLine("Tempo terminado.");
-            if (!call_running)
+            while (true)
             {
+                Console.WriteLine("Tempo terminado.");
+                if (!call_running)
+                {
 
-                EndMeeting();
-                Console.WriteLine(" chamada foi fechada.");
-            }
-            else
-            {
-                call_running = true;
-                Console.WriteLine("A chamada voltou.");
-              //  backgroundWorker1.CancelAsync();
+                    EndMeeting();
+                    Console.WriteLine(" chamada foi fechada.");
+                }
+                else
+                {
+                    call_running = true;
+                    Console.WriteLine("A chamada voltou.");
+                    break;
+                    //  backgroundWorker1.CancelAsync();
+                }
+                Thread.Sleep(5000);
+
             }
 
 
@@ -338,6 +365,8 @@ namespace VirtualMeetingMonitor
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            ToastNotificationManagerCompat.Uninstall();
+
             network.Stop();
         }
 
@@ -377,6 +406,97 @@ namespace VirtualMeetingMonitor
         {
             Config config = new Config();
             config.ShowDialog();
+        }
+        //https://stackoverflow.com/questions/58136119/windows-action-center-toast-activation
+
+        public void CreateAndShowPrompt(string message)
+        {
+            ToastContent toastContent = new ToastContent()
+            {
+                Launch = "bodyTapped",
+
+                Visual = new ToastVisual()
+                {
+                    BindingGeneric = new ToastBindingGeneric()
+                    {
+                        Children =
+                {
+                    new AdaptiveText()
+                    {
+                        Text = message
+                    },
+
+                }
+                    }
+                },
+                Actions = new ToastActionsCustom()
+                {
+                    Buttons = { new ToastButton("Yes", "Yes"), new ToastButton("No", "No") }
+                },
+                Header = new ToastHeader("header", "VirtualMeetingMonitor - User manager", "header")
+            };
+
+            var doc = new XmlDocument();
+            doc.LoadXml(toastContent.GetContent());
+
+            var promptNotification = new ToastNotification(doc);
+            promptNotification.Activated += PromptNotificationOnActivated;
+
+            ToastNotificationManagerCompat.CreateToastNotifier().Show(promptNotification);
+        }
+        private void PromptNotificationOnActivated(ToastNotification sender, object args)
+        {
+            ToastActivatedEventArgs strArgs = args as ToastActivatedEventArgs;
+
+            switch (strArgs.Arguments)
+            {
+                case "Yes":
+                    //stuff
+                    Console.WriteLine("Yes");
+                    break;
+                case "No":
+                    Console.WriteLine("No");
+
+                    //stuff
+                    break;
+                case "bodyTapped":
+                    //stuff
+                    break;
+            }
+
+        }
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            CreateAndShowPrompt("Are you still on call?");
+
+
+
+        }
+        private void setDevModeGroup(bool mode)
+        {
+            DevMode = mode;
+            devGroupBox.Enabled = mode;
+            devGroupBox.Visible = mode;
+        }
+        private void Form_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (!DevMode)
+            {
+                setDevModeGroup(true);
+                this.Size = new Size(382, 354);
+            }
+            else
+            {
+                setDevModeGroup(false);
+                this.Size = new Size(382, 230);
+
+            }
+            
+        }
+
+        private void Dev_ClearConfigs_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Reset();
         }
     }
 }

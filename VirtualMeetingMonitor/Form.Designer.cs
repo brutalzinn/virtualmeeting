@@ -53,7 +53,13 @@
             this.TotalTxt = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.Status = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.devGroupBox = new System.Windows.Forms.GroupBox();
+            this.Dev_ClearConfigs = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
+            this.devGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon
@@ -259,19 +265,77 @@
             // 
             // Status
             // 
+            this.Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Status.AutoSize = true;
-            this.Status.Location = new System.Drawing.Point(4, 124);
+            this.Status.Location = new System.Drawing.Point(9, 169);
             this.Status.Name = "Status";
             this.Status.Size = new System.Drawing.Size(132, 13);
             this.Status.TabIndex = 15;
             this.Status.Text = "Status: Google Connected";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(14, 19);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(80, 39);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Test notify";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(290, 169);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Mode: Normal";
+            // 
+            // devGroupBox
+            // 
+            this.devGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.devGroupBox.Controls.Add(this.Dev_ClearConfigs);
+            this.devGroupBox.Controls.Add(this.button2);
+            this.devGroupBox.Controls.Add(this.button1);
+            this.devGroupBox.Enabled = false;
+            this.devGroupBox.Location = new System.Drawing.Point(7, 5);
+            this.devGroupBox.Name = "devGroupBox";
+            this.devGroupBox.Size = new System.Drawing.Size(337, 142);
+            this.devGroupBox.TabIndex = 18;
+            this.devGroupBox.TabStop = false;
+            this.devGroupBox.Text = "Developer mode";
+            this.devGroupBox.Visible = false;
+            // 
+            // Dev_ClearConfigs
+            // 
+            this.Dev_ClearConfigs.Location = new System.Drawing.Point(233, 87);
+            this.Dev_ClearConfigs.Name = "Dev_ClearConfigs";
+            this.Dev_ClearConfigs.Size = new System.Drawing.Size(98, 39);
+            this.Dev_ClearConfigs.TabIndex = 18;
+            this.Dev_ClearConfigs.Text = "Clear configs";
+            this.Dev_ClearConfigs.UseVisualStyleBackColor = true;
+            this.Dev_ClearConfigs.Click += new System.EventHandler(this.Dev_ClearConfigs_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(14, 87);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(80, 39);
+            this.button2.TabIndex = 17;
+            this.button2.Text = "Stop all";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(366, 141);
+            this.ClientSize = new System.Drawing.Size(366, 191);
+            this.Controls.Add(this.devGroupBox);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.Status);
             this.Controls.Add(this.TotalTxt);
             this.Controls.Add(this.OutboundTxt);
@@ -290,11 +354,14 @@
             this.Controls.Add(this.meetingTxt);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Virtual Meeting Monitor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
+            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Form_MouseDoubleClick);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.contextMenuStrip.ResumeLayout(false);
+            this.devGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -325,6 +392,11 @@
         private System.Windows.Forms.ToolStripMenuItem configTimeoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem statusNoCallToolStripMenuItem;
         private System.Windows.Forms.Label Status;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox devGroupBox;
+        private System.Windows.Forms.Button Dev_ClearConfigs;
+        private System.Windows.Forms.Button button2;
     }
 }
 

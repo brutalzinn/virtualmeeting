@@ -82,7 +82,8 @@ namespace VirtualMeetingMonitor
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Name = "Config";
-            this.Text = "Config";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "{title} - Config";
             this.Load += new System.EventHandler(this.Status_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
