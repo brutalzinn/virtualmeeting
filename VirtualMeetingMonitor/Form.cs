@@ -27,7 +27,7 @@ namespace VirtualMeetingMonitor
         static readonly string ApplicationName = "Virtual Meeting teste";
         static readonly string SpreadsheetId = "1zWxyFh-0jkeN4pU9engXjOaDloM4torbEn286ShwL14";
         static readonly string sheet = "roberto-roboto";
-        private const int timeout = 5000;
+        private int timeout = Properties.Settings.Default.timeout;
 
         static SheetsService service;
         public enum Days
@@ -142,7 +142,24 @@ namespace VirtualMeetingMonitor
         {
             meeting.ReceivedUDP(ipHeader);
         }
+        public void WriteStatusStrip(string text)
+        {
+            // notifyIcon. = "fsdfsdfd";
+            notifyIcon.Text = this.Text + "\n" + text;
+            MethodInvoker method = delegate
+            {
+                statusNoCallToolStripMenuItem.Text = text;
 
+            };
+
+            if (contextMenuStrip.InvokeRequired)
+            {
+                // Call this same method but append THREAD2 to the text
+                BeginInvoke(method);
+            }
+            else
+                statusNoCallToolStripMenuItem.Text = text;
+        }
         private void Meeting_OnMeetingStarted()
         {
             int hue = 0;
@@ -163,6 +180,8 @@ namespace VirtualMeetingMonitor
 
           ///  onAirSign.TurnOn(hue, sat);
             LogMeeting("Started");
+            WriteStatusStrip("Status: Meeting running");
+
             call_running = true;
             BackColor = System.Drawing.Color.Green;
 
@@ -176,8 +195,8 @@ namespace VirtualMeetingMonitor
         }
 
 
+       
 
-  
         public void WriteTextSafe(string text)
         {
             if (EnedTxt.InvokeRequired)
@@ -196,7 +215,7 @@ namespace VirtualMeetingMonitor
             LogMeeting("Ended  ");
             CreateEntry();
             BackColor = System.Drawing.Color.DarkGray;
-
+            WriteStatusStrip("Status: No meeting running");
             WriteTextSafe(DateTime.Now.ToString("MM/dd H:mm:ss"));
 
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form));
@@ -205,7 +224,7 @@ namespace VirtualMeetingMonitor
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             Console.WriteLine("Timer iniciado. Aguardando timeout.");
-            Thread.Sleep(15000);
+            Thread.Sleep(timeout);
             Console.WriteLine("Tempo terminado.");
             if (!call_running)
             {
@@ -246,6 +265,16 @@ namespace VirtualMeetingMonitor
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+        private void notifyIcon_Click(object sender, EventArgs e)
+        {
+
+         
+        }
+
+        private void handler_method(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void notifyIcon_DoubleClick(object sender, EventArgs e)
@@ -302,6 +331,7 @@ namespace VirtualMeetingMonitor
             }
         }
 
+
         private void Form_Load(object sender, EventArgs e)
         {
 
@@ -312,6 +342,10 @@ namespace VirtualMeetingMonitor
             EndMeeting();
         }
 
-      
+        private void configTimeoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Config config = new Config();
+            config.ShowDialog();
+        }
     }
 }

@@ -32,9 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form));
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.onAirOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.onAirOffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusNoCallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configTimeoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.meetingTxt = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -51,53 +51,53 @@
             this.InboundTxt = new System.Windows.Forms.Label();
             this.OutboundTxt = new System.Windows.Forms.Label();
             this.TotalTxt = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon
             // 
+            this.notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
             this.notifyIcon.Text = "notifyIcon1";
             this.notifyIcon.Visible = true;
+            this.notifyIcon.Click += new System.EventHandler(this.notifyIcon_Click);
             this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
             // 
             // contextMenuStrip
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.onAirOnToolStripMenuItem,
-            this.onAirOffToolStripMenuItem,
+            this.statusNoCallToolStripMenuItem,
             this.openLogToolStripMenuItem,
+            this.configTimeoutToolStripMenuItem,
             this.closeToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip1";
-            this.contextMenuStrip.Size = new System.Drawing.Size(137, 92);
+            this.contextMenuStrip.Size = new System.Drawing.Size(150, 92);
             // 
-            // onAirOnToolStripMenuItem
+            // statusNoCallToolStripMenuItem
             // 
-            this.onAirOnToolStripMenuItem.Name = "onAirOnToolStripMenuItem";
-            this.onAirOnToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.onAirOnToolStripMenuItem.Text = "On Air - On";
-            this.onAirOnToolStripMenuItem.Click += new System.EventHandler(this.onAirOnToolStripMenuItem_Click);
-            // 
-            // onAirOffToolStripMenuItem
-            // 
-            this.onAirOffToolStripMenuItem.Name = "onAirOffToolStripMenuItem";
-            this.onAirOffToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.onAirOffToolStripMenuItem.Text = "On Air - Off";
-            this.onAirOffToolStripMenuItem.Click += new System.EventHandler(this.onAirOffToolStripMenuItem_Click);
+            this.statusNoCallToolStripMenuItem.Name = "statusNoCallToolStripMenuItem";
+            this.statusNoCallToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.statusNoCallToolStripMenuItem.Text = "Status: No call";
             // 
             // openLogToolStripMenuItem
             // 
             this.openLogToolStripMenuItem.Name = "openLogToolStripMenuItem";
-            this.openLogToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.openLogToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.openLogToolStripMenuItem.Text = "Open Log";
             this.openLogToolStripMenuItem.Click += new System.EventHandler(this.openLogToolStripMenuItem_Click);
+            // 
+            // configTimeoutToolStripMenuItem
+            // 
+            this.configTimeoutToolStripMenuItem.Name = "configTimeoutToolStripMenuItem";
+            this.configTimeoutToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.configTimeoutToolStripMenuItem.Text = "Config";
+            this.configTimeoutToolStripMenuItem.Click += new System.EventHandler(this.configTimeoutToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -251,16 +251,6 @@
             this.TotalTxt.TabIndex = 14;
             this.TotalTxt.Text = "422";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(163, 39);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(82, 49);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // backgroundWorker1
             // 
             this.backgroundWorker1.WorkerSupportsCancellation = true;
@@ -272,7 +262,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(366, 129);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.TotalTxt);
             this.Controls.Add(this.OutboundTxt);
             this.Controls.Add(this.InboundTxt);
@@ -304,8 +293,6 @@
 
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem onAirOnToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem onAirOffToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.Label meetingTxt;
         private System.Windows.Forms.Label label4;
@@ -323,8 +310,9 @@
         private System.Windows.Forms.Label OutboundTxt;
         private System.Windows.Forms.Label TotalTxt;
         private System.Windows.Forms.ToolStripMenuItem openLogToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.ToolStripMenuItem configTimeoutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem statusNoCallToolStripMenuItem;
     }
 }
 
