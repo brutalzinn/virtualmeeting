@@ -57,9 +57,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.Dev_LabelMode = new System.Windows.Forms.Label();
             this.devGroupBox = new System.Windows.Forms.GroupBox();
+            this.Dev_helpButton = new System.Windows.Forms.Button();
             this.Dev_ClearConfigs = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.Dev_helpButton = new System.Windows.Forms.Button();
+            this.Dev_ButtonTeste = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
             this.devGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -310,6 +311,7 @@
             this.devGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.devGroupBox.Controls.Add(this.Dev_helpButton);
+            this.devGroupBox.Controls.Add(this.Dev_ButtonTeste);
             this.devGroupBox.Controls.Add(this.Dev_ClearConfigs);
             this.devGroupBox.Controls.Add(this.button2);
             this.devGroupBox.Controls.Add(this.button1);
@@ -321,6 +323,16 @@
             this.devGroupBox.TabStop = false;
             this.devGroupBox.Text = "Developer mode";
             this.devGroupBox.Visible = false;
+            // 
+            // Dev_helpButton
+            // 
+            this.Dev_helpButton.Location = new System.Drawing.Point(247, 11);
+            this.Dev_helpButton.Name = "Dev_helpButton";
+            this.Dev_helpButton.Size = new System.Drawing.Size(80, 39);
+            this.Dev_helpButton.TabIndex = 19;
+            this.Dev_helpButton.Text = "Test Help Dialog";
+            this.Dev_helpButton.UseVisualStyleBackColor = true;
+            this.Dev_helpButton.Click += new System.EventHandler(this.Dev_helpButton_Click);
             // 
             // Dev_ClearConfigs
             // 
@@ -341,15 +353,15 @@
             this.button2.Text = "Stop all";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // Dev_helpButton
+            // Dev_ButtonTeste
             // 
-            this.Dev_helpButton.Location = new System.Drawing.Point(247, 11);
-            this.Dev_helpButton.Name = "Dev_helpButton";
-            this.Dev_helpButton.Size = new System.Drawing.Size(80, 39);
-            this.Dev_helpButton.TabIndex = 19;
-            this.Dev_helpButton.Text = "Test Help Dialog";
-            this.Dev_helpButton.UseVisualStyleBackColor = true;
-            this.Dev_helpButton.Click += new System.EventHandler(this.Dev_helpButton_Click);
+            this.Dev_ButtonTeste.Location = new System.Drawing.Point(100, 20);
+            this.Dev_ButtonTeste.Name = "Dev_ButtonTeste";
+            this.Dev_ButtonTeste.Size = new System.Drawing.Size(95, 38);
+            this.Dev_ButtonTeste.TabIndex = 19;
+            this.Dev_ButtonTeste.Text = "TESTE";
+            this.Dev_ButtonTeste.UseVisualStyleBackColor = true;
+            this.Dev_ButtonTeste.Click += new System.EventHandler(this.Dev_ButtonTeste_Click);
             // 
             // Form
             // 
@@ -422,6 +434,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.Button Dev_helpButton;
+        private System.Windows.Forms.Button Dev_ButtonTeste;
     }
 }
 

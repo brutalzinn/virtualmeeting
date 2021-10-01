@@ -25,5 +25,10 @@ namespace VirtualMeetingMonitor
             webBrowser1.DocumentText = Markdown.ToHtml(markdown); ;
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

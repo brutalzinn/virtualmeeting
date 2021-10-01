@@ -52,6 +52,7 @@ namespace VirtualMeetingMonitor
             this.button1.TabIndex = 1;
             this.button1.Text = "OK";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Helper
             // 
@@ -61,6 +62,7 @@ namespace VirtualMeetingMonitor
             this.Controls.Add(this.button1);
             this.Controls.Add(this.webBrowser1);
             this.Name = "Helper";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "{title} - Helper";
             this.Load += new System.EventHandler(this.Helper_Load);
             this.ResumeLayout(false);

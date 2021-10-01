@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using Windows.ApplicationModel.Activation;
 using Windows.Data.Xml.Dom;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI.Notifications;
 using Timer = System.Windows.Forms.Timer;
 
@@ -33,6 +34,7 @@ namespace VirtualMeetingMonitor
         static readonly string ApplicationName = "Virtual Meeting teste";
         static readonly string GoogleSecret = "client_secret.json";
         private  bool GoogleEnabled = false;
+        private bool NotificationEnabled = false;
         private bool DevMode = false;
 
         static readonly string SpreadsheetId = "1zWxyFh-0jkeN4pU9engXjOaDloM4torbEn286ShwL14";
@@ -248,8 +250,66 @@ namespace VirtualMeetingMonitor
         }
 
 
-       
+       private void Warn(string text)
+        {
+            MessageBox.Show(text);
+        }
+        public  void CheckNotification()
+        {
+            var notifier = ToastNotificationManagerCompat.CreateToastNotifier();
+            var setting = notifier.Setting;
 
+            switch (setting)
+            {
+                case NotificationSetting.Enabled:
+                    // everything is great.
+                    NotificationEnabled = true;
+                    Console.WriteLine("habilitado");
+                    break;
+
+                case NotificationSetting.DisabledForApplication:
+                    Warn("Please go to Settings, System, Notifications & Actions " +
+                         "and enable this application in the " +
+                
+                         "'Get notifications from these senders' list.");
+                    NotificationEnabled = false;
+                    // await Launcher.LaunchUriAsync(new System.Uri("ms-settings:notifications"));
+
+                    break;
+
+                case NotificationSetting.DisabledForUser:
+                    Warn("Please go to Settings, System, Notifications & Actions " +
+                         "and set " +
+         
+                         "'Get notifications from apps and other senders' to On.");
+                    NotificationEnabled = false;
+
+                    break;
+
+                case NotificationSetting.DisabledByGroupPolicy:
+                    Warn("Your system administrator has prevented us from " +
+                         "showing notifications.");
+                    NotificationEnabled = false;
+
+                    break;
+
+                case NotificationSetting.DisabledByManifest:
+                    Warn("Oops. We forgot to ask the operating system for permission " +
+                         "to display toast notifications. Please file a bug.");
+                    NotificationEnabled = false;
+
+                    break;
+
+                // Catch-all case for reasons that are defined
+                // in future versions of Windows.
+                default:
+                    Warn("It doesn't look like toast notifications are enabled, " +
+                         "but we don't know why.");
+                    NotificationEnabled = false;
+
+                    break;
+            }
+        }
         public void WriteTextSafe(Control control,string text)
         {
 
@@ -320,9 +380,18 @@ namespace VirtualMeetingMonitor
             //   onAirSign.TurnOff();
             // CreateEntry();
             call_running = false;
-            if (!backgroundWorker1.IsBusy)
+
+            if (!NotificationEnabled)
             {
-                backgroundWorker1.RunWorkerAsync();
+                if (!backgroundWorker1.IsBusy)
+                {
+                    backgroundWorker1.RunWorkerAsync();
+                }
+            }
+            else
+            {
+                CreateAndShowPrompt("Are you still on call?");
+
             }
 
         }
@@ -411,7 +480,7 @@ namespace VirtualMeetingMonitor
 
         private void Form_Load(object sender, EventArgs e)
         {
-
+            CheckNotification();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -473,6 +542,7 @@ namespace VirtualMeetingMonitor
                     break;
                 case "No":
                     Console.WriteLine("No");
+                    EndMeeting();
 
                     //stuff
                     break;
@@ -531,6 +601,11 @@ namespace VirtualMeetingMonitor
         private void Dev_helpButton_Click(object sender, EventArgs e)
         {
           
+        }
+
+        private void Dev_ButtonTeste_Click(object sender, EventArgs e)
+        {
+            CheckNotification();
         }
     }
 }
