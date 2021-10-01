@@ -35,6 +35,7 @@
             this.statusNoCallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configTimeoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.meetingTxt = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -58,6 +59,7 @@
             this.devGroupBox = new System.Windows.Forms.GroupBox();
             this.Dev_ClearConfigs = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.Dev_helpButton = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
             this.devGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -77,9 +79,10 @@
             this.statusNoCallToolStripMenuItem,
             this.openLogToolStripMenuItem,
             this.configTimeoutToolStripMenuItem,
+            this.aboutToolStripMenuItem,
             this.closeToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip1";
-            this.contextMenuStrip.Size = new System.Drawing.Size(150, 92);
+            this.contextMenuStrip.Size = new System.Drawing.Size(150, 114);
             // 
             // statusNoCallToolStripMenuItem
             // 
@@ -100,6 +103,13 @@
             this.configTimeoutToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.configTimeoutToolStripMenuItem.Text = "Config";
             this.configTimeoutToolStripMenuItem.Click += new System.EventHandler(this.configTimeoutToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.aboutToolStripMenuItem.Text = "Help";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
@@ -299,6 +309,7 @@
             // 
             this.devGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.devGroupBox.Controls.Add(this.Dev_helpButton);
             this.devGroupBox.Controls.Add(this.Dev_ClearConfigs);
             this.devGroupBox.Controls.Add(this.button2);
             this.devGroupBox.Controls.Add(this.button1);
@@ -329,6 +340,16 @@
             this.button2.TabIndex = 17;
             this.button2.Text = "Stop all";
             this.button2.UseVisualStyleBackColor = true;
+            // 
+            // Dev_helpButton
+            // 
+            this.Dev_helpButton.Location = new System.Drawing.Point(247, 11);
+            this.Dev_helpButton.Name = "Dev_helpButton";
+            this.Dev_helpButton.Size = new System.Drawing.Size(80, 39);
+            this.Dev_helpButton.TabIndex = 19;
+            this.Dev_helpButton.Text = "Test Help Dialog";
+            this.Dev_helpButton.UseVisualStyleBackColor = true;
+            this.Dev_helpButton.Click += new System.EventHandler(this.Dev_helpButton_Click);
             // 
             // Form
             // 
@@ -399,6 +420,8 @@
         private System.Windows.Forms.GroupBox devGroupBox;
         private System.Windows.Forms.Button Dev_ClearConfigs;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.Button Dev_helpButton;
     }
 }
 

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Net;
 using System.Threading;
 using System.Windows.Forms;
 using Windows.ApplicationModel.Activation;
@@ -102,11 +103,27 @@ namespace VirtualMeetingMonitor
                 GoogleEnabled = false;
                 WriteTextSafe(Status,  "Google API Key not found. \n Check github README for more details about it.");
             }
+            if (Properties.Settings.Default.firstRun)
+            {
+                showHelper("https://raw.githubusercontent.com/wiki/brutalzinn/zoom-monitor-googlesheets/Welcome-to-VirtualMeetingMonitor.md");
+                Properties.Settings.Default.firstRun = false;
+            }
             //DateTime thisDay = DateTime.Today;
             //int todayName = (int)thisDay.DayOfWeek;
             //Console.WriteLine(setHours(todayName));
             // ReadEntries();
             // CreateEntry();
+        }
+        private void showHelper(string url)
+        {
+            using (WebClient web1 = new WebClient())
+            {
+                string data = web1.DownloadString(url);
+                Helper helper = new Helper();
+                Console.WriteLine(data);
+                helper.markdown = data;
+                helper.ShowDialog();
+            }
         }
         static string setHours(int day)
         {
@@ -499,6 +516,21 @@ namespace VirtualMeetingMonitor
         private void Dev_ClearConfigs_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Reset();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        
+
+
+
+
+
+        }
+  
+        private void Dev_helpButton_Click(object sender, EventArgs e)
+        {
+          
         }
     }
 }
