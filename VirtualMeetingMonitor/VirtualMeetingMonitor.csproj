@@ -99,6 +99,7 @@
       <DependentUpon>Helper.cs</DependentUpon>
     </Compile>
     <Compile Include="IPHeader.cs" />
+    <Compile Include="Language.cs" />
     <Compile Include="Network.cs" />
     <Compile Include="OnAirSign.cs" />
     <Compile Include="Program.cs" />

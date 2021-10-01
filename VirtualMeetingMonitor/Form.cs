@@ -488,7 +488,12 @@ namespace VirtualMeetingMonitor
             }
         }
 
-
+        private void LanguageConfig()
+        {
+            foreach (string path in Directory.GetFiles(@"\language")){
+                Console.WriteLine(path);
+            }
+        }
         private void Form_Load(object sender, EventArgs e)
         {
             CheckNotification();
@@ -616,7 +621,7 @@ namespace VirtualMeetingMonitor
 
         private void Dev_ButtonTeste_Click(object sender, EventArgs e)
         {
-            CheckNotification();
+            LanguageConfig();
         }
     }
 }
