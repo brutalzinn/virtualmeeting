@@ -77,6 +77,6 @@ jobs:
       
     - name: Restore nuget Package
       run: nuget restore VirtualMeetingMonitor.sln
-      
+     
     - name: Build the Solution
-     run: msbuild VirtualMeetingMonitor.sln
+      run: msbuild VirtualMeetingMonitor.sln
