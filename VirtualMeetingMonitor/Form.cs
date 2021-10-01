@@ -276,9 +276,10 @@ namespace VirtualMeetingMonitor
             //   onAirSign.TurnOff();
             // CreateEntry();
             call_running = false;
-
-            backgroundWorker1.RunWorkerAsync();
-           
+            if (!backgroundWorker1.IsBusy)
+            {
+                backgroundWorker1.RunWorkerAsync();
+            }
 
         }
 
