@@ -1,5 +1,7 @@
 # VirtualMeetingMonitor
 
+[![VirtualMeetingMonitor-APP](https://github.com/brutalzinn/zoom-monitor-googlesheets/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/brutalzinn/zoom-monitor-googlesheets/actions/workflows/CI.yml)
+
 This project is based on [makeratplay/VirtualMeetingMonitor project
 ](https://github.com/makeratplay/VirtualMeetingMonitor)
 and will be used to detect my join to zoom meeting and write a log to a google sheets table.
@@ -9,7 +11,7 @@ and will be used to detect my join to zoom meeting and write a log to a google s
     Thanks to Michael Hawkins to give us a cool project to detect virtual meetings.
 
     Thanks to Marcos Placona to writes a cool article about how to integrate google sheets with c#
-    
+
 
 # Requeriments
 
