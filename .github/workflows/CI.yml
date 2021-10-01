@@ -87,26 +87,20 @@ jobs:
     - name: Navigate to Workspace
       run: cd $GITHUB_WORKSPACE
 
-    - name: Create Build Directory
-      run: mkdir _build
-      
     - name: Check current files one
       run: dir
-      
+
+    - name: Create Build Directory
+      run: mkdir _build
+        
     - name: Build the Solution
       run: msbuild VirtualMeetingMonitor.sln /p:platform="Any CPU" /p:configuration="Release" /p:DeleteExistingFiles=True /p:OutputPath="../_build"
         
     - name: Check current files two
       run: dir
-
-    - name: Join build directory
-      run: cd _build
       
     - name: Show files in build directory
-      run: dir
-
-    - name: Back to root directory.
-      run: cd ..       
+      run: dir _build
       
     - name: Upload Release
       uses: "marvinpinto/action-automatic-releases@latest"
@@ -115,7 +109,7 @@ jobs:
        automatic_release_tag: "latest"
        prerelease: true
        title: "Development Build"
-       files: ./build
+       files: ./_build
         
 
 
