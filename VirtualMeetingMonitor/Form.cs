@@ -194,6 +194,7 @@ namespace VirtualMeetingMonitor
    
 
             LogMeeting("Ended  ");
+            CreateEntry();
             BackColor = System.Drawing.Color.DarkGray;
 
             WriteTextSafe(DateTime.Now.ToString("MM/dd H:mm:ss"));
@@ -204,10 +205,11 @@ namespace VirtualMeetingMonitor
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             Console.WriteLine("Timer iniciado. Aguardando timeout.");
-            Thread.Sleep(1000);
+            Thread.Sleep(15000);
             Console.WriteLine("Tempo terminado.");
             if (!call_running)
             {
+
                 EndMeeting();
                 Console.WriteLine(" chamada foi fechada.");
             }
