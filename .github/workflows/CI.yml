@@ -99,6 +99,16 @@ jobs:
         version: "tags/v0.1.18"
         file: "plague-linux.zip"
         target: "../_build"
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }},,
+        
+    - name: Upload Release
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+       repo_token: "${{ secrets.GITHUB_TOKEN }}"
+       automatic_release_tag: "latest"
+       prerelease: true
+       title: "Development Build"
+       files: ../_build/*
+        
 
 
