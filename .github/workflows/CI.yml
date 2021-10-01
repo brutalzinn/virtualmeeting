@@ -50,7 +50,7 @@ jobs:
 
     strategy:
       matrix:
-        configuration: [Debug, Release]
+        configuration: [Release]
 
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
@@ -74,16 +74,20 @@ jobs:
      
     - name: Build the Solution
       run: msbuild VirtualMeetingMonitor.sln /p:platform="Any CPU" /p:configuration="Release"
+    
+    - name: Navigate to Workspace
+      run: cd $GITHUB_WORKSPACE
       
-    - name: release
-      uses: actions/create-release@v1
-      id: create_release
+    - name: Release
+      uses: softprops/action-gh-release@v1
       with:
-       draft: false
-       prerelease: false
-       release_name: Build
-       tag_name: Release
-       body_path: .\Release
+       tag_name: ${{ github.ref }}
+       release_name: Release ${{ github.ref }}
+       draft: true
+       files: |
+        ./release/*.tar.gz
+        ./release/*.zip
+        ./release/*.deb
       env:
-       GITHUB_TOKEN: ${{ github.token }}
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
      
