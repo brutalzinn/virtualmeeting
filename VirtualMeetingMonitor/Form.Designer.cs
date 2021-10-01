@@ -52,6 +52,7 @@
             this.OutboundTxt = new System.Windows.Forms.Label();
             this.TotalTxt = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.Status = new System.Windows.Forms.Label();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -256,12 +257,22 @@
             this.backgroundWorker1.WorkerSupportsCancellation = true;
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
+            // Status
+            // 
+            this.Status.AutoSize = true;
+            this.Status.Location = new System.Drawing.Point(4, 124);
+            this.Status.Name = "Status";
+            this.Status.Size = new System.Drawing.Size(132, 13);
+            this.Status.TabIndex = 15;
+            this.Status.Text = "Status: Google Connected";
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(366, 129);
+            this.ClientSize = new System.Drawing.Size(366, 141);
+            this.Controls.Add(this.Status);
             this.Controls.Add(this.TotalTxt);
             this.Controls.Add(this.OutboundTxt);
             this.Controls.Add(this.InboundTxt);
@@ -313,6 +324,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.ToolStripMenuItem configTimeoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem statusNoCallToolStripMenuItem;
+        private System.Windows.Forms.Label Status;
     }
 }
 

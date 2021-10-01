@@ -84,6 +84,7 @@ namespace VirtualMeetingMonitor
                 HttpClientInitializer = credential,
                 ApplicationName = ApplicationName,
             });
+            WriteTextSafe(Status, CheckGoogleConnection() ? "Google Sheets API Connected." : "Error with google sheets api.");
             //DateTime thisDay = DateTime.Today;
             //int todayName = (int)thisDay.DayOfWeek;
             //Console.WriteLine(setHours(todayName));
@@ -136,6 +137,23 @@ namespace VirtualMeetingMonitor
             {
                 Console.WriteLine("No data found.");
             }
+        }
+        static bool CheckGoogleConnection()
+        {
+            try
+            {
+                var range = $"{sheet}!A:C";
+                SpreadsheetsResource.ValuesResource.GetRequest request =
+                        service.Spreadsheets.Values.Get(SpreadsheetId, range);
+
+                var response = request.Execute();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+          
         }
 
         private void Network_OutsideUDPTafficeReceived(IPHeader ipHeader)
@@ -197,26 +215,38 @@ namespace VirtualMeetingMonitor
 
        
 
-        public void WriteTextSafe(string text)
+        public void WriteTextSafe(Control control,string text)
         {
-            if (EnedTxt.InvokeRequired)
+
+            MethodInvoker method = delegate
+            {
+                control.Text = text;
+
+            };
+
+            if (control.InvokeRequired)
             {
                 // Call this same method but append THREAD2 to the text
-                Action safeWrite = delegate { WriteTextSafe($"{text} (THREAD2)"); };
-                EnedTxt.Invoke(safeWrite);
+                BeginInvoke(method);
             }
             else
-                EnedTxt.Text = text;
+                control.Text = text;
         }
         private void EndMeeting()
         {
    
-
             LogMeeting("Ended  ");
+            try
+            {
             CreateEntry();
+            }
+            catch
+            {
+             WriteTextSafe(Status, "Error with google sheets API.");
+            }
             BackColor = System.Drawing.Color.DarkGray;
             WriteStatusStrip("Status: No meeting running");
-            WriteTextSafe(DateTime.Now.ToString("MM/dd H:mm:ss"));
+            WriteTextSafe(EnedTxt, DateTime.Now.ToString("MM/dd H:mm:ss"));
 
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form));
             notifyIcon.Icon = ((Icon)(resources.GetObject("notifyIcon.Icon")));
