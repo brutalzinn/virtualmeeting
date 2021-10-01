@@ -90,9 +90,15 @@ jobs:
     - name: Create Build Directory
       run: mkdir _build
       
+    - name: Check current files one
+      run: dir
+      
     - name: Build the Solution
       run: msbuild VirtualMeetingMonitor.sln /p:platform="Any CPU" /p:configuration="Release" /p:DeleteExistingFiles=True /p:OutputPath="../_build"
         
+    - name: Check current files two
+      run: dir
+      
     - name: Upload Release
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
