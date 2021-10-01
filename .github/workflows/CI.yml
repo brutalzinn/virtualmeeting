@@ -75,15 +75,5 @@ jobs:
     - name: Build the Solution
       run: msbuild VirtualMeetingMonitor.sln /p:platform="Any CPU" /p:configuration="Release"
       
-    - name: release
-      uses: actions/create-release@v1
-      id: create_release
-      with:
-       draft: false
-       prerelease: false
-       release_name: Build
-       tag_name: Release
-       body_path: .\Release
-      env:
-       GITHUB_TOKEN: ${{ github.token }}
+
      
