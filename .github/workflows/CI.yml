@@ -67,7 +67,7 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Setup Nuget.exe
-      uses: warrenbuckley/Setup-Nuget@v1
+      uses: nuget/setup-nuget@v1
       
     - name: Restore nuget Package
       run: nuget restore VirtualMeetingMonitor.sln
