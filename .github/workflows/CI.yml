@@ -95,11 +95,8 @@ jobs:
         
  
     - name: Extract some files
-      run: |
-      cd VirtualMeetingMonitorRelease
-      7z a -r ../zip *
-      
-  
+      run: 7z a zip ./VirtualMeetingMonitorRelease/*
+
     - name: Upload Release
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
