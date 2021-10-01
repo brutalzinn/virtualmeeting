@@ -100,7 +100,7 @@ namespace VirtualMeetingMonitor
             else
             {
                 GoogleEnabled = false;
-                WriteTextSafe(Status,  "Google API Key not found. Check github README for more details about it.");
+                WriteTextSafe(Status,  "Google API Key not found. \n Check github README for more details about it.");
             }
             //DateTime thisDay = DateTime.Today;
             //int todayName = (int)thisDay.DayOfWeek;
@@ -477,6 +477,8 @@ namespace VirtualMeetingMonitor
             DevMode = mode;
             devGroupBox.Enabled = mode;
             devGroupBox.Visible = mode;
+            string devMode = mode ? "Dev" : "Normal";
+            Dev_LabelMode.Text = $"Mode: {devMode}";
         }
         private void Form_MouseDoubleClick(object sender, MouseEventArgs e)
         {

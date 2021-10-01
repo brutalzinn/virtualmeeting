@@ -54,7 +54,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.Status = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Dev_LabelMode = new System.Windows.Forms.Label();
             this.devGroupBox = new System.Windows.Forms.GroupBox();
             this.Dev_ClearConfigs = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -265,13 +265,14 @@
             // 
             // Status
             // 
-            this.Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Status.AutoSize = true;
-            this.Status.Location = new System.Drawing.Point(9, 169);
+            this.Status.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Status.Location = new System.Drawing.Point(0, 178);
             this.Status.Name = "Status";
             this.Status.Size = new System.Drawing.Size(132, 13);
             this.Status.TabIndex = 15;
             this.Status.Text = "Status: Google Connected";
+            this.Status.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // button1
             // 
@@ -283,15 +284,16 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // label1
+            // Dev_LabelMode
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(290, 169);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Mode: Normal";
+            this.Dev_LabelMode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Dev_LabelMode.AutoSize = true;
+            this.Dev_LabelMode.Location = new System.Drawing.Point(291, 178);
+            this.Dev_LabelMode.Name = "Dev_LabelMode";
+            this.Dev_LabelMode.Size = new System.Drawing.Size(73, 13);
+            this.Dev_LabelMode.TabIndex = 17;
+            this.Dev_LabelMode.Text = "Mode: Normal";
             // 
             // devGroupBox
             // 
@@ -335,7 +337,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(366, 191);
             this.Controls.Add(this.devGroupBox);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Dev_LabelMode);
             this.Controls.Add(this.Status);
             this.Controls.Add(this.TotalTxt);
             this.Controls.Add(this.OutboundTxt);
@@ -393,7 +395,7 @@
         private System.Windows.Forms.ToolStripMenuItem statusNoCallToolStripMenuItem;
         private System.Windows.Forms.Label Status;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Dev_LabelMode;
         private System.Windows.Forms.GroupBox devGroupBox;
         private System.Windows.Forms.Button Dev_ClearConfigs;
         private System.Windows.Forms.Button button2;
