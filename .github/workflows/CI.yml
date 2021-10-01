@@ -100,7 +100,7 @@ jobs:
        automatic_release_tag: "latest"
        prerelease: true
        title: "Development Build"
-       files: ../_build/*
+       files: ../_build
         
 
 
