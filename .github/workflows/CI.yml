@@ -50,36 +50,18 @@ jobs:
 
     strategy:
       matrix:
-        channel: [Dev, Prod_Sideload, Prod_Store]
+        channel: [Release]
         targetPlatform: [x86, x64]
         include:
-
-          # includes the following variables for the matrix leg matching Dev
-          - channel: Dev
-            ChannelName: Dev
-            Configuration: Debug
-            DistributionUrl: https://microsoft.github.io/github-actions-for-desktop-apps-distribution-dev
-            MsixPackageId: MyWPFApp.DevOpsDemo.Dev
-            MsixPublisherId: CN=GitHubActionsDemo
-            MsixPackageDisplayName: MyWPFApp (Dev)
-
-          # includes the following variables for the matrix leg matching Prod_Sideload
-          - channel: Prod_Sideload
+          - channel: Release
             Configuration: Release
-            ChannelName: Prod_Sideload
+            ChannelName: Release
             DistributionUrl: https://microsoft.github.io/github-actions-for-desktop-apps-distribution-prod
-            MsixPackageId: MyWPFApp.DevOpsDemo.ProdSideload
+            MsixPackageId: VirtualMeetingMonitor.ProdSideload
             MsixPublisherId: CN=GitHubActionsDemo
-            MsixPackageDisplayName: MyWPFApp (ProdSideload)
+            MsixPackageDisplayName: VirtualMeetingMonitor (ProdSideload)
 
-          # includes the following variables for the matrix leg matching Prod_Store
-          - channel: Prod_Store
-            Configuration: Release
-            ChannelName: Prod_Store
-            DistributionUrl:
-            MsixPackageId: MyWPFApp.DevOpsDemo.ProdStore
-            MsixPublisherId: CN=GitHubActionsDemo
-            MsixPackageDisplayName: MyWPFApp (ProdStore)
+  
         
 
 
@@ -125,7 +107,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}  # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: MyWpfApp.Package\AppPackages\AppPackages.zip
-        asset_name: AppPackages.zip
+        asset_path: VirtualMeetingMonitor\VirtualMeetingMonitor\VirtualMeetingMonitor.zip
+        asset_name: VirtualMeetingMonitor.zip
         asset_content_type: application/zip
 
