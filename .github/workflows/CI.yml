@@ -82,7 +82,7 @@ jobs:
        draft: false
        prerelease: false
        release_name: Build
-       tag_name: ${{ github.ref }}
+       tag_name: Release
        body_path: .\Release
       env:
        GITHUB_TOKEN: ${{ github.token }}
