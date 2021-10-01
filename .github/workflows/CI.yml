@@ -98,6 +98,15 @@ jobs:
         
     - name: Check current files two
       run: dir
+
+    - name: Join build directory
+      run: cd _build
+      
+    - name: Show files in build directory
+      run: dir
+
+    - name: Back to root directory.
+      run: cd ..       
       
     - name: Upload Release
       uses: "marvinpinto/action-automatic-releases@latest"
@@ -106,7 +115,7 @@ jobs:
        automatic_release_tag: "latest"
        prerelease: true
        title: "Development Build"
-       files: ../_build
+       files: ./build
         
 
 
