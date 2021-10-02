@@ -60,7 +60,6 @@ namespace VirtualMeetingMonitor
         public Form()
         {
             InitializeComponent();
-
             notifyIcon.Text = Text;
             notifyIcon.ContextMenuStrip = contextMenuStrip;
 
@@ -70,7 +69,7 @@ namespace VirtualMeetingMonitor
 
             network.OutsideUDPTafficeReceived += Network_OutsideUDPTafficeReceived;
             network.StartListening();
-          
+                       
             meeting.OnMeetingStarted += Meeting_OnMeetingStarted;
             meeting.OnMeetingEnded += Meeting_OnMeetingEnded;
 
@@ -83,39 +82,43 @@ namespace VirtualMeetingMonitor
             OutboundTxt.Text = "";
             TotalTxt.Text = "";
             BackColor = System.Drawing.Color.DarkGray;
-            if (File.Exists(GoogleSecret))
-            {
-            GoogleCredential credential;
-            using (var stream = new FileStream(GoogleSecret, FileMode.Open, FileAccess.Read))
-            {
-                credential = GoogleCredential.FromStream(stream)
-                    .CreateScoped(Scopes);
-            }
-            // Create Google Sheets API service.
-            service = new SheetsService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
-            GoogleEnabled = true;
-            WriteTextSafe(Status, CheckGoogleConnection() ? "Google Sheets API Connected." : "Error with google sheets api.");
-            }
-            else
-            {
-                GoogleEnabled = false;
-                WriteTextSafe(Status,  "Google API Key not found. \n Check github README for more details about it.");
-            }
+            LanguageConfig();
             if (Properties.Settings.Default.firstRun)
             {
                 showHelper("https://raw.githubusercontent.com/wiki/brutalzinn/zoom-monitor-googlesheets/Welcome-to-VirtualMeetingMonitor.md");
                 Properties.Settings.Default.firstRun = false;
                 Properties.Settings.Default.Save();
             }
+            checkGoogleKey();
             //DateTime thisDay = DateTime.Today;
             //int todayName = (int)thisDay.DayOfWeek;
             //Console.WriteLine(setHours(todayName));
             // ReadEntries();
             // CreateEntry();
+        }
+        private void checkGoogleKey()
+        {
+            if (File.Exists(GoogleSecret))
+            {
+                GoogleCredential credential;
+                using (var stream = new FileStream(GoogleSecret, FileMode.Open, FileAccess.Read))
+                {
+                    credential = GoogleCredential.FromStream(stream)
+                        .CreateScoped(Scopes);
+                }
+                service = new SheetsService(new BaseClientService.Initializer()
+                {
+                    HttpClientInitializer = credential,
+                    ApplicationName = ApplicationName,
+                });
+                GoogleEnabled = true;
+                WriteTextSafe(Status, CheckGoogleConnection() ? Globals.getKey("google_status_connected") : Globals.getKey("google_status_error"));
+            }
+            else
+            {
+                GoogleEnabled = false;
+                WriteTextSafe(Status, Globals.getKey("google_status_error_critical"));
+            }
         }
         private void showHelper(string url)
         {
@@ -235,8 +238,8 @@ namespace VirtualMeetingMonitor
             }
 
           ///  onAirSign.TurnOn(hue, sat);
-            LogMeeting("Started");
-            WriteStatusStrip("Status: Meeting running");
+            LogMeeting(Globals.getKey("meeting_log_started"));
+            WriteStatusStrip(Globals.getKey("meeting_status_running"));
 
             call_running = true;
             BackColor = System.Drawing.Color.Green;
@@ -279,34 +282,26 @@ namespace VirtualMeetingMonitor
                     break;
 
                 case NotificationSetting.DisabledForApplication:
-                    Warn("Please go to Settings, System, Notifications & Actions " +
-                         "and enable this application in the " +
-                
-                         "'Get notifications from these senders' list.");
+                    Warn(Globals.getKey("notification_error_disabled"));
                     errorNotification();
                     // await Launcher.LaunchUriAsync(new System.Uri("ms-settings:notifications"));
 
                     break;
 
                 case NotificationSetting.DisabledForUser:
-                    Warn("Please go to Settings, System, Notifications & Actions " +
-                         "and set " +
-         
-                         "'Get notifications from apps and other senders' to On.");
+                    Warn(Globals.getKey("notification_error_user"));
                     errorNotification();
 
                     break;
 
                 case NotificationSetting.DisabledByGroupPolicy:
-                    Warn("Your system administrator has prevented us from " +
-                         "showing notifications.");
+                    Warn(Globals.getKey("notification_error_group"));
                     errorNotification();
 
                     break;
 
                 case NotificationSetting.DisabledByManifest:
-                    Warn("Oops. We forgot to ask the operating system for permission " +
-                         "to display toast notifications. Please file a bug.");
+                    Warn(Globals.getKey("notification_error_manifest"));
                     errorNotification();
 
                     break;
@@ -314,8 +309,7 @@ namespace VirtualMeetingMonitor
                 // Catch-all case for reasons that are defined
                 // in future versions of Windows.
                 default:
-                    Warn("It doesn't look like toast notifications are enabled, " +
-                         "but we don't know why.");
+                    Warn(Globals.getKey("notification_error_not_found"));
                     NotificationEnabled = false;
 
                     break;
@@ -341,7 +335,7 @@ namespace VirtualMeetingMonitor
         private void EndMeeting()
         {
    
-            LogMeeting("Ended  ");
+            LogMeeting(Globals.getKey("meeting_log_ended"));
             try
             {
                 if (GoogleEnabled)
@@ -352,10 +346,10 @@ namespace VirtualMeetingMonitor
             }
             catch
             {
-             WriteTextSafe(Status, "Error with google sheets API.");
+             WriteTextSafe(Status, Globals.getKey("google_status_error"));
             }
             BackColor = System.Drawing.Color.DarkGray;
-            WriteStatusStrip("Status: No meeting running");
+            WriteStatusStrip(Globals.getKey("meeting_status_no_running"));
             WriteTextSafe(EnedTxt, DateTime.Now.ToString("MM/dd H:mm:ss"));
 
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form));
@@ -401,8 +395,7 @@ namespace VirtualMeetingMonitor
             }
             else
             {
-                CreateAndShowPrompt("Are you still on call?");
-
+                CreateAndShowPrompt(Globals.getKey("notification_popup_text"));
             }
 
         }
@@ -487,7 +480,17 @@ namespace VirtualMeetingMonitor
                 //notifyIcon.Visible = true;
             }
         }
+        private void LanguageChangedEvent()
+        {
 
+            Console.WriteLine("Frog has Jumped!");
+
+            if (Globals.CurrentLanguage != null)
+            {
+                LanguageConfig();
+                checkGoogleKey();
+            }
+        }
         private void LanguageConfig()
         {
             foreach (string path in Directory.GetFiles(Application.StartupPath + $@"\{LangDirectory}")){
@@ -498,17 +501,23 @@ namespace VirtualMeetingMonitor
             if(Properties.Settings.Default.language != null)
             {
                 string path = Application.StartupPath + $@"\{LangDirectory}\{Properties.Settings.Default.language}.json";
-                Language _lang = new Language(Path.GetFileName(path), path, false);
-                _lang.readLanguage();
-                Globals.CurrentLanguage = _lang;
-                Console.WriteLine(Globals.CurrentLanguage.getValue("google_status_connected"));
-
+            
+              
+                Globals.CurrentLanguage = new Language(Path.GetFileName(path), path, false);
+                Globals.CurrentLanguage.readLanguage();
+                Globals.CurrentLanguage.LanguageChanged += LanguageChangedEvent;
+                
+                //Console.WriteLine(Globals.CurrentLanguage.getValue("notification_error_disabled"));
             }
+
+
+
         }
+
         private void Form_Load(object sender, EventArgs e)
         {
             CheckNotification();
-            LanguageConfig();
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -525,6 +534,9 @@ namespace VirtualMeetingMonitor
 
         public void CreateAndShowPrompt(string message)
         {
+            string ButtonYes = Globals.getKey("notification_button_yes");
+            string ButtonNo = Globals.getKey("notification_button_no");
+
             ToastContent toastContent = new ToastContent()
             {
                 Launch = "bodyTapped",
@@ -534,18 +546,18 @@ namespace VirtualMeetingMonitor
                     BindingGeneric = new ToastBindingGeneric()
                     {
                         Children =
-                {
-                    new AdaptiveText()
-                    {
-                        Text = message
-                    },
+                        {
+                            new AdaptiveText()
+                            {
+                                Text = message
+                            },
 
-                }
+                        }
                     }
                 },
                 Actions = new ToastActionsCustom()
                 {
-                    Buttons = { new ToastButton("Yes", "Yes"), new ToastButton("No", "No") }
+                    Buttons = { new ToastButton(ButtonYes, "Yes"), new ToastButton(ButtonNo, "No") }
                 },
                 Header = new ToastHeader("header", "VirtualMeetingMonitor - User manager", "header")
             };
@@ -561,7 +573,6 @@ namespace VirtualMeetingMonitor
         private void PromptNotificationOnActivated(ToastNotification sender, object args)
         {
             ToastActivatedEventArgs strArgs = args as ToastActivatedEventArgs;
-
             switch (strArgs.Arguments)
             {
                 case "Yes":
@@ -582,10 +593,7 @@ namespace VirtualMeetingMonitor
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
-            CreateAndShowPrompt("Are you still on call?");
-
-
-
+            CreateAndShowPrompt(Globals.getKey("notification_popup_text"));
         }
         private void setDevModeGroup(bool mode)
         {
@@ -639,6 +647,11 @@ namespace VirtualMeetingMonitor
         private void Dev_Config_Click(object sender, EventArgs e)
         {
             Console.WriteLine(Globals.CurrentLanguage.getValue("google_status_connected"));
+        }
+
+        private void Dev_TestGoogle_Click(object sender, EventArgs e)
+        {
+            CreateEntry();
         }
     }
 }

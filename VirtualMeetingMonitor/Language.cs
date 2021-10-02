@@ -23,15 +23,22 @@ namespace VirtualMeetingMonitor
             this.path = path;
             this.enabled = enabled;
         }
+        public delegate void Notify();  // delegate
+
+        public event Notify LanguageChanged;
 
         public void readLanguage()
         {
-            this.json = JObject.Parse(File.ReadAllText(path));
+            this.json = JObject.Parse(File.ReadAllText(this.path));
+            LanguageChanged?.Invoke();
         }
         public string getValue(string key)
         {
             return this.json[key].ToString();
         }
+
+      
+
 
         public string getFileName()
         {

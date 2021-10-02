@@ -57,11 +57,12 @@
             this.button1 = new System.Windows.Forms.Button();
             this.Dev_LabelMode = new System.Windows.Forms.Label();
             this.devGroupBox = new System.Windows.Forms.GroupBox();
+            this.Dev_Config = new System.Windows.Forms.Button();
             this.Dev_helpButton = new System.Windows.Forms.Button();
+            this.Dev_ButtonTeste = new System.Windows.Forms.Button();
             this.Dev_ClearConfigs = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.Dev_ButtonTeste = new System.Windows.Forms.Button();
-            this.Dev_Config = new System.Windows.Forms.Button();
+            this.Dev_TestGoogle = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
             this.devGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -281,16 +282,16 @@
             this.Status.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.Status.Location = new System.Drawing.Point(0, 178);
             this.Status.Name = "Status";
-            this.Status.Size = new System.Drawing.Size(132, 13);
+            this.Status.Size = new System.Drawing.Size(16, 13);
             this.Status.TabIndex = 15;
-            this.Status.Text = "Status: Google Connected";
+            this.Status.Text = "---";
             this.Status.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(14, 19);
+            this.button1.Location = new System.Drawing.Point(114, 18);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(80, 39);
+            this.button1.Size = new System.Drawing.Size(65, 39);
             this.button1.TabIndex = 16;
             this.button1.Text = "Test notify";
             this.button1.UseVisualStyleBackColor = true;
@@ -311,6 +312,7 @@
             // 
             this.devGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.devGroupBox.Controls.Add(this.Dev_TestGoogle);
             this.devGroupBox.Controls.Add(this.Dev_Config);
             this.devGroupBox.Controls.Add(this.Dev_helpButton);
             this.devGroupBox.Controls.Add(this.Dev_ButtonTeste);
@@ -326,21 +328,41 @@
             this.devGroupBox.Text = "Developer mode";
             this.devGroupBox.Visible = false;
             // 
+            // Dev_Config
+            // 
+            this.Dev_Config.Location = new System.Drawing.Point(185, 86);
+            this.Dev_Config.Name = "Dev_Config";
+            this.Dev_Config.Size = new System.Drawing.Size(78, 40);
+            this.Dev_Config.TabIndex = 19;
+            this.Dev_Config.Text = "TEST LANGUAGE";
+            this.Dev_Config.UseVisualStyleBackColor = true;
+            this.Dev_Config.Click += new System.EventHandler(this.Dev_Config_Click);
+            // 
             // Dev_helpButton
             // 
-            this.Dev_helpButton.Location = new System.Drawing.Point(247, 11);
+            this.Dev_helpButton.Location = new System.Drawing.Point(266, 18);
             this.Dev_helpButton.Name = "Dev_helpButton";
-            this.Dev_helpButton.Size = new System.Drawing.Size(80, 39);
+            this.Dev_helpButton.Size = new System.Drawing.Size(65, 39);
             this.Dev_helpButton.TabIndex = 19;
             this.Dev_helpButton.Text = "Test Help Dialog";
             this.Dev_helpButton.UseVisualStyleBackColor = true;
             this.Dev_helpButton.Click += new System.EventHandler(this.Dev_helpButton_Click);
             // 
+            // Dev_ButtonTeste
+            // 
+            this.Dev_ButtonTeste.Location = new System.Drawing.Point(185, 18);
+            this.Dev_ButtonTeste.Name = "Dev_ButtonTeste";
+            this.Dev_ButtonTeste.Size = new System.Drawing.Size(75, 38);
+            this.Dev_ButtonTeste.TabIndex = 19;
+            this.Dev_ButtonTeste.Text = "TESTE";
+            this.Dev_ButtonTeste.UseVisualStyleBackColor = true;
+            this.Dev_ButtonTeste.Click += new System.EventHandler(this.Dev_ButtonTeste_Click);
+            // 
             // Dev_ClearConfigs
             // 
-            this.Dev_ClearConfigs.Location = new System.Drawing.Point(233, 87);
+            this.Dev_ClearConfigs.Location = new System.Drawing.Point(269, 87);
             this.Dev_ClearConfigs.Name = "Dev_ClearConfigs";
-            this.Dev_ClearConfigs.Size = new System.Drawing.Size(98, 39);
+            this.Dev_ClearConfigs.Size = new System.Drawing.Size(62, 39);
             this.Dev_ClearConfigs.TabIndex = 18;
             this.Dev_ClearConfigs.Text = "Clear configs";
             this.Dev_ClearConfigs.UseVisualStyleBackColor = true;
@@ -348,32 +370,22 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(14, 87);
+            this.button2.Location = new System.Drawing.Point(114, 87);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(80, 39);
+            this.button2.Size = new System.Drawing.Size(65, 39);
             this.button2.TabIndex = 17;
             this.button2.Text = "Stop all";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // Dev_ButtonTeste
+            // Dev_TestGoogle
             // 
-            this.Dev_ButtonTeste.Location = new System.Drawing.Point(100, 20);
-            this.Dev_ButtonTeste.Name = "Dev_ButtonTeste";
-            this.Dev_ButtonTeste.Size = new System.Drawing.Size(95, 38);
-            this.Dev_ButtonTeste.TabIndex = 19;
-            this.Dev_ButtonTeste.Text = "TESTE";
-            this.Dev_ButtonTeste.UseVisualStyleBackColor = true;
-            this.Dev_ButtonTeste.Click += new System.EventHandler(this.Dev_ButtonTeste_Click);
-            // 
-            // Dev_Config
-            // 
-            this.Dev_Config.Location = new System.Drawing.Point(106, 87);
-            this.Dev_Config.Name = "Dev_Config";
-            this.Dev_Config.Size = new System.Drawing.Size(89, 40);
-            this.Dev_Config.TabIndex = 19;
-            this.Dev_Config.Text = "TEST LANGUAGE";
-            this.Dev_Config.UseVisualStyleBackColor = true;
-            this.Dev_Config.Click += new System.EventHandler(this.Dev_Config_Click);
+            this.Dev_TestGoogle.Location = new System.Drawing.Point(52, 86);
+            this.Dev_TestGoogle.Name = "Dev_TestGoogle";
+            this.Dev_TestGoogle.Size = new System.Drawing.Size(56, 39);
+            this.Dev_TestGoogle.TabIndex = 20;
+            this.Dev_TestGoogle.Text = "Google Test";
+            this.Dev_TestGoogle.UseVisualStyleBackColor = true;
+            this.Dev_TestGoogle.Click += new System.EventHandler(this.Dev_TestGoogle_Click);
             // 
             // Form
             // 
@@ -448,6 +460,7 @@
         private System.Windows.Forms.Button Dev_helpButton;
         private System.Windows.Forms.Button Dev_ButtonTeste;
         private System.Windows.Forms.Button Dev_Config;
+        private System.Windows.Forms.Button Dev_TestGoogle;
     }
 }
 

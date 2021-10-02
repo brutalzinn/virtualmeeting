@@ -10,5 +10,9 @@ namespace VirtualMeetingMonitor
     {
        public static List<Language> languages = new List<Language>();
        public static Language CurrentLanguage { get; set; }
+        public static string getKey(string key)
+        {
+            return CurrentLanguage.getValue(key);
+        }
     }
 }
