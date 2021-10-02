@@ -83,7 +83,7 @@ namespace VirtualMeetingMonitor
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(76, 66);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(263, 21);
+            this.comboBox1.Size = new System.Drawing.Size(217, 21);
             this.comboBox1.TabIndex = 4;
             // 
             // label2

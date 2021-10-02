@@ -61,6 +61,7 @@
             this.Dev_ClearConfigs = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.Dev_ButtonTeste = new System.Windows.Forms.Button();
+            this.Dev_Config = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
             this.devGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -310,6 +311,7 @@
             // 
             this.devGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.devGroupBox.Controls.Add(this.Dev_Config);
             this.devGroupBox.Controls.Add(this.Dev_helpButton);
             this.devGroupBox.Controls.Add(this.Dev_ButtonTeste);
             this.devGroupBox.Controls.Add(this.Dev_ClearConfigs);
@@ -362,6 +364,16 @@
             this.Dev_ButtonTeste.Text = "TESTE";
             this.Dev_ButtonTeste.UseVisualStyleBackColor = true;
             this.Dev_ButtonTeste.Click += new System.EventHandler(this.Dev_ButtonTeste_Click);
+            // 
+            // Dev_Config
+            // 
+            this.Dev_Config.Location = new System.Drawing.Point(106, 87);
+            this.Dev_Config.Name = "Dev_Config";
+            this.Dev_Config.Size = new System.Drawing.Size(89, 40);
+            this.Dev_Config.TabIndex = 19;
+            this.Dev_Config.Text = "TEST LANGUAGE";
+            this.Dev_Config.UseVisualStyleBackColor = true;
+            this.Dev_Config.Click += new System.EventHandler(this.Dev_Config_Click);
             // 
             // Form
             // 
@@ -435,6 +447,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.Button Dev_helpButton;
         private System.Windows.Forms.Button Dev_ButtonTeste;
+        private System.Windows.Forms.Button Dev_Config;
     }
 }
 

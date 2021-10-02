@@ -36,11 +36,11 @@ namespace VirtualMeetingMonitor
         private  bool GoogleEnabled = false;
         private bool NotificationEnabled = false;
         private bool DevMode = false;
-
+        private string LangDirectory = "language";
         static readonly string SpreadsheetId = "1zWxyFh-0jkeN4pU9engXjOaDloM4torbEn286ShwL14";
         static readonly string sheet = "roberto-roboto";
         private int timeout = Properties.Settings.Default.timeout;
-
+        
         static SheetsService service;
         public enum Days
         {
@@ -490,13 +490,25 @@ namespace VirtualMeetingMonitor
 
         private void LanguageConfig()
         {
-            foreach (string path in Directory.GetFiles(@"\language")){
-                Console.WriteLine(path);
+            foreach (string path in Directory.GetFiles(Application.StartupPath + $@"\{LangDirectory}")){
+                Language _lang = new Language(Path.GetFileName(path), path, false);
+                Globals.languages.Add(_lang);
+            }
+
+            if(Properties.Settings.Default.language != null)
+            {
+                string path = Application.StartupPath + $@"\{LangDirectory}\{Properties.Settings.Default.language}.json";
+                Language _lang = new Language(Path.GetFileName(path), path, false);
+                _lang.readLanguage();
+                Globals.CurrentLanguage = _lang;
+                Console.WriteLine(Globals.CurrentLanguage.getValue("google_status_connected"));
+
             }
         }
         private void Form_Load(object sender, EventArgs e)
         {
             CheckNotification();
+            LanguageConfig();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -622,6 +634,11 @@ namespace VirtualMeetingMonitor
         private void Dev_ButtonTeste_Click(object sender, EventArgs e)
         {
             LanguageConfig();
+        }
+
+        private void Dev_Config_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(Globals.CurrentLanguage.getValue("google_status_connected"));
         }
     }
 }

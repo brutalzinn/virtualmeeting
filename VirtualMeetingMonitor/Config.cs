@@ -20,12 +20,26 @@ namespace VirtualMeetingMonitor
 
         private void Status_Load(object sender, EventArgs e)
         {
-
+            if (Globals.languages.Count > 0)
+            {
+                foreach (Language _lang in Globals.languages)
+                {
+                    _lang.readLanguage();
+                    comboBox1.Items.Add(_lang);
+                }
+             
+            }
+            if (Globals.CurrentLanguage != null)
+            {
+                comboBox1.SelectedIndex = comboBox1.FindStringExact(Globals.CurrentLanguage.ToString());
+            }
         }
        
         private void button1_Click(object sender, EventArgs e)
         {
-         
+            Globals.CurrentLanguage = (Language)comboBox1.SelectedItem;
+            Globals.CurrentLanguage.readLanguage();
+            Properties.Settings.Default.language = Globals.CurrentLanguage.getFileName();
             Properties.Settings.Default.timeout = Convert.ToInt32(textBox1.Text);
             Properties.Settings.Default.Save();
             this.Close();

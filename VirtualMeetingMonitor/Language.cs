@@ -33,6 +33,22 @@ namespace VirtualMeetingMonitor
             return this.json[key].ToString();
         }
 
+        public string getFileName()
+        {
+            return Path.GetFileNameWithoutExtension(this.name);
+
+        }
+        public override string ToString()
+        {
+            if(this.json != null)
+            {
+                return this.json["language_name"].ToString();
+            }
+            else
+            {
+                return Path.GetFileNameWithoutExtension(this.name);
+            }
+        }
 
     }
 }
