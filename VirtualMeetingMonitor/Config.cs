@@ -15,6 +15,8 @@ namespace VirtualMeetingMonitor
         public Config()
         {
             InitializeComponent();
+            this.Text = Globals.getAppName(Globals.getKey("form_config_text"));
+            Translate();
             textBox1.Text = Properties.Settings.Default.timeout.ToString();
         }
 
@@ -34,7 +36,13 @@ namespace VirtualMeetingMonitor
                 comboBox1.SelectedIndex = comboBox1.FindStringExact(Globals.CurrentLanguage.ToString());
             }
         }
-       
+       private void Translate()
+        {
+            label_timeout.Text = Globals.getKey("form_config_label_timeout");
+            label_language.Text = Globals.getKey("form_config_label_language");
+            button_ok.Text = Globals.getKey("button_ok");
+            button_cancel.Text = Globals.getKey("button_cancel");
+        }
         private void button1_Click(object sender, EventArgs e)
         {
           

@@ -12,9 +12,9 @@ namespace VirtualMeetingMonitor
      public class Language
     {
 
-        public string name { get; set; }
-        public string path { get; set; }
-        public bool enabled { get; set; }
+        private string name { get; set; }
+        private string path { get; set; }
+        private bool enabled { get; set; }
 
         public JObject json { get;set; }
         public Language(string name, string path, bool enabled)
@@ -23,10 +23,7 @@ namespace VirtualMeetingMonitor
             this.path = path;
             this.enabled = enabled;
         }
-        public Language()
-        {
-
-        }
+      
         public delegate void Notify();  // delegate
 
         public event Notify LanguageChanged;

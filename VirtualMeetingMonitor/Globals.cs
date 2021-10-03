@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace VirtualMeetingMonitor
 {
@@ -14,6 +15,10 @@ namespace VirtualMeetingMonitor
         public static string getKey(string key)
         {
             return CurrentLanguage.getValue(key);
+        }
+        public static string getAppName (string name)
+        {
+              return  $"{Application.ProductName} - {name}";
         }
     }
 }

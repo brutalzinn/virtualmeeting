@@ -149,6 +149,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="config.ico" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

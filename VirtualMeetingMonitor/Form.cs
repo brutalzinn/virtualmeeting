@@ -73,6 +73,11 @@ namespace VirtualMeetingMonitor
                        
             meeting.OnMeetingStarted += Meeting_OnMeetingStarted;
             meeting.OnMeetingEnded += Meeting_OnMeetingEnded;
+            this.Size = new Size(382, 250);
+
+           // this.Size = new Size(382, 354);
+
+            // devGroupBox.Location = new Point(7, 12);
 
             // init the UI text
             meetingTxt.Text = "";
@@ -94,11 +99,29 @@ namespace VirtualMeetingMonitor
                 Properties.Settings.Default.firstRun = false;
                 Properties.Settings.Default.Save();
             }
+            Translate();
             //DateTime thisDay = DateTime.Today;
             //int todayName = (int)thisDay.DayOfWeek;
             //Console.WriteLine(setHours(todayName));
             // ReadEntries();
             // CreateEntry();
+        }
+        private void Translate()
+        {
+            label_meeting.Text = Globals.getKey("label_meeting");
+            label_started.Text = Globals.getKey("label_started");
+            label_ended.Text = Globals.getKey("label_ended");
+            label_ip.Text = Globals.getKey("label_ip");
+            label_udp_packts.Text = Globals.getKey("label_udp_packts");
+            label_inbound.Text = Globals.getKey("label_inbound");
+            label_outbound.Text = Globals.getKey("label_outbound");
+            label_total.Text = Globals.getKey("label_total");
+            configTimeoutToolStripMenuItem.Text = Globals.getKey("config_tool_strip_menu");
+            openLogToolStripMenuItem.Text  = Globals.getKey("log_tool_strip_menu");
+            helpToolStripMenuItem.Text = Globals.getKey("help_tool_strip_menu");
+            closeToolStripMenuItem.Text = Globals.getKey("close_tool_strip_menu");
+            statusNoCallToolStripMenuItem.Text = Globals.getKey("meeting_status_no_running");
+
         }
         private void checkGoogleKey()
         {

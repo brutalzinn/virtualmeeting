@@ -17,6 +17,8 @@ namespace VirtualMeetingMonitor
         public Helper()
         {
             InitializeComponent();
+            this.Text = Globals.getAppName(Globals.getKey("form_help_text"));
+
 
         }
 
