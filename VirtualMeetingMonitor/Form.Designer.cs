@@ -63,6 +63,7 @@
             this.Dev_ClearConfigs = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label_outbound = new System.Windows.Forms.Label();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip.SuspendLayout();
             this.devGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -83,9 +84,10 @@
             this.openLogToolStripMenuItem,
             this.configTimeoutToolStripMenuItem,
             this.helpToolStripMenuItem,
+            this.aboutToolStripMenuItem,
             this.closeToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip1";
-            this.contextMenuStrip.Size = new System.Drawing.Size(150, 114);
+            this.contextMenuStrip.Size = new System.Drawing.Size(150, 136);
             // 
             // statusNoCallToolStripMenuItem
             // 
@@ -409,6 +411,12 @@
             this.label_outbound.Text = "--:";
             this.label_outbound.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -483,6 +491,7 @@
         private System.Windows.Forms.Button Dev_TestGoogle;
         private System.Windows.Forms.Label label_total;
         private System.Windows.Forms.Label label_outbound;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 
