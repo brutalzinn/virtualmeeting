@@ -60,6 +60,7 @@ namespace VirtualMeetingMonitor
         public Form()
         {
             InitializeComponent();
+            Globals.form = this;
             notifyIcon.Text = Text;
             notifyIcon.ContextMenuStrip = contextMenuStrip;
 
@@ -82,14 +83,17 @@ namespace VirtualMeetingMonitor
             OutboundTxt.Text = "";
             TotalTxt.Text = "";
             BackColor = System.Drawing.Color.DarkGray;
+            LanguageLoad();
+
             LanguageConfig();
+            checkGoogleKey();
+
             if (Properties.Settings.Default.firstRun)
             {
                 showHelper("https://raw.githubusercontent.com/wiki/brutalzinn/zoom-monitor-googlesheets/Welcome-to-VirtualMeetingMonitor.md");
                 Properties.Settings.Default.firstRun = false;
                 Properties.Settings.Default.Save();
             }
-            checkGoogleKey();
             //DateTime thisDay = DateTime.Today;
             //int todayName = (int)thisDay.DayOfWeek;
             //Console.WriteLine(setHours(todayName));
@@ -480,23 +484,28 @@ namespace VirtualMeetingMonitor
                 //notifyIcon.Visible = true;
             }
         }
-        private void LanguageChangedEvent()
+        public void LanguageChangedEvent()
         {
 
-            Console.WriteLine("Frog has Jumped!");
+            Console.WriteLine("#####Frog has Jumped!");
 
             if (Globals.CurrentLanguage != null)
             {
-                LanguageConfig();
+              //  LanguageConfig();
                 checkGoogleKey();
+            }
+        }
+        private void LanguageLoad()
+        {
+            foreach (string path in Directory.GetFiles(Application.StartupPath + $@"\{LangDirectory}"))
+            {
+                Language _lang = new Language(Path.GetFileName(path), path, false);
+                Globals.languages.Add(_lang);
             }
         }
         private void LanguageConfig()
         {
-            foreach (string path in Directory.GetFiles(Application.StartupPath + $@"\{LangDirectory}")){
-                Language _lang = new Language(Path.GetFileName(path), path, false);
-                Globals.languages.Add(_lang);
-            }
+          
 
             if(Properties.Settings.Default.language != null)
             {
@@ -505,8 +514,9 @@ namespace VirtualMeetingMonitor
               
                 Globals.CurrentLanguage = new Language(Path.GetFileName(path), path, false);
                 Globals.CurrentLanguage.readLanguage();
-                Globals.CurrentLanguage.LanguageChanged += LanguageChangedEvent;
-                
+             //   Globals.CurrentLanguage.LanguageChanged += LanguageChangedEvent;
+
+                Console.WriteLine(Globals.CurrentLanguage.ToString());
                 //Console.WriteLine(Globals.CurrentLanguage.getValue("notification_error_disabled"));
             }
 
@@ -646,7 +656,8 @@ namespace VirtualMeetingMonitor
 
         private void Dev_Config_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(Globals.CurrentLanguage.getValue("google_status_connected"));
+            Console.WriteLine("LANG TESTE");
+            LanguageConfig();
         }
 
         private void Dev_TestGoogle_Click(object sender, EventArgs e)

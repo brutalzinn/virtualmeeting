@@ -9,6 +9,7 @@ namespace VirtualMeetingMonitor
     public  class Globals
     {
        public static List<Language> languages = new List<Language>();
+        public static Form form { get; set; }
        public static Language CurrentLanguage { get; set; }
         public static string getKey(string key)
         {

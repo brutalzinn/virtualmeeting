@@ -37,8 +37,11 @@ namespace VirtualMeetingMonitor
        
         private void button1_Click(object sender, EventArgs e)
         {
+          
             Globals.CurrentLanguage = (Language)comboBox1.SelectedItem;
+            Globals.CurrentLanguage.LanguageChanged += Globals.form.LanguageChangedEvent;
             Globals.CurrentLanguage.readLanguage();
+            Globals.CurrentLanguage.updateLanguage();
             Properties.Settings.Default.language = Globals.CurrentLanguage.getFileName();
             Properties.Settings.Default.timeout = Convert.ToInt32(textBox1.Text);
             Properties.Settings.Default.Save();

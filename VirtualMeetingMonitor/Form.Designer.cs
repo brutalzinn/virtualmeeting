@@ -57,12 +57,12 @@
             this.button1 = new System.Windows.Forms.Button();
             this.Dev_LabelMode = new System.Windows.Forms.Label();
             this.devGroupBox = new System.Windows.Forms.GroupBox();
+            this.Dev_TestGoogle = new System.Windows.Forms.Button();
             this.Dev_Config = new System.Windows.Forms.Button();
             this.Dev_helpButton = new System.Windows.Forms.Button();
             this.Dev_ButtonTeste = new System.Windows.Forms.Button();
             this.Dev_ClearConfigs = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.Dev_TestGoogle = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
             this.devGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -328,6 +328,16 @@
             this.devGroupBox.Text = "Developer mode";
             this.devGroupBox.Visible = false;
             // 
+            // Dev_TestGoogle
+            // 
+            this.Dev_TestGoogle.Location = new System.Drawing.Point(52, 86);
+            this.Dev_TestGoogle.Name = "Dev_TestGoogle";
+            this.Dev_TestGoogle.Size = new System.Drawing.Size(56, 39);
+            this.Dev_TestGoogle.TabIndex = 20;
+            this.Dev_TestGoogle.Text = "Google Test";
+            this.Dev_TestGoogle.UseVisualStyleBackColor = true;
+            this.Dev_TestGoogle.Click += new System.EventHandler(this.Dev_TestGoogle_Click);
+            // 
             // Dev_Config
             // 
             this.Dev_Config.Location = new System.Drawing.Point(185, 86);
@@ -376,16 +386,6 @@
             this.button2.TabIndex = 17;
             this.button2.Text = "Stop all";
             this.button2.UseVisualStyleBackColor = true;
-            // 
-            // Dev_TestGoogle
-            // 
-            this.Dev_TestGoogle.Location = new System.Drawing.Point(52, 86);
-            this.Dev_TestGoogle.Name = "Dev_TestGoogle";
-            this.Dev_TestGoogle.Size = new System.Drawing.Size(56, 39);
-            this.Dev_TestGoogle.TabIndex = 20;
-            this.Dev_TestGoogle.Text = "Google Test";
-            this.Dev_TestGoogle.UseVisualStyleBackColor = true;
-            this.Dev_TestGoogle.Click += new System.EventHandler(this.Dev_TestGoogle_Click);
             // 
             // Form
             // 

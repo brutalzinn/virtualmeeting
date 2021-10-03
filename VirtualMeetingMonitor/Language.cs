@@ -9,19 +9,23 @@ using System.Threading.Tasks;
 
 namespace VirtualMeetingMonitor
 {
-    public class Language
+     public class Language
     {
 
-        private string name { get; set; }
-        private string path { get; set; }
-        private bool enabled { get; set; }
+        public string name { get; set; }
+        public string path { get; set; }
+        public bool enabled { get; set; }
 
-        private JObject json { get;set; }
+        public JObject json { get;set; }
         public Language(string name, string path, bool enabled)
         {
             this.name = name;
             this.path = path;
             this.enabled = enabled;
+        }
+        public Language()
+        {
+
         }
         public delegate void Notify();  // delegate
 
@@ -30,7 +34,11 @@ namespace VirtualMeetingMonitor
         public void readLanguage()
         {
             this.json = JObject.Parse(File.ReadAllText(this.path));
-            LanguageChanged?.Invoke();
+        }
+        public void updateLanguage()
+        {
+            this.LanguageChanged?.Invoke();
+            Console.WriteLine("UPDATE LANGUAGE");
         }
         public string getValue(string key)
         {
