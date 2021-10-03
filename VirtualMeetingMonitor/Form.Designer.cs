@@ -90,34 +90,34 @@
             // statusNoCallToolStripMenuItem
             // 
             this.statusNoCallToolStripMenuItem.Name = "statusNoCallToolStripMenuItem";
-            this.statusNoCallToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.statusNoCallToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.statusNoCallToolStripMenuItem.Text = "Status: No call";
             // 
             // openLogToolStripMenuItem
             // 
             this.openLogToolStripMenuItem.Name = "openLogToolStripMenuItem";
-            this.openLogToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openLogToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.openLogToolStripMenuItem.Text = "Open Log";
             this.openLogToolStripMenuItem.Click += new System.EventHandler(this.openLogToolStripMenuItem_Click);
             // 
             // configTimeoutToolStripMenuItem
             // 
             this.configTimeoutToolStripMenuItem.Name = "configTimeoutToolStripMenuItem";
-            this.configTimeoutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.configTimeoutToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.configTimeoutToolStripMenuItem.Text = "Config";
             this.configTimeoutToolStripMenuItem.Click += new System.EventHandler(this.configTimeoutToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 

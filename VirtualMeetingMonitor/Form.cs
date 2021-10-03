@@ -73,7 +73,7 @@ namespace VirtualMeetingMonitor
                        
             meeting.OnMeetingStarted += Meeting_OnMeetingStarted;
             meeting.OnMeetingEnded += Meeting_OnMeetingEnded;
-            this.Size = new Size(382, 250);
+            this.Size = new Size(382, 200);
 
            // this.Size = new Size(382, 354);
 
