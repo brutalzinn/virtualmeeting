@@ -31,6 +31,10 @@
 "form_help_text":"Help",
 "form_config_label_language":"Language:",
 "form_config_label_timeout":"Timeout:",
+"form_config_sheets_id":"Sheets ID:",
+"form_config_sheets_name":"Sheets Name:",
+"form_config_paste_button":"PASTE TABLE URL",
+"form_config_how_to_link":"How to configure google sheets",
 "button_ok":"SAVE",
 "button_cancel":"CANCEL"
 }

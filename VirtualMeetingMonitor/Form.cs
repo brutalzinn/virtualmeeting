@@ -39,8 +39,8 @@ namespace VirtualMeetingMonitor
         private bool NotificationEnabled = false;
         private bool DevMode = false;
         private string LangDirectory = "language";
-        static readonly string SpreadsheetId = "1zWxyFh-0jkeN4pU9engXjOaDloM4torbEn286ShwL14";
-        static readonly string sheet = "roberto-roboto";
+        static readonly string SpreadsheetId = Properties.Settings.Default.googlesheetsID;
+        static readonly string sheet = Properties.Settings.Default.sheetName;
         private int timeout = Properties.Settings.Default.timeout;
         
         static SheetsService service;
@@ -135,6 +135,7 @@ namespace VirtualMeetingMonitor
         {
             if (File.Exists(GoogleSecret))
             {
+
                 GoogleCredential credential;
                 using (var stream = new FileStream(GoogleSecret, FileMode.Open, FileAccess.Read))
                 {
@@ -147,6 +148,7 @@ namespace VirtualMeetingMonitor
                     ApplicationName = ApplicationName,
                 });
                 GoogleEnabled = true;
+                
                 WriteTextSafe(Status, CheckGoogleConnection() ? Globals.getKey("google_status_connected") : Globals.getKey("google_status_error"));
             }
             else
@@ -683,7 +685,12 @@ namespace VirtualMeetingMonitor
 
         private void Dev_ButtonTeste_Click(object sender, EventArgs e)
         {
-            LanguageConfig();
+            string google_sheets_url = Clipboard.GetText();
+            Array googleUrlArray = google_sheets_url.Split('/');
+            string googleSheetsID = google_sheets_url.Split('/')[googleUrlArray.Length - 2];
+
+
+            Console.WriteLine(googleSheetsID);
         }
 
         private void Dev_Config_Click(object sender, EventArgs e)
