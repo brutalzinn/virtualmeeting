@@ -36,6 +36,7 @@
             this.openLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configTimeoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.meetingTxt = new System.Windows.Forms.Label();
             this.label_meeting = new System.Windows.Forms.Label();
@@ -83,9 +84,10 @@
             this.openLogToolStripMenuItem,
             this.configTimeoutToolStripMenuItem,
             this.helpToolStripMenuItem,
+            this.aboutToolStripMenuItem,
             this.closeToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip1";
-            this.contextMenuStrip.Size = new System.Drawing.Size(150, 114);
+            this.contextMenuStrip.Size = new System.Drawing.Size(150, 136);
             // 
             // statusNoCallToolStripMenuItem
             // 
@@ -113,6 +115,12 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.aboutToolStripMenuItem.Text = "About";
             // 
             // closeToolStripMenuItem
             // 
@@ -483,6 +491,7 @@
         private System.Windows.Forms.Button Dev_TestGoogle;
         private System.Windows.Forms.Label label_total;
         private System.Windows.Forms.Label label_outbound;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 

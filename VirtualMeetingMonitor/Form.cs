@@ -1,4 +1,5 @@
-﻿using Google.Apis.Auth.OAuth2;
+﻿using AutoUpdaterDotNET;
+using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
 using Google.Apis.Sheets.v4.Data;
@@ -11,6 +12,7 @@ using System.IO;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Threading;
 using Windows.ApplicationModel.Activation;
 using Windows.Data.Xml.Dom;
 using Windows.Foundation.Collections;
@@ -37,8 +39,8 @@ namespace VirtualMeetingMonitor
         private bool NotificationEnabled = false;
         private bool DevMode = false;
         private string LangDirectory = "language";
-        static readonly string SpreadsheetId = "1zWxyFh-0jkeN4pU9engXjOaDloM4torbEn286ShwL14";
-        static readonly string sheet = "roberto-roboto";
+        static readonly string SpreadsheetId = Properties.Settings.Default.googlesheetsID;
+        static readonly string sheet = Properties.Settings.Default.sheetName;
         private int timeout = Properties.Settings.Default.timeout;
         private bool IsSleep = false;
 
@@ -62,6 +64,11 @@ namespace VirtualMeetingMonitor
         {
             InitializeComponent();
             Globals.form = this;
+            AutoUpdater.LetUserSelectRemindLater = true;
+            string jsonPath = Path.Combine(Environment.CurrentDirectory, "settings.json");
+            AutoUpdater.PersistenceProvider = new JsonFilePersistenceProvider(jsonPath);
+            AutoUpdater.Start("http://robertocpaes.dev/update.xml");
+      
             notifyIcon.Text = Text;
             notifyIcon.ContextMenuStrip = contextMenuStrip;
 
@@ -74,6 +81,7 @@ namespace VirtualMeetingMonitor
                        
             meeting.OnMeetingStarted += Meeting_OnMeetingStarted;
             meeting.OnMeetingEnded += Meeting_OnMeetingEnded;
+
             this.Size = new Size(382, 200);
 
            // this.Size = new Size(382, 354);
@@ -128,6 +136,7 @@ namespace VirtualMeetingMonitor
         {
             if (File.Exists(GoogleSecret))
             {
+
                 GoogleCredential credential;
                 using (var stream = new FileStream(GoogleSecret, FileMode.Open, FileAccess.Read))
                 {
@@ -140,6 +149,7 @@ namespace VirtualMeetingMonitor
                     ApplicationName = ApplicationName,
                 });
                 GoogleEnabled = true;
+                
                 WriteTextSafe(Status, CheckGoogleConnection() ? Globals.getKey("google_status_connected") : Globals.getKey("google_status_error"));
             }
             else
@@ -562,7 +572,8 @@ namespace VirtualMeetingMonitor
         private void Form_Load(object sender, EventArgs e)
         {
             CheckNotification();
-           
+      
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -728,7 +739,12 @@ namespace VirtualMeetingMonitor
 
         private void Dev_ButtonTeste_Click(object sender, EventArgs e)
         {
-            LanguageConfig();
+            string google_sheets_url = Clipboard.GetText();
+            Array googleUrlArray = google_sheets_url.Split('/');
+            string googleSheetsID = google_sheets_url.Split('/')[googleUrlArray.Length - 2];
+
+
+            Console.WriteLine(googleSheetsID);
         }
 
         private void Dev_Config_Click(object sender, EventArgs e)

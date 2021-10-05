@@ -58,5 +58,29 @@ namespace VirtualMeetingMonitor.Properties {
                 this["language"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string googlesheetsID {
+            get {
+                return ((string)(this["googlesheetsID"]));
+            }
+            set {
+                this["googlesheetsID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string sheetName {
+            get {
+                return ((string)(this["sheetName"]));
+            }
+            set {
+                this["sheetName"] = value;
+            }
+        }
     }
 }

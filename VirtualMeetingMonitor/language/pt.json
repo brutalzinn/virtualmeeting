@@ -31,6 +31,10 @@
 "form_help_text":"Ajuda",
 "form_config_label_language":"Idioma:",
 "form_config_label_timeout":"Timeout:",
+"form_config_sheets_id":"Sheets ID:",
+"form_config_sheets_name":"Sheets Nome:",
+"form_config_paste_button":"COLAR GOOGLE \n SHEETS URL",
+"form_config_how_to_link":"Como configurar o google sheets",
 "button_ok":"SALVAR",
 "button_cancel":"CANCELAR"
 }
