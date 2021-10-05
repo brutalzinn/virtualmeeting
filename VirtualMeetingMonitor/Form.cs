@@ -40,7 +40,8 @@ namespace VirtualMeetingMonitor
         static readonly string SpreadsheetId = "1zWxyFh-0jkeN4pU9engXjOaDloM4torbEn286ShwL14";
         static readonly string sheet = "roberto-roboto";
         private int timeout = Properties.Settings.Default.timeout;
-        
+        private bool IsSleep = false;
+
         static SheetsService service;
         public enum Days
         {
@@ -263,7 +264,7 @@ namespace VirtualMeetingMonitor
             {
                 hue = 0;
             }
-
+           
           ///  onAirSign.TurnOn(hue, sat);
             LogMeeting(Globals.getKey("meeting_log_started"));
             WriteStatusStrip(Globals.getKey("meeting_status_running"));
@@ -384,26 +385,31 @@ namespace VirtualMeetingMonitor
         }
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            Console.WriteLine("Timer iniciado. Aguardando timeout.");
-            while (true)
-            {
-                Console.WriteLine("Tempo terminado.");
-                if (!call_running)
-                {
+            //Console.WriteLine("Timer iniciado. Aguardando timeout.");
+            //while (true)
+            //{
+            //    Console.WriteLine("Tempo terminado.");
+            //    if (!call_running)
+            //    {
 
-                    EndMeeting();
-                    Console.WriteLine(" chamada foi fechada.");
-                }
-                else
-                {
-                    call_running = true;
-                    Console.WriteLine("A chamada voltou.");
-                    break;
-                    //  backgroundWorker1.CancelAsync();
-                }
-                Thread.Sleep(5000);
+            //        EndMeeting();
+            //        Console.WriteLine(" chamada foi fechada.");
+            //    }
+            //    else
+            //    {
+            //        call_running = true;
+            //        Console.WriteLine("A chamada voltou.");
+            //        break;
+            //        //  backgroundWorker1.CancelAsync();
+            //    }
+            //    Thread.Sleep(5000);
 
-            }
+            //}
+            int value = (int)e.Argument;
+            IsSleep = true;
+            Thread.Sleep(value * 1000);
+            IsSleep = false;
+
 
 
         }
@@ -411,19 +417,21 @@ namespace VirtualMeetingMonitor
         {
             //   onAirSign.TurnOff();
             // CreateEntry();
-            call_running = false;
 
-            if (!NotificationEnabled)
-            {
-                if (!backgroundWorker1.IsBusy)
-                {
-                    backgroundWorker1.RunWorkerAsync();
-                }
-            }
-            else
+            //if (!NotificationEnabled)
+            //{
+            //    if (!backgroundWorker1.IsBusy)
+            //    {
+            //        backgroundWorker1.RunWorkerAsync();
+            //    }
+            //}
+            //else
+            //{
+            if (!IsSleep)
             {
                 CreateAndShowPrompt(Globals.getKey("notification_popup_text"));
             }
+            //}
 
         }
 
@@ -569,7 +577,12 @@ namespace VirtualMeetingMonitor
         {
             string ButtonYes = Globals.getKey("notification_button_yes");
             string ButtonNo = Globals.getKey("notification_button_no");
-
+            ToastSelectionBox selection = new ToastSelectionBox("delay");
+            selection.Items.Add(new ToastSelectionBoxItem("1", "5 minutes"));
+            selection.Items.Add(new ToastSelectionBoxItem("2", "10 minutes"));
+            selection.Items.Add(new ToastSelectionBoxItem("3", "15 minutes"));
+            selection.Items.Add(new ToastSelectionBoxItem("4", "30 minutes"));
+            selection.Items.Add(new ToastSelectionBoxItem("5", "1 hour"));
             ToastContent toastContent = new ToastContent()
             {
                 Launch = "bodyTapped",
@@ -590,7 +603,10 @@ namespace VirtualMeetingMonitor
                 },
                 Actions = new ToastActionsCustom()
                 {
+                    Inputs = { selection },
+
                     Buttons = { new ToastButton(ButtonYes, "Yes"), new ToastButton(ButtonNo, "No") }
+                   
                 },
                 Header = new ToastHeader("header", "VirtualMeetingMonitor - User manager", "header")
             };
@@ -600,12 +616,13 @@ namespace VirtualMeetingMonitor
 
             var promptNotification = new ToastNotification(doc);
             promptNotification.Activated += PromptNotificationOnActivated;
-
+         
             ToastNotificationManagerCompat.CreateToastNotifier().Show(promptNotification);
         }
         private void PromptNotificationOnActivated(ToastNotification sender, object args)
         {
             ToastActivatedEventArgs strArgs = args as ToastActivatedEventArgs;
+            Console.WriteLine(strArgs.UserInput["delay"]);
             switch (strArgs.Arguments)
             {
                 case "Yes":
@@ -614,19 +631,50 @@ namespace VirtualMeetingMonitor
                     break;
                 case "No":
                     Console.WriteLine("No");
+                    call_running = false;
                     EndMeeting();
 
-                    //stuff
                     break;
                 case "bodyTapped":
                     //stuff
                     break;
             }
 
+            switch (strArgs.UserInput["delay"])
+            {
+                case "1":
+                
+                    backgroundWorker1.RunWorkerAsync(argument: 5);
+                    break;
+                case "2":
+                    backgroundWorker1.RunWorkerAsync(argument: 10);
+                    break;
+                case "3":
+                    backgroundWorker1.RunWorkerAsync(argument: 15);
+                    break;
+
+                case "4":
+                    backgroundWorker1.RunWorkerAsync(argument: 30);
+                    break;
+                case "5":
+                    backgroundWorker1.RunWorkerAsync(argument: 3.600);
+                    break;
+
+            }
+
+
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
-            CreateAndShowPrompt(Globals.getKey("notification_popup_text"));
+
+            // the int will be boxed
+            if (!IsSleep)
+            {
+                CreateAndShowPrompt(Globals.getKey("notification_popup_text"));
+            }
+            
+         
+            
         }
         private void setDevModeGroup(bool mode)
         {
