@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Threading;
@@ -594,10 +595,10 @@ namespace VirtualMeetingMonitor
             string ButtonNo = Globals.getKey("notification_button_no");
             ToastSelectionBox selection = new ToastSelectionBox("delay");
             selection.Items.Add(new ToastSelectionBoxItem("1", "5 minutes"));
-            selection.Items.Add(new ToastSelectionBoxItem("2", "10 minutes"));
-            selection.Items.Add(new ToastSelectionBoxItem("3", "15 minutes"));
-            selection.Items.Add(new ToastSelectionBoxItem("4", "30 minutes"));
-            selection.Items.Add(new ToastSelectionBoxItem("5", "1 hour"));
+            selection.Items.Add(new ToastSelectionBoxItem("2", "15 minutes"));
+            selection.Items.Add(new ToastSelectionBoxItem("3", "30 minutes"));
+            selection.Items.Add(new ToastSelectionBoxItem("4", "1 hour"));
+            selection.Items.Add(new ToastSelectionBoxItem("5", "Custom"));
             ToastContent toastContent = new ToastContent()
             {
                 Launch = "bodyTapped",
@@ -658,20 +659,25 @@ namespace VirtualMeetingMonitor
             {
                 case "1":
                 
-                    backgroundWorker1.RunWorkerAsync(argument: 5);
+                    backgroundWorker1.RunWorkerAsync(argument: 300000);
                     break;
                 case "2":
-                    backgroundWorker1.RunWorkerAsync(argument: 10);
+                    backgroundWorker1.RunWorkerAsync(argument: 900000);
                     break;
                 case "3":
-                    backgroundWorker1.RunWorkerAsync(argument: 15);
+                    backgroundWorker1.RunWorkerAsync(argument: 1800000);
                     break;
 
                 case "4":
-                    backgroundWorker1.RunWorkerAsync(argument: 30);
+                    backgroundWorker1.RunWorkerAsync(argument: 3600000);
                     break;
                 case "5":
-                    backgroundWorker1.RunWorkerAsync(argument: 3.600);
+                    DateTime dateTime = DateTime.Parse(Properties.Settings.Default.customtimer);
+                                        
+                
+                    TimeSpan span = dateTime - DateTime.Now;
+                    Console.WriteLine((int)span.TotalMilliseconds);
+                    backgroundWorker1.RunWorkerAsync(argument: (int)span.TotalMilliseconds);
                     break;
                 default:
                     IsSleep = false;
@@ -756,6 +762,11 @@ namespace VirtualMeetingMonitor
         private void Dev_TestGoogle_Click(object sender, EventArgs e)
         {
             CreateEntry();
+        }
+
+        private void endCallToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

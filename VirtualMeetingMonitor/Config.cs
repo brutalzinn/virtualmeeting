@@ -20,6 +20,7 @@ namespace VirtualMeetingMonitor
             Translate();
             textbox_googleSheetsID.Text = Properties.Settings.Default.googlesheetsID;
             textBox1.Text = Properties.Settings.Default.timeout.ToString();
+            textBoxCustomTimer.Text = Properties.Settings.Default.customtimer;
             textbox_sheetname.Text = Properties.Settings.Default.sheetName;
         }
 
@@ -56,7 +57,7 @@ namespace VirtualMeetingMonitor
         }
         private void button1_Click(object sender, EventArgs e)
         {
-          
+            
             Globals.CurrentLanguage = (Language)comboBox1.SelectedItem;
             Globals.CurrentLanguage.LanguageChanged += Globals.form.LanguageChangedEvent;
             Globals.CurrentLanguage.readLanguage();
@@ -65,6 +66,7 @@ namespace VirtualMeetingMonitor
             Properties.Settings.Default.timeout = Convert.ToInt32(textBox1.Text);
             Properties.Settings.Default.googlesheetsID = textbox_googleSheetsID.Text;
             Properties.Settings.Default.sheetName = textbox_sheetname.Text;
+            Properties.Settings.Default.customtimer = textBoxCustomTimer.Text;
             Properties.Settings.Default.Save();
             this.Close();
         }

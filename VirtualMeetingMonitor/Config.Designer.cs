@@ -42,6 +42,8 @@ namespace VirtualMeetingMonitor
             this.textbox_sheetname = new System.Windows.Forms.TextBox();
             this.label_sheetname = new System.Windows.Forms.Label();
             this.label_link_howto = new System.Windows.Forms.LinkLabel();
+            this.textBoxCustomTimer = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label_timeout
@@ -65,7 +67,7 @@ namespace VirtualMeetingMonitor
             // 
             this.button_ok.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_ok.Location = new System.Drawing.Point(322, 173);
+            this.button_ok.Location = new System.Drawing.Point(322, 228);
             this.button_ok.Name = "button_ok";
             this.button_ok.Size = new System.Drawing.Size(80, 46);
             this.button_ok.TabIndex = 2;
@@ -77,7 +79,7 @@ namespace VirtualMeetingMonitor
             // 
             this.button_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_cancel.Location = new System.Drawing.Point(229, 173);
+            this.button_cancel.Location = new System.Drawing.Point(229, 228);
             this.button_cancel.Name = "button_cancel";
             this.button_cancel.Size = new System.Drawing.Size(87, 46);
             this.button_cancel.TabIndex = 3;
@@ -148,18 +150,40 @@ namespace VirtualMeetingMonitor
             // label_link_howto
             // 
             this.label_link_howto.AutoSize = true;
-            this.label_link_howto.Location = new System.Drawing.Point(12, 151);
+            this.label_link_howto.Location = new System.Drawing.Point(13, 133);
             this.label_link_howto.Name = "label_link_howto";
             this.label_link_howto.Size = new System.Drawing.Size(157, 13);
             this.label_link_howto.TabIndex = 11;
             this.label_link_howto.TabStop = true;
             this.label_link_howto.Text = "How to configure google sheets";
             // 
+            // textBoxCustomTimer
+            // 
+            this.textBoxCustomTimer.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.textBoxCustomTimer.ImeMode = System.Windows.Forms.ImeMode.AlphaFull;
+            this.textBoxCustomTimer.Location = new System.Drawing.Point(99, 172);
+            this.textBoxCustomTimer.Name = "textBoxCustomTimer";
+            this.textBoxCustomTimer.ShowUpDown = true;
+            this.textBoxCustomTimer.Size = new System.Drawing.Size(78, 20);
+            this.textBoxCustomTimer.TabIndex = 13;
+            this.textBoxCustomTimer.Value = new System.DateTime(2021, 10, 5, 0, 0, 0, 0);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 175);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Custom time:";
+            // 
             // Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 227);
+            this.ClientSize = new System.Drawing.Size(414, 282);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBoxCustomTimer);
             this.Controls.Add(this.label_link_howto);
             this.Controls.Add(this.label_sheetname);
             this.Controls.Add(this.textbox_sheetname);
@@ -196,5 +220,7 @@ namespace VirtualMeetingMonitor
         private System.Windows.Forms.TextBox textbox_sheetname;
         private System.Windows.Forms.Label label_sheetname;
         private System.Windows.Forms.LinkLabel label_link_howto;
+        private System.Windows.Forms.DateTimePicker textBoxCustomTimer;
+        private System.Windows.Forms.Label label1;
     }
 }

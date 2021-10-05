@@ -17,5 +17,8 @@
     <Setting Name="sheetName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="customtimer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">00:00:00</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

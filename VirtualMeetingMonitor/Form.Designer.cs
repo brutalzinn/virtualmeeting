@@ -64,6 +64,8 @@
             this.Dev_ClearConfigs = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label_outbound = new System.Windows.Forms.Label();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.endCallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip.SuspendLayout();
             this.devGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -85,9 +87,11 @@
             this.configTimeoutToolStripMenuItem,
             this.helpToolStripMenuItem,
             this.aboutToolStripMenuItem,
+            this.endCallToolStripMenuItem,
+            this.toolStripSeparator1,
             this.closeToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip1";
-            this.contextMenuStrip.Size = new System.Drawing.Size(150, 136);
+            this.contextMenuStrip.Size = new System.Drawing.Size(150, 164);
             // 
             // statusNoCallToolStripMenuItem
             // 
@@ -133,7 +137,7 @@
             // 
             this.meetingTxt.AutoSize = true;
             this.meetingTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.meetingTxt.Location = new System.Drawing.Point(64, 11);
+            this.meetingTxt.Location = new System.Drawing.Point(77, 11);
             this.meetingTxt.Name = "meetingTxt";
             this.meetingTxt.Size = new System.Drawing.Size(38, 13);
             this.meetingTxt.TabIndex = 1;
@@ -141,6 +145,8 @@
             // 
             // label_meeting
             // 
+            this.label_meeting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.label_meeting.AutoSize = true;
             this.label_meeting.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_meeting.Location = new System.Drawing.Point(4, 9);
@@ -181,7 +187,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.label_ip.AutoSize = true;
             this.label_ip.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_ip.Location = new System.Drawing.Point(4, 95);
+            this.label_ip.Location = new System.Drawing.Point(23, 95);
             this.label_ip.Name = "label_ip";
             this.label_ip.Size = new System.Drawing.Size(23, 16);
             this.label_ip.TabIndex = 4;
@@ -190,9 +196,11 @@
             // 
             // label_udp_packts
             // 
+            this.label_udp_packts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label_udp_packts.AutoSize = true;
             this.label_udp_packts.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_udp_packts.Location = new System.Drawing.Point(273, 8);
+            this.label_udp_packts.Location = new System.Drawing.Point(302, 8);
             this.label_udp_packts.Name = "label_udp_packts";
             this.label_udp_packts.Size = new System.Drawing.Size(81, 16);
             this.label_udp_packts.TabIndex = 5;
@@ -204,7 +212,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_inbound.AutoSize = true;
             this.label_inbound.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_inbound.Location = new System.Drawing.Point(270, 38);
+            this.label_inbound.Location = new System.Drawing.Point(315, 38);
             this.label_inbound.Name = "label_inbound";
             this.label_inbound.Size = new System.Drawing.Size(23, 16);
             this.label_inbound.TabIndex = 6;
@@ -217,7 +225,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_total.AutoSize = true;
             this.label_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_total.Location = new System.Drawing.Point(273, 98);
+            this.label_total.Location = new System.Drawing.Point(315, 98);
             this.label_total.Name = "label_total";
             this.label_total.Size = new System.Drawing.Size(23, 16);
             this.label_total.TabIndex = 8;
@@ -226,9 +234,11 @@
             // 
             // startedTxt
             // 
+            this.startedTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.startedTxt.AutoSize = true;
             this.startedTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startedTxt.Location = new System.Drawing.Point(64, 41);
+            this.startedTxt.Location = new System.Drawing.Point(77, 41);
             this.startedTxt.Name = "startedTxt";
             this.startedTxt.Size = new System.Drawing.Size(95, 13);
             this.startedTxt.TabIndex = 9;
@@ -236,9 +246,11 @@
             // 
             // EnedTxt
             // 
+            this.EnedTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.EnedTxt.AutoSize = true;
             this.EnedTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EnedTxt.Location = new System.Drawing.Point(61, 70);
+            this.EnedTxt.Location = new System.Drawing.Point(77, 70);
             this.EnedTxt.Name = "EnedTxt";
             this.EnedTxt.Size = new System.Drawing.Size(95, 13);
             this.EnedTxt.TabIndex = 10;
@@ -246,9 +258,11 @@
             // 
             // IpTxt
             // 
+            this.IpTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.IpTxt.AutoSize = true;
             this.IpTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IpTxt.Location = new System.Drawing.Point(33, 98);
+            this.IpTxt.Location = new System.Drawing.Point(77, 98);
             this.IpTxt.Name = "IpTxt";
             this.IpTxt.Size = new System.Drawing.Size(89, 13);
             this.IpTxt.TabIndex = 11;
@@ -260,7 +274,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.InboundTxt.AutoSize = true;
             this.InboundTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InboundTxt.Location = new System.Drawing.Point(336, 41);
+            this.InboundTxt.Location = new System.Drawing.Point(381, 41);
             this.InboundTxt.Name = "InboundTxt";
             this.InboundTxt.Size = new System.Drawing.Size(28, 13);
             this.InboundTxt.TabIndex = 12;
@@ -272,7 +286,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.OutboundTxt.AutoSize = true;
             this.OutboundTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OutboundTxt.Location = new System.Drawing.Point(336, 70);
+            this.OutboundTxt.Location = new System.Drawing.Point(381, 70);
             this.OutboundTxt.Name = "OutboundTxt";
             this.OutboundTxt.Size = new System.Drawing.Size(28, 13);
             this.OutboundTxt.TabIndex = 13;
@@ -284,7 +298,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TotalTxt.AutoSize = true;
             this.TotalTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalTxt.Location = new System.Drawing.Point(336, 100);
+            this.TotalTxt.Location = new System.Drawing.Point(381, 100);
             this.TotalTxt.Name = "TotalTxt";
             this.TotalTxt.Size = new System.Drawing.Size(28, 13);
             this.TotalTxt.TabIndex = 14;
@@ -341,7 +355,7 @@
             this.devGroupBox.Enabled = false;
             this.devGroupBox.Location = new System.Drawing.Point(7, 145);
             this.devGroupBox.Name = "devGroupBox";
-            this.devGroupBox.Size = new System.Drawing.Size(337, 142);
+            this.devGroupBox.Size = new System.Drawing.Size(392, 142);
             this.devGroupBox.TabIndex = 18;
             this.devGroupBox.TabStop = false;
             this.devGroupBox.Text = "Developer mode";
@@ -408,21 +422,34 @@
             // 
             // label_outbound
             // 
+            this.label_outbound.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label_outbound.AutoSize = true;
             this.label_outbound.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.label_outbound.Location = new System.Drawing.Point(273, 67);
+            this.label_outbound.Location = new System.Drawing.Point(315, 67);
             this.label_outbound.Name = "label_outbound";
             this.label_outbound.Size = new System.Drawing.Size(19, 16);
             this.label_outbound.TabIndex = 19;
             this.label_outbound.Text = "--:";
             this.label_outbound.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(146, 6);
+            // 
+            // endCallToolStripMenuItem
+            // 
+            this.endCallToolStripMenuItem.Name = "endCallToolStripMenuItem";
+            this.endCallToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.endCallToolStripMenuItem.Text = "End call";
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(366, 324);
+            this.ClientSize = new System.Drawing.Size(411, 324);
             this.Controls.Add(this.label_outbound);
             this.Controls.Add(this.devGroupBox);
             this.Controls.Add(this.Dev_LabelMode);
@@ -492,6 +519,8 @@
         private System.Windows.Forms.Label label_total;
         private System.Windows.Forms.Label label_outbound;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem endCallToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 
