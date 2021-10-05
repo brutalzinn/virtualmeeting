@@ -422,7 +422,7 @@ namespace VirtualMeetingMonitor
             //}
             int value = (int)e.Argument;
             IsSleep = true;
-            Thread.Sleep(value * 1000);
+            Thread.Sleep(value);
             IsSleep = false;
 
 

@@ -37,6 +37,8 @@
             this.configTimeoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.endCallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.meetingTxt = new System.Windows.Forms.Label();
             this.label_meeting = new System.Windows.Forms.Label();
@@ -64,8 +66,6 @@
             this.Dev_ClearConfigs = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label_outbound = new System.Windows.Forms.Label();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.endCallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip.SuspendLayout();
             this.devGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -125,6 +125,17 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.aboutToolStripMenuItem.Text = "About";
+            // 
+            // endCallToolStripMenuItem
+            // 
+            this.endCallToolStripMenuItem.Name = "endCallToolStripMenuItem";
+            this.endCallToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.endCallToolStripMenuItem.Text = "End call";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(146, 6);
             // 
             // closeToolStripMenuItem
             // 
@@ -432,17 +443,6 @@
             this.label_outbound.TabIndex = 19;
             this.label_outbound.Text = "--:";
             this.label_outbound.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(146, 6);
-            // 
-            // endCallToolStripMenuItem
-            // 
-            this.endCallToolStripMenuItem.Name = "endCallToolStripMenuItem";
-            this.endCallToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.endCallToolStripMenuItem.Text = "End call";
             // 
             // Form
             // 
