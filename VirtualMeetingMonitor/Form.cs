@@ -249,6 +249,10 @@ namespace VirtualMeetingMonitor
         }
         private void Meeting_OnMeetingStarted()
         {
+            if (call_running)
+            {
+                return;
+            }
             int hue = 0;
             int sat = 254;
 
@@ -622,7 +626,6 @@ namespace VirtualMeetingMonitor
         private void PromptNotificationOnActivated(ToastNotification sender, object args)
         {
             ToastActivatedEventArgs strArgs = args as ToastActivatedEventArgs;
-            Console.WriteLine(strArgs.UserInput["delay"]);
             switch (strArgs.Arguments)
             {
                 case "Yes":
@@ -639,7 +642,7 @@ namespace VirtualMeetingMonitor
                     //stuff
                     break;
             }
-
+            Console.WriteLine("################" + strArgs.UserInput["delay"]);
             switch (strArgs.UserInput["delay"])
             {
                 case "1":
@@ -658,6 +661,9 @@ namespace VirtualMeetingMonitor
                     break;
                 case "5":
                     backgroundWorker1.RunWorkerAsync(argument: 3.600);
+                    break;
+                default:
+                    IsSleep = false;
                     break;
 
             }
