@@ -34,14 +34,14 @@ namespace VirtualMeetingMonitor
         //google sheets integration
        
         static readonly string[] Scopes = { SheetsService.Scope.Spreadsheets };
-        static readonly string ApplicationName = "Virtual Meeting teste";
+        static readonly string ApplicationName = "Virtual Meeting";
         static readonly string GoogleSecret = "client_secret.json";
         private  bool GoogleEnabled = false;
         private bool NotificationEnabled = false;
         private bool DevMode = false;
         private string LangDirectory = "language";
-        static readonly string SpreadsheetId = Properties.Settings.Default.googlesheetsID;
-        static readonly string sheet = Properties.Settings.Default.sheetName;
+        private static  string SpreadsheetId = Properties.Settings.Default.googlesheetsID;
+        private static string sheet = Properties.Settings.Default.sheetName;
         private int timeout = Properties.Settings.Default.timeout;
         private bool IsSleep = false;
 
@@ -181,7 +181,7 @@ namespace VirtualMeetingMonitor
                 return "9:00 - 12:00";
             }
         }
-        static void CreateEntry()
+         void CreateEntry()
         {
           
             DateTime thisDay = DateTime.Today;
@@ -442,10 +442,15 @@ namespace VirtualMeetingMonitor
             //}
             //else
             //{
-            if (!IsSleep)
+            if (!IsSleep )
             {
                 CreateAndShowPrompt(Globals.getKey("notification_popup_text"));
             }
+          
+
+           //  call_running = false;
+
+            
             //}
 
         }
@@ -767,6 +772,29 @@ namespace VirtualMeetingMonitor
         private void endCallToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void endCallToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            EndMeeting();
+        }
+
+        private void notificationstatusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+        private void CancelSleepToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IsSleep = false;
+
+        }
+
+        private void contextMenuStrip_Opened(object sender, EventArgs e)
+        {
+            notificationstatusToolStripMenuItem.Text = IsSleep ? "Running" : "Disabled";
         }
     }
 }
