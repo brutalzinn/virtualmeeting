@@ -178,7 +178,7 @@ namespace VirtualMeetingMonitor
             }
             else
             {
-                return "9:00 - 12:00";
+                return "9:30 - 12:00";
             }
         }
          void CreateEntry()
@@ -424,6 +424,8 @@ namespace VirtualMeetingMonitor
             IsSleep = true;
             Thread.Sleep(value);
             IsSleep = false;
+            CreateAndShowPrompt(Globals.getKey("notification_popup_text"));
+
 
 
 
@@ -448,7 +450,7 @@ namespace VirtualMeetingMonitor
             }
           
 
-           //  call_running = false;
+           call_running = false;
 
             
             //}
@@ -788,6 +790,7 @@ namespace VirtualMeetingMonitor
 
         private void CancelSleepToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            backgroundWorker1.CancelAsync();
             IsSleep = false;
 
         }
