@@ -269,18 +269,18 @@ namespace VirtualMeetingMonitor
 
             if (meeting.IsTeamsMeeting())
             {
-                hue = 43690;
+                hue = 225;
             }
-            else if (meeting.IsWebExMeeting())
+            else if (meeting.IsDiscordMeeting())
             {
-                hue = 21845;
+                hue = 270;
             }
             else if (meeting.IsZoomMeeting())
             {
-                hue = 0;
+                hue = 180;
             }
            
-          ///  onAirSign.TurnOn(hue, sat);
+            onAirSign.TurnOn(hue, sat);
             LogMeeting(Globals.getKey("meeting_log_started"));
             WriteStatusStrip(Globals.getKey("meeting_status_running"));
 
@@ -432,7 +432,6 @@ namespace VirtualMeetingMonitor
         }
         private void Meeting_OnMeetingEnded()
         {
-            //   onAirSign.TurnOff();
             // CreateEntry();
 
             //if (!NotificationEnabled)
@@ -494,7 +493,7 @@ namespace VirtualMeetingMonitor
 
         private void onAirOnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            onAirSign.TurnOn();
+           // onAirSign.TurnOn();
         }
 
         private void onAirOffToolStripMenuItem_Click(object sender, EventArgs e)
@@ -653,6 +652,7 @@ namespace VirtualMeetingMonitor
                     break;
                 case "No":
                     Console.WriteLine("No");
+                    onAirSign.TurnOff();
                     call_running = false;
                     EndMeeting();
 
@@ -755,11 +755,26 @@ namespace VirtualMeetingMonitor
             //string google_sheets_url = Clipboard.GetText();
             //Array googleUrlArray = google_sheets_url.Split('/');
             //string googleSheetsID = google_sheets_url.Split('/')[googleUrlArray.Length - 2];
-            
+            int hue = 135;
+            int sat = 255;
+
+            //if (meeting.IsTeamsMeeting())
+            //{
+            //    hue = 43690;
+            //}
+            //else if (meeting.IsWebExMeeting())
+            //{
+            //    hue = 21845;
+            //}
+            //else if (meeting.IsZoomMeeting())
+            //{
+            //    hue = 0;
+            //}
+
             //Console.WriteLine(googleSheetsID);
             if (!testeBool)
             {
-                onAirSign.TurnOn();
+                onAirSign.TurnOn(hue,sat);
                 testeBool = true;
             }
             else
