@@ -494,7 +494,7 @@ namespace VirtualMeetingMonitor
 
         private void onAirOnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            onAirSign.TurnOn(0, 254);
+            onAirSign.TurnOn();
         }
 
         private void onAirOffToolStripMenuItem_Click(object sender, EventArgs e)
@@ -749,15 +749,25 @@ namespace VirtualMeetingMonitor
         {
           
         }
-
+        private bool testeBool = false;
         private void Dev_ButtonTeste_Click(object sender, EventArgs e)
         {
-            string google_sheets_url = Clipboard.GetText();
-            Array googleUrlArray = google_sheets_url.Split('/');
-            string googleSheetsID = google_sheets_url.Split('/')[googleUrlArray.Length - 2];
+            //string google_sheets_url = Clipboard.GetText();
+            //Array googleUrlArray = google_sheets_url.Split('/');
+            //string googleSheetsID = google_sheets_url.Split('/')[googleUrlArray.Length - 2];
+            
+            //Console.WriteLine(googleSheetsID);
+            if (!testeBool)
+            {
+                onAirSign.TurnOn();
+                testeBool = true;
+            }
+            else
+            {
+                onAirSign.TurnOff();
+                testeBool = false;
 
-
-            Console.WriteLine(googleSheetsID);
+            }
         }
 
         private void Dev_Config_Click(object sender, EventArgs e)
