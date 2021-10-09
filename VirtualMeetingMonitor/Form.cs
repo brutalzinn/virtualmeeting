@@ -131,6 +131,10 @@ namespace VirtualMeetingMonitor
             helpToolStripMenuItem.Text = Globals.getKey("help_tool_strip_menu");
             closeToolStripMenuItem.Text = Globals.getKey("close_tool_strip_menu");
             statusNoCallToolStripMenuItem.Text = Globals.getKey("meeting_status_no_running");
+            endCallToolStripMenuItem.Text = Globals.getKey("endcall_tool_strip_menu");
+            aboutToolStripMenuItem.Text = Globals.getKey("about_tool_strip_menu");
+            notificationsToolStripMenuItem.Text = Globals.getKey("notifications_tool_strip_menu");
+            enableSleepToolStripMenuItem.Text = Globals.getKey("notifications_tool_strip_menu_activate");
 
         }
         private void checkGoogleKey()
@@ -652,9 +656,9 @@ namespace VirtualMeetingMonitor
                     break;
                 case "No":
                     Console.WriteLine("No");
-                    onAirSign.TurnOff();
                     call_running = false;
                     EndMeeting();
+                    onAirSign.TurnOff();
 
                     break;
                 case "bodyTapped":
@@ -772,15 +776,17 @@ namespace VirtualMeetingMonitor
             //}
 
             //Console.WriteLine(googleSheetsID);
+
             if (!testeBool)
             {
-                onAirSign.TurnOn(hue,sat);
                 testeBool = true;
+                onAirSign.TurnOn(hue, sat);
+
             }
             else
             {
-                onAirSign.TurnOff();
                 testeBool = false;
+                onAirSign.TurnOff();
 
             }
         }
@@ -815,14 +821,20 @@ namespace VirtualMeetingMonitor
 
         private void CancelSleepToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            backgroundWorker1.CancelAsync();
-            IsSleep = false;
+       
 
         }
 
         private void contextMenuStrip_Opened(object sender, EventArgs e)
         {
-            notificationstatusToolStripMenuItem.Text = IsSleep ? "Running" : "Disabled";
+
+            notificationstatusToolStripMenuItem.Text = IsSleep ?  Globals.getKey("notifications_tool_strip_menu_status_disabled") : Globals.getKey("notifications_tool_strip_menu_status_running");
+        }
+
+        private void enableSleepToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            backgroundWorker1.CancelAsync();
+            IsSleep = false;
         }
     }
 }
