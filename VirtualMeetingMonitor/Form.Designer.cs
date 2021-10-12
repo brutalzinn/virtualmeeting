@@ -38,6 +38,7 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notificationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notificationstatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enableSleepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.endCallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -68,7 +69,6 @@
             this.Dev_ClearConfigs = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label_outbound = new System.Windows.Forms.Label();
-            this.enableSleepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip.SuspendLayout();
             this.devGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -95,7 +95,7 @@
             this.toolStripSeparator1,
             this.closeToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip1";
-            this.contextMenuStrip.Size = new System.Drawing.Size(181, 208);
+            this.contextMenuStrip.Size = new System.Drawing.Size(150, 186);
             this.contextMenuStrip.Opened += new System.EventHandler(this.contextMenuStrip_Opened);
             // 
             // statusNoCallToolStripMenuItem
@@ -131,7 +131,7 @@
             this.notificationstatusToolStripMenuItem,
             this.enableSleepToolStripMenuItem});
             this.notificationsToolStripMenuItem.Name = "notificationsToolStripMenuItem";
-            this.notificationsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.notificationsToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.notificationsToolStripMenuItem.Text = "Notifications";
             // 
             // notificationstatusToolStripMenuItem
@@ -140,6 +140,13 @@
             this.notificationstatusToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.notificationstatusToolStripMenuItem.Text = "{notification.status}";
             this.notificationstatusToolStripMenuItem.Click += new System.EventHandler(this.notificationstatusToolStripMenuItem_Click);
+            // 
+            // enableSleepToolStripMenuItem
+            // 
+            this.enableSleepToolStripMenuItem.Name = "enableSleepToolStripMenuItem";
+            this.enableSleepToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.enableSleepToolStripMenuItem.Text = "Enable sleep";
+            this.enableSleepToolStripMenuItem.Click += new System.EventHandler(this.enableSleepToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -465,13 +472,6 @@
             this.label_outbound.TabIndex = 19;
             this.label_outbound.Text = "--:";
             this.label_outbound.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // enableSleepToolStripMenuItem
-            // 
-            this.enableSleepToolStripMenuItem.Name = "enableSleepToolStripMenuItem";
-            this.enableSleepToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.enableSleepToolStripMenuItem.Text = "Enable sleep";
-            this.enableSleepToolStripMenuItem.Click += new System.EventHandler(this.enableSleepToolStripMenuItem_Click);
             // 
             // Form
             // 

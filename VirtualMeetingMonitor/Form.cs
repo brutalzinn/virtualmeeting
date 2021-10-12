@@ -4,6 +4,7 @@ using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
 using Google.Apis.Sheets.v4.Data;
 using Microsoft.Toolkit.Uwp.Notifications;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -753,42 +754,19 @@ namespace VirtualMeetingMonitor
         {
           
         }
-        private bool testeBool = false;
         private void Dev_ButtonTeste_Click(object sender, EventArgs e)
         {
-            //string google_sheets_url = Clipboard.GetText();
-            //Array googleUrlArray = google_sheets_url.Split('/');
-            //string googleSheetsID = google_sheets_url.Split('/')[googleUrlArray.Length - 2];
-            int hue = 135;
-            int sat = 255;
+            Profile _profile = new Profile("Teste","googlekey_example","google_sheet_id","12:00:00",0,"en");
+            Profile _profilet = new Profile("Teste 2", "googlekey_example", "google_sheet_id", "12:00:00", 0, "pt");
+            Console.WriteLine(_profilet.Name);
+            Globals.profiles.Add(_profilet);
+             Globals.profiles.Add(_profile);
+               
+            string output = JsonConvert.SerializeObject(Globals.profiles, Formatting.Indented);
+            File.WriteAllText(Application.StartupPath+ @"\config.json", output);
 
-            //if (meeting.IsTeamsMeeting())
-            //{
-            //    hue = 43690;
-            //}
-            //else if (meeting.IsWebExMeeting())
-            //{
-            //    hue = 21845;
-            //}
-            //else if (meeting.IsZoomMeeting())
-            //{
-            //    hue = 0;
-            //}
+            Console.WriteLine(output);
 
-            //Console.WriteLine(googleSheetsID);
-
-            if (!testeBool)
-            {
-                testeBool = true;
-                onAirSign.TurnOn(hue, sat);
-
-            }
-            else
-            {
-                testeBool = false;
-                onAirSign.TurnOff();
-
-            }
         }
 
         private void Dev_Config_Click(object sender, EventArgs e)

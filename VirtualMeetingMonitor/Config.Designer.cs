@@ -44,12 +44,14 @@ namespace VirtualMeetingMonitor
             this.label_link_howto = new System.Windows.Forms.LinkLabel();
             this.textBoxCustomTimer = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label_timeout
             // 
             this.label_timeout.AutoSize = true;
-            this.label_timeout.Location = new System.Drawing.Point(12, 23);
+            this.label_timeout.Location = new System.Drawing.Point(24, 80);
             this.label_timeout.Name = "label_timeout";
             this.label_timeout.Size = new System.Drawing.Size(48, 13);
             this.label_timeout.TabIndex = 0;
@@ -57,7 +59,7 @@ namespace VirtualMeetingMonitor
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(66, 20);
+            this.textBox1.Location = new System.Drawing.Point(78, 77);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(324, 20);
             this.textBox1.TabIndex = 1;
@@ -67,7 +69,7 @@ namespace VirtualMeetingMonitor
             // 
             this.button_ok.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_ok.Location = new System.Drawing.Point(322, 228);
+            this.button_ok.Location = new System.Drawing.Point(322, 298);
             this.button_ok.Name = "button_ok";
             this.button_ok.Size = new System.Drawing.Size(80, 46);
             this.button_ok.TabIndex = 2;
@@ -79,7 +81,7 @@ namespace VirtualMeetingMonitor
             // 
             this.button_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_cancel.Location = new System.Drawing.Point(229, 228);
+            this.button_cancel.Location = new System.Drawing.Point(229, 298);
             this.button_cancel.Name = "button_cancel";
             this.button_cancel.Size = new System.Drawing.Size(87, 46);
             this.button_cancel.TabIndex = 3;
@@ -90,7 +92,7 @@ namespace VirtualMeetingMonitor
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(75, 46);
+            this.comboBox1.Location = new System.Drawing.Point(87, 103);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(217, 21);
             this.comboBox1.TabIndex = 4;
@@ -98,7 +100,7 @@ namespace VirtualMeetingMonitor
             // label_language
             // 
             this.label_language.AutoSize = true;
-            this.label_language.Location = new System.Drawing.Point(12, 49);
+            this.label_language.Location = new System.Drawing.Point(24, 106);
             this.label_language.Name = "label_language";
             this.label_language.Size = new System.Drawing.Size(58, 13);
             this.label_language.TabIndex = 5;
@@ -107,7 +109,7 @@ namespace VirtualMeetingMonitor
             // label_sheets_id
             // 
             this.label_sheets_id.AutoSize = true;
-            this.label_sheets_id.Location = new System.Drawing.Point(12, 76);
+            this.label_sheets_id.Location = new System.Drawing.Point(24, 133);
             this.label_sheets_id.Name = "label_sheets_id";
             this.label_sheets_id.Size = new System.Drawing.Size(57, 13);
             this.label_sheets_id.TabIndex = 6;
@@ -115,7 +117,7 @@ namespace VirtualMeetingMonitor
             // 
             // textbox_googleSheetsID
             // 
-            this.textbox_googleSheetsID.Location = new System.Drawing.Point(75, 73);
+            this.textbox_googleSheetsID.Location = new System.Drawing.Point(87, 130);
             this.textbox_googleSheetsID.Name = "textbox_googleSheetsID";
             this.textbox_googleSheetsID.Size = new System.Drawing.Size(218, 20);
             this.textbox_googleSheetsID.TabIndex = 7;
@@ -123,7 +125,7 @@ namespace VirtualMeetingMonitor
             // button_paste_googlesheets
             // 
             this.button_paste_googlesheets.AutoSize = true;
-            this.button_paste_googlesheets.Location = new System.Drawing.Point(299, 67);
+            this.button_paste_googlesheets.Location = new System.Drawing.Point(311, 124);
             this.button_paste_googlesheets.Name = "button_paste_googlesheets";
             this.button_paste_googlesheets.Size = new System.Drawing.Size(74, 30);
             this.button_paste_googlesheets.TabIndex = 8;
@@ -133,7 +135,7 @@ namespace VirtualMeetingMonitor
             // 
             // textbox_sheetname
             // 
-            this.textbox_sheetname.Location = new System.Drawing.Point(93, 99);
+            this.textbox_sheetname.Location = new System.Drawing.Point(105, 156);
             this.textbox_sheetname.Name = "textbox_sheetname";
             this.textbox_sheetname.Size = new System.Drawing.Size(200, 20);
             this.textbox_sheetname.TabIndex = 9;
@@ -141,7 +143,7 @@ namespace VirtualMeetingMonitor
             // label_sheetname
             // 
             this.label_sheetname.AutoSize = true;
-            this.label_sheetname.Location = new System.Drawing.Point(13, 102);
+            this.label_sheetname.Location = new System.Drawing.Point(25, 159);
             this.label_sheetname.Name = "label_sheetname";
             this.label_sheetname.Size = new System.Drawing.Size(74, 13);
             this.label_sheetname.TabIndex = 10;
@@ -150,7 +152,7 @@ namespace VirtualMeetingMonitor
             // label_link_howto
             // 
             this.label_link_howto.AutoSize = true;
-            this.label_link_howto.Location = new System.Drawing.Point(13, 133);
+            this.label_link_howto.Location = new System.Drawing.Point(25, 190);
             this.label_link_howto.Name = "label_link_howto";
             this.label_link_howto.Size = new System.Drawing.Size(157, 13);
             this.label_link_howto.TabIndex = 11;
@@ -161,7 +163,7 @@ namespace VirtualMeetingMonitor
             // 
             this.textBoxCustomTimer.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.textBoxCustomTimer.ImeMode = System.Windows.Forms.ImeMode.AlphaFull;
-            this.textBoxCustomTimer.Location = new System.Drawing.Point(99, 172);
+            this.textBoxCustomTimer.Location = new System.Drawing.Point(111, 229);
             this.textBoxCustomTimer.Name = "textBoxCustomTimer";
             this.textBoxCustomTimer.ShowUpDown = true;
             this.textBoxCustomTimer.Size = new System.Drawing.Size(78, 20);
@@ -171,17 +173,36 @@ namespace VirtualMeetingMonitor
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 175);
+            this.label1.Location = new System.Drawing.Point(32, 232);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 14;
             this.label1.Text = "Custom time:";
             // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(78, 49);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(182, 21);
+            this.comboBox2.TabIndex = 15;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(25, 52);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(39, 13);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Profile:";
+            // 
             // Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 282);
+            this.ClientSize = new System.Drawing.Size(414, 352);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxCustomTimer);
             this.Controls.Add(this.label_link_howto);
@@ -222,5 +243,7 @@ namespace VirtualMeetingMonitor
         private System.Windows.Forms.LinkLabel label_link_howto;
         private System.Windows.Forms.DateTimePicker textBoxCustomTimer;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -10,8 +10,14 @@ namespace VirtualMeetingMonitor
     public  class Globals
     {
        public static List<Language> languages = new List<Language>();
+
+        public static List<Profile> profiles = new List<Profile>();
+
         public static Form form { get; set; }
        public static Language CurrentLanguage { get; set; }
+
+        public static Profile CurrentProfile { get; set; }
+
         public static string getKey(string key)
         {
             return CurrentLanguage.getValue(key);
