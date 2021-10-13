@@ -105,7 +105,8 @@ namespace VirtualMeetingMonitor
             LanguageLoad();
 
             LanguageConfig();
-            checkGoogleKey();
+            UpdateProfileSettings();
+
 
             if (Properties.Settings.Default.firstRun)
             {
