@@ -15,6 +15,7 @@ using System.Net;
 using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Threading;
+using VirtualMeetingMonitor.profile;
 using Windows.ApplicationModel.Activation;
 using Windows.Data.Xml.Dom;
 using Windows.Foundation.Collections;
@@ -99,6 +100,8 @@ namespace VirtualMeetingMonitor
             OutboundTxt.Text = "";
             TotalTxt.Text = "";
             BackColor = System.Drawing.Color.DarkGray;
+            LoadProfiles();
+
             LanguageLoad();
 
             LanguageConfig();
@@ -564,9 +567,9 @@ namespace VirtualMeetingMonitor
         {
           
 
-            if(Properties.Settings.Default.language != null)
+            if(Globals.ProfileUtil.CurrentProfile.Language != null)
             {
-                string path = Application.StartupPath + $@"\{LangDirectory}\{Properties.Settings.Default.language}.json";
+                string path = Application.StartupPath + $@"\{LangDirectory}\{Globals.ProfileUtil.CurrentProfile.Language}.json";
             
               
                 Globals.CurrentLanguage = new Language(Path.GetFileName(path), path, false);
@@ -754,18 +757,37 @@ namespace VirtualMeetingMonitor
         {
           
         }
+        private void LoadProfiles()
+        {
+
+            string path = Application.StartupPath + @"\config.json";
+            if (!File.Exists(path))
+            {
+                Profile _default = new Profile("default", "", "", "", 0, "English");
+                Globals.ProfileUtil.CurrentProfile = _default;
+                Globals.ProfileUtil.profiles.Add(_default);
+                string output = JsonConvert.SerializeObject(Globals.ProfileUtil, Formatting.Indented);
+                File.WriteAllText(path, output);
+            }
+            string json = File.ReadAllText(path);
+            ProfileUtils profiles = JsonConvert.DeserializeObject<ProfileUtils>(json);
+            Globals.ProfileUtil.profiles = profiles.profiles;
+            Globals.ProfileUtil.CurrentProfile = profiles.CurrentProfile;
+            Text = $"{Text} - {Globals.ProfileUtil.CurrentProfile.Name}";
+
+        }
         private void Dev_ButtonTeste_Click(object sender, EventArgs e)
         {
-            Profile _profile = new Profile("Teste","googlekey_example","google_sheet_id","12:00:00",0,"en");
-            Profile _profilet = new Profile("Teste 2", "googlekey_example", "google_sheet_id", "12:00:00", 0, "pt");
-            Console.WriteLine(_profilet.Name);
-            Globals.profiles.Add(_profilet);
-             Globals.profiles.Add(_profile);
-               
-            string output = JsonConvert.SerializeObject(Globals.profiles, Formatting.Indented);
-            File.WriteAllText(Application.StartupPath+ @"\config.json", output);
+            //Profile _profile = new Profile("Teste","googlekey_example","google_sheet_id","12:00:00",0,"en");
+            //Profile _profilet = new Profile("Teste 2", "googlekey_example", "google_sheet_id", "12:00:00", 0, "pt");
+            //Console.WriteLine(_profilet.Name);
+            //Globals.profiles.Add(_profilet);
+            // Globals.profiles.Add(_profile);
 
-            Console.WriteLine(output);
+            //string output = JsonConvert.SerializeObject(Globals.profiles, Formatting.Indented);
+            //File.WriteAllText(Application.StartupPath+ @"\config.json", output);
+
+       //     Console.WriteLine(profiles);
 
         }
 

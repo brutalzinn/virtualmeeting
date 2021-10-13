@@ -84,6 +84,12 @@
     <Compile Include="Form.Designer.cs">
       <DependentUpon>Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\TextDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TextDialog.Designer.cs">
+      <DependentUpon>TextDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="Helper.cs">
       <SubType>Form</SubType>
@@ -95,7 +101,8 @@
     <Compile Include="Language.cs" />
     <Compile Include="Network.cs" />
     <Compile Include="OnAirSign.cs" />
-    <Compile Include="Profile.cs" />
+    <Compile Include="profile\Profile.cs" />
+    <Compile Include="profile\ProfileUtils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Config.cs">
@@ -107,6 +114,9 @@
     <Compile Include="VirtualMeeting.cs" />
     <EmbeddedResource Include="Form.resx">
       <DependentUpon>Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TextDialog.resx">
+      <DependentUpon>TextDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Helper.resx">
       <DependentUpon>Helper.cs</DependentUpon>

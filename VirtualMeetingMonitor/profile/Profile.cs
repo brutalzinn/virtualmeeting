@@ -13,6 +13,8 @@ namespace VirtualMeetingMonitor
         public string GoogleKey { get; set; }
         public string SheetId { get; set; }
 
+        public string UniqueId { get; set; }
+
         public string CustomTime { get; set; }
 
         public int Timeout { get; set; }
@@ -20,6 +22,7 @@ namespace VirtualMeetingMonitor
         public string Language { get; set; }
         public Profile(string name, string googleKey, string sheetId, string customTime, int timeout, string language)
         {
+            UniqueId = Guid.NewGuid().ToString("N");
             Name = name;
             GoogleKey = googleKey;
             SheetId = sheetId;
@@ -27,11 +30,15 @@ namespace VirtualMeetingMonitor
             Timeout = timeout;
             Language = language;
         }
+        public override string ToString()
+        {
+            return Name;
+        }
 
-      
-    
-      
 
-     
-    }
+
+
+
+
+        }
 }

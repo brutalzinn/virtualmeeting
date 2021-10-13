@@ -44,8 +44,12 @@ namespace VirtualMeetingMonitor
             this.label_link_howto = new System.Windows.Forms.LinkLabel();
             this.textBoxCustomTimer = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.cbxProfile = new System.Windows.Forms.ComboBox();
+            this.label_profile = new System.Windows.Forms.Label();
+            this.label_profile_name = new System.Windows.Forms.Label();
+            this.ADD = new System.Windows.Forms.Button();
+            this.DEL = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label_timeout
@@ -179,30 +183,74 @@ namespace VirtualMeetingMonitor
             this.label1.TabIndex = 14;
             this.label1.Text = "Custom time:";
             // 
-            // comboBox2
+            // cbxProfile
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(78, 49);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(182, 21);
-            this.comboBox2.TabIndex = 15;
+            this.cbxProfile.FormattingEnabled = true;
+            this.cbxProfile.Location = new System.Drawing.Point(78, 49);
+            this.cbxProfile.Name = "cbxProfile";
+            this.cbxProfile.Size = new System.Drawing.Size(182, 21);
+            this.cbxProfile.TabIndex = 15;
+            this.cbxProfile.SelectedIndexChanged += new System.EventHandler(this.cbxProfile_SelectedIndexChanged);
             // 
-            // label2
+            // label_profile
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 52);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 13);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Profile:";
+            this.label_profile.AutoSize = true;
+            this.label_profile.Location = new System.Drawing.Point(25, 52);
+            this.label_profile.Name = "label_profile";
+            this.label_profile.Size = new System.Drawing.Size(39, 13);
+            this.label_profile.TabIndex = 16;
+            this.label_profile.Text = "Profile:";
+            // 
+            // label_profile_name
+            // 
+            this.label_profile_name.AutoSize = true;
+            this.label_profile_name.Location = new System.Drawing.Point(26, 23);
+            this.label_profile_name.Name = "label_profile_name";
+            this.label_profile_name.Size = new System.Drawing.Size(73, 13);
+            this.label_profile_name.TabIndex = 17;
+            this.label_profile_name.Text = "Profile:{name}";
+            // 
+            // ADD
+            // 
+            this.ADD.Location = new System.Drawing.Point(266, 46);
+            this.ADD.Name = "ADD";
+            this.ADD.Size = new System.Drawing.Size(33, 25);
+            this.ADD.TabIndex = 18;
+            this.ADD.Text = "+";
+            this.ADD.UseVisualStyleBackColor = true;
+            this.ADD.Click += new System.EventHandler(this.ADD_Click);
+            // 
+            // DEL
+            // 
+            this.DEL.Location = new System.Drawing.Point(369, 45);
+            this.DEL.Name = "DEL";
+            this.DEL.Size = new System.Drawing.Size(33, 25);
+            this.DEL.TabIndex = 19;
+            this.DEL.Text = "-";
+            this.DEL.UseVisualStyleBackColor = true;
+            this.DEL.Click += new System.EventHandler(this.DEL_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(305, 48);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(58, 22);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "Rename";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
             // 
             // Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(414, 352);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.DEL);
+            this.Controls.Add(this.ADD);
+            this.Controls.Add(this.label_profile_name);
+            this.Controls.Add(this.label_profile);
+            this.Controls.Add(this.cbxProfile);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxCustomTimer);
             this.Controls.Add(this.label_link_howto);
@@ -243,7 +291,11 @@ namespace VirtualMeetingMonitor
         private System.Windows.Forms.LinkLabel label_link_howto;
         private System.Windows.Forms.DateTimePicker textBoxCustomTimer;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cbxProfile;
+        private System.Windows.Forms.Label label_profile;
+        private System.Windows.Forms.Label label_profile_name;
+        private System.Windows.Forms.Button ADD;
+        private System.Windows.Forms.Button DEL;
+        private System.Windows.Forms.Button button1;
     }
 }
