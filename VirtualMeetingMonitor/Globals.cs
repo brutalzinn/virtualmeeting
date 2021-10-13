@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,6 +25,18 @@ namespace VirtualMeetingMonitor
         public static string getAppName (string name)
         {
               return  $"{Application.ProductName} - {name}";
+        }
+
+        public static void showHelper(string url)
+        {
+            using (WebClient web1 = new WebClient())
+            {
+                string data = web1.DownloadString(url);
+                Helper helper = new Helper();
+                Console.WriteLine(data);
+                helper.markdown = data;
+                helper.ShowDialog();
+            }
         }
     }
 }

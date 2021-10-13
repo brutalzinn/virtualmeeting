@@ -110,7 +110,7 @@ namespace VirtualMeetingMonitor
 
             if (Properties.Settings.Default.firstRun)
             {
-                showHelper("https://raw.githubusercontent.com/wiki/brutalzinn/zoom-monitor-googlesheets/Welcome-to-VirtualMeetingMonitor.md");
+                Globals.showHelper("https://raw.githubusercontent.com/wiki/brutalzinn/zoom-monitor-googlesheets/Welcome-to-VirtualMeetingMonitor.md");
                 Properties.Settings.Default.firstRun = false;
                 Properties.Settings.Default.Save();
             }
@@ -168,17 +168,7 @@ namespace VirtualMeetingMonitor
                 WriteTextSafe(Status, Globals.getKey("google_status_error_critical"));
             }
         }
-        private void showHelper(string url)
-        {
-            using (WebClient web1 = new WebClient())
-            {
-                string data = web1.DownloadString(url);
-                Helper helper = new Helper();
-                Console.WriteLine(data);
-                helper.markdown = data;
-                helper.ShowDialog();
-            }
-        }
+   
         static string setHours(int day)
         {
             if (Enum.IsDefined(typeof(CustomDays), day))

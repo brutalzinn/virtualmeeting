@@ -192,5 +192,11 @@ namespace VirtualMeetingMonitor
 
             SaveProfile(_currentProfile);
         }
+
+        private void label_link_howto_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Globals.showHelper("https://raw.githubusercontent.com/wiki/brutalzinn/zoom-monitor-googlesheets/How-to-connect-to-google-sheets-api.md");
+
+        }
     }
 }

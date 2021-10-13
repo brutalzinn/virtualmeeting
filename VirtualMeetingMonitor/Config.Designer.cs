@@ -163,6 +163,7 @@ namespace VirtualMeetingMonitor
             this.label_link_howto.TabIndex = 11;
             this.label_link_howto.TabStop = true;
             this.label_link_howto.Text = "How to configure google sheets";
+            this.label_link_howto.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.label_link_howto_LinkClicked);
             // 
             // textBoxCustomTimer
             // 
