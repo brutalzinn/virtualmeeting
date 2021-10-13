@@ -93,6 +93,7 @@ namespace VirtualMeetingMonitor
             Globals.ProfileUtil.CurrentProfile.GoogleKey = textbox_googleSheetsID.Text;
             Globals.ProfileUtil.CurrentProfile.SheetId = textbox_sheetname.Text;
             Globals.ProfileUtil.CurrentProfile.CustomTime = textBoxCustomTimer.Text;
+            Globals.ProfileUtil.CallUpdateProfile();
             string output = JsonConvert.SerializeObject(Globals.ProfileUtil, Formatting.Indented);
             File.WriteAllText(path, output);
             this.Close();
@@ -127,7 +128,7 @@ namespace VirtualMeetingMonitor
         private void SaveProfile(Profile _profile)
         {
             _profile.GoogleKey = textbox_googleSheetsID.Text;
-          // _profile.Timeout = Convert.ToInt32(textBox1.Text);
+           _profile.Timeout = Convert.ToInt32(textBox1.Text);
             _profile.CustomTime = textBoxCustomTimer.Text;
              _profile.SheetId = textbox_sheetname.Text;
             if (comboBox1.SelectedItem != null)
@@ -183,6 +184,13 @@ namespace VirtualMeetingMonitor
                 Globals.ProfileUtil.profiles.First((prof) => prof.UniqueId == _cbxProfile.UniqueId).Name = _textDialog.textField;
                 LoadProfilesCbx();
             }
+        }
+
+        private void btnSaveProfile_Click(object sender, EventArgs e)
+        {
+            Profile _currentProfile = (Profile)cbxProfile.SelectedItem;
+
+            SaveProfile(_currentProfile);
         }
     }
 }

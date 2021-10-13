@@ -50,6 +50,7 @@ namespace VirtualMeetingMonitor
             this.ADD = new System.Windows.Forms.Button();
             this.DEL = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnSaveProfile = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label_timeout
@@ -75,7 +76,7 @@ namespace VirtualMeetingMonitor
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_ok.Location = new System.Drawing.Point(322, 298);
             this.button_ok.Name = "button_ok";
-            this.button_ok.Size = new System.Drawing.Size(80, 46);
+            this.button_ok.Size = new System.Drawing.Size(84, 46);
             this.button_ok.TabIndex = 2;
             this.button_ok.Text = "OK";
             this.button_ok.UseVisualStyleBackColor = true;
@@ -87,7 +88,7 @@ namespace VirtualMeetingMonitor
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_cancel.Location = new System.Drawing.Point(229, 298);
             this.button_cancel.Name = "button_cancel";
-            this.button_cancel.Size = new System.Drawing.Size(87, 46);
+            this.button_cancel.Size = new System.Drawing.Size(91, 46);
             this.button_cancel.TabIndex = 3;
             this.button_cancel.Text = "CANCEL";
             this.button_cancel.UseVisualStyleBackColor = true;
@@ -240,11 +241,22 @@ namespace VirtualMeetingMonitor
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_2);
             // 
+            // btnSaveProfile
+            // 
+            this.btnSaveProfile.Location = new System.Drawing.Point(29, 255);
+            this.btnSaveProfile.Name = "btnSaveProfile";
+            this.btnSaveProfile.Size = new System.Drawing.Size(106, 32);
+            this.btnSaveProfile.TabIndex = 21;
+            this.btnSaveProfile.Text = "SAVE PROFILE";
+            this.btnSaveProfile.UseVisualStyleBackColor = true;
+            this.btnSaveProfile.Click += new System.EventHandler(this.btnSaveProfile_Click);
+            // 
             // Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 352);
+            this.ClientSize = new System.Drawing.Size(418, 352);
+            this.Controls.Add(this.btnSaveProfile);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.DEL);
             this.Controls.Add(this.ADD);
@@ -297,5 +309,6 @@ namespace VirtualMeetingMonitor
         private System.Windows.Forms.Button ADD;
         private System.Windows.Forms.Button DEL;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSaveProfile;
     }
 }

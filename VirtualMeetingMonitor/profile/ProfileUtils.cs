@@ -8,8 +8,17 @@ namespace VirtualMeetingMonitor.profile
 {
     public  class ProfileUtils
     {
+        public delegate void Notify();  // delegate
+
+        public event Notify ProfileChanged;
         public  Profile CurrentProfile { get; set; }
         public  List<Profile> profiles = new List<Profile>();
+
+        public void CallUpdateProfile()
+        {
+
+            ProfileChanged.Invoke();
+        }
 
 
 

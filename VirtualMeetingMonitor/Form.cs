@@ -42,8 +42,8 @@ namespace VirtualMeetingMonitor
         private bool NotificationEnabled = false;
         private bool DevMode = false;
         private string LangDirectory = "language";
-        private static  string SpreadsheetId = Properties.Settings.Default.googlesheetsID;
-        private static string sheet = Properties.Settings.Default.sheetName;
+        private static  string SpreadsheetId = "";
+        private static string sheet = "";
         private int timeout = Properties.Settings.Default.timeout;
         private bool IsSleep = false;
 
@@ -757,6 +757,17 @@ namespace VirtualMeetingMonitor
         {
           
         }
+        private void UpdateProfileSettings()
+        {
+            //            private static string SpreadsheetId = Properties.Settings.Default.googlesheetsID;
+            //private static string sheet = Properties.Settings.Default.sheetName;
+            SpreadsheetId = Globals.ProfileUtil.CurrentProfile.GoogleKey;
+            sheet = Globals.ProfileUtil.CurrentProfile.SheetId;
+            Text = $"{ApplicationName} - {Globals.ProfileUtil.CurrentProfile.Name}";
+            Translate();
+            checkGoogleKey();
+            Console.WriteLine("EVENT CALLED");
+    }
         private void LoadProfiles()
         {
 
@@ -773,7 +784,8 @@ namespace VirtualMeetingMonitor
             ProfileUtils profiles = JsonConvert.DeserializeObject<ProfileUtils>(json);
             Globals.ProfileUtil.profiles = profiles.profiles;
             Globals.ProfileUtil.CurrentProfile = profiles.CurrentProfile;
-            Text = $"{Text} - {Globals.ProfileUtil.CurrentProfile.Name}";
+            Text = $"{ApplicationName} - {Globals.ProfileUtil.CurrentProfile.Name}";
+            Globals.ProfileUtil.ProfileChanged += UpdateProfileSettings;
 
         }
         private void Dev_ButtonTeste_Click(object sender, EventArgs e)
