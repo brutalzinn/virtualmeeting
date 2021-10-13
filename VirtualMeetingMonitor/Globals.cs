@@ -17,7 +17,12 @@ namespace VirtualMeetingMonitor
         public static Form form { get; set; }
        public static Language CurrentLanguage { get; set; }
 
+        public static string getHtmlVersion()
+        {
+            return $"<h1>{Application.ProductName} </br> {Application.ProductVersion}</h1></br>"+
+                "Github:https://github.com/brutalzinn/zoom-monitor-googlesheets";
 
+        }
         public static string getKey(string key)
         {
             return CurrentLanguage.getValue(key);

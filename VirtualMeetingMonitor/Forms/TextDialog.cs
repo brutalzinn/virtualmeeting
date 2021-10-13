@@ -16,9 +16,7 @@ namespace VirtualMeetingMonitor.Forms
         public TextDialog()
         {
             InitializeComponent();
-            this.Text = Globals.getAppName(Globals.getKey("form_textdialog_text"));
-
-
+            Text = Globals.getAppName(Globals.getKey("form_textdialog_text"));
         }
 
         private void TextDialog_Load(object sender, EventArgs e)

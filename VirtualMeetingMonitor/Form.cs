@@ -67,10 +67,7 @@ namespace VirtualMeetingMonitor
         {
             InitializeComponent();
             Globals.form = this;
-            AutoUpdater.LetUserSelectRemindLater = true;
-            string jsonPath = Path.Combine(Environment.CurrentDirectory, "settings.json");
-            AutoUpdater.PersistenceProvider = new JsonFilePersistenceProvider(jsonPath);
-            AutoUpdater.Start("http://robertocpaes.dev/update.xml");
+     
       
             notifyIcon.Text = Text;
             notifyIcon.ContextMenuStrip = contextMenuStrip;
@@ -578,7 +575,10 @@ namespace VirtualMeetingMonitor
         private void Form_Load(object sender, EventArgs e)
         {
             CheckNotification();
-      
+            AutoUpdater.LetUserSelectRemindLater = true;
+            string jsonPath = Path.Combine(Environment.CurrentDirectory, "settings.json");
+            AutoUpdater.PersistenceProvider = new JsonFilePersistenceProvider(jsonPath);
+            AutoUpdater.Start("http://robertocpaes.dev/update.xml");
 
         }
 
@@ -599,11 +599,11 @@ namespace VirtualMeetingMonitor
             string ButtonYes = Globals.getKey("notification_button_yes");
             string ButtonNo = Globals.getKey("notification_button_no");
             ToastSelectionBox selection = new ToastSelectionBox("delay");
-            selection.Items.Add(new ToastSelectionBoxItem("1", "5 minutes"));
-            selection.Items.Add(new ToastSelectionBoxItem("2", "15 minutes"));
-            selection.Items.Add(new ToastSelectionBoxItem("3", "30 minutes"));
-            selection.Items.Add(new ToastSelectionBoxItem("4", "1 hour"));
-            selection.Items.Add(new ToastSelectionBoxItem("5", "Custom"));
+            selection.Items.Add(new ToastSelectionBoxItem("1", Globals.getKey("notification_button_sleeper_five")));
+            selection.Items.Add(new ToastSelectionBoxItem("2", Globals.getKey("notification_button_sleeper_fiveteen")));
+            selection.Items.Add(new ToastSelectionBoxItem("3", Globals.getKey("notification_button_sleeper_thirty")));
+            selection.Items.Add(new ToastSelectionBoxItem("4", Globals.getKey("notification_button_sleeper_one_hour")));
+            selection.Items.Add(new ToastSelectionBoxItem("5", Globals.getKey("notification_button_sleeper_custom")));
             ToastContent toastContent = new ToastContent()
             {
                 Launch = "bodyTapped",
@@ -678,11 +678,11 @@ namespace VirtualMeetingMonitor
                     backgroundWorker1.RunWorkerAsync(argument: 3600000);
                     break;
                 case "5":
-                    DateTime dateTime = DateTime.Parse(Properties.Settings.Default.customtimer);
+                    DateTime dateTime = DateTime.Parse(Globals.ProfileUtil.CurrentProfile.CustomTime);
                                         
                 
                     TimeSpan span = dateTime - DateTime.Now;
-                    Console.WriteLine((int)span.TotalMilliseconds);
+                    Console.WriteLine("CUSTOM SLEEP:" + (int)span.TotalMilliseconds);
                     backgroundWorker1.RunWorkerAsync(argument: (int)span.TotalMilliseconds);
                     break;
                 default:
@@ -736,14 +736,9 @@ namespace VirtualMeetingMonitor
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-        
-
-
-
-
-
+            System.Diagnostics.Process.Start("https://github.com/brutalzinn/zoom-monitor-googlesheets/issues");
         }
-  
+
         private void Dev_helpButton_Click(object sender, EventArgs e)
         {
           
@@ -838,6 +833,13 @@ namespace VirtualMeetingMonitor
         {
             backgroundWorker1.CancelAsync();
             IsSleep = false;
+        }
+
+        private void aboutToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Helper helper = new Helper();
+            helper.markdown = Globals.getHtmlVersion();
+            helper.ShowDialog();
         }
     }
 }
