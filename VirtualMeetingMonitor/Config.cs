@@ -61,14 +61,14 @@ namespace VirtualMeetingMonitor
         }
         private void Translate()
         {
+            label_profile.Text = Globals.getKey("form_config_label_profile");
             label_timeout.Text = Globals.getKey("form_config_label_timeout");
             label_language.Text = Globals.getKey("form_config_label_language");
             label_sheetname.Text = Globals.getKey("form_config_sheets_name");
             label_sheets_id.Text = Globals.getKey("form_config_sheets_id");
             button_paste_googlesheets.Text = Globals.getKey("form_config_paste_button");
             label_link_howto.Text = Globals.getKey("form_config_how_to_link");
-
-
+            btnSaveProfile.Text = Globals.getKey("form_config_button_save_profile");
             button_ok.Text = Globals.getKey("button_ok");
             button_cancel.Text = Globals.getKey("button_cancel");
         }
@@ -139,7 +139,7 @@ namespace VirtualMeetingMonitor
         }
         private void ChangeProfile(Profile _profile)
         {
-            label_profile_name.Text = $"Profile: {_profile}";
+            label_profile_name.Text = $"{Globals.getKey("form_config_label_profile")} {_profile}";
        //     Globals.CurrentLanguage = (Language)comboBox1.SelectedItem;
             cbxProfile.SelectedIndex = cbxProfile.FindStringExact(_profile.Name);
 
@@ -176,11 +176,13 @@ namespace VirtualMeetingMonitor
 
         private void button1_Click_2(object sender, EventArgs e)
         {
+            Profile _cbxProfile = (Profile)cbxProfile.SelectedItem;
+
             TextDialog _textDialog = new TextDialog();
+            _textDialog.textField = _cbxProfile.Name;
             _textDialog.ShowDialog();
             if(_textDialog.DialogResult == DialogResult.OK)
             {
-                Profile _cbxProfile = (Profile)cbxProfile.SelectedItem;
                 Globals.ProfileUtil.profiles.First((prof) => prof.UniqueId == _cbxProfile.UniqueId).Name = _textDialog.textField;
                 LoadProfilesCbx();
             }

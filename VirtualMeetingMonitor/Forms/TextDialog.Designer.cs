@@ -32,12 +32,12 @@ namespace VirtualMeetingMonitor.Forms
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblProfileName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(324, 110);
+            this.button1.Location = new System.Drawing.Point(323, 58);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 42);
             this.button1.TabIndex = 0;
@@ -47,7 +47,7 @@ namespace VirtualMeetingMonitor.Forms
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(224, 110);
+            this.button2.Location = new System.Drawing.Point(223, 58);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(94, 42);
             this.button2.TabIndex = 1;
@@ -57,30 +57,31 @@ namespace VirtualMeetingMonitor.Forms
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(76, 56);
+            this.textBox1.Location = new System.Drawing.Point(75, 25);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(341, 20);
             this.textBox1.TabIndex = 2;
             // 
-            // label1
+            // lblProfileName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 59);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "label1";
+            this.lblProfileName.AutoSize = true;
+            this.lblProfileName.Location = new System.Drawing.Point(23, 28);
+            this.lblProfileName.Name = "lblProfileName";
+            this.lblProfileName.Size = new System.Drawing.Size(38, 13);
+            this.lblProfileName.TabIndex = 3;
+            this.lblProfileName.Text = "Name:";
             // 
             // TextDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(429, 164);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(429, 112);
+            this.Controls.Add(this.lblProfileName);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "TextDialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "TextDialog";
             this.Load += new System.EventHandler(this.TextDialog_Load);
             this.ResumeLayout(false);
@@ -93,6 +94,6 @@ namespace VirtualMeetingMonitor.Forms
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblProfileName;
     }
 }

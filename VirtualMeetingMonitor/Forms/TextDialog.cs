@@ -16,11 +16,20 @@ namespace VirtualMeetingMonitor.Forms
         public TextDialog()
         {
             InitializeComponent();
+            this.Text = Globals.getAppName(Globals.getKey("form_textdialog_text"));
+
+
         }
 
         private void TextDialog_Load(object sender, EventArgs e)
         {
-
+            if (textField != null)
+            {
+                textBox1.Text = textField;
+            }
+            lblProfileName.Text = Globals.getKey("form_textdialog_label");
+            button1.Text = Globals.getKey("button_ok");
+            button2.Text = Globals.getKey("button_cancel");
         }
         private void CloseForm(DialogResult result)
         {
