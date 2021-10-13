@@ -12,9 +12,11 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Threading;
+using VirtualMeetingMonitor.formater;
 using VirtualMeetingMonitor.profile;
 using Windows.ApplicationModel.Activation;
 using Windows.Data.Xml.Dom;
@@ -575,10 +577,10 @@ namespace VirtualMeetingMonitor
         private void Form_Load(object sender, EventArgs e)
         {
             CheckNotification();
-            AutoUpdater.LetUserSelectRemindLater = true;
-            string jsonPath = Path.Combine(Environment.CurrentDirectory, "settings.json");
-            AutoUpdater.PersistenceProvider = new JsonFilePersistenceProvider(jsonPath);
-            AutoUpdater.Start("http://robertocpaes.dev/update.xml");
+            //AutoUpdater.LetUserSelectRemindLater = true;
+            //string jsonPath = Path.Combine(Environment.CurrentDirectory, "settings.json");
+            //AutoUpdater.PersistenceProvider = new JsonFilePersistenceProvider(jsonPath);
+            //AutoUpdater.Start("http://robertocpaes.dev/update.xml");
 
         }
 
@@ -774,8 +776,40 @@ namespace VirtualMeetingMonitor
             Globals.ProfileUtil.ProfileChanged += UpdateProfileSettings;
 
         }
+        public string teste()
+        {
+            return "Testandooo é golpe.";
+        }
+        public string date()
+        {
+            return DateTime.Today.ToString("d");
+        }
         private void Dev_ButtonTeste_Click(object sender, EventArgs e)
         {
+            //var pattern = @"\[(.*?)\]";
+            //var query = "H1-receptor antagonist [DATE.NOW] [DATE.HOUR.NOW] [DAY]";
+            //var matches = Regex.Matches(query, pattern);
+
+            //foreach (Match m in matches)
+            //{
+            //    Console.WriteLine(m.Groups[1]);
+            //}
+            List<MethodExecutor> methods = new List<MethodExecutor>();
+
+            MethodExecutor _methodExecutorA = new MethodExecutor("TESTE", teste);
+            MethodExecutor _methodExecutorB = new MethodExecutor("TODAY", date);
+
+            methods.Add(_methodExecutorA);
+            methods.Add(_methodExecutorB);
+            string text = "H1-receptor antagonist [TESTE] HOJE é [TODAY]";
+            CustomerFormatter _formater = new CustomerFormatter(methods);
+            Console.WriteLine(_formater.Format(text));
+            //const string teste = "Testando um texto personalizado {0}";
+
+            //Console.WriteLine(String.Format(new CustomerFormatter(), "Testando um texto personalizado {0:DATE}",""));
+            //Console.WriteLine(String.Format(new CustomerFormatter(), "Testando um texto personalizado {0:G}"));
+            //Console.WriteLine(String.Format(new CustomerFormatter(), "Testando um texto personalizado {0:S}"));
+            //Console.WriteLine(String.Format(new CustomerFormatter(), "Testando um texto personalizado {0:P}"));
             //Profile _profile = new Profile("Teste","googlekey_example","google_sheet_id","12:00:00",0,"en");
             //Profile _profilet = new Profile("Teste 2", "googlekey_example", "google_sheet_id", "12:00:00", 0, "pt");
             //Console.WriteLine(_profilet.Name);
@@ -785,7 +819,7 @@ namespace VirtualMeetingMonitor
             //string output = JsonConvert.SerializeObject(Globals.profiles, Formatting.Indented);
             //File.WriteAllText(Application.StartupPath+ @"\config.json", output);
 
-       //     Console.WriteLine(profiles);
+            //     Console.WriteLine(profiles);
 
         }
 
