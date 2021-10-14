@@ -77,14 +77,14 @@ namespace VirtualMeetingMonitor
             notifyIcon.ContextMenuStrip = contextMenuStrip;
 
             timer.Interval = 1000;
-            timer.Enabled = true;
+            timer.Enabled = false;
             timer.Tick += OnTimerEvent;
 
             network.OutsideUDPTafficeReceived += Network_OutsideUDPTafficeReceived;
-            network.StartListening();
+           // network.StartListening();
                        
-            meeting.OnMeetingStarted += Meeting_OnMeetingStarted;
-            meeting.OnMeetingEnded += Meeting_OnMeetingEnded;
+           // meeting.OnMeetingStarted += Meeting_OnMeetingStarted;
+           // meeting.OnMeetingEnded += Meeting_OnMeetingEnded;
 
             this.Size = new Size(382, 200);
 
@@ -791,9 +791,12 @@ namespace VirtualMeetingMonitor
         }
         private void LoadFormater()
         {
-            var _methodExecutorA = new MethodExecutor("TESTE", Globals.Methods, teste);
-            var _methodExecutorB = new MethodExecutor("TODAY", Globals.Methods, date);
-
+            MethodExecutor _methodExecutorA = new MethodExecutor("TESTE", Globals.Methods, teste);
+            MethodExecutor _methodExecutorB = new MethodExecutor("TODAY", Globals.Methods, date);
+            foreach(MethodExecutor teste in Globals.Methods)
+            {
+                Console.WriteLine($"TESTE : {teste.Identificator}|{teste.Method()}");
+            }
             Globals.Formater = new CustomerFormatter(Globals.Methods);
         }
         private void Dev_ButtonTeste_Click(object sender, EventArgs e)
