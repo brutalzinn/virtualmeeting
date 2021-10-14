@@ -35,6 +35,7 @@ namespace VirtualMeetingMonitor.ActionsControl
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lbl_preview = new System.Windows.Forms.Label();
+            this.ckb_check = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // checkedListBox1
@@ -49,7 +50,7 @@ namespace VirtualMeetingMonitor.ActionsControl
             "Sexta",
             "Sábado",
             "Domingo"});
-            this.checkedListBox1.Location = new System.Drawing.Point(300, 85);
+            this.checkedListBox1.Location = new System.Drawing.Point(263, 56);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(163, 109);
             this.checkedListBox1.TabIndex = 0;
@@ -58,7 +59,7 @@ namespace VirtualMeetingMonitor.ActionsControl
             // 
             // rich_custom_days
             // 
-            this.rich_custom_days.Location = new System.Drawing.Point(55, 161);
+            this.rich_custom_days.Location = new System.Drawing.Point(21, 132);
             this.rich_custom_days.Name = "rich_custom_days";
             this.rich_custom_days.Size = new System.Drawing.Size(188, 53);
             this.rich_custom_days.TabIndex = 1;
@@ -67,7 +68,7 @@ namespace VirtualMeetingMonitor.ActionsControl
             // 
             // rich_normal_days
             // 
-            this.rich_normal_days.Location = new System.Drawing.Point(55, 70);
+            this.rich_normal_days.Location = new System.Drawing.Point(21, 41);
             this.rich_normal_days.Name = "rich_normal_days";
             this.rich_normal_days.Size = new System.Drawing.Size(188, 45);
             this.rich_normal_days.TabIndex = 2;
@@ -77,7 +78,7 @@ namespace VirtualMeetingMonitor.ActionsControl
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(52, 41);
+            this.label1.Location = new System.Drawing.Point(18, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 13);
             this.label1.TabIndex = 3;
@@ -86,7 +87,7 @@ namespace VirtualMeetingMonitor.ActionsControl
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(52, 130);
+            this.label2.Location = new System.Drawing.Point(18, 101);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 13);
             this.label2.TabIndex = 4;
@@ -101,10 +102,21 @@ namespace VirtualMeetingMonitor.ActionsControl
             this.lbl_preview.TabIndex = 5;
             this.lbl_preview.Text = "Result: {result}";
             // 
+            // ckb_check
+            // 
+            this.ckb_check.AutoSize = true;
+            this.ckb_check.Location = new System.Drawing.Point(21, 204);
+            this.ckb_check.Name = "ckb_check";
+            this.ckb_check.Size = new System.Drawing.Size(65, 17);
+            this.ckb_check.TabIndex = 6;
+            this.ckb_check.Text = "Enabled";
+            this.ckb_check.UseVisualStyleBackColor = true;
+            // 
             // CustomDay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ckb_check);
             this.Controls.Add(this.lbl_preview);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -126,5 +138,6 @@ namespace VirtualMeetingMonitor.ActionsControl
         public System.Windows.Forms.RichTextBox rich_custom_days;
         public System.Windows.Forms.RichTextBox rich_normal_days;
         private System.Windows.Forms.Label lbl_preview;
+        public System.Windows.Forms.CheckBox ckb_check;
     }
 }

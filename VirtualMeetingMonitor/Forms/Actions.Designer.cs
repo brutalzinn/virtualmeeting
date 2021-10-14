@@ -30,15 +30,19 @@ namespace VirtualMeetingMonitor.Forms
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.btn_ok = new System.Windows.Forms.Button();
-            this.customDayList = new VirtualMeetingMonitor.ActionsControl.CustomDay();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_ok = new System.Windows.Forms.Button();
+            this.customDataGrid1 = new VirtualMeetingMonitor.ActionsControl.CustomDataGrid();
+            this.customDayList = new VirtualMeetingMonitor.ActionsControl.CustomDay();
             this.tabControl1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
+            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
@@ -46,26 +50,16 @@ namespace VirtualMeetingMonitor.Forms
             this.tabControl1.Size = new System.Drawing.Size(776, 323);
             this.tabControl1.TabIndex = 0;
             // 
-            // btn_ok
+            // tabPage2
             // 
-            this.btn_ok.Location = new System.Drawing.Point(670, 341);
-            this.btn_ok.Name = "btn_ok";
-            this.btn_ok.Size = new System.Drawing.Size(114, 46);
-            this.btn_ok.TabIndex = 1;
-            this.btn_ok.Text = "OK";
-            this.btn_ok.UseVisualStyleBackColor = true;
-            this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
-            // 
-            // customDayList
-            // 
-            this.customDayList.DaysMessage = null;
-            this.customDayList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customDayList.Location = new System.Drawing.Point(3, 3);
-            this.customDayList.Name = "customDayList";
-            this.customDayList.NoDaysMessage = null;
-            this.customDayList.Size = new System.Drawing.Size(762, 291);
-            this.customDayList.TabIndex = 0;
-            this.customDayList.Load += new System.EventHandler(this.customDayList_Load);
+            this.tabPage2.Controls.Add(this.customDataGrid1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(768, 297);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Cells";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage1
             // 
@@ -78,6 +72,35 @@ namespace VirtualMeetingMonitor.Forms
             this.tabPage1.Text = "Custom Days";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btn_ok
+            // 
+            this.btn_ok.Location = new System.Drawing.Point(670, 341);
+            this.btn_ok.Name = "btn_ok";
+            this.btn_ok.Size = new System.Drawing.Size(114, 46);
+            this.btn_ok.TabIndex = 1;
+            this.btn_ok.Text = "OK";
+            this.btn_ok.UseVisualStyleBackColor = true;
+            this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
+            // 
+            // customDataGrid1
+            // 
+            this.customDataGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customDataGrid1.Location = new System.Drawing.Point(3, 3);
+            this.customDataGrid1.Name = "customDataGrid1";
+            this.customDataGrid1.Size = new System.Drawing.Size(762, 291);
+            this.customDataGrid1.TabIndex = 0;
+            // 
+            // customDayList
+            // 
+            this.customDayList.DaysMessage = null;
+            this.customDayList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customDayList.Location = new System.Drawing.Point(3, 3);
+            this.customDayList.Name = "customDayList";
+            this.customDayList.NoDaysMessage = null;
+            this.customDayList.Size = new System.Drawing.Size(762, 291);
+            this.customDayList.TabIndex = 0;
+            this.customDayList.Load += new System.EventHandler(this.customDayList_Load);
+            // 
             // Actions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -89,6 +112,7 @@ namespace VirtualMeetingMonitor.Forms
             this.Text = "Actions";
             this.Load += new System.EventHandler(this.Actions_Load);
             this.tabControl1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -100,5 +124,7 @@ namespace VirtualMeetingMonitor.Forms
         private System.Windows.Forms.Button btn_ok;
         private System.Windows.Forms.TabPage tabPage1;
         private ActionsControl.CustomDay customDayList;
+        private System.Windows.Forms.TabPage tabPage2;
+        private ActionsControl.CustomDataGrid customDataGrid1;
     }
 }

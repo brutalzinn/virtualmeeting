@@ -28,24 +28,34 @@ namespace VirtualMeetingMonitor.Forms
         private void CloseForm(DialogResult result)
         {
             SaveCustomDays();
+            SaveDataGrid();
             DialogResult = result;
             Close();
         }
+        private void SaveDataGrid()
+        {
 
+                Dictionary<int,string> list = new Dictionary<int, string>();
+                for (int i = 0; i < Globals.CustomDataGrids.ColumnCount; i++)
+                {
+                   list.Add(i, Globals.CustomDataGrids.dataGridView1.Rows[0].Cells[i].Value.ToString());
+                  //  Console.WriteLine($"teste DataGrid: {Globals.CustomDataGrids.dataGridView1.Rows[0].Cells[i].Value}");
+                }
+                var datagridUtils = new CustomDataGridUtils(list,Globals.CustomDataGrids.checkBox1.Checked);
+                CurrentProfile.CustomDataGrid = datagridUtils;
+
+
+        }
         private void SaveCustomDays()
         {
-            foreach (int element in Globals.CustomDays.days)
-            {
-                Console.Write($" LISTDAY: {element} ");
-            }
+        
             var controlDays = Globals.CustomDays;
-            var _customdays = new CustomDaysUtils(controlDays.days, controlDays.NoDaysMessage, controlDays.DaysMessage);
+            var _customdays = new CustomDaysUtils(controlDays.days, controlDays.NoDaysMessage, controlDays.DaysMessage, controlDays.Enabled);
             CurrentProfile.CustomDays = _customdays;
-            Console.WriteLine(_customdays.checkToday());
+           
         }
         private void btn_ok_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("WRITEO K BUTTON");
 
             CloseForm(DialogResult.OK);
 
@@ -61,17 +71,40 @@ namespace VirtualMeetingMonitor.Forms
               
             }
         }
+        private void LoadCustomDataGrid()
+        {
+            if (CurrentProfile.CustomDataGrid != null)
+            {
+                Globals.CustomDataGrids.checkBox1.Checked = CurrentProfile.CustomDataGrid.Enabled;
+                int i = 0;
+                int index = 0;
+                foreach (var item in CurrentProfile.CustomDataGrid.List)
+                {
+                    Globals.CustomDataGrids.dataGridView1.Columns.Add(item.Key.ToString(),$"C: {item.Key}");
+                    if (i == 0)
+                    {
+                         index = Globals.CustomDataGrids.dataGridView1.Rows.Add();
+                    }
+                    Globals.CustomDataGrids.dataGridView1.Rows[index].Cells[item.Key.ToString()].Value = item.Value;
+                    i++;
+                }
+
+                Globals.CustomDataGrids.ColumnCount = CurrentProfile.CustomDataGrid.List.Count;
+            }
+        }
         private void LoadCustomDays()
         {
             if (CurrentProfile.CustomDays != null)
             {
                 Globals.CustomDays.rich_custom_days.Text = CurrentProfile.CustomDays.DaysMessage;
                 Globals.CustomDays.rich_normal_days.Text = CurrentProfile.CustomDays.NoDaysMessage;
+                Globals.CustomDays.ckb_check.Checked = CurrentProfile.CustomDays.Enabled;
                 SelecionaTodos();
             }
         }
         private void Actions_Load(object sender, EventArgs e)
         {
+            LoadCustomDataGrid();
             LoadCustomDays();
         }
     }

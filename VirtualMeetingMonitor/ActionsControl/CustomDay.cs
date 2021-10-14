@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VirtualMeetingMonitor.formater;
 
 namespace VirtualMeetingMonitor.ActionsControl
 {
@@ -51,7 +52,7 @@ namespace VirtualMeetingMonitor.ActionsControl
         }
         private void PreviewResult()
         {
-            lbl_preview.Text = $"No custom day: {Formatter.Format(NoDaysMessage)} \n Custom Days:{DaysMessage}";
+            lbl_preview.Text = $"No custom day: {Formatter.Format(NoDaysMessage)} \n Custom Days:{Formatter.Format(DaysMessage)}";
         }
         private void rich_normal_days_TextChanged(object sender, EventArgs e)
         {

@@ -24,6 +24,9 @@ namespace VirtualMeetingMonitor
 
         public static CustomDay CustomDays { get; set; }
 
+        public static CustomDataGrid CustomDataGrids { get; set; }
+
+
         public static Language CurrentLanguage { get; set; }
 
         public static string getHtmlVersion()

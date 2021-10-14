@@ -17,6 +17,10 @@ namespace VirtualMeetingMonitor
         public string UniqueId { get; set; }
 
         public CustomDaysUtils CustomDays { get; set; }
+
+        public CustomDataGridUtils CustomDataGrid { get; set; }
+
+
         public string CustomTime { get; set; }
 
         public int Timeout { get; set; }

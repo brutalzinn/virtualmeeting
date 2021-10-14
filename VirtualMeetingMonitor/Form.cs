@@ -181,15 +181,26 @@ namespace VirtualMeetingMonitor
                 return "9:30 - 12:00";
             }
         }
-         void CreateEntry()
+        void CreateEntry()
         {
-          
-            DateTime thisDay = DateTime.Today;
-            int todayName = (int)thisDay.DayOfWeek;
+
+
+
             var range = $"{sheet}!A:C";
             var valueRange = new ValueRange();
-
-            var oblist = new List<object>() { thisDay.ToString("d"), setHours(todayName) };
+            var oblist = new List<object>();
+            if (Globals.ProfileUtil.CurrentProfile.CustomDataGrid != null)
+            {
+                foreach(var item in Globals.ProfileUtil.CurrentProfile.CustomDataGrid.List)
+                {
+                    oblist.Add(Formatter.Format(item.Value));
+                }
+            }
+            else
+            {
+                return;
+            }
+           
             valueRange.Values = new List<IList<object>> { oblist };
 
             var appendRequest = service.Spreadsheets.Values.Append(valueRange, SpreadsheetId, range);
@@ -765,9 +776,11 @@ namespace VirtualMeetingMonitor
             if (!File.Exists(path))
             {
                 var _customdays = new CustomDaysUtils(new List<int> { }, "", "");
+                var _customdatagrid = new CustomDataGridUtils(new Dictionary<int,string> { }, true);
 
                 Profile _default = new Profile("default", "", "", "", 0, "en");
                 _default.CustomDays = _customdays;
+                _default.CustomDataGrid = _customdatagrid;
                 Globals.ProfileUtil.CurrentProfile = _default;
                 Globals.ProfileUtil.profiles.Add(_default);
                 string output = JsonConvert.SerializeObject(Globals.ProfileUtil, Formatting.Indented);
@@ -789,10 +802,16 @@ namespace VirtualMeetingMonitor
         {
             return DateTime.Today.ToString("d");
         }
+        public string customday()
+        {
+            return Globals.ProfileUtil.CurrentProfile.CustomDays.checkToday();
+        }
         private void LoadFormater()
         {
             MethodExecutor _methodExecutorA = new MethodExecutor("TESTE", Globals.Methods, teste);
             MethodExecutor _methodExecutorB = new MethodExecutor("TODAY", Globals.Methods, date);
+            MethodExecutor _methodExecutorC = new MethodExecutor("CUSTOMDAY", Globals.Methods, customday);
+
             //foreach(MethodExecutor teste in Globals.Methods)
             //{
             //    Console.WriteLine($"TESTE : {teste.Identificator}|{teste.Method()}");

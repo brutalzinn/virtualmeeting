@@ -78,19 +78,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionsControl\CustomDataGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActionsControl\CustomDataGrid.Designer.cs">
+      <DependentUpon>CustomDataGrid.cs</DependentUpon>
+    </Compile>
     <Compile Include="ActionsControl\CustomDay.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ActionsControl\CustomDay.Designer.cs">
       <DependentUpon>CustomDay.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomerFormatter.cs" />
+    <Compile Include="formater\CustomerFormatter.cs" />
     <Compile Include="Form.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form.Designer.cs">
       <DependentUpon>Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="formater\Formatter.cs" />
     <Compile Include="formater\MethodExecutor.cs" />
     <Compile Include="Forms\Actions.cs">
       <SubType>Form</SubType>
@@ -126,7 +133,11 @@
       <DependentUpon>Config.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\CustomDaysUtils.cs" />
+    <Compile Include="Utils\CustomDataGridUtils.cs" />
     <Compile Include="VirtualMeeting.cs" />
+    <EmbeddedResource Include="ActionsControl\CustomDataGrid.resx">
+      <DependentUpon>CustomDataGrid.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ActionsControl\CustomDay.resx">
       <DependentUpon>CustomDay.cs</DependentUpon>
     </EmbeddedResource>
