@@ -178,8 +178,9 @@
             // meetingTxt
             // 
             this.meetingTxt.AutoSize = true;
-            this.meetingTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.meetingTxt.Location = new System.Drawing.Point(77, 11);
+            this.meetingTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.meetingTxt.Location = new System.Drawing.Point(90, 13);
+            this.meetingTxt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.meetingTxt.Name = "meetingTxt";
             this.meetingTxt.Size = new System.Drawing.Size(38, 13);
             this.meetingTxt.TabIndex = 1;
@@ -190,10 +191,11 @@
             this.label_meeting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.label_meeting.AutoSize = true;
-            this.label_meeting.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_meeting.Location = new System.Drawing.Point(4, 9);
+            this.label_meeting.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_meeting.Location = new System.Drawing.Point(5, 10);
+            this.label_meeting.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_meeting.Name = "label_meeting";
-            this.label_meeting.Size = new System.Drawing.Size(59, 16);
+            this.label_meeting.Size = new System.Drawing.Size(58, 16);
             this.label_meeting.TabIndex = 1;
             this.label_meeting.Text = "Meeting:";
             // 
@@ -202,10 +204,11 @@
             this.label_started.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.label_started.AutoSize = true;
-            this.label_started.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_started.Location = new System.Drawing.Point(4, 39);
+            this.label_started.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_started.Location = new System.Drawing.Point(5, 45);
+            this.label_started.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_started.Name = "label_started";
-            this.label_started.Size = new System.Drawing.Size(54, 16);
+            this.label_started.Size = new System.Drawing.Size(53, 16);
             this.label_started.TabIndex = 2;
             this.label_started.Text = "Started:";
             this.label_started.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -215,10 +218,11 @@
             this.label_ended.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.label_ended.AutoSize = true;
-            this.label_ended.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_ended.Location = new System.Drawing.Point(4, 67);
+            this.label_ended.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_ended.Location = new System.Drawing.Point(5, 77);
+            this.label_ended.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_ended.Name = "label_ended";
-            this.label_ended.Size = new System.Drawing.Size(51, 16);
+            this.label_ended.Size = new System.Drawing.Size(50, 16);
             this.label_ended.TabIndex = 3;
             this.label_ended.Text = "Ended:";
             this.label_ended.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -228,10 +232,11 @@
             this.label_ip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.label_ip.AutoSize = true;
-            this.label_ip.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_ip.Location = new System.Drawing.Point(23, 95);
+            this.label_ip.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_ip.Location = new System.Drawing.Point(27, 110);
+            this.label_ip.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_ip.Name = "label_ip";
-            this.label_ip.Size = new System.Drawing.Size(23, 16);
+            this.label_ip.Size = new System.Drawing.Size(22, 16);
             this.label_ip.TabIndex = 4;
             this.label_ip.Text = "IP:";
             this.label_ip.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -241,10 +246,11 @@
             this.label_udp_packts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_udp_packts.AutoSize = true;
-            this.label_udp_packts.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_udp_packts.Location = new System.Drawing.Point(302, 8);
+            this.label_udp_packts.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_udp_packts.Location = new System.Drawing.Point(352, 9);
+            this.label_udp_packts.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_udp_packts.Name = "label_udp_packts";
-            this.label_udp_packts.Size = new System.Drawing.Size(81, 16);
+            this.label_udp_packts.Size = new System.Drawing.Size(80, 16);
             this.label_udp_packts.TabIndex = 5;
             this.label_udp_packts.Text = "UDP Packts";
             // 
@@ -253,10 +259,11 @@
             this.label_inbound.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_inbound.AutoSize = true;
-            this.label_inbound.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_inbound.Location = new System.Drawing.Point(315, 38);
+            this.label_inbound.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_inbound.Location = new System.Drawing.Point(368, 44);
+            this.label_inbound.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_inbound.Name = "label_inbound";
-            this.label_inbound.Size = new System.Drawing.Size(23, 16);
+            this.label_inbound.Size = new System.Drawing.Size(22, 16);
             this.label_inbound.TabIndex = 6;
             this.label_inbound.Text = "---:";
             this.label_inbound.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -266,10 +273,11 @@
             this.label_total.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_total.AutoSize = true;
-            this.label_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_total.Location = new System.Drawing.Point(315, 98);
+            this.label_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_total.Location = new System.Drawing.Point(368, 113);
+            this.label_total.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_total.Name = "label_total";
-            this.label_total.Size = new System.Drawing.Size(23, 16);
+            this.label_total.Size = new System.Drawing.Size(22, 16);
             this.label_total.TabIndex = 8;
             this.label_total.Text = "---:";
             this.label_total.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -279,8 +287,9 @@
             this.startedTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.startedTxt.AutoSize = true;
-            this.startedTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startedTxt.Location = new System.Drawing.Point(77, 41);
+            this.startedTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.startedTxt.Location = new System.Drawing.Point(90, 47);
+            this.startedTxt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.startedTxt.Name = "startedTxt";
             this.startedTxt.Size = new System.Drawing.Size(95, 13);
             this.startedTxt.TabIndex = 9;
@@ -291,8 +300,9 @@
             this.EnedTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.EnedTxt.AutoSize = true;
-            this.EnedTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EnedTxt.Location = new System.Drawing.Point(77, 70);
+            this.EnedTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.EnedTxt.Location = new System.Drawing.Point(90, 81);
+            this.EnedTxt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.EnedTxt.Name = "EnedTxt";
             this.EnedTxt.Size = new System.Drawing.Size(95, 13);
             this.EnedTxt.TabIndex = 10;
@@ -303,8 +313,9 @@
             this.IpTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.IpTxt.AutoSize = true;
-            this.IpTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IpTxt.Location = new System.Drawing.Point(77, 98);
+            this.IpTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.IpTxt.Location = new System.Drawing.Point(90, 113);
+            this.IpTxt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.IpTxt.Name = "IpTxt";
             this.IpTxt.Size = new System.Drawing.Size(89, 13);
             this.IpTxt.TabIndex = 11;
@@ -315,8 +326,9 @@
             this.InboundTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.InboundTxt.AutoSize = true;
-            this.InboundTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InboundTxt.Location = new System.Drawing.Point(381, 41);
+            this.InboundTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.InboundTxt.Location = new System.Drawing.Point(444, 47);
+            this.InboundTxt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.InboundTxt.Name = "InboundTxt";
             this.InboundTxt.Size = new System.Drawing.Size(28, 13);
             this.InboundTxt.TabIndex = 12;
@@ -327,8 +339,9 @@
             this.OutboundTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.OutboundTxt.AutoSize = true;
-            this.OutboundTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OutboundTxt.Location = new System.Drawing.Point(381, 70);
+            this.OutboundTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.OutboundTxt.Location = new System.Drawing.Point(444, 81);
+            this.OutboundTxt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.OutboundTxt.Name = "OutboundTxt";
             this.OutboundTxt.Size = new System.Drawing.Size(28, 13);
             this.OutboundTxt.TabIndex = 13;
@@ -339,8 +352,9 @@
             this.TotalTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TotalTxt.AutoSize = true;
-            this.TotalTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalTxt.Location = new System.Drawing.Point(381, 100);
+            this.TotalTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.TotalTxt.Location = new System.Drawing.Point(444, 115);
+            this.TotalTxt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TotalTxt.Name = "TotalTxt";
             this.TotalTxt.Size = new System.Drawing.Size(28, 13);
             this.TotalTxt.TabIndex = 14;
@@ -355,18 +369,20 @@
             // 
             this.Status.AutoSize = true;
             this.Status.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Status.Location = new System.Drawing.Point(0, 311);
+            this.Status.Location = new System.Drawing.Point(0, 359);
+            this.Status.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Status.Name = "Status";
-            this.Status.Size = new System.Drawing.Size(16, 13);
+            this.Status.Size = new System.Drawing.Size(22, 15);
             this.Status.TabIndex = 15;
             this.Status.Text = "---";
             this.Status.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(114, 18);
+            this.button1.Location = new System.Drawing.Point(133, 21);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(65, 39);
+            this.button1.Size = new System.Drawing.Size(76, 45);
             this.button1.TabIndex = 16;
             this.button1.Text = "Test notify";
             this.button1.UseVisualStyleBackColor = true;
@@ -377,9 +393,10 @@
             this.Dev_LabelMode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Dev_LabelMode.AutoSize = true;
-            this.Dev_LabelMode.Location = new System.Drawing.Point(291, 311);
+            this.Dev_LabelMode.Location = new System.Drawing.Point(340, 359);
+            this.Dev_LabelMode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Dev_LabelMode.Name = "Dev_LabelMode";
-            this.Dev_LabelMode.Size = new System.Drawing.Size(73, 13);
+            this.Dev_LabelMode.Size = new System.Drawing.Size(84, 15);
             this.Dev_LabelMode.TabIndex = 17;
             this.Dev_LabelMode.Text = "Mode: Normal";
             // 
@@ -396,9 +413,11 @@
             this.devGroupBox.Controls.Add(this.button2);
             this.devGroupBox.Controls.Add(this.button1);
             this.devGroupBox.Enabled = false;
-            this.devGroupBox.Location = new System.Drawing.Point(7, 145);
+            this.devGroupBox.Location = new System.Drawing.Point(8, 167);
+            this.devGroupBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.devGroupBox.Name = "devGroupBox";
-            this.devGroupBox.Size = new System.Drawing.Size(392, 142);
+            this.devGroupBox.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.devGroupBox.Size = new System.Drawing.Size(457, 164);
             this.devGroupBox.TabIndex = 18;
             this.devGroupBox.TabStop = false;
             this.devGroupBox.Text = "Developer mode";
@@ -406,9 +425,10 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(52, 18);
+            this.button3.Location = new System.Drawing.Point(61, 21);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(56, 38);
+            this.button3.Size = new System.Drawing.Size(65, 44);
             this.button3.TabIndex = 21;
             this.button3.Text = "Actions";
             this.button3.UseVisualStyleBackColor = true;
@@ -416,9 +436,10 @@
             // 
             // Dev_TestGoogle
             // 
-            this.Dev_TestGoogle.Location = new System.Drawing.Point(52, 86);
+            this.Dev_TestGoogle.Location = new System.Drawing.Point(61, 99);
+            this.Dev_TestGoogle.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Dev_TestGoogle.Name = "Dev_TestGoogle";
-            this.Dev_TestGoogle.Size = new System.Drawing.Size(56, 39);
+            this.Dev_TestGoogle.Size = new System.Drawing.Size(65, 45);
             this.Dev_TestGoogle.TabIndex = 20;
             this.Dev_TestGoogle.Text = "Google Test";
             this.Dev_TestGoogle.UseVisualStyleBackColor = true;
@@ -426,9 +447,10 @@
             // 
             // Dev_Config
             // 
-            this.Dev_Config.Location = new System.Drawing.Point(185, 86);
+            this.Dev_Config.Location = new System.Drawing.Point(216, 99);
+            this.Dev_Config.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Dev_Config.Name = "Dev_Config";
-            this.Dev_Config.Size = new System.Drawing.Size(78, 40);
+            this.Dev_Config.Size = new System.Drawing.Size(91, 46);
             this.Dev_Config.TabIndex = 19;
             this.Dev_Config.Text = "TEST LANGUAGE";
             this.Dev_Config.UseVisualStyleBackColor = true;
@@ -436,9 +458,10 @@
             // 
             // Dev_helpButton
             // 
-            this.Dev_helpButton.Location = new System.Drawing.Point(266, 18);
+            this.Dev_helpButton.Location = new System.Drawing.Point(310, 21);
+            this.Dev_helpButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Dev_helpButton.Name = "Dev_helpButton";
-            this.Dev_helpButton.Size = new System.Drawing.Size(65, 39);
+            this.Dev_helpButton.Size = new System.Drawing.Size(76, 45);
             this.Dev_helpButton.TabIndex = 19;
             this.Dev_helpButton.Text = "Test Help Dialog";
             this.Dev_helpButton.UseVisualStyleBackColor = true;
@@ -446,9 +469,10 @@
             // 
             // Dev_ButtonTeste
             // 
-            this.Dev_ButtonTeste.Location = new System.Drawing.Point(185, 18);
+            this.Dev_ButtonTeste.Location = new System.Drawing.Point(216, 21);
+            this.Dev_ButtonTeste.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Dev_ButtonTeste.Name = "Dev_ButtonTeste";
-            this.Dev_ButtonTeste.Size = new System.Drawing.Size(75, 38);
+            this.Dev_ButtonTeste.Size = new System.Drawing.Size(88, 44);
             this.Dev_ButtonTeste.TabIndex = 19;
             this.Dev_ButtonTeste.Text = "TESTE";
             this.Dev_ButtonTeste.UseVisualStyleBackColor = true;
@@ -456,9 +480,10 @@
             // 
             // Dev_ClearConfigs
             // 
-            this.Dev_ClearConfigs.Location = new System.Drawing.Point(269, 87);
+            this.Dev_ClearConfigs.Location = new System.Drawing.Point(314, 100);
+            this.Dev_ClearConfigs.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Dev_ClearConfigs.Name = "Dev_ClearConfigs";
-            this.Dev_ClearConfigs.Size = new System.Drawing.Size(62, 39);
+            this.Dev_ClearConfigs.Size = new System.Drawing.Size(72, 45);
             this.Dev_ClearConfigs.TabIndex = 18;
             this.Dev_ClearConfigs.Text = "Clear configs";
             this.Dev_ClearConfigs.UseVisualStyleBackColor = true;
@@ -466,9 +491,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(114, 87);
+            this.button2.Location = new System.Drawing.Point(133, 100);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(65, 39);
+            this.button2.Size = new System.Drawing.Size(76, 45);
             this.button2.TabIndex = 17;
             this.button2.Text = "Stop all";
             this.button2.UseVisualStyleBackColor = true;
@@ -478,20 +504,21 @@
             this.label_outbound.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_outbound.AutoSize = true;
-            this.label_outbound.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.label_outbound.Location = new System.Drawing.Point(315, 67);
+            this.label_outbound.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_outbound.Location = new System.Drawing.Point(368, 77);
+            this.label_outbound.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_outbound.Name = "label_outbound";
-            this.label_outbound.Size = new System.Drawing.Size(19, 16);
+            this.label_outbound.Size = new System.Drawing.Size(18, 16);
             this.label_outbound.TabIndex = 19;
             this.label_outbound.Text = "--:";
             this.label_outbound.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(411, 324);
+            this.ClientSize = new System.Drawing.Size(479, 374);
             this.Controls.Add(this.label_outbound);
             this.Controls.Add(this.devGroupBox);
             this.Controls.Add(this.Dev_LabelMode);
@@ -511,6 +538,7 @@
             this.Controls.Add(this.label_meeting);
             this.Controls.Add(this.meetingTxt);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Virtual Meeting Monitor";
