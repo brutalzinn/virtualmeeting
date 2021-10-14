@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VirtualMeetingMonitor.Utils;
 
 namespace VirtualMeetingMonitor
 {
@@ -15,6 +16,7 @@ namespace VirtualMeetingMonitor
 
         public string UniqueId { get; set; }
 
+        public CustomDaysUtils CustomDays { get; set; }
         public string CustomTime { get; set; }
 
         public int Timeout { get; set; }

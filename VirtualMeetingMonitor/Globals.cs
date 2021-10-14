@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VirtualMeetingMonitor.ActionsControl;
 using VirtualMeetingMonitor.profile;
 
 namespace VirtualMeetingMonitor
@@ -15,7 +16,10 @@ namespace VirtualMeetingMonitor
 
         public static ProfileUtils ProfileUtil = new ProfileUtils();
         public static Form form { get; set; }
-       public static Language CurrentLanguage { get; set; }
+
+        public static CustomDay CustomDays { get; set; }
+
+        public static Language CurrentLanguage { get; set; }
 
         public static string getHtmlVersion()
         {

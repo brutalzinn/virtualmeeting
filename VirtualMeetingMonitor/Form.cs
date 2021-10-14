@@ -17,7 +17,9 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Threading;
 using VirtualMeetingMonitor.formater;
+using VirtualMeetingMonitor.Forms;
 using VirtualMeetingMonitor.profile;
+using VirtualMeetingMonitor.Utils;
 using Windows.ApplicationModel.Activation;
 using Windows.Data.Xml.Dom;
 using Windows.Foundation.Collections;
@@ -762,7 +764,10 @@ namespace VirtualMeetingMonitor
             string path = Application.StartupPath + @"\config.json";
             if (!File.Exists(path))
             {
-                Profile _default = new Profile("default", "", "", "", 0, "English");
+                var _customdays = new CustomDaysUtils(new List<int> { }, "", "");
+
+                Profile _default = new Profile("default", "", "", "", 0, "en");
+                _default.CustomDays = _customdays;
                 Globals.ProfileUtil.CurrentProfile = _default;
                 Globals.ProfileUtil.profiles.Add(_default);
                 string output = JsonConvert.SerializeObject(Globals.ProfileUtil, Formatting.Indented);
@@ -874,6 +879,11 @@ namespace VirtualMeetingMonitor
             Helper helper = new Helper();
             helper.markdown = Globals.getHtmlVersion();
             helper.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

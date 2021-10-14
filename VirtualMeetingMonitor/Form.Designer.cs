@@ -62,6 +62,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.Dev_LabelMode = new System.Windows.Forms.Label();
             this.devGroupBox = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.Dev_TestGoogle = new System.Windows.Forms.Button();
             this.Dev_Config = new System.Windows.Forms.Button();
             this.Dev_helpButton = new System.Windows.Forms.Button();
@@ -386,6 +387,7 @@
             // 
             this.devGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.devGroupBox.Controls.Add(this.button3);
             this.devGroupBox.Controls.Add(this.Dev_TestGoogle);
             this.devGroupBox.Controls.Add(this.Dev_Config);
             this.devGroupBox.Controls.Add(this.Dev_helpButton);
@@ -401,6 +403,16 @@
             this.devGroupBox.TabStop = false;
             this.devGroupBox.Text = "Developer mode";
             this.devGroupBox.Visible = false;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(52, 18);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(56, 38);
+            this.button3.TabIndex = 21;
+            this.button3.Text = "Actions";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Dev_TestGoogle
             // 
@@ -554,6 +566,7 @@
         private System.Windows.Forms.ToolStripMenuItem notificationsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem notificationstatusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem enableSleepToolStripMenuItem;
+        private System.Windows.Forms.Button button3;
     }
 }
 

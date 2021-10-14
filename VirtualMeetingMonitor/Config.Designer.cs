@@ -51,6 +51,7 @@ namespace VirtualMeetingMonitor
             this.DEL = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnSaveProfile = new System.Windows.Forms.Button();
+            this.btn_config_action = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label_timeout
@@ -252,11 +253,22 @@ namespace VirtualMeetingMonitor
             this.btnSaveProfile.UseVisualStyleBackColor = true;
             this.btnSaveProfile.Click += new System.EventHandler(this.btnSaveProfile_Click);
             // 
+            // btn_config_action
+            // 
+            this.btn_config_action.Location = new System.Drawing.Point(307, 180);
+            this.btn_config_action.Name = "btn_config_action";
+            this.btn_config_action.Size = new System.Drawing.Size(95, 32);
+            this.btn_config_action.TabIndex = 22;
+            this.btn_config_action.Text = "Config actions";
+            this.btn_config_action.UseVisualStyleBackColor = true;
+            this.btn_config_action.Click += new System.EventHandler(this.btn_config_action_Click);
+            // 
             // Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(418, 352);
+            this.Controls.Add(this.btn_config_action);
             this.Controls.Add(this.btnSaveProfile);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.DEL);
@@ -311,5 +323,6 @@ namespace VirtualMeetingMonitor
         private System.Windows.Forms.Button DEL;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnSaveProfile;
+        private System.Windows.Forms.Button btn_config_action;
     }
 }

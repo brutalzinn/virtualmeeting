@@ -78,6 +78,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionsControl\CustomDay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActionsControl\CustomDay.Designer.cs">
+      <DependentUpon>CustomDay.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomerFormatter.cs" />
     <Compile Include="Form.cs">
       <SubType>Form</SubType>
@@ -86,6 +92,12 @@
       <DependentUpon>Form.cs</DependentUpon>
     </Compile>
     <Compile Include="formater\MethodExecutor.cs" />
+    <Compile Include="Forms\Actions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Actions.Designer.cs">
+      <DependentUpon>Actions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\TextDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,9 +125,16 @@
     <Compile Include="Config.Designer.cs">
       <DependentUpon>Config.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\CustomDaysUtils.cs" />
     <Compile Include="VirtualMeeting.cs" />
+    <EmbeddedResource Include="ActionsControl\CustomDay.resx">
+      <DependentUpon>CustomDay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form.resx">
       <DependentUpon>Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Actions.resx">
+      <DependentUpon>Actions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TextDialog.resx">
       <DependentUpon>TextDialog.cs</DependentUpon>

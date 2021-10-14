@@ -157,7 +157,7 @@ namespace VirtualMeetingMonitor
 
         private void ADD_Click(object sender, EventArgs e)
         {
-            Profile _default = new Profile("default " + cbxProfile.Items.Count, "", "", "", 0, "English");
+            Profile _default = new Profile("default " + cbxProfile.Items.Count, "", "", "", 0, "en");
             Globals.ProfileUtil.profiles.Add(_default);
             LoadProfilesCbx();
 
@@ -199,6 +199,19 @@ namespace VirtualMeetingMonitor
         {
             Globals.showHelper("https://raw.githubusercontent.com/wiki/brutalzinn/zoom-monitor-googlesheets/How-to-connect-to-google-sheets-api.md");
 
+        }
+
+        private void btn_config_action_Click(object sender, EventArgs e)
+        {
+            Actions _actions = new Actions((Profile)cbxProfile.SelectedItem);
+
+            _actions.ShowDialog();
+
+            if (_actions.DialogResult == DialogResult.OK)
+            {
+                Globals.ProfileUtil.profiles[Globals.ProfileUtil.profiles.FindIndex((prof) => prof.UniqueId == _actions.CurrentProfile.UniqueId)] = _actions.CurrentProfile;
+                
+            }
         }
     }
 }
