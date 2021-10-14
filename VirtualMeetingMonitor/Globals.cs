@@ -20,7 +20,7 @@ namespace VirtualMeetingMonitor
 
         public static List<MethodExecutor> Methods = new List<MethodExecutor>();
 
-        public static CustomerFormatter Formater { get; set; }
+        public static CustomerFormatter CustomFormater { get; set; }
 
         public static CustomDay CustomDays { get; set; }
 

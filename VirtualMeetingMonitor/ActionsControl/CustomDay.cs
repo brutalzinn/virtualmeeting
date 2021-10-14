@@ -51,7 +51,7 @@ namespace VirtualMeetingMonitor.ActionsControl
         }
         private void PreviewResult()
         {
-            lbl_preview.Text = $"No custom day: {Globals.Formater.Format(NoDaysMessage)} \n Custom Days:{Globals.Formater.Format(DaysMessage)}";
+            lbl_preview.Text = $"No custom day: {Formatter.Format(NoDaysMessage)} \n Custom Days:{DaysMessage}";
         }
         private void rich_normal_days_TextChanged(object sender, EventArgs e)
         {

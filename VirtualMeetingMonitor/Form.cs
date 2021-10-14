@@ -793,16 +793,17 @@ namespace VirtualMeetingMonitor
         {
             MethodExecutor _methodExecutorA = new MethodExecutor("TESTE", Globals.Methods, teste);
             MethodExecutor _methodExecutorB = new MethodExecutor("TODAY", Globals.Methods, date);
-            foreach(MethodExecutor teste in Globals.Methods)
-            {
-                Console.WriteLine($"TESTE : {teste.Identificator}|{teste.Method()}");
-            }
-            Globals.Formater = new CustomerFormatter(Globals.Methods);
+            //foreach(MethodExecutor teste in Globals.Methods)
+            //{
+            //    Console.WriteLine($"TESTE : {teste.Identificator}|{teste.Method()}");
+            //}
+            Globals.CustomFormater = new CustomerFormatter(Globals.Methods);
         }
         private void Dev_ButtonTeste_Click(object sender, EventArgs e)
         {
             //var pattern = @"\[(.*?)\]";
-            //var query = "H1-receptor antagonist [DATE.NOW] [DATE.HOUR.NOW] [DAY]";
+            var query = "#teste hoje é [TODAY] [TESTE]";
+            Console.WriteLine(Formatter.Format(query));
             //var matches = Regex.Matches(query, pattern);
 
             //foreach (Match m in matches)
