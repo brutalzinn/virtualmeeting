@@ -102,7 +102,7 @@ namespace VirtualMeetingMonitor
             TotalTxt.Text = "";
             BackColor = System.Drawing.Color.DarkGray;
             LoadProfiles();
-
+            LoadFormater();
             LanguageLoad();
 
             LanguageConfig();
@@ -789,6 +789,13 @@ namespace VirtualMeetingMonitor
         {
             return DateTime.Today.ToString("d");
         }
+        private void LoadFormater()
+        {
+            var _methodExecutorA = new MethodExecutor("TESTE", Globals.Methods, teste);
+            var _methodExecutorB = new MethodExecutor("TODAY", Globals.Methods, date);
+
+            Globals.Formater = new CustomerFormatter(Globals.Methods);
+        }
         private void Dev_ButtonTeste_Click(object sender, EventArgs e)
         {
             //var pattern = @"\[(.*?)\]";
@@ -799,16 +806,11 @@ namespace VirtualMeetingMonitor
             //{
             //    Console.WriteLine(m.Groups[1]);
             //}
-            List<MethodExecutor> methods = new List<MethodExecutor>();
 
-            MethodExecutor _methodExecutorA = new MethodExecutor("TESTE", teste);
-            MethodExecutor _methodExecutorB = new MethodExecutor("TODAY", date);
-
-            methods.Add(_methodExecutorA);
-            methods.Add(_methodExecutorB);
-            string text = "H1-receptor antagonist ##Username## [TESTE] HOJE é [TODAY]";
-            CustomerFormatter _formater = new CustomerFormatter(methods);
-            Console.WriteLine(_formater.Format(text));
+      
+            //string text = "H1-receptor antagonist ##Username## [TESTE] HOJE é [TODAY]";
+      
+            //Console.WriteLine(Globals.Formater.Format(text));
             //const string teste = "Testando um texto personalizado {0}";
 
             //Console.WriteLine(String.Format(new CustomerFormatter(), "Testando um texto personalizado {0:DATE}",""));

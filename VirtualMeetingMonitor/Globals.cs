@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VirtualMeetingMonitor.ActionsControl;
+using VirtualMeetingMonitor.formater;
 using VirtualMeetingMonitor.profile;
 
 namespace VirtualMeetingMonitor
@@ -16,6 +17,10 @@ namespace VirtualMeetingMonitor
 
         public static ProfileUtils ProfileUtil = new ProfileUtils();
         public static Form form { get; set; }
+
+        public static List<MethodExecutor> Methods = new List<MethodExecutor>();
+
+        public static CustomerFormatter Formater { get; set; }
 
         public static CustomDay CustomDays { get; set; }
 

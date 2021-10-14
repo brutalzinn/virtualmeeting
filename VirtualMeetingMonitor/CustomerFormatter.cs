@@ -8,7 +8,7 @@ using VirtualMeetingMonitor.formater;
 
 namespace VirtualMeetingMonitor
 {
-        class CustomerFormatter 
+       public class CustomerFormatter 
         {
 
         private List<MethodExecutor> Functions { get; set; }
