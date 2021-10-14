@@ -40,24 +40,24 @@ namespace VirtualMeetingMonitor
         {
             var pattern = @"\[(.*?)\]";
            // var query = "H1-receptor antagonist [DATE.NOW] [DATE.HOUR.NOW] [DAY]";
-            var matches = Regex.Matches(format, pattern);
-            var map = new List<KeyValuePair<string, string>>();
+           var matches = Regex.Matches(format, pattern);
+            var replacements = new Dictionary<string, string>();
+          
 
             foreach (Match m in matches)
             {
                 Func<string> showMethod = Functions.Find((inv) => inv.Identificator.ToUpper() == m.Groups[1].ToString().ToUpper()).Method ;
 
-                map.Add(new KeyValuePair<string, string>(m.Groups[1].ToString(), showMethod()));
+                replacements.Add(m.Groups[1].ToString(), showMethod());
                Console.WriteLine($"{m.Groups[1]} {showMethod()}");
             }
             // var regex = new Regex(String.Join(pattern, map.Keys));
 
-            //string pattern = String.Join("|", map.Select(k => "(" + k.Key + ")"));
-            var regex = new Regex(pattern, RegexOptions.Compiled);
-            var newString = regex.Replace(format, m => Evaluator(map, m));
+            string result = Regex.Replace(format,pattern,match => replacements[match.Value.Substring(1, match.Value.Length - 2)]?.ToString());
+            //var pattern = $"##(?<placeholder>{string.Join("|", replacements.Keys)})##";
+            //var result = Regex.Replace(format, pattern, m => replacements[m.Groups["placeholder"].Value], RegexOptions.ExplicitCapture);
 
-
-            return format;
+            return result;
         }
     }
 

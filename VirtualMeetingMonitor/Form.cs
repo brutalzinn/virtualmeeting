@@ -801,7 +801,7 @@ namespace VirtualMeetingMonitor
 
             methods.Add(_methodExecutorA);
             methods.Add(_methodExecutorB);
-            string text = "H1-receptor antagonist [TESTE] HOJE é [TODAY]";
+            string text = "H1-receptor antagonist ##Username## [TESTE] HOJE é [TODAY]";
             CustomerFormatter _formater = new CustomerFormatter(methods);
             Console.WriteLine(_formater.Format(text));
             //const string teste = "Testando um texto personalizado {0}";
