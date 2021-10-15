@@ -131,7 +131,6 @@
             this.onAirOnToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.onAirOnToolStripMenuItem.Text = "Air On";
             this.onAirOnToolStripMenuItem.Click += new System.EventHandler(this.onAirOnToolStripMenuItem_Click);
-
             // 
             // onAirOffToolStripMenuItem
             // 
