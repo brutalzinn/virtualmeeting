@@ -70,7 +70,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        fetch-depth: 0 
+        fetch-depth: '0' 
     # Install the .NET Core workload
     - name: Install .NET Core
       uses: actions/setup-dotnet@v1
@@ -85,19 +85,17 @@ jobs:
 
     - name: Create Build Directory
       run: mkdir VirtualMeetingMonitorRelease
-        
-    - name: Bump version and push tag
-      uses: anothrNick/github-tag-action@1.36.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        WITH_V: false
+   
+    - name: Create Tag    
+    - uses: actions-ecosystem/action-get-latest-tag@v1
+      id: get-latest-tag
       
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
       run: msbuild VirtualMeetingMonitor.sln /t:Restore
         
     - name: Build the Solution
-      run: msbuild VirtualMeetingMonitor.sln /p:configuration="Release" /p:Version=${{ env.WITH_V }} /p:DeleteExistingFiles=True /p:OutputPath="../VirtualMeetingMonitorRelease"
+      run: msbuild VirtualMeetingMonitor.sln /p:configuration="Release" /p:Version=${{ steps.get-latest-tag.outputs.tag }} /p:DeleteExistingFiles=True /p:OutputPath="../VirtualMeetingMonitorRelease"
         
     - name: Extract some files
       run: 7z a VirtualMeetingMonitorRelease.zip ./VirtualMeetingMonitorRelease
