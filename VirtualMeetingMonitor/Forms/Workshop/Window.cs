@@ -322,7 +322,7 @@ namespace VirtualMeetingMonitor
 
         private void Window_Load(object sender, EventArgs e)
         {
-
+            Core.WriteLine(new ColorContainer(255, 73, 255), $"You are running on version {Application.ProductVersion}");
         }
 
         private void optionsPanel_SelectedIndexChanged(object sender, EventArgs e)

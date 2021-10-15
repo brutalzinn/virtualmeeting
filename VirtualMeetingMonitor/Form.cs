@@ -774,7 +774,10 @@ namespace VirtualMeetingMonitor
         {
             Properties.Settings.Default.Reset();
         }
-
+        private void pluginManagertoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Core.Initialize();      
+         }
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/brutalzinn/zoom-monitor-googlesheets/issues");

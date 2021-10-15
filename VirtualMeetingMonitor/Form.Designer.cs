@@ -166,6 +166,7 @@
             this.pluginManagertoolStripMenuItem.Name = "pluginManagertoolStripMenuItem";
             this.pluginManagertoolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.pluginManagertoolStripMenuItem.Text = "Plugins Manager";
+            this.pluginManagertoolStripMenuItem.Click += new System.EventHandler(this.pluginManagertoolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
