@@ -329,5 +329,20 @@ namespace VirtualMeetingMonitor
         {
 
         }
+
+        private void toolTip_Popup(object sender, PopupEventArgs e)
+        {
+
+        }
+        private void CloseForm(DialogResult result)
+        {
+         
+            DialogResult = result;
+            Close();
+        }
+        private void btn_ok_Click(object sender, EventArgs e)
+        {
+            CloseForm(DialogResult.OK);
+        }
     }
 }

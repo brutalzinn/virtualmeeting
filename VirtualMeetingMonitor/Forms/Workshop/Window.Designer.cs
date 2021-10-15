@@ -46,6 +46,7 @@ namespace VirtualMeetingMonitor
             this.layoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.optionsPanel = new System.Windows.Forms.TabControl();
             this.scriptsPage = new System.Windows.Forms.TabPage();
+            this.btn_ok = new System.Windows.Forms.Button();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.scriptStop = new System.Windows.Forms.Button();
             this.openPackagesFolderButton = new System.Windows.Forms.Button();
@@ -101,7 +102,7 @@ namespace VirtualMeetingMonitor
             this.consolePanel.Margin = new System.Windows.Forms.Padding(5);
             this.consolePanel.Name = "consolePanel";
             this.consolePanel.Padding = new System.Windows.Forms.Padding(5);
-            this.consolePanel.Size = new System.Drawing.Size(482, 551);
+            this.consolePanel.Size = new System.Drawing.Size(490, 559);
             this.consolePanel.TabIndex = 0;
             this.consolePanel.TabStop = false;
             this.consolePanel.Text = "Console";
@@ -135,13 +136,17 @@ namespace VirtualMeetingMonitor
             // 
             // consoleRun
             // 
+            this.consoleRun.BackColor = System.Drawing.Color.Transparent;
             this.consoleRun.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.consoleRun.Image = ((System.Drawing.Image)(resources.GetObject("consoleRun.Image")));
             this.consoleRun.Location = new System.Drawing.Point(332, 0);
             this.consoleRun.Margin = new System.Windows.Forms.Padding(0);
             this.consoleRun.Name = "consoleRun";
             this.consoleRun.Size = new System.Drawing.Size(130, 23);
             this.consoleRun.TabIndex = 2;
             this.consoleRun.Text = "Run";
+            this.consoleRun.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.consoleRun.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.consoleRun.UseVisualStyleBackColor = true;
             this.consoleRun.Click += new System.EventHandler(this.consoleRun_Click);
             // 
@@ -211,6 +216,7 @@ namespace VirtualMeetingMonitor
             this.consoleClearButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.consoleClearButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(230)))), ((int)(((byte)(233)))));
             this.consoleClearButton.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.consoleClearButton.Image = ((System.Drawing.Image)(resources.GetObject("consoleClearButton.Image")));
             this.consoleClearButton.Location = new System.Drawing.Point(426, 0);
             this.consoleClearButton.Margin = new System.Windows.Forms.Padding(0);
             this.consoleClearButton.Name = "consoleClearButton";
@@ -237,24 +243,28 @@ namespace VirtualMeetingMonitor
             this.layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutPanel.Controls.Add(this.consolePanel, 0, 0);
             this.layoutPanel.Controls.Add(this.optionsPanel, 1, 0);
+            this.layoutPanel.Controls.Add(this.btn_ok, 1, 1);
             this.layoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutPanel.Location = new System.Drawing.Point(0, 0);
             this.layoutPanel.Name = "layoutPanel";
-            this.layoutPanel.RowCount = 1;
+            this.layoutPanel.RowCount = 2;
             this.layoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.layoutPanel.Size = new System.Drawing.Size(784, 561);
+            this.layoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 51F));
+            this.layoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.layoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.layoutPanel.Size = new System.Drawing.Size(792, 620);
             this.layoutPanel.TabIndex = 1;
             // 
             // optionsPanel
             // 
             this.optionsPanel.Controls.Add(this.scriptsPage);
             this.optionsPanel.Controls.Add(this.workshopPage);
-            this.optionsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.optionsPanel.Location = new System.Drawing.Point(497, 5);
+            this.optionsPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.optionsPanel.Location = new System.Drawing.Point(505, 5);
             this.optionsPanel.Margin = new System.Windows.Forms.Padding(5);
             this.optionsPanel.Name = "optionsPanel";
             this.optionsPanel.SelectedIndex = 0;
-            this.optionsPanel.Size = new System.Drawing.Size(282, 551);
+            this.optionsPanel.Size = new System.Drawing.Size(282, 558);
             this.optionsPanel.TabIndex = 1;
             this.optionsPanel.SelectedIndexChanged += new System.EventHandler(this.optionsPanel_SelectedIndexChanged);
             // 
@@ -266,10 +276,21 @@ namespace VirtualMeetingMonitor
             this.scriptsPage.Margin = new System.Windows.Forms.Padding(0);
             this.scriptsPage.Name = "scriptsPage";
             this.scriptsPage.Padding = new System.Windows.Forms.Padding(10);
-            this.scriptsPage.Size = new System.Drawing.Size(274, 523);
+            this.scriptsPage.Size = new System.Drawing.Size(274, 530);
             this.scriptsPage.TabIndex = 0;
             this.scriptsPage.Text = "Packages";
             this.scriptsPage.UseVisualStyleBackColor = true;
+            // 
+            // btn_ok
+            // 
+            this.btn_ok.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_ok.Location = new System.Drawing.Point(503, 572);
+            this.btn_ok.Name = "btn_ok";
+            this.btn_ok.Size = new System.Drawing.Size(286, 45);
+            this.btn_ok.TabIndex = 9;
+            this.btn_ok.Text = "OK";
+            this.btn_ok.UseVisualStyleBackColor = true;
+            this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
             // 
             // tableLayoutPanel5
             // 
@@ -289,6 +310,7 @@ namespace VirtualMeetingMonitor
             // scriptStop
             // 
             this.scriptStop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scriptStop.Image = ((System.Drawing.Image)(resources.GetObject("scriptStop.Image")));
             this.scriptStop.Location = new System.Drawing.Point(32, 0);
             this.scriptStop.Margin = new System.Windows.Forms.Padding(0);
             this.scriptStop.Name = "scriptStop";
@@ -304,6 +326,7 @@ namespace VirtualMeetingMonitor
             // openPackagesFolderButton
             // 
             this.openPackagesFolderButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.openPackagesFolderButton.Image = ((System.Drawing.Image)(resources.GetObject("openPackagesFolderButton.Image")));
             this.openPackagesFolderButton.Location = new System.Drawing.Point(0, 0);
             this.openPackagesFolderButton.Margin = new System.Windows.Forms.Padding(0);
             this.openPackagesFolderButton.Name = "openPackagesFolderButton";
@@ -344,7 +367,7 @@ namespace VirtualMeetingMonitor
             this.workshopPage.Location = new System.Drawing.Point(4, 24);
             this.workshopPage.Name = "workshopPage";
             this.workshopPage.Padding = new System.Windows.Forms.Padding(5);
-            this.workshopPage.Size = new System.Drawing.Size(274, 523);
+            this.workshopPage.Size = new System.Drawing.Size(274, 621);
             this.workshopPage.TabIndex = 1;
             this.workshopPage.Text = "Workshop";
             this.workshopPage.UseVisualStyleBackColor = true;
@@ -363,9 +386,9 @@ namespace VirtualMeetingMonitor
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 3;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(264, 513);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(264, 611);
             this.tableLayoutPanel6.TabIndex = 0;
             // 
             // tableLayoutPanel7
@@ -374,11 +397,11 @@ namespace VirtualMeetingMonitor
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel7.Controls.Add(this.workshopFetchButton, 0, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 244);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 292);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(258, 25);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(258, 27);
             this.tableLayoutPanel7.TabIndex = 1;
             // 
             // workshopFetchButton
@@ -387,7 +410,7 @@ namespace VirtualMeetingMonitor
             this.workshopFetchButton.Location = new System.Drawing.Point(0, 0);
             this.workshopFetchButton.Margin = new System.Windows.Forms.Padding(0);
             this.workshopFetchButton.Name = "workshopFetchButton";
-            this.workshopFetchButton.Size = new System.Drawing.Size(258, 25);
+            this.workshopFetchButton.Size = new System.Drawing.Size(258, 27);
             this.workshopFetchButton.TabIndex = 2;
             this.workshopFetchButton.Text = "Fetch";
             this.workshopFetchButton.UseVisualStyleBackColor = true;
@@ -425,11 +448,11 @@ namespace VirtualMeetingMonitor
             // 
             this.groupBox1.Controls.Add(this.tableLayoutPanel4);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(5, 277);
+            this.groupBox1.Location = new System.Drawing.Point(5, 327);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox1.Size = new System.Drawing.Size(254, 231);
+            this.groupBox1.Size = new System.Drawing.Size(254, 279);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Create Package";
@@ -481,6 +504,7 @@ namespace VirtualMeetingMonitor
             // packageSelectFolder
             // 
             this.packageSelectFolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.packageSelectFolder.Image = ((System.Drawing.Image)(resources.GetObject("packageSelectFolder.Image")));
             this.packageSelectFolder.Location = new System.Drawing.Point(0, 0);
             this.packageSelectFolder.Margin = new System.Windows.Forms.Padding(0);
             this.packageSelectFolder.Name = "packageSelectFolder";
@@ -581,6 +605,10 @@ namespace VirtualMeetingMonitor
             // 
             this.packageFolderSelectDialog.RootFolder = System.Environment.SpecialFolder.Startup;
             // 
+            // toolTip
+            // 
+            this.toolTip.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip_Popup);
+            // 
             // notifyIcon1
             // 
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
@@ -589,7 +617,7 @@ namespace VirtualMeetingMonitor
             // Window
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(792, 620);
             this.Controls.Add(this.layoutPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -668,6 +696,7 @@ namespace VirtualMeetingMonitor
         private TextBox packageDescription;
         public Label CursorPosDisplay;
         public Label ColorDisplay;
+        private Button btn_ok;
 
         public RichTextBox ConsoleOutput { get => consoleOutput; set => consoleOutput = value; }
         public TextBox ConsoleInput { get => consoleInput; set => consoleInput = value; }
