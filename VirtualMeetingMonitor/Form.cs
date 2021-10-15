@@ -702,10 +702,7 @@ namespace VirtualMeetingMonitor
                     break;
                 case "5":
                     DateTime dateTime = DateTime.Parse(Globals.ProfileUtil.CurrentProfile.CustomTime);
-                                        
-                
                     TimeSpan span = dateTime - DateTime.Now;
-                    Console.WriteLine("CUSTOM SLEEP:" + (int)span.TotalMilliseconds);
                     backgroundWorker1.RunWorkerAsync(argument: (int)span.TotalMilliseconds);
                     break;
                 default:
