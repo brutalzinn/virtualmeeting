@@ -40,9 +40,9 @@ name: VirtualMeetingMonitor-APP-CI
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ master ]
   pull_request:
-    branches: [ dev ]
+    branches: [ master ]
 
 jobs:
 
@@ -109,6 +109,3 @@ jobs:
        prerelease: false
        title: "Development Build"
        files: VirtualMeetingMonitorRelease.zip
-        
-
-
