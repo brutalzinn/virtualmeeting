@@ -669,18 +669,13 @@ namespace VirtualMeetingMonitor
             switch (strArgs.Arguments)
             {
                 case "Yes":
-                    //stuff
-                    Console.WriteLine("Yes");
                     break;
                 case "No":
-                    Console.WriteLine("No");
                     call_running = false;
                     EndMeeting();
                     onAirSign.TurnOff();
-
                     break;
                 case "bodyTapped":
-                    //stuff
                     break;
             }
             Console.WriteLine("################" + strArgs.UserInput["delay"]);
