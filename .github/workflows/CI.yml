@@ -87,7 +87,7 @@ jobs:
       run: mkdir VirtualMeetingMonitorRelease
    
     - name: Create Tag    
-    - uses: actions-ecosystem/action-get-latest-tag@v1
+      uses: actions-ecosystem/action-get-latest-tag@v1
       id: get-latest-tag
       
     # Restore the application to populate the obj folder with RuntimeIdentifiers
