@@ -686,8 +686,7 @@ namespace VirtualMeetingMonitor
             Console.WriteLine("################" + strArgs.UserInput["delay"]);
             switch (strArgs.UserInput["delay"])
             {
-                case "1":
-                
+                case "1":               
                     backgroundWorker1.RunWorkerAsync(argument: 300000);
                     break;
                 case "2":
@@ -696,7 +695,6 @@ namespace VirtualMeetingMonitor
                 case "3":
                     backgroundWorker1.RunWorkerAsync(argument: 1800000);
                     break;
-
                 case "4":
                     backgroundWorker1.RunWorkerAsync(argument: 3600000);
                     break;
