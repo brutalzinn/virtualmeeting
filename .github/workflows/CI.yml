@@ -86,16 +86,18 @@ jobs:
     - name: Create Build Directory
       run: mkdir VirtualMeetingMonitorRelease
         
-    - name: Generate Version
-      id: get_version
-      uses: battila7/get-version-action@v2
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@1.36.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        WITH_V: false
       
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
       run: msbuild VirtualMeetingMonitor.sln /t:Restore
         
     - name: Build the Solution
-      run: msbuild VirtualMeetingMonitor.sln /p:configuration="Release" /p:Version=${{ steps.get_version.outputs.version-without-v }} /p:DeleteExistingFiles=True /p:OutputPath="../VirtualMeetingMonitorRelease"
+      run: msbuild VirtualMeetingMonitor.sln /p:configuration="Release" /p:Version=${{ env.WITH_V }} /p:DeleteExistingFiles=True /p:OutputPath="../VirtualMeetingMonitorRelease"
         
     - name: Extract some files
       run: 7z a VirtualMeetingMonitorRelease.zip ./VirtualMeetingMonitorRelease
