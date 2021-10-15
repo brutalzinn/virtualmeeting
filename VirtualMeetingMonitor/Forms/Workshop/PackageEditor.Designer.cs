@@ -42,15 +42,14 @@ namespace VirtualMeetingMonitor
             this.fileTabControl = new System.Windows.Forms.TabControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.fileTree = new System.Windows.Forms.TreeView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -60,8 +59,8 @@ namespace VirtualMeetingMonitor
             this.scriptsMenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5);
-            this.menuStrip1.Size = new System.Drawing.Size(784, 30);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6);
+            this.menuStrip1.Size = new System.Drawing.Size(908, 31);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -70,15 +69,13 @@ namespace VirtualMeetingMonitor
             this.packageMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.packageRun,
             this.closeToolStripMenuItem});
-            
             this.packageMenu.Name = "packageMenu";
             this.packageMenu.Padding = new System.Windows.Forms.Padding(0);
-            this.packageMenu.Size = new System.Drawing.Size(71, 20);
+            this.packageMenu.Size = new System.Drawing.Size(55, 19);
             this.packageMenu.Text = "Package";
             // 
             // packageRun
             // 
-           
             this.packageRun.Name = "packageRun";
             this.packageRun.Size = new System.Drawing.Size(103, 22);
             this.packageRun.Text = "Run";
@@ -86,7 +83,6 @@ namespace VirtualMeetingMonitor
             // 
             // closeToolStripMenuItem
             // 
-    
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.closeToolStripMenuItem.Text = "Close";
@@ -97,15 +93,13 @@ namespace VirtualMeetingMonitor
             this.scriptsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveToolStripMenuItem,
             this.saveAllToolStripMenuItem});
-          
             this.scriptsMenu.Name = "scriptsMenu";
             this.scriptsMenu.Padding = new System.Windows.Forms.Padding(0);
-            this.scriptsMenu.Size = new System.Drawing.Size(62, 20);
+            this.scriptsMenu.Size = new System.Drawing.Size(46, 19);
             this.scriptsMenu.Text = "Scripts";
             // 
             // saveToolStripMenuItem
             // 
-
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.saveToolStripMenuItem.Text = "Save";
@@ -113,7 +107,6 @@ namespace VirtualMeetingMonitor
             // 
             // saveAllToolStripMenuItem
             // 
-      
             this.saveAllToolStripMenuItem.Name = "saveAllToolStripMenuItem";
             this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.saveAllToolStripMenuItem.Text = "Save All";
@@ -122,7 +115,7 @@ namespace VirtualMeetingMonitor
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 30);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 31);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(0);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -134,8 +127,9 @@ namespace VirtualMeetingMonitor
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel1);
             this.splitContainer1.Panel2MinSize = 200;
-            this.splitContainer1.Size = new System.Drawing.Size(784, 532);
-            this.splitContainer1.SplitterDistance = 580;
+            this.splitContainer1.Size = new System.Drawing.Size(908, 617);
+            this.splitContainer1.SplitterDistance = 671;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 1;
             // 
             // fileTabControl
@@ -146,7 +140,7 @@ namespace VirtualMeetingMonitor
             this.fileTabControl.Name = "fileTabControl";
             this.fileTabControl.Padding = new System.Drawing.Point(0, 0);
             this.fileTabControl.SelectedIndex = 0;
-            this.fileTabControl.Size = new System.Drawing.Size(580, 532);
+            this.fileTabControl.Size = new System.Drawing.Size(671, 617);
             this.fileTabControl.TabIndex = 0;
             this.fileTabControl.TabStop = false;
             // 
@@ -155,65 +149,59 @@ namespace VirtualMeetingMonitor
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.fileTree, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.listBox1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(200, 532);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(232, 617);
             this.tableLayoutPanel1.TabIndex = 1;
+            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // fileTree
             // 
-            this.fileTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fileTree.Location = new System.Drawing.Point(0, 0);
             this.fileTree.Margin = new System.Windows.Forms.Padding(0);
-            this.fileTree.MinimumSize = new System.Drawing.Size(80, 4);
+            this.fileTree.MinimumSize = new System.Drawing.Size(93, 4);
             this.fileTree.Name = "fileTree";
-            this.fileTree.Size = new System.Drawing.Size(200, 412);
+            this.fileTree.Size = new System.Drawing.Size(232, 233);
             this.fileTree.TabIndex = 1;
             this.fileTree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.editorFileTree_NodeMouseClick);
             // 
-            // groupBox1
+            // button1
             // 
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 412);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox1.Size = new System.Drawing.Size(200, 120);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Notice";
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
             // 
-            // label1
+            // listBox1
             // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(5, 18);
-            this.label1.Margin = new System.Windows.Forms.Padding(5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(190, 97);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "This editor is meant to be used for tiny changes and copy-pasting from an actual," +
-    " full-fledged editor like Atom, VSCode etc. Use it only to save yourself some ti" +
-    "me extracting zip files.";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 15;
+            this.listBox1.Location = new System.Drawing.Point(3, 414);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(226, 199);
+            this.listBox1.TabIndex = 2;
             // 
             // PackageEditor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 562);
+            this.ClientSize = new System.Drawing.Size(908, 648);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "PackageEditor";
             this.Text = "Package Editor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PackageEditor_FormClosing);
+            this.Load += new System.EventHandler(this.PackageEditor_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -221,7 +209,6 @@ namespace VirtualMeetingMonitor
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,11 +224,11 @@ namespace VirtualMeetingMonitor
         private System.Windows.Forms.ToolStripMenuItem scriptsMenu;
         private TableLayoutPanel tableLayoutPanel1;
         private TreeView fileTree;
-        private GroupBox groupBox1;
-        private Label label1;
         private ToolStripMenuItem packageRun;
         private ToolStripMenuItem saveToolStripMenuItem;
         private ToolStripMenuItem saveAllToolStripMenuItem;
+        private Button button1;
+        private ListBox listBox1;
 
         public TreeView FileTree { get => fileTree; set => fileTree = value; }
         public TabControl FileTabControl { get => fileTabControl; set => fileTabControl = value; }

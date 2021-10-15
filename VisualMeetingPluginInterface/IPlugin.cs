@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace VisualMeetingPluginInterface
 {
@@ -6,7 +7,15 @@ namespace VisualMeetingPluginInterface
     {
         string GetName();
 
+        string Description();
+
+        string Authors();
+
+        string Contact();
+
         string GetPlaceHolder();
+
+        Dictionary<string, Func<string>> GetMultipleHolder();
 
         string Main();
     }

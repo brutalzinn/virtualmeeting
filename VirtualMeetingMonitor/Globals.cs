@@ -1,4 +1,5 @@
-﻿using System;
+﻿using McMaster.NETCore.Plugins;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -26,6 +27,8 @@ namespace VirtualMeetingMonitor
         public static CustomDay CustomDays { get; set; }
 
         public static CustomDataGrid CustomDataGrids { get; set; }
+
+        public static  List<PluginLoader> loaders = new List<PluginLoader>();
 
 
         public static Language CurrentLanguage { get; set; }

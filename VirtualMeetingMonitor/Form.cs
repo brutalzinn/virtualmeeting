@@ -54,7 +54,6 @@ namespace VirtualMeetingMonitor
         private static string sheet = "";
         private int timeout = Properties.Settings.Default.timeout;
         private bool IsSleep = false;
-        private List<PluginLoader> loaders = new List<PluginLoader>();
         static SheetsService service;
         public enum Days
         {
@@ -838,7 +837,7 @@ namespace VirtualMeetingMonitor
             MethodExecutor _methodExecutorA = new MethodExecutor("TESTE", Globals.Methods, teste);
             MethodExecutor _methodExecutorB = new MethodExecutor("TODAY", Globals.Methods, date);
             MethodExecutor _methodExecutorC = new MethodExecutor("CUSTOMDAY", Globals.Methods, customday);
-            foreach (var loader in loaders)
+            foreach (var loader in Globals.loaders)
             {
                 foreach (var pluginType in loader
                     .LoadDefaultAssembly()
@@ -847,9 +846,24 @@ namespace VirtualMeetingMonitor
                 {
                     // This assumes the implementation of IPlugin has a parameterless constructor
                     var plugin = Activator.CreateInstance(pluginType) as IPlugin;
-
+                 
                     Debug.WriteLine($"Created plugin instance '{plugin?.GetName()}'.");
-                    new MethodExecutor(plugin.GetPlaceHolder(), Globals.Methods, plugin.Main);
+                    try
+                    {
+                        foreach (var item in plugin.GetMultipleHolder())
+                        {
+                            Debug.WriteLine($"###{item.Key} - {item.Value()}");
+                            new MethodExecutor(item.Key.ToUpper(), Globals.Methods, item.Value);
+                        }
+                        
+                    }
+                    catch (NotImplementedException)
+                    {
+                       new MethodExecutor(plugin.GetPlaceHolder(), Globals.Methods, plugin.Main);
+                    }
+
+
+
                 }
 
             }
@@ -870,14 +884,14 @@ namespace VirtualMeetingMonitor
                     var loader = PluginLoader.CreateFromAssemblyFile(
                         pluginDll,
                         sharedTypes: new[] { typeof(IPlugin) });
-                    loaders.Add(loader);
+                    Globals.loaders.Add(loader);
                 }
             }
-            lbl_plugin_count.Text = $"Plugins: {loaders.Count} loaded";
+            lbl_plugin_count.Text = $"Plugins: {Globals.loaders.Count} loaded";
         }
         private void Dev_ButtonTeste_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine(Formatter.Format("Esse é um exemplo de plugin [PLUGINEXAMPLE]"));
+          //  Debug.WriteLine(Formatter.Format("Esse é um exemplo de plugin [PLUGINEXAMPLE]"));
             Core.Initialize();
             // Create an instance of plugin types
             

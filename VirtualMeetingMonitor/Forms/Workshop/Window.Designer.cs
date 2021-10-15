@@ -67,17 +67,8 @@ namespace VirtualMeetingMonitor
             this.label2 = new System.Windows.Forms.Label();
             this.packageName = new System.Windows.Forms.TextBox();
             this.packageAuthors = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.packageEntryPoint = new System.Windows.Forms.TextBox();
             this.packageDescription = new System.Windows.Forms.TextBox();
-            this.settingsPage = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.infoVersion = new System.Windows.Forms.Label();
-            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
-            this.checkUpdate = new System.Windows.Forms.Button();
-            this.downloadUpdate = new System.Windows.Forms.Button();
             this.packageFolderSelectDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
@@ -98,10 +89,6 @@ namespace VirtualMeetingMonitor
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
-            this.settingsPage.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tableLayoutPanel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // consolePanel
@@ -262,7 +249,6 @@ namespace VirtualMeetingMonitor
             // 
             this.optionsPanel.Controls.Add(this.scriptsPage);
             this.optionsPanel.Controls.Add(this.workshopPage);
-            this.optionsPanel.Controls.Add(this.settingsPage);
             this.optionsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.optionsPanel.Location = new System.Drawing.Point(497, 5);
             this.optionsPanel.Margin = new System.Windows.Forms.Padding(5);
@@ -270,6 +256,7 @@ namespace VirtualMeetingMonitor
             this.optionsPanel.SelectedIndex = 0;
             this.optionsPanel.Size = new System.Drawing.Size(282, 551);
             this.optionsPanel.TabIndex = 1;
+            this.optionsPanel.SelectedIndexChanged += new System.EventHandler(this.optionsPanel_SelectedIndexChanged);
             // 
             // scriptsPage
             // 
@@ -511,9 +498,7 @@ namespace VirtualMeetingMonitor
             this.tableLayoutPanel9.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel9.Controls.Add(this.packageName, 1, 0);
             this.tableLayoutPanel9.Controls.Add(this.packageAuthors, 1, 1);
-            this.tableLayoutPanel9.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel9.Controls.Add(this.label4, 0, 3);
-            this.tableLayoutPanel9.Controls.Add(this.packageEntryPoint, 1, 2);
             this.tableLayoutPanel9.Controls.Add(this.packageDescription, 1, 3);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 0);
@@ -534,7 +519,7 @@ namespace VirtualMeetingMonitor
             this.label1.Location = new System.Drawing.Point(5, 5);
             this.label1.Margin = new System.Windows.Forms.Padding(5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 23);
+            this.label1.Size = new System.Drawing.Size(70, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -546,7 +531,7 @@ namespace VirtualMeetingMonitor
             this.label2.Location = new System.Drawing.Point(5, 38);
             this.label2.Margin = new System.Windows.Forms.Padding(5);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 23);
+            this.label2.Size = new System.Drawing.Size(70, 23);
             this.label2.TabIndex = 1;
             this.label2.Text = "Authors:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -554,171 +539,43 @@ namespace VirtualMeetingMonitor
             // packageName
             // 
             this.packageName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.packageName.Location = new System.Drawing.Point(90, 5);
+            this.packageName.Location = new System.Drawing.Point(85, 5);
             this.packageName.Margin = new System.Windows.Forms.Padding(5);
             this.packageName.Name = "packageName";
-            this.packageName.Size = new System.Drawing.Size(139, 23);
+            this.packageName.Size = new System.Drawing.Size(144, 23);
             this.packageName.TabIndex = 2;
             // 
             // packageAuthors
             // 
             this.packageAuthors.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.packageAuthors.Location = new System.Drawing.Point(90, 38);
+            this.packageAuthors.Location = new System.Drawing.Point(85, 38);
             this.packageAuthors.Margin = new System.Windows.Forms.Padding(5);
             this.packageAuthors.Name = "packageAuthors";
-            this.packageAuthors.Size = new System.Drawing.Size(139, 23);
+            this.packageAuthors.Size = new System.Drawing.Size(144, 23);
             this.packageAuthors.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(5, 71);
-            this.label3.Margin = new System.Windows.Forms.Padding(5);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 23);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Autorun File:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(5, 104);
+            this.label4.Location = new System.Drawing.Point(5, 71);
             this.label4.Margin = new System.Windows.Forms.Padding(5);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(75, 59);
+            this.label4.Size = new System.Drawing.Size(70, 92);
             this.label4.TabIndex = 5;
             this.label4.Text = "Description:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // packageEntryPoint
-            // 
-            this.packageEntryPoint.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.packageEntryPoint.Location = new System.Drawing.Point(90, 71);
-            this.packageEntryPoint.Margin = new System.Windows.Forms.Padding(5);
-            this.packageEntryPoint.Name = "packageEntryPoint";
-            this.packageEntryPoint.Size = new System.Drawing.Size(139, 23);
-            this.packageEntryPoint.TabIndex = 6;
-            // 
             // packageDescription
             // 
             this.packageDescription.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.packageDescription.Location = new System.Drawing.Point(90, 104);
+            this.packageDescription.Location = new System.Drawing.Point(85, 71);
             this.packageDescription.Margin = new System.Windows.Forms.Padding(5);
             this.packageDescription.Multiline = true;
             this.packageDescription.Name = "packageDescription";
             this.packageDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.packageDescription.Size = new System.Drawing.Size(139, 59);
+            this.packageDescription.Size = new System.Drawing.Size(144, 92);
             this.packageDescription.TabIndex = 7;
-            // 
-            // settingsPage
-            // 
-            this.settingsPage.Controls.Add(this.tableLayoutPanel1);
-            this.settingsPage.Location = new System.Drawing.Point(4, 24);
-            this.settingsPage.Margin = new System.Windows.Forms.Padding(0);
-            this.settingsPage.Name = "settingsPage";
-            this.settingsPage.Padding = new System.Windows.Forms.Padding(10);
-            this.settingsPage.Size = new System.Drawing.Size(274, 523);
-            this.settingsPage.TabIndex = 2;
-            this.settingsPage.Text = "Settings";
-            this.settingsPage.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(69)))), ((int)(((byte)(75)))));
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.infoVersion, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel10, 0, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 10);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(5);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(254, 503);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(254, 453);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // infoVersion
-            // 
-            this.infoVersion.AutoSize = true;
-            this.infoVersion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.infoVersion.ForeColor = System.Drawing.Color.White;
-            this.infoVersion.Location = new System.Drawing.Point(0, 453);
-            this.infoVersion.Margin = new System.Windows.Forms.Padding(0);
-            this.infoVersion.Name = "infoVersion";
-            this.infoVersion.Padding = new System.Windows.Forms.Padding(5);
-            this.infoVersion.Size = new System.Drawing.Size(254, 25);
-            this.infoVersion.TabIndex = 1;
-            this.infoVersion.Text = "Version";
-            this.infoVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tableLayoutPanel10
-            // 
-            this.tableLayoutPanel10.AutoSize = true;
-            this.tableLayoutPanel10.ColumnCount = 2;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel10.Controls.Add(this.checkUpdate, 0, 0);
-            this.tableLayoutPanel10.Controls.Add(this.downloadUpdate, 1, 0);
-            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(0, 478);
-            this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
-            this.tableLayoutPanel10.RowCount = 1;
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(254, 25);
-            this.tableLayoutPanel10.TabIndex = 1;
-            // 
-            // checkUpdate
-            // 
-            this.checkUpdate.BackColor = System.Drawing.Color.Transparent;
-            this.checkUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkUpdate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(201)))), ((int)(((byte)(175)))));
-            this.checkUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(124)))), ((int)(((byte)(190)))));
-            this.checkUpdate.Location = new System.Drawing.Point(1, 1);
-            this.checkUpdate.Margin = new System.Windows.Forms.Padding(1);
-            this.checkUpdate.Name = "checkUpdate";
-            this.checkUpdate.Size = new System.Drawing.Size(125, 23);
-            this.checkUpdate.TabIndex = 3;
-            this.checkUpdate.Text = "Check";
-            this.checkUpdate.UseVisualStyleBackColor = false;
-            this.checkUpdate.Click += new System.EventHandler(this.checkUpdate_Click);
-            // 
-            // downloadUpdate
-            // 
-            this.downloadUpdate.BackColor = System.Drawing.Color.Transparent;
-            this.downloadUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.downloadUpdate.Enabled = false;
-            this.downloadUpdate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(201)))), ((int)(((byte)(175)))));
-            this.downloadUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(107)))), ((int)(((byte)(107)))));
-            this.downloadUpdate.Location = new System.Drawing.Point(128, 1);
-            this.downloadUpdate.Margin = new System.Windows.Forms.Padding(1);
-            this.downloadUpdate.Name = "downloadUpdate";
-            this.downloadUpdate.Size = new System.Drawing.Size(125, 23);
-            this.downloadUpdate.TabIndex = 2;
-            this.downloadUpdate.Text = "Update";
-            this.downloadUpdate.UseVisualStyleBackColor = false;
-            this.downloadUpdate.Click += new System.EventHandler(this.downloadUpdate_Click);
             // 
             // packageFolderSelectDialog
             // 
@@ -739,7 +596,7 @@ namespace VirtualMeetingMonitor
             this.MaximizeBox = false;
             this.Name = "Window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ScribeBot";
+            this.Text = "{name}";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Window_FormClosing);
             this.Load += new System.EventHandler(this.Window_Load);
             this.consolePanel.ResumeLayout(false);
@@ -766,11 +623,6 @@ namespace VirtualMeetingMonitor
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
-            this.settingsPage.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tableLayoutPanel10.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -812,17 +664,8 @@ namespace VirtualMeetingMonitor
         private Label label2;
         private TextBox packageName;
         private TextBox packageAuthors;
-        private Label label3;
         private Label label4;
-        private TextBox packageEntryPoint;
         private TextBox packageDescription;
-        private TabPage settingsPage;
-        private TableLayoutPanel tableLayoutPanel1;
-        private PictureBox pictureBox1;
-        private Label infoVersion;
-        private TableLayoutPanel tableLayoutPanel10;
-        private Button checkUpdate;
-        private Button downloadUpdate;
         public Label CursorPosDisplay;
         public Label ColorDisplay;
 
@@ -838,9 +681,8 @@ namespace VirtualMeetingMonitor
         public Button PackageSelectFolder { get => packageSelectFolder; set => packageSelectFolder = value; }
         public TextBox PackageName { get => packageName; set => packageName = value; }
         public TextBox PackageAuthors { get => packageAuthors; set => packageAuthors = value; }
-        public TextBox PackageEntryPoint { get => packageEntryPoint; set => packageEntryPoint = value; }
         public TextBox PackageDescription { get => packageDescription; set => packageDescription = value; }
         public FolderBrowserDialog PackageFolderSelectDialog { get => packageFolderSelectDialog; set => packageFolderSelectDialog = value; }
-        public Label InfoVersion { get => infoVersion; set => infoVersion = value; }
+        //public Label InfoVersion { get => infoVersion; set => infoVersion = value; }
     }
 }

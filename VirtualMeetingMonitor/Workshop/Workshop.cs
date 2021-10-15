@@ -69,7 +69,7 @@ namespace VirtualMeetingMonitor
             tokens = tokens.Where(x => !x["name"].ToString().Equals("README.md")).ToList();
             tokens.ToList().ForEach(x => list[Path.GetFileNameWithoutExtension((string)x["name"])] = (string)x["download_url"]);
 
-           // Core.WriteLine(new ColorContainer(0, 131, 63), "Workshop list fetched. Happy downloading!");
+           Core.WriteLine("Workshop list fetched. Happy downloading!");
 
             return list;
         }
@@ -79,18 +79,20 @@ namespace VirtualMeetingMonitor
         /// </summary>
         public static void DownloadPackage(string url, string name = "package")
         {
-          //  Core.WriteLine(new ColorContainer(89, 73, 163), $@"Downloading workshop package: {name}");
+           Core.WriteLine($@"Downloading workshop package: {name}");
 
             if (File.Exists($@"{Core.PluginFolder}\{name}.zip"))
             {
-            //    Core.WriteLine(new ColorContainer(177, 31, 41), "A package of this name already exists!");
+              Core.WriteLine( "A package of this name already exists!");
                 return;
             }
 
             NetClient.Headers["User-Agent"] = "ScribeBot - Workshop - Download Package";
             NetClient.DownloadFile(url, $@"{Core.PluginFolder}\{name}.zip");
 
-         //   Core.WriteLine(new ColorContainer(89, 73, 163), $@"Downloaded workshop package: {name}");
+
+          Core.WriteLine($@"Downloaded workshop package: {name}");
+          Package.Undo(name);
         }
 
         /// <summary>
@@ -98,6 +100,8 @@ namespace VirtualMeetingMonitor
         /// </summary>
         /// <param name="folderPath">Path to folder to turn into package.</param>
         /// <param name="info">Unformatted table containing data that later will be turned to info.json.</param>
+     
+        
         public static void CreatePackage(string folderPath, Dictionary<string, string> info)
         {
             var json = JsonConvert.SerializeObject(info, Formatting.Indented);
@@ -106,8 +110,8 @@ namespace VirtualMeetingMonitor
             File.WriteAllText($@"{folderPath}\info.json", json);
 
             Directory.GetFiles(folderPath).ToList().ForEach(x => filePaths.Add(x));
-
-            Package.Create(Path.GetFileName(folderPath), filePaths.ToArray());
+            Package.CreateWithoutZip(Path.GetFileName(folderPath));
+            //Package.Create(Path.GetFileName(folderPath), filePaths.ToArray());
         }
     }
 }

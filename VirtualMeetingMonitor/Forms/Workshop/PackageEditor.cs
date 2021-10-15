@@ -1,4 +1,5 @@
-﻿using System;
+﻿using McMaster.NETCore.Plugins;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VisualMeetingPluginInterface;
 
 
 //Remake this
@@ -31,6 +33,7 @@ namespace VirtualMeetingMonitor
             FileTabControl.Controls.Clear();
 
             FileTree.Nodes.Clear();
+            listBox1.Items.Clear();
 
             object[] files = package.GetFiles();
 
@@ -38,7 +41,45 @@ namespace VirtualMeetingMonitor
                 files.Cast<ZipArchiveEntry>().ToList().ForEach(x => FileTree.Nodes.Add(new TreeNode(x.Name)));
             else
                 files.ToList().ForEach(x => FileTree.Nodes.Add(new TreeNode(Path.GetFileName((string)x))));
+
+                List<PluginLoader> loaders = new List<PluginLoader>();
+           
+                var dirName = Path.GetFileName(import.ArchivePath);
+                var pluginDll = Path.Combine(import.ArchivePath, dirName + ".dll");
+                if (File.Exists(pluginDll))
+                {
+                    var loader = PluginLoader.CreateFromAssemblyFile(
+                        pluginDll,
+                        sharedTypes: new[] { typeof(IPlugin) });
+                    loaders.Add(loader);
+                }
             
+                foreach (var loader in loaders)
+                {
+                foreach (var pluginType in loader
+                    .LoadDefaultAssembly()
+                    .GetTypes()
+                    .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsAbstract))
+                {
+                    // This assumes the implementation of IPlugin has a parameterless constructor
+                    var plugin = Activator.CreateInstance(pluginType) as IPlugin;
+                    try
+                    {
+                        foreach (var item in plugin.GetMultipleHolder())
+                        {
+                            listBox1.Items.Add($"TAG: [{item.Key.ToUpper()}] : {item.Value()}");
+                        }
+
+                    }
+                    catch (NotImplementedException)
+                    {
+                        listBox1.Items.Add($"TAG: [{plugin.GetPlaceHolder().ToUpper()}] : {plugin.Main().Substring(0, 7)}");
+                    }
+                    //new MethodExecutor(plugin.GetPlaceHolder(), Globals.Methods, plugin.Main);
+                }
+
+            }
+
 
             Show();
         }
@@ -128,6 +169,16 @@ namespace VirtualMeetingMonitor
                         node.ForeColor = System.Drawing.Color.Black;
                 }
             }
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void PackageEditor_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

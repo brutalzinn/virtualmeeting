@@ -19,7 +19,18 @@ namespace VirtualMeetingMonitor
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            //Core.Editor.OpenPackage(new Package(Package.ArchivePath));
+            Core.Editor.OpenPackage(new Package(Package.ArchivePath));
+        }
+
+        private void runButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Core.Editor.OpenPackage(new Package(Package.ArchivePath));
+
         }
     }
 }

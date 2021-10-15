@@ -26,5 +26,10 @@ namespace VirtualMeetingMonitor
                 e.Handled = true;
             }
         }
+
+        private void promptSubmit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

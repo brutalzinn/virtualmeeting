@@ -8,6 +8,9 @@ using System.IO.Compression;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Dynamic;
+using McMaster.NETCore.Plugins;
+using VisualMeetingPluginInterface;
 
 
 //TO-DO: Remake this entire class
@@ -34,32 +37,87 @@ namespace VirtualMeetingMonitor
         /// <param name="path">Path to archive.</param>
         public Package(string path) => ArchivePath = path;
 
-        /// <summary>
-        /// Creates a package (zip archive) using supplied files.
-        /// </summary>
-        /// <param name="packageName">Name of file to create.</param>
-        /// <param name="filePaths">Array of paths to files to insert into archive.</param>
-        /// <returns>A generated package.</returns>
+     
+        public static void Undo(string packageName)
+        {
+            try
+            {
+                var archive = ZipFile.Open($@"{Core.PluginFolder}\{packageName}.zip", ZipArchiveMode.Read);
+                archive.ExtractToDirectory($@"{Core.PluginFolder}\{packageName}");
+                string pathInfo = $@"{Core.PluginFolder}\{packageName}\info.json";
+                if (!File.Exists(pathInfo))
+                {
+                    File.WriteAllText(pathInfo, GetPackageInfo($@"{Core.PluginFolder}\{packageName}"));
+                }
+                archive.Dispose();
+                File.Delete($@"{Core.PluginFolder}\{packageName}.zip");
+                Core.WriteLine($@"Package {packageName}.zip extracted!");
+            }
+            catch (Exception e)
+            {
+                Core.WriteLine(e.Message);
+            }
+        }
+        public static Package CreateWithoutZip(string packageName)
+        {
+            return new Package($@"plugins\{packageName}");
+
+        }
+        public static string GetPackageInfo(string ArchivePath)
+        {
+            List<PluginLoader> loaders = new List<PluginLoader>();
+            string json = "";
+            var dirName = Path.GetFileName(ArchivePath);
+            var pluginDll = Path.Combine(ArchivePath, dirName + ".dll");
+            if (File.Exists(pluginDll))
+            {
+                var loader = PluginLoader.CreateFromAssemblyFile(
+                    pluginDll,
+                    sharedTypes: new[] { typeof(IPlugin) });
+                loaders.Add(loader);
+            }
+
+            foreach (var loader in loaders)
+            {
+                foreach (var pluginType in loader
+                    .LoadDefaultAssembly()
+                    .GetTypes()
+                    .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsAbstract))
+                {
+                    // This assumes the implementation of IPlugin has a parameterless constructor
+                    var plugin = Activator.CreateInstance(pluginType) as IPlugin;
+                    json = JsonConvert.SerializeObject(new
+                    {
+                        Name = plugin.GetName(),
+                        Description = plugin.Description(),
+                        Authors = plugin.Authors(),
+                        Contact = plugin.Contact()
+                    }, Formatting.Indented);
+
+
+                    //new MethodExecutor(plugin.GetPlaceHolder(), Globals.Methods, plugin.Main);
+                }
+            }
+            return json;
+        }
         public static Package Create(string packageName, string[] filePaths)
         {
             packageName = packageName.ToLower();
-
             try
             {
-                var archive = ZipFile.Open($@"plugins\{packageName}.zip", ZipArchiveMode.Create);
+                var archive = ZipFile.Open($@"{Core.PluginFolder}\{packageName}.zip", ZipArchiveMode.Create);
 
                 filePaths.ToList().ForEach(x => archive.CreateEntryFromFile(x, Path.GetFileName(x)));
 
                 archive.Dispose();
 
-                //Core.WriteLine(new ColorContainer(0, 131, 63), $@"Package {packageName}.zip created!");
+                Core.WriteLine($@"Package {packageName}.zip created!");
             }
             catch( Exception e )
             {
-              //  Core.WriteLine(new ColorContainer(177, 31, 41), e.Message);
+                Core.WriteLine(e.Message);
             }
-
-            return new Package($@"plugins\{packageName}.zip"); ;
+            return new Package($@"plugins\{packageName}.zip");
         }
 
         /// <summary>
@@ -83,6 +141,12 @@ namespace VirtualMeetingMonitor
             }
             else
             {
+                string path = $@"{ArchivePath}\info.json";
+                if (!File.Exists(path))
+                {
+                    File.WriteAllText(path, GetPackageInfo(ArchivePath));
+                }
+
                 contents = File.ReadAllText($@"{ArchivePath}\info.json");
             }
 

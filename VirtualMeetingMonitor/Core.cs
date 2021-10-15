@@ -83,15 +83,7 @@ namespace VirtualMeetingMonitor
             /// </summary>
             public static void Initialize()
             {
-            //   var Info = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText("info.json"));
-            //Version = Info["Version"];
-
-            // Fonts.AddFontFile($@"{Application.StartupPath}\Data\Fonts\OfficeCodePro-Medium.ttf");
-
-
-
-            var Info = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText("info.json"));
-            Version = Info["Version"];
+            Version = Application.ProductVersion;
 
 
             InterfaceThread = new Thread(() =>
@@ -114,10 +106,11 @@ namespace VirtualMeetingMonitor
             /// Process console input sent while script was running.
             /// </summary>
             
-
+     
             /// <summary>
             /// Close user interface and the program.
             /// </summary>
+            
             public static void Close()
             {
                 MainWindow?.Invoke(new Action(() =>

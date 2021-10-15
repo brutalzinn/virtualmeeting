@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,6 +10,8 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VirtualMeetingMonitor.formater;
+
 namespace VirtualMeetingMonitor
 {
     /// <summary>
@@ -20,8 +23,9 @@ namespace VirtualMeetingMonitor
         public Window()
         {
             InitializeComponent();
+            Text = Globals.getAppName("PLUGIN MANAGER");
 
-            InfoVersion.Text = "1.0.0.0";
+            //InfoVersion.Text = Application.ProductVersion;
 
           //  ConsoleOutput.Font = new System.Drawing.Font(Core.Fonts.Families[0], 10f);
 
@@ -41,10 +45,7 @@ namespace VirtualMeetingMonitor
 
                 InstalledPackagesList.Controls.Add(p);
 
-                p.RunButton.Click += (o, e) =>
-                {
-                  //  x.Run(true);
-                };
+               
             });
 
      //       var hoverColor = new ColorContainer(0, 0, 0);
@@ -79,10 +80,11 @@ namespace VirtualMeetingMonitor
 
         private void consoleRun_Click(object sender, EventArgs e)
         {
-            //if (String.IsNullOrEmpty(ConsoleInput.Text))
-            //    return;
+            if (String.IsNullOrEmpty(ConsoleInput.Text))
+                return;
 
             //Scripter.InjectLine(ConsoleInput.Text);
+            Core.WriteLine($@"{Formatter.Format(ConsoleInput.Text)}");
 
 
             //commands.Insert(0, ConsoleInput.Text);
@@ -203,10 +205,7 @@ namespace VirtualMeetingMonitor
 
                                 InstalledPackagesList.Controls.Add(i);
 
-                                i.RunButton.Click += (ob, ed) =>
-                                {
-                                  //  x.Run(true);
-                                };
+                               
                             });
                         };
                     }
@@ -222,7 +221,7 @@ namespace VirtualMeetingMonitor
             {
                 PackageFolderSelectDialog.ShowDialog();
 
-                Thread.CurrentThread.Join() ;
+                Thread.CurrentThread.Interrupt();
             });
 
             fileDialogThread.TrySetApartmentState(ApartmentState.STA);
@@ -231,13 +230,27 @@ namespace VirtualMeetingMonitor
 
             if (!String.IsNullOrEmpty(PackageFolderSelectDialog.SelectedPath))
             {
+                string pathJson = @$"{PackageFolderSelectDialog.SelectedPath}\info.json";
                 PackageCreateFolder.Enabled = true;
+
+                if (!File.Exists(pathJson))
+                {
+                    return;
+                }
+                string json = File.ReadAllText(@$"{PackageFolderSelectDialog.SelectedPath}\info.json");
+                dynamic info = JsonConvert.DeserializeObject(json);
+
+                PackageName.Text = info.Name;
+                PackageAuthors.Text = info.Authors;
+                PackageDescription.Text = info.Description;
+                  
+
             }
         }
 
         private void packageCreateFolder_Click(object sender, EventArgs e)
         {
-            List<TextBox> fields = new List<TextBox>() { PackageName, PackageAuthors, PackageDescription, PackageEntryPoint };
+            List<TextBox> fields = new List<TextBox>() { PackageName, PackageAuthors, PackageDescription };
 
             if (fields.All(x => !String.IsNullOrEmpty(x.Text)))
             {
@@ -246,11 +259,10 @@ namespace VirtualMeetingMonitor
                     ["Name"] = PackageName.Text,
                     ["Authors"] = PackageAuthors.Text,
                     ["Description"] = PackageDescription.Text,
-                    ["Contact"] = "",
-                    ["EntryPoint"] = PackageEntryPoint.Text
+                    ["Contact"] = ""
                 };
 
-                Workshop.CreatePackage(PackageFolderSelectDialog.SelectedPath, info);
+               Workshop.CreatePackage(PackageFolderSelectDialog.SelectedPath, info);
 
                 InstalledPackagesList.Controls.Clear();
 
@@ -268,10 +280,6 @@ namespace VirtualMeetingMonitor
 
                     InstalledPackagesList.Controls.Add(i);
 
-                    i.RunButton.Click += (ob, ed) =>
-                    {
-                     //   x.Run(true);
-                    };
                 });
             }
            
@@ -280,7 +288,8 @@ namespace VirtualMeetingMonitor
 
         private void openPackagesFolderButton_Click(object sender, EventArgs e)
         {
-            Process.Start($@"{Path.GetDirectoryName(Core.PluginFolder)}");
+            Process.Start($@"{Application.ExecutablePath}\plugins");
+
         }
 
         private void checkUpdate_Click(object sender, EventArgs e)
@@ -299,7 +308,7 @@ namespace VirtualMeetingMonitor
                 if (latestVersion > currentVersion)
                 {
                     //Core.WriteLine(new ColorContainer(89, 73, 163), $"New version is available: {tokens.First()["tag_name"]}.\nClick 'Update' to download and install the update.\nData folder will be backed up before the process.");
-                    downloadUpdate.Enabled = true;
+                    //downloadUpdate.Enabled = true;
                 }
                 
                   //  Core.WriteLine(new ColorContainer(89, 73, 163), "You have the latest version. No update is neccessary.");
@@ -312,6 +321,11 @@ namespace VirtualMeetingMonitor
         }
 
         private void Window_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void optionsPanel_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
