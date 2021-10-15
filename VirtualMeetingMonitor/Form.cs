@@ -878,7 +878,7 @@ namespace VirtualMeetingMonitor
         private void Dev_ButtonTeste_Click(object sender, EventArgs e)
         {
             Debug.WriteLine(Formatter.Format("Esse é um exemplo de plugin [PLUGINEXAMPLE]"));
-
+            Core.Initialize();
             // Create an instance of plugin types
             
         }

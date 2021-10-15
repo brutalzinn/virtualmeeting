@@ -88,6 +88,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Remove="Packages\**" />
+    <EmbeddedResource Remove="Packages\**" />
+    <None Remove="Packages\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="info.json" />
     <None Remove="plugins\readme.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +118,11 @@
     <Reference Include="AutoUpdater.NET">
       <HintPath>AutoUpdater.NET.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="info.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   
   <ItemGroup>
