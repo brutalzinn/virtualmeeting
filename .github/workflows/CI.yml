@@ -78,8 +78,14 @@ jobs:
         dotnet-version: 5.0.x
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v1.0.2        
-    
+      uses: microsoft/setup-msbuild@v1.0.2    
+      
+    - name: Setup Nuget.exe
+      uses: nuget/setup-nuget@v1
+      
+    - name: Restore nuget Package
+      run: nuget restore VirtualMeetingMonitor.sln  
+      
     - name: Navigate to Workspace
       run: cd $GITHUB_WORKSPACE
 
@@ -91,7 +97,7 @@ jobs:
       uses: battila7/get-version-action@v2
       
     - name: Build the Solution
-      run: msbuild VirtualMeetingMonitor.sln /t:Restore /p:platform="Any CPU" /p:configuration="Release" /p:Version="${{ steps.get_version.outputs.version-without-v }}" /p:DeleteExistingFiles=True /p:OutputPath="../VirtualMeetingMonitorRelease"
+      run: msbuild VirtualMeetingMonitor.sln /p:configuration="Release" /p:Version="${{ steps.get_version.outputs.version-without-v }}" /p:DeleteExistingFiles=True /p:OutputPath="../VirtualMeetingMonitorRelease"
         
     - name: Extract some files
       run: 7z a VirtualMeetingMonitorRelease.zip ./VirtualMeetingMonitorRelease

@@ -1,0 +1,44 @@
+{
+  "profiles": [
+    {
+      "Name": "default",
+      "GoogleKey": "",
+      "SheetId": "",
+      "DevMode": false,
+      "UniqueId": "1640ed39d5b948e28fffe6cd8ff37a22",
+      "CustomDays": {
+        "Days": [],
+        "NoDaysMessage": "",
+        "DaysMessage": "",
+        "Enabled": true
+      },
+      "CustomDataGrid": {
+        "List": {},
+        "Enabled": true
+      },
+      "CustomTime": "",
+      "Timeout": 0,
+      "Language": "en"
+    }
+  ],
+  "CurrentProfile": {
+    "Name": "default",
+    "GoogleKey": "",
+    "SheetId": "",
+    "DevMode": false,
+    "UniqueId": "1640ed39d5b948e28fffe6cd8ff37a22",
+    "CustomDays": {
+      "Days": [],
+      "NoDaysMessage": "",
+      "DaysMessage": "",
+      "Enabled": true
+    },
+    "CustomDataGrid": {
+      "List": {},
+      "Enabled": true
+    },
+    "CustomTime": "",
+    "Timeout": 0,
+    "Language": "en"
+  }
+}

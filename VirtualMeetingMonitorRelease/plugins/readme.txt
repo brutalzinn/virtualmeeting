@@ -1,0 +1,1 @@
+﻿This folder will be used by install plugins
