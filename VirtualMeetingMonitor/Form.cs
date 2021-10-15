@@ -718,15 +718,10 @@ namespace VirtualMeetingMonitor
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
-
-            // the int will be boxed
             if (!IsSleep)
             {
                 CreateAndShowPrompt(Globals.getKey("notification_popup_text"));
-            }
-            
-         
-            
+            }  
         }
         private void setDevModeGroup(bool mode)
         {
