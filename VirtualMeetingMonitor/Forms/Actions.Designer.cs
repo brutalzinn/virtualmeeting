@@ -30,88 +30,120 @@ namespace VirtualMeetingMonitor.Forms
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tab_test = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btn_ok = new System.Windows.Forms.Button();
             this.customDataGrid1 = new VirtualMeetingMonitor.ActionsControl.CustomDataGrid();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.customDayList = new VirtualMeetingMonitor.ActionsControl.CustomDay();
+            this.btn_ok = new System.Windows.Forms.Button();
+            this.customTagsTest1 = new VirtualMeetingMonitor.ActionsControl.CustomTagsTest();
             this.tabControl1.SuspendLayout();
+            this.tab_test.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
+            this.tabControl1.Controls.Add(this.tab_test);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Location = new System.Drawing.Point(14, 14);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(776, 323);
+            this.tabControl1.Size = new System.Drawing.Size(905, 373);
             this.tabControl1.TabIndex = 0;
+            // 
+            // tab_test
+            // 
+            this.tab_test.Controls.Add(this.customTagsTest1);
+            this.tab_test.Location = new System.Drawing.Point(4, 24);
+            this.tab_test.Name = "tab_test";
+            this.tab_test.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_test.Size = new System.Drawing.Size(897, 345);
+            this.tab_test.TabIndex = 2;
+            this.tab_test.Text = "Test";
+            this.tab_test.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.customDataGrid1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(768, 297);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tabPage2.Size = new System.Drawing.Size(897, 345);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Cells";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // customDataGrid1
+            // 
+            this.customDataGrid1.ColumnCount = 0;
+            this.customDataGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customDataGrid1.Location = new System.Drawing.Point(4, 3);
+            this.customDataGrid1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.customDataGrid1.Name = "customDataGrid1";
+            this.customDataGrid1.Size = new System.Drawing.Size(889, 339);
+            this.customDataGrid1.TabIndex = 0;
+            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.customDayList);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(768, 297);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tabPage1.Size = new System.Drawing.Size(897, 345);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Custom Days";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // btn_ok
-            // 
-            this.btn_ok.Location = new System.Drawing.Point(670, 341);
-            this.btn_ok.Name = "btn_ok";
-            this.btn_ok.Size = new System.Drawing.Size(114, 46);
-            this.btn_ok.TabIndex = 1;
-            this.btn_ok.Text = "OK";
-            this.btn_ok.UseVisualStyleBackColor = true;
-            this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
-            // 
-            // customDataGrid1
-            // 
-            this.customDataGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customDataGrid1.Location = new System.Drawing.Point(3, 3);
-            this.customDataGrid1.Name = "customDataGrid1";
-            this.customDataGrid1.Size = new System.Drawing.Size(762, 291);
-            this.customDataGrid1.TabIndex = 0;
             // 
             // customDayList
             // 
             this.customDayList.DaysMessage = null;
             this.customDayList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customDayList.Location = new System.Drawing.Point(3, 3);
+            this.customDayList.Location = new System.Drawing.Point(4, 3);
+            this.customDayList.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.customDayList.Name = "customDayList";
             this.customDayList.NoDaysMessage = null;
-            this.customDayList.Size = new System.Drawing.Size(762, 291);
+            this.customDayList.Size = new System.Drawing.Size(889, 339);
             this.customDayList.TabIndex = 0;
             this.customDayList.Load += new System.EventHandler(this.customDayList_Load);
             // 
+            // btn_ok
+            // 
+            this.btn_ok.Location = new System.Drawing.Point(782, 393);
+            this.btn_ok.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btn_ok.Name = "btn_ok";
+            this.btn_ok.Size = new System.Drawing.Size(133, 53);
+            this.btn_ok.TabIndex = 1;
+            this.btn_ok.Text = "OK";
+            this.btn_ok.UseVisualStyleBackColor = true;
+            this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
+            // 
+            // customTagsTest1
+            // 
+            this.customTagsTest1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customTagsTest1.Location = new System.Drawing.Point(3, 3);
+            this.customTagsTest1.Name = "customTagsTest1";
+            this.customTagsTest1.Size = new System.Drawing.Size(891, 339);
+            this.customTagsTest1.TabIndex = 0;
+            // 
             // Actions
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 399);
+            this.ClientSize = new System.Drawing.Size(933, 460);
             this.Controls.Add(this.btn_ok);
             this.Controls.Add(this.tabControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Actions";
             this.Text = "Actions";
             this.Load += new System.EventHandler(this.Actions_Load);
             this.tabControl1.ResumeLayout(false);
+            this.tab_test.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -126,5 +158,7 @@ namespace VirtualMeetingMonitor.Forms
         private ActionsControl.CustomDay customDayList;
         private System.Windows.Forms.TabPage tabPage2;
         private ActionsControl.CustomDataGrid customDataGrid1;
+        private System.Windows.Forms.TabPage tab_test;
+        private ActionsControl.CustomTagsTest customTagsTest1;
     }
 }

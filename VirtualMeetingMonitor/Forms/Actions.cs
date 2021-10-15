@@ -104,6 +104,11 @@ namespace VirtualMeetingMonitor.Forms
         }
         private void Actions_Load(object sender, EventArgs e)
         {
+            if (!CurrentProfile.DevMode)
+            {
+                tabControl1.TabPages.Remove(tab_test);
+            }
+           
             LoadCustomDataGrid();
             LoadCustomDays();
         }

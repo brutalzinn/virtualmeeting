@@ -36,8 +36,14 @@ namespace VirtualMeetingMonitor.formater
                 Console.WriteLine($"{item.Key} - {item.Value}");
             }
 
+            try
+            {
+                result = Regex.Replace(format, pattern, match => replacements.ContainsKey(match.Value.Substring(1, match.Value.Length - 2).ToUpper()) ? replacements[match.Value.Substring(1, match.Value.Length - 2)]?.ToString() : "ERROR");
 
-            result = Regex.Replace(format, pattern, match => replacements.ContainsKey(match.Value.Substring(1, match.Value.Length - 2).ToUpper()) ? replacements[match.Value.Substring(1, match.Value.Length - 2)]?.ToString() : "ERROR");
+            }catch(Exception e)
+            {
+
+            }
 
 
             return result;
