@@ -3,6 +3,7 @@ using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
 using Google.Apis.Sheets.v4.Data;
+using McMaster.NETCore.Plugins;
 using Microsoft.Toolkit.Uwp.Notifications;
 using Newtonsoft.Json;
 using System;
@@ -11,6 +12,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -20,6 +22,7 @@ using VirtualMeetingMonitor.formater;
 using VirtualMeetingMonitor.Forms;
 using VirtualMeetingMonitor.profile;
 using VirtualMeetingMonitor.Utils;
+using VisualMeetingPluginInterface;
 using Windows.ApplicationModel.Activation;
 using Windows.Data.Xml.Dom;
 using Windows.Foundation.Collections;
@@ -820,39 +823,39 @@ namespace VirtualMeetingMonitor
         }
         private void Dev_ButtonTeste_Click(object sender, EventArgs e)
         {
-            //var pattern = @"\[(.*?)\]";
-            var query = "#teste hoje é [TODAY] [TESTE]";
-            Console.WriteLine(Formatter.Format(query));
-            //var matches = Regex.Matches(query, pattern);
+            var loaders = new List<PluginLoader>();
 
-            //foreach (Match m in matches)
-            //{
-            //    Console.WriteLine(m.Groups[1]);
-            //}
+            // create plugin loaders
+            var pluginsDir = Path.Combine(AppContext.BaseDirectory, "plugins");
+            foreach (var dir in Directory.GetDirectories(pluginsDir))
+            {
+                var dirName = Path.GetFileName(dir);
+                var pluginDll = Path.Combine(dir, dirName + ".dll");
+                if (File.Exists(pluginDll))
+                {
+                    var loader = PluginLoader.CreateFromAssemblyFile(
+                        pluginDll,
+                        sharedTypes: new[] { typeof(IPlugin) });
+                    loaders.Add(loader);
+                }
+            }
 
-      
-            //string text = "H1-receptor antagonist ##Username## [TESTE] HOJE é [TODAY]";
-      
-            //Console.WriteLine(Globals.Formater.Format(text));
-            //const string teste = "Testando um texto personalizado {0}";
+            // Create an instance of plugin types
+            foreach (var loader in loaders)
+            {
+                foreach (var pluginType in loader
+                    .LoadDefaultAssembly()
+                    .GetTypes()
+                    .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsAbstract))
+                {
+                    // This assumes the implementation of IPlugin has a parameterless constructor
+                    var plugin = Activator.CreateInstance(pluginType) as IPlugin;
 
-            //Console.WriteLine(String.Format(new CustomerFormatter(), "Testando um texto personalizado {0:DATE}",""));
-            //Console.WriteLine(String.Format(new CustomerFormatter(), "Testando um texto personalizado {0:G}"));
-            //Console.WriteLine(String.Format(new CustomerFormatter(), "Testando um texto personalizado {0:S}"));
-            //Console.WriteLine(String.Format(new CustomerFormatter(), "Testando um texto personalizado {0:P}"));
-            //Profile _profile = new Profile("Teste","googlekey_example","google_sheet_id","12:00:00",0,"en");
-            //Profile _profilet = new Profile("Teste 2", "googlekey_example", "google_sheet_id", "12:00:00", 0, "pt");
-            //Console.WriteLine(_profilet.Name);
-            //Globals.profiles.Add(_profilet);
-            // Globals.profiles.Add(_profile);
+                    Console.WriteLine($"Created plugin instance '{plugin?.GetName()}'.");
+                }
 
-            //string output = JsonConvert.SerializeObject(Globals.profiles, Formatting.Indented);
-            //File.WriteAllText(Application.StartupPath+ @"\config.json", output);
-
-            //     Console.WriteLine(profiles);
-
+            }
         }
-
         private void Dev_Config_Click(object sender, EventArgs e)
         {
             Console.WriteLine("LANG TESTE");

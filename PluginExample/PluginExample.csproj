@@ -1,0 +1,19 @@
+﻿<Project DefaultTargets="Build" Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AppendTargetFrameworkToOutputPath >false</AppendTargetFrameworkToOutputPath >
+
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath></OutputPath>
+  </PropertyGroup>
+  <Target Name="CopyFilesTargetName" AfterTargets="Build">
+    <Copy SourceFiles="$(OutDir)\$(TargetFileName)" DestinationFolder="$(SolutionDir)\VirtualMeetingMonitor\bin\Debug\plugins" />
+  </Target>
+  <ItemGroup>
+    <ProjectReference Include="..\VisualMeetingPluginInterface\VirtualMeetingPluginInterface.csproj" />
+  </ItemGroup>
+ 
+</Project>
