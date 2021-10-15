@@ -97,7 +97,7 @@ jobs:
       uses: battila7/get-version-action@v2
       
     - name: Build the Solution
-      run: msbuild VirtualMeetingMonitor.sln /p:configuration="Release" /p:Version="${{ steps.get_version.outputs.version-without-v }}" /p:DeleteExistingFiles=True /p:OutputPath="../VirtualMeetingMonitorRelease"
+      run: msbuild VirtualMeetingMonitor.sln /p:configuration="Release" /p:Version=${{ steps.get_version.outputs.version-without-v }} /p:DeleteExistingFiles=True /p:OutputPath="../VirtualMeetingMonitorRelease"
         
     - name: Extract some files
       run: 7z a VirtualMeetingMonitorRelease.zip ./VirtualMeetingMonitorRelease
