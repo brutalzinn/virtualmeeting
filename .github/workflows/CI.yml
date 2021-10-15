@@ -99,7 +99,7 @@ jobs:
       run: msbuild VirtualMeetingMonitor.sln /p:configuration="Release" /p:Version=${{ steps.previoustag.outputs.tag }} /p:DeleteExistingFiles=True /p:OutputPath="../VirtualMeetingMonitorRelease"
         
     - name: Extract some files
-      run: 7z a VirtualMeetingMonitorRelease.zip ./VirtualMeetingMonitorRelease
+      run: 7z a VirtualMeetingMonitorRelease.zip ./VirtualMeetingMonitorRelease/*
 
     - name: Upload Release
       uses: "marvinpinto/action-automatic-releases@latest"

@@ -6,6 +6,7 @@ using Google.Apis.Sheets.v4.Data;
 using McMaster.NETCore.Plugins;
 using Microsoft.Toolkit.Uwp.Notifications;
 using Newtonsoft.Json;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -600,7 +601,15 @@ namespace VirtualMeetingMonitor
         }
         private void AutoUpdaterOnParseUpdateInfoEvent(ParseUpdateInfoEventArgs args)
         {
-
+            RestClient client = new RestClient("https://api.github.com/repos/brutalzinn/zoom-monitor-googlesheets/releases/latest");
+            var request = new RestRequest(Method.GET);
+            dynamic deserializedProduct = JsonConvert.DeserializeObject(client.Execute(request).Content);
+            args.UpdateInfo = new UpdateInfoEventArgs
+            {
+                CurrentVersion = deserializedProduct.tag_name,
+                DownloadURL = deserializedProduct.assets[0].browser_download_url,
+                ChangelogURL = "https://github.com/brutalzinn/zoom-monitor-googlesheets/releases/latest"
+            };
         }
             private void Form_Load(object sender, EventArgs e)
         {
