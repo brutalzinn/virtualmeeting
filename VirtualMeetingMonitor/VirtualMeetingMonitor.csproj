@@ -51,9 +51,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autoupdater.NET.Official">
-      <Version>1.7.0</Version>
-    </PackageReference>
     <PackageReference Include="Google.Apis.Sheets.v4">
       <Version>1.55.0.2371</Version>
     </PackageReference>
@@ -105,16 +102,17 @@
   <PropertyGroup>
     <Version Condition="'$(Version)' == ''">1.0.0.0</Version>
   </PropertyGroup>
-  <Target Name="BeforeBuild" >
+  <Target Name="BeforeBuild">
     <Message Text="Updating AssemblyInfo to Version $(VersionNumber)"></Message>
     <Message Text="Writing to AssemblyInfo files in $(SolutionRoot)"></Message>
-    <AssemblyInfo AssemblyInfoFiles="@(AssemblyInfoFiles)"
-                  AssemblyCopyright="$(AssemblyCopyright)"
-                  AssemblyVersion="$(VersionNumber)"
-                  AssemblyFileVersion="$(VersionNumber)"
-                  >
+    <AssemblyInfo AssemblyInfoFiles="@(AssemblyInfoFiles)" AssemblyCopyright="$(AssemblyCopyright)" AssemblyVersion="$(VersionNumber)" AssemblyFileVersion="$(VersionNumber)">
     </AssemblyInfo>
   </Target>
+  <ItemGroup>
+    <Reference Include="AutoUpdater.NET">
+      <HintPath>AutoUpdater.NET.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   
   <ItemGroup>
     

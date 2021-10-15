@@ -591,13 +591,18 @@ namespace VirtualMeetingMonitor
             AutoUpdater.LetUserSelectRemindLater = true;
             string jsonPath = Path.Combine(Environment.CurrentDirectory, "settings.json");
             AutoUpdater.PersistenceProvider = new JsonFilePersistenceProvider(jsonPath);
-            AutoUpdater.Start(Globals.UpdateUrl);
+            AutoUpdater.ParseUpdateInfoEvent += AutoUpdaterOnParseUpdateInfoEvent;
+            AutoUpdater.Start();
             string status = onAirSign.RunTest() ? "Connected" : "Offline";
             WriteTextSafe(lbl_arduino_status, $"Arduino: {status}");
 
 
         }
-        private void Form_Load(object sender, EventArgs e)
+        private void AutoUpdaterOnParseUpdateInfoEvent(ParseUpdateInfoEventArgs args)
+        {
+
+        }
+            private void Form_Load(object sender, EventArgs e)
         {
             internetWorker.RunWorkerAsync();
             lbl_version.Text = $"Version: {Application.ProductVersion}";
