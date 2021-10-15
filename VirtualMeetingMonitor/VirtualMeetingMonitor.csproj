@@ -46,6 +46,9 @@
   <ItemGroup>
     <Content Include="config.ico" />
     <Content Include="Icon.ico" />
+    <Content Include="plugins\readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -87,6 +90,9 @@
     <Content Include="language\*.*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="plugins\readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
