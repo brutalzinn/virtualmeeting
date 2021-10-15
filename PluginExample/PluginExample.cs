@@ -1,5 +1,6 @@
 ﻿using System;
 using VisualMeetingPluginInterface;
+using RestSharp;
 
 namespace PluginExample
 {
@@ -13,7 +14,17 @@ namespace PluginExample
 
         public string Main()
         {
-            return "This is just a example of a plugin.";
+            return ApiCall();
+        }
+        private string ApiCall()
+        {
+            RestClient client = new RestClient("https://baconipsum.com/api/?callback=?");
+
+      
+            var request = new RestRequest(Method.GET);
+
+           
+            return client.Execute(request).Content;
         }
 
         

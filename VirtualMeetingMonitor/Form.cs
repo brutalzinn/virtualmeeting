@@ -53,7 +53,7 @@ namespace VirtualMeetingMonitor
         private static string sheet = "";
         private int timeout = Properties.Settings.Default.timeout;
         private bool IsSleep = false;
-
+        private List<PluginLoader> loaders = new List<PluginLoader>();
         static SheetsService service;
         public enum Days
         {
@@ -80,21 +80,15 @@ namespace VirtualMeetingMonitor
             notifyIcon.ContextMenuStrip = contextMenuStrip;
 
             timer.Interval = 1000;
-            timer.Enabled = false;
+            timer.Enabled = true;
             timer.Tick += OnTimerEvent;
 
             network.OutsideUDPTafficeReceived += Network_OutsideUDPTafficeReceived;
-           // network.StartListening();
-                       
-           // meeting.OnMeetingStarted += Meeting_OnMeetingStarted;
-           // meeting.OnMeetingEnded += Meeting_OnMeetingEnded;
+            network.StartListening();
 
+            meeting.OnMeetingStarted += Meeting_OnMeetingStarted;
+            meeting.OnMeetingEnded += Meeting_OnMeetingEnded;
             this.Size = new Size(382, 200);
-
-           // this.Size = new Size(382, 354);
-
-            // devGroupBox.Location = new Point(7, 12);
-
             // init the UI text
             meetingTxt.Text = "";
             startedTxt.Text = "";
@@ -105,6 +99,7 @@ namespace VirtualMeetingMonitor
             TotalTxt.Text = "";
             BackColor = System.Drawing.Color.DarkGray;
             LoadProfiles();
+            LoadPlugins();
             LoadFormater();
             LanguageLoad();
 
@@ -589,15 +584,24 @@ namespace VirtualMeetingMonitor
 
 
         }
+        private void internetWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            WriteTextSafe(lbl_arduino_status, $"Arduino: Checking..");
 
+            AutoUpdater.LetUserSelectRemindLater = true;
+            string jsonPath = Path.Combine(Environment.CurrentDirectory, "settings.json");
+            AutoUpdater.PersistenceProvider = new JsonFilePersistenceProvider(jsonPath);
+            AutoUpdater.Start(Globals.UpdateUrl);
+            string status = onAirSign.RunTest() ? "Connected" : "Offline";
+            WriteTextSafe(lbl_arduino_status, $"Arduino: {status}");
+
+
+        }
         private void Form_Load(object sender, EventArgs e)
         {
+            internetWorker.RunWorkerAsync();
+            lbl_version.Text = $"Version: {Application.ProductVersion}";
             CheckNotification();
-            //AutoUpdater.LetUserSelectRemindLater = true;
-            //string jsonPath = Path.Combine(Environment.CurrentDirectory, "settings.json");
-            //AutoUpdater.PersistenceProvider = new JsonFilePersistenceProvider(jsonPath);
-            //AutoUpdater.Start("http://robertocpaes.dev/update.xml");
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -736,15 +740,18 @@ namespace VirtualMeetingMonitor
             if (!DevMode)
             {
                 setDevModeGroup(true);
-                this.Size = new Size(382, 354);
+                this.Size = new Size(445, 413);
+
+            
             }
             else
             {
                 setDevModeGroup(false);
-                this.Size = new Size(382, 230);
+                this.Size = new Size(382, 200);
+
 
             }
-            
+
         }
 
         private void Dev_ClearConfigs_Click(object sender, EventArgs e)
@@ -814,18 +821,28 @@ namespace VirtualMeetingMonitor
             MethodExecutor _methodExecutorA = new MethodExecutor("TESTE", Globals.Methods, teste);
             MethodExecutor _methodExecutorB = new MethodExecutor("TODAY", Globals.Methods, date);
             MethodExecutor _methodExecutorC = new MethodExecutor("CUSTOMDAY", Globals.Methods, customday);
+            foreach (var loader in loaders)
+            {
+                foreach (var pluginType in loader
+                    .LoadDefaultAssembly()
+                    .GetTypes()
+                    .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsAbstract))
+                {
+                    // This assumes the implementation of IPlugin has a parameterless constructor
+                    var plugin = Activator.CreateInstance(pluginType) as IPlugin;
 
-            //foreach(MethodExecutor teste in Globals.Methods)
-            //{
-            //    Console.WriteLine($"TESTE : {teste.Identificator}|{teste.Method()}");
-            //}
+                    Debug.WriteLine($"Created plugin instance '{plugin?.GetName()}'.");
+                    new MethodExecutor(plugin.GetPlaceHolder(), Globals.Methods, plugin.Main);
+                }
+
+            }
+
+          
             Globals.CustomFormater = new CustomerFormatter(Globals.Methods);
+            lbl_tags_count.Text = $"Tags: {Globals.Methods.Count} loaded";
         }
-        private void Dev_ButtonTeste_Click(object sender, EventArgs e)
+        private void LoadPlugins()
         {
-            var loaders = new List<PluginLoader>();
-
-            // create plugin loaders
             var pluginsDir = Path.Combine(AppContext.BaseDirectory, "plugins");
             foreach (var dir in Directory.GetDirectories(pluginsDir))
             {
@@ -839,22 +856,14 @@ namespace VirtualMeetingMonitor
                     loaders.Add(loader);
                 }
             }
+            lbl_plugin_count.Text = $"Plugins: {loaders.Count} loaded";
+        }
+        private void Dev_ButtonTeste_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine(Formatter.Format("Esse é um exemplo de plugin [PLUGINEXAMPLE]"));
 
             // Create an instance of plugin types
-            foreach (var loader in loaders)
-            {
-                foreach (var pluginType in loader
-                    .LoadDefaultAssembly()
-                    .GetTypes()
-                    .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsAbstract))
-                {
-                    // This assumes the implementation of IPlugin has a parameterless constructor
-                    var plugin = Activator.CreateInstance(pluginType) as IPlugin;
-
-                    Console.WriteLine($"Created plugin instance '{plugin?.GetName()}'.");
-                }
-
-            }
+            
         }
         private void Dev_Config_Click(object sender, EventArgs e)
         {
@@ -913,5 +922,7 @@ namespace VirtualMeetingMonitor
         {
            
         }
+
+      
     }
 }

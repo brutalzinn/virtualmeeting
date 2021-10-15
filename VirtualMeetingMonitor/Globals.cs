@@ -18,6 +18,7 @@ namespace VirtualMeetingMonitor
         public static ProfileUtils ProfileUtil = new ProfileUtils();
         public static Form form { get; set; }
 
+        public static string UpdateUrl = "http://robertocpaes.dev/update.xml";
         public static List<MethodExecutor> Methods = new List<MethodExecutor>();
 
         public static CustomerFormatter CustomFormater { get; set; }

@@ -62,6 +62,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.Dev_LabelMode = new System.Windows.Forms.Label();
             this.devGroupBox = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbl_version = new System.Windows.Forms.Label();
+            this.lbl_arduino_status = new System.Windows.Forms.Label();
+            this.lbl_tags_count = new System.Windows.Forms.Label();
+            this.lbl_plugin_count = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.Dev_TestGoogle = new System.Windows.Forms.Button();
             this.Dev_Config = new System.Windows.Forms.Button();
@@ -70,8 +75,10 @@
             this.Dev_ClearConfigs = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label_outbound = new System.Windows.Forms.Label();
+            this.internetWorker = new System.ComponentModel.BackgroundWorker();
             this.contextMenuStrip.SuspendLayout();
             this.devGroupBox.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon
@@ -247,7 +254,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_udp_packts.AutoSize = true;
             this.label_udp_packts.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label_udp_packts.Location = new System.Drawing.Point(352, 9);
+            this.label_udp_packts.Location = new System.Drawing.Point(302, 9);
             this.label_udp_packts.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_udp_packts.Name = "label_udp_packts";
             this.label_udp_packts.Size = new System.Drawing.Size(80, 16);
@@ -260,7 +267,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_inbound.AutoSize = true;
             this.label_inbound.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label_inbound.Location = new System.Drawing.Point(368, 44);
+            this.label_inbound.Location = new System.Drawing.Point(318, 44);
             this.label_inbound.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_inbound.Name = "label_inbound";
             this.label_inbound.Size = new System.Drawing.Size(22, 16);
@@ -274,7 +281,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_total.AutoSize = true;
             this.label_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label_total.Location = new System.Drawing.Point(368, 113);
+            this.label_total.Location = new System.Drawing.Point(318, 113);
             this.label_total.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_total.Name = "label_total";
             this.label_total.Size = new System.Drawing.Size(22, 16);
@@ -327,7 +334,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.InboundTxt.AutoSize = true;
             this.InboundTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.InboundTxt.Location = new System.Drawing.Point(444, 47);
+            this.InboundTxt.Location = new System.Drawing.Point(394, 47);
             this.InboundTxt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.InboundTxt.Name = "InboundTxt";
             this.InboundTxt.Size = new System.Drawing.Size(28, 13);
@@ -340,7 +347,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.OutboundTxt.AutoSize = true;
             this.OutboundTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.OutboundTxt.Location = new System.Drawing.Point(444, 81);
+            this.OutboundTxt.Location = new System.Drawing.Point(394, 81);
             this.OutboundTxt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.OutboundTxt.Name = "OutboundTxt";
             this.OutboundTxt.Size = new System.Drawing.Size(28, 13);
@@ -353,7 +360,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TotalTxt.AutoSize = true;
             this.TotalTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.TotalTxt.Location = new System.Drawing.Point(444, 115);
+            this.TotalTxt.Location = new System.Drawing.Point(394, 115);
             this.TotalTxt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TotalTxt.Name = "TotalTxt";
             this.TotalTxt.Size = new System.Drawing.Size(28, 13);
@@ -379,10 +386,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(133, 21);
+            this.button1.Location = new System.Drawing.Point(79, 25);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(76, 45);
+            this.button1.Size = new System.Drawing.Size(63, 45);
             this.button1.TabIndex = 16;
             this.button1.Text = "Test notify";
             this.button1.UseVisualStyleBackColor = true;
@@ -390,10 +397,9 @@
             // 
             // Dev_LabelMode
             // 
-            this.Dev_LabelMode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Dev_LabelMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Dev_LabelMode.AutoSize = true;
-            this.Dev_LabelMode.Location = new System.Drawing.Point(340, 359);
+            this.Dev_LabelMode.Location = new System.Drawing.Point(331, 350);
             this.Dev_LabelMode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Dev_LabelMode.Name = "Dev_LabelMode";
             this.Dev_LabelMode.Size = new System.Drawing.Size(84, 15);
@@ -404,6 +410,7 @@
             // 
             this.devGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.devGroupBox.Controls.Add(this.groupBox1);
             this.devGroupBox.Controls.Add(this.button3);
             this.devGroupBox.Controls.Add(this.Dev_TestGoogle);
             this.devGroupBox.Controls.Add(this.Dev_Config);
@@ -417,18 +424,67 @@
             this.devGroupBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.devGroupBox.Name = "devGroupBox";
             this.devGroupBox.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.devGroupBox.Size = new System.Drawing.Size(457, 164);
+            this.devGroupBox.Size = new System.Drawing.Size(414, 164);
             this.devGroupBox.TabIndex = 18;
             this.devGroupBox.TabStop = false;
             this.devGroupBox.Text = "Developer mode";
             this.devGroupBox.Visible = false;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lbl_version);
+            this.groupBox1.Controls.Add(this.lbl_arduino_status);
+            this.groupBox1.Controls.Add(this.lbl_tags_count);
+            this.groupBox1.Controls.Add(this.lbl_plugin_count);
+            this.groupBox1.Location = new System.Drawing.Point(294, 21);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(113, 127);
+            this.groupBox1.TabIndex = 22;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Dev - Status";
+            // 
+            // lbl_version
+            // 
+            this.lbl_version.AutoSize = true;
+            this.lbl_version.Location = new System.Drawing.Point(7, 19);
+            this.lbl_version.Name = "lbl_version";
+            this.lbl_version.Size = new System.Drawing.Size(84, 15);
+            this.lbl_version.TabIndex = 3;
+            this.lbl_version.Text = "Version: 0.0.0.0";
+            // 
+            // lbl_arduino_status
+            // 
+            this.lbl_arduino_status.AutoSize = true;
+            this.lbl_arduino_status.Location = new System.Drawing.Point(6, 79);
+            this.lbl_arduino_status.Name = "lbl_arduino_status";
+            this.lbl_arduino_status.Size = new System.Drawing.Size(95, 15);
+            this.lbl_arduino_status.TabIndex = 2;
+            this.lbl_arduino_status.Text = "Arduino: {status}";
+            // 
+            // lbl_tags_count
+            // 
+            this.lbl_tags_count.AutoSize = true;
+            this.lbl_tags_count.Location = new System.Drawing.Point(7, 94);
+            this.lbl_tags_count.Name = "lbl_tags_count";
+            this.lbl_tags_count.Size = new System.Drawing.Size(89, 15);
+            this.lbl_tags_count.TabIndex = 1;
+            this.lbl_tags_count.Text = "Tags: {0} loaded";
+            // 
+            // lbl_plugin_count
+            // 
+            this.lbl_plugin_count.AutoSize = true;
+            this.lbl_plugin_count.Location = new System.Drawing.Point(7, 109);
+            this.lbl_plugin_count.Name = "lbl_plugin_count";
+            this.lbl_plugin_count.Size = new System.Drawing.Size(91, 15);
+            this.lbl_plugin_count.TabIndex = 0;
+            this.lbl_plugin_count.Text = "Plugins: {count}";
+            // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(61, 21);
+            this.button3.Location = new System.Drawing.Point(7, 25);
             this.button3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(65, 44);
+            this.button3.Size = new System.Drawing.Size(64, 44);
             this.button3.TabIndex = 21;
             this.button3.Text = "Actions";
             this.button3.UseVisualStyleBackColor = true;
@@ -436,7 +492,7 @@
             // 
             // Dev_TestGoogle
             // 
-            this.Dev_TestGoogle.Location = new System.Drawing.Point(61, 99);
+            this.Dev_TestGoogle.Location = new System.Drawing.Point(7, 103);
             this.Dev_TestGoogle.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Dev_TestGoogle.Name = "Dev_TestGoogle";
             this.Dev_TestGoogle.Size = new System.Drawing.Size(65, 45);
@@ -447,10 +503,10 @@
             // 
             // Dev_Config
             // 
-            this.Dev_Config.Location = new System.Drawing.Point(216, 99);
+            this.Dev_Config.Location = new System.Drawing.Point(150, 103);
             this.Dev_Config.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Dev_Config.Name = "Dev_Config";
-            this.Dev_Config.Size = new System.Drawing.Size(91, 46);
+            this.Dev_Config.Size = new System.Drawing.Size(68, 46);
             this.Dev_Config.TabIndex = 19;
             this.Dev_Config.Text = "TEST LANGUAGE";
             this.Dev_Config.UseVisualStyleBackColor = true;
@@ -458,10 +514,10 @@
             // 
             // Dev_helpButton
             // 
-            this.Dev_helpButton.Location = new System.Drawing.Point(310, 21);
+            this.Dev_helpButton.Location = new System.Drawing.Point(226, 24);
             this.Dev_helpButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Dev_helpButton.Name = "Dev_helpButton";
-            this.Dev_helpButton.Size = new System.Drawing.Size(76, 45);
+            this.Dev_helpButton.Size = new System.Drawing.Size(63, 45);
             this.Dev_helpButton.TabIndex = 19;
             this.Dev_helpButton.Text = "Test Help Dialog";
             this.Dev_helpButton.UseVisualStyleBackColor = true;
@@ -469,10 +525,10 @@
             // 
             // Dev_ButtonTeste
             // 
-            this.Dev_ButtonTeste.Location = new System.Drawing.Point(216, 21);
+            this.Dev_ButtonTeste.Location = new System.Drawing.Point(150, 25);
             this.Dev_ButtonTeste.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Dev_ButtonTeste.Name = "Dev_ButtonTeste";
-            this.Dev_ButtonTeste.Size = new System.Drawing.Size(88, 44);
+            this.Dev_ButtonTeste.Size = new System.Drawing.Size(68, 44);
             this.Dev_ButtonTeste.TabIndex = 19;
             this.Dev_ButtonTeste.Text = "TESTE";
             this.Dev_ButtonTeste.UseVisualStyleBackColor = true;
@@ -480,10 +536,10 @@
             // 
             // Dev_ClearConfigs
             // 
-            this.Dev_ClearConfigs.Location = new System.Drawing.Point(314, 100);
+            this.Dev_ClearConfigs.Location = new System.Drawing.Point(230, 103);
             this.Dev_ClearConfigs.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Dev_ClearConfigs.Name = "Dev_ClearConfigs";
-            this.Dev_ClearConfigs.Size = new System.Drawing.Size(72, 45);
+            this.Dev_ClearConfigs.Size = new System.Drawing.Size(59, 45);
             this.Dev_ClearConfigs.TabIndex = 18;
             this.Dev_ClearConfigs.Text = "Clear configs";
             this.Dev_ClearConfigs.UseVisualStyleBackColor = true;
@@ -491,10 +547,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(133, 100);
+            this.button2.Location = new System.Drawing.Point(79, 104);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(76, 45);
+            this.button2.Size = new System.Drawing.Size(63, 45);
             this.button2.TabIndex = 17;
             this.button2.Text = "Stop all";
             this.button2.UseVisualStyleBackColor = true;
@@ -505,7 +561,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_outbound.AutoSize = true;
             this.label_outbound.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label_outbound.Location = new System.Drawing.Point(368, 77);
+            this.label_outbound.Location = new System.Drawing.Point(318, 77);
             this.label_outbound.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_outbound.Name = "label_outbound";
             this.label_outbound.Size = new System.Drawing.Size(18, 16);
@@ -513,12 +569,16 @@
             this.label_outbound.Text = "--:";
             this.label_outbound.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // internetWorker
+            // 
+            this.internetWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.internetWorker_DoWork);
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(479, 374);
+            this.ClientSize = new System.Drawing.Size(429, 374);
             this.Controls.Add(this.label_outbound);
             this.Controls.Add(this.devGroupBox);
             this.Controls.Add(this.Dev_LabelMode);
@@ -548,6 +608,8 @@
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.contextMenuStrip.ResumeLayout(false);
             this.devGroupBox.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -595,6 +657,12 @@
         private System.Windows.Forms.ToolStripMenuItem notificationstatusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem enableSleepToolStripMenuItem;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lbl_plugin_count;
+        private System.Windows.Forms.Label lbl_tags_count;
+        private System.Windows.Forms.Label lbl_arduino_status;
+        private System.ComponentModel.BackgroundWorker internetWorker;
+        private System.Windows.Forms.Label lbl_version;
     }
 }
 
