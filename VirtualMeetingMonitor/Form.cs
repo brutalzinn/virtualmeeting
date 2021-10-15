@@ -654,13 +654,10 @@ namespace VirtualMeetingMonitor
                 },
                 Header = new ToastHeader("header", "VirtualMeetingMonitor - User manager", "header")
             };
-
             var doc = new XmlDocument();
             doc.LoadXml(toastContent.GetContent());
-
             var promptNotification = new ToastNotification(doc);
-            promptNotification.Activated += PromptNotificationOnActivated;
-         
+            promptNotification.Activated += PromptNotificationOnActivated;        
             ToastNotificationManagerCompat.CreateToastNotifier().Show(promptNotification);
         }
         private void PromptNotificationOnActivated(ToastNotification sender, object args)
