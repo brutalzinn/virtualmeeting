@@ -14,6 +14,9 @@ namespace VirtualMeetingMonitor
         public string GoogleKey { get; set; }
         public string SheetId { get; set; }
 
+        public bool DevMode { get; set; } = false;
+
+
         public string UniqueId { get; set; }
 
         public CustomDaysUtils CustomDays { get; set; }

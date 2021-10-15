@@ -601,6 +601,7 @@ namespace VirtualMeetingMonitor
         {
             internetWorker.RunWorkerAsync();
             lbl_version.Text = $"Version: {Application.ProductVersion}";
+            setDevModeGroup(Globals.ProfileUtil.CurrentProfile.DevMode);
             CheckNotification();
         }
 
@@ -734,22 +735,25 @@ namespace VirtualMeetingMonitor
             devGroupBox.Visible = mode;
             string devMode = mode ? "Dev" : "Normal";
             Dev_LabelMode.Text = $"Mode: {devMode}";
+            if (mode)
+            {
+                this.Size = new Size(445, 413);
+            }
+            else
+            {
+                this.Size = new Size(382, 200);
+
+            }
         }
         private void Form_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (!DevMode)
             {
                 setDevModeGroup(true);
-                this.Size = new Size(445, 413);
-
-            
             }
             else
             {
                 setDevModeGroup(false);
-                this.Size = new Size(382, 200);
-
-
             }
 
         }

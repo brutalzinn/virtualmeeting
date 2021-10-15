@@ -93,6 +93,7 @@ namespace VirtualMeetingMonitor
             Globals.ProfileUtil.CurrentProfile.GoogleKey = textbox_googleSheetsID.Text;
             Globals.ProfileUtil.CurrentProfile.SheetId = textbox_sheetname.Text;
             Globals.ProfileUtil.CurrentProfile.CustomTime = textBoxCustomTimer.Text;
+            Globals.ProfileUtil.CurrentProfile.DevMode = chk_devmode.Checked;
             Globals.ProfileUtil.CallUpdateProfile();
             string output = JsonConvert.SerializeObject(Globals.ProfileUtil, Formatting.Indented);
             File.WriteAllText(path, output);
@@ -131,6 +132,7 @@ namespace VirtualMeetingMonitor
            _profile.Timeout = Convert.ToInt32(textBox1.Text);
             _profile.CustomTime = textBoxCustomTimer.Text;
              _profile.SheetId = textbox_sheetname.Text;
+            _profile.DevMode = chk_devmode.Checked;
             if (comboBox1.SelectedItem != null)
             {
                 Language _lang = (Language)comboBox1.SelectedItem;
@@ -147,6 +149,7 @@ namespace VirtualMeetingMonitor
             textBox1.Text = _profile.Timeout.ToString();
             textBoxCustomTimer.Text = _profile.CustomTime ;
             textbox_sheetname.Text = _profile.SheetId ;
+            chk_devmode.Checked = _profile.DevMode;
            comboBox1.SelectedIndex = comboBox1.FindStringExact(Globals.languages.Find((lang) => lang.getFileName() == _profile.Language).ToString());
         }
         private void cbxProfile_SelectedIndexChanged(object sender, EventArgs e)
