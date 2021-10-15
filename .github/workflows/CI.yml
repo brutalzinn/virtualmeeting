@@ -86,11 +86,11 @@ jobs:
       run: mkdir VirtualMeetingMonitorRelease
         
     - name: Generate Version
-      id: version
+      id: get_version
       uses: battila7/get-version-action@v2
       
     - name: Build the Solution
-      run: msbuild VirtualMeetingMonitor.sln /t:Restore /p:platform="Any CPU" /p:configuration="Release" /p:Version=${{steps.version.outputs.version-without-v}} /p:DeleteExistingFiles=True /p:OutputPath="../VirtualMeetingMonitorRelease"
+      run: msbuild VirtualMeetingMonitor.sln /t:Restore /p:platform="Any CPU" /p:configuration="Release" /p:Version=${{ steps.get_version.outputs.version-without-v }} /p:DeleteExistingFiles=True /p:OutputPath="../VirtualMeetingMonitorRelease"
         
     - name: Extract some files
       run: 7z a VirtualMeetingMonitorRelease.zip ./VirtualMeetingMonitorRelease
