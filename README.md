@@ -2,23 +2,34 @@
 
 [![VirtualMeetingMonitor-APP](https://github.com/brutalzinn/zoom-monitor-googlesheets/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/brutalzinn/zoom-monitor-googlesheets/actions/workflows/CI.yml)
 
+## The wiki is under construction. Feel free to any question in issues tab.
+
 This project is based on [makeratplay/VirtualMeetingMonitor project
 ](https://github.com/makeratplay/VirtualMeetingMonitor)
 and will be used to detect my join to zoom meeting and write a log to a google sheets table.
+
+You can integrate the esp 8266 to control RGB leds and set colors according meeting program you are in meeting [ESP 8266 example project](https://github.com/brutalzinn/esp8266-rgb-wifi-api)
+
 
 ### Contributors to this project
 
     Thanks to Michael Hawkins to give us a cool project to detect virtual meetings.
 
-    Thanks to Marcos Placona to writes a cool article about how to integrate google sheets with c#
+    Thanks to Marcos Placona to writes a cool article about how to integrate google sheets with c#  
+
+[Marcos Placona Article about google sheets](https://www.twilio.com/blog/2017/03/google-spreadsheets-and-net-core.html?utm_source=youtube&utm_medium=video&utm_campaign=google-sheets-dotnet)
+
+[Michael Hawkins  youtube video about VirtualMeetingMonitor(project base)](https://youtu.be/sqYLpXk6cFc)
+
+
 
 > This application has a multi language support. You can create your own translation or uses english or portuguese translation.
 
 # Requirements
 
-* Visual Studio 2017+
+* Visual Studio 2019+
 * Google Cloud Plataform Account
-* Net Framework 4.8
+* Net CORE 5.0
 
 # Installation 
 
@@ -30,9 +41,8 @@ and will be used to detect my join to zoom meeting and write a log to a google s
 6. Access the json file your already downloaded, copy the client_email value at json and copy your application email.  Go to your google sheets table, and click the button "Share". Click on textbox "Add people and groups" and paste your application email. After, select Editor Permission at role menu. Click on submit button.
 
 
-You can read the article of Marcos Placona here: 
-[Click here](https://www.twilio.com/blog/2017/03/google-spreadsheets-and-net-core.html?utm_source=youtube&utm_medium=video&utm_campaign=google-sheets-dotnet)
+
 
 You can watch the best tutorial of world to how to detect meetings with C# and udp packet detection here:
-[https://youtu.be/sqYLpXk6cFc](https://youtu.be/sqYLpXk6cFc)
+
 

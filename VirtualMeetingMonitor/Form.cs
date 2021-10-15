@@ -610,7 +610,7 @@ namespace VirtualMeetingMonitor
             string jsonPath = Path.Combine(Environment.CurrentDirectory, "settings.json");
             AutoUpdater.PersistenceProvider = new JsonFilePersistenceProvider(jsonPath);
             AutoUpdater.ParseUpdateInfoEvent += AutoUpdaterOnParseUpdateInfoEvent;
-           // AutoUpdater.Start();
+            AutoUpdater.Start();
             string status = onAirSign.RunTest() ? "Online" : "Offline";
             WriteTextSafe(lbl_arduino_status, $"Arduino: {status}");
 
