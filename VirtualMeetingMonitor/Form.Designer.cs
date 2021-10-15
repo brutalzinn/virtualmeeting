@@ -33,6 +33,10 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.statusNoCallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.onAirOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.onAirOffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.openLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configTimeoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,6 +98,10 @@
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusNoCallToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.onAirOnToolStripMenuItem,
+            this.onAirOffToolStripMenuItem,
+            this.toolStripSeparator3,
             this.openLogToolStripMenuItem,
             this.configTimeoutToolStripMenuItem,
             this.helpToolStripMenuItem,
@@ -103,7 +111,7 @@
             this.toolStripSeparator1,
             this.closeToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip1";
-            this.contextMenuStrip.Size = new System.Drawing.Size(150, 186);
+            this.contextMenuStrip.Size = new System.Drawing.Size(150, 242);
             this.contextMenuStrip.Opened += new System.EventHandler(this.contextMenuStrip_Opened);
             // 
             // statusNoCallToolStripMenuItem
@@ -111,6 +119,31 @@
             this.statusNoCallToolStripMenuItem.Name = "statusNoCallToolStripMenuItem";
             this.statusNoCallToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.statusNoCallToolStripMenuItem.Text = "Status: No call";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(146, 6);
+            // 
+            // onAirOnToolStripMenuItem
+            // 
+            this.onAirOnToolStripMenuItem.Name = "onAirOnToolStripMenuItem";
+            this.onAirOnToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.onAirOnToolStripMenuItem.Text = "Air On";
+            this.onAirOnToolStripMenuItem.Click += new System.EventHandler(this.onAirOnToolStripMenuItem_Click);
+
+            // 
+            // onAirOffToolStripMenuItem
+            // 
+            this.onAirOffToolStripMenuItem.Name = "onAirOffToolStripMenuItem";
+            this.onAirOffToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.onAirOffToolStripMenuItem.Text = "Air Off";
+            this.onAirOffToolStripMenuItem.Click += new System.EventHandler(this.onAirOffToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(146, 6);
             // 
             // openLogToolStripMenuItem
             // 
@@ -663,6 +696,10 @@
         private System.Windows.Forms.Label lbl_arduino_status;
         private System.ComponentModel.BackgroundWorker internetWorker;
         private System.Windows.Forms.Label lbl_version;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem onAirOnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem onAirOffToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }
 

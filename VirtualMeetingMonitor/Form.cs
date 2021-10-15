@@ -503,7 +503,24 @@ namespace VirtualMeetingMonitor
 
         private void onAirOnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           // onAirSign.TurnOn();
+            int hue = 255;
+            int sat = 254;
+
+            if (meeting.IsTeamsMeeting())
+            {
+                hue = 225;
+            }
+            else if (meeting.IsDiscordMeeting())
+            {
+                hue = 270;
+            }
+            else if (meeting.IsZoomMeeting())
+            {
+                hue = 180;
+            }
+
+            onAirSign.TurnOn(hue, sat);
+        
         }
 
         private void onAirOffToolStripMenuItem_Click(object sender, EventArgs e)
@@ -593,8 +610,8 @@ namespace VirtualMeetingMonitor
             string jsonPath = Path.Combine(Environment.CurrentDirectory, "settings.json");
             AutoUpdater.PersistenceProvider = new JsonFilePersistenceProvider(jsonPath);
             AutoUpdater.ParseUpdateInfoEvent += AutoUpdaterOnParseUpdateInfoEvent;
-            AutoUpdater.Start();
-            string status = onAirSign.RunTest() ? "Connected" : "Offline";
+           // AutoUpdater.Start();
+            string status = onAirSign.RunTest() ? "Online" : "Offline";
             WriteTextSafe(lbl_arduino_status, $"Arduino: {status}");
 
 
