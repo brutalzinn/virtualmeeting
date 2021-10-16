@@ -24,6 +24,8 @@ namespace VirtualMeetingMonitor
         public CustomDataGridUtils CustomDataGrid { get; set; }
 
 
+        public List<object> PluginsSettings = new List<object>();
+
         public string CustomTime { get; set; }
 
         public int Timeout { get; set; }

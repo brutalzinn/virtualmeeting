@@ -63,18 +63,14 @@ namespace VirtualMeetingMonitor
                 {
                     // This assumes the implementation of IPlugin has a parameterless constructor
                     var plugin = Activator.CreateInstance(pluginType) as IPlugin;
-                    try
-                    {
-                        foreach (var item in plugin.GetMultipleHolder())
+                  
+                        foreach (var item in plugin.GetPlaceHolder())
                         {
                             listBox1.Items.Add($"TAG: [{item.Key.ToUpper()}] : {item.Value()}");
                         }
 
-                    }
-                    catch (NotImplementedException)
-                    {
-                        listBox1.Items.Add($"TAG: [{plugin.GetPlaceHolder().ToUpper()}] : {plugin.Main().Substring(0, 7)}");
-                    }
+                   
+                 
                     //new MethodExecutor(plugin.GetPlaceHolder(), Globals.Methods, plugin.Main);
                 }
 

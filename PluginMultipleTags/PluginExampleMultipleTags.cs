@@ -8,13 +8,15 @@ namespace PluginMultipleTags
     {
 
         Dictionary<string, Func<string>> PlaceHolders = new Dictionary<string, Func<string>>();
-        public Dictionary<string, Func<string>> GetMultipleHolder()
+        public Dictionary<string, Func<string>> GetPlaceHolder()
         {
             PlaceHolders.Add("TAG1", TAGONE);
             PlaceHolders.Add("TAG2", TAGTWO);
             PlaceHolders.Add("TAG3", TAGTHREE);
             return PlaceHolders;
         }
+
+   
 
         private string TAGONE()
         {
@@ -31,13 +33,6 @@ namespace PluginMultipleTags
         }
         public string GetName() => "Multiple TAGS Plugin";
 
-
-        public string GetPlaceHolder() => throw new NotImplementedException();
-
-
-
-        public string Main() => throw new NotImplementedException();
-
         public string Description()
         {
             return "Esse é um plugin com múltiplas tags";
@@ -51,6 +46,23 @@ namespace PluginMultipleTags
         public string Contact()
         {
             return "robertinho.net";
+        }
+
+        public Dictionary<string, Func<object, dynamic>> Interfaces()
+        {
+            return null;
+        }
+
+        public string getConfigData()
+        {
+            return null;
+
+        }
+
+        public void loadConfigData(dynamic data = null)
+        {
+            
+
         }
     }
 }

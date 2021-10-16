@@ -13,10 +13,19 @@ namespace VisualMeetingPluginInterface
 
         string Contact();
 
-        string GetPlaceHolder();
+ 
+        Dictionary<string, Func<string>> GetPlaceHolder();
 
-        Dictionary<string, Func<string>> GetMultipleHolder();
 
-        string Main();
+        // needs be optional.
+
+        Dictionary<string, Func<object, dynamic>> Interfaces();
+
+        string getConfigData();
+
+        void loadConfigData(dynamic data = null);
     }
-}
+
+    
+
+    }

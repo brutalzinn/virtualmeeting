@@ -7,6 +7,15 @@ namespace PluginExample
 {
     internal class PluginExample : IPlugin
     {
+        private Dictionary<string, Func<string>> PlaceHolders = new Dictionary<string, Func<string>>();
+
+        public Dictionary<string, Func<string>> GetPlaceHolder()
+        {
+            PlaceHolders.Add("PLUGINEXAMPLE", Main);
+            return PlaceHolders;
+        }
+      
+
         public string Description()
         {
             return "Esse é um plugin de exemplo.";
@@ -22,18 +31,9 @@ namespace PluginExample
             return "robertinho.net";
         }
 
-        public Dictionary<string, Func<string>> GetMultipleHolder()
-        {
-            throw new NotImplementedException();
-        }
+        public string GetName() => "PluginExample v1";
 
-        public string GetName() => "My plugin v1";
-
-
-        public string GetPlaceHolder() => "PLUGINEXAMPLE";
-
-
-        public string Main()
+        private string Main()
         {
             return ApiCall();
         }
@@ -48,6 +48,19 @@ namespace PluginExample
             return client.Execute(request).Content;
         }
 
+        public Dictionary<string, Func<object, dynamic>> Interfaces()
+        {
+            return null;
+        }
+
+        public string getConfigData()
+        {
+            return null;
+        }
+
+        public void loadConfigData(dynamic data = null)
+        {
         
+        }
     }
 }

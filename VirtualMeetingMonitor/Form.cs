@@ -809,6 +809,7 @@ namespace VirtualMeetingMonitor
 
                 Profile _default = new Profile("default", "", "", "", 0, "en");
                 _default.CustomDays = _customdays;
+                _default.PluginsSettings = new List<object>();
                 _default.CustomDataGrid = _customdatagrid;
                 Globals.ProfileUtil.CurrentProfile = _default;
                 Globals.ProfileUtil.profiles.Add(_default);
@@ -851,20 +852,15 @@ namespace VirtualMeetingMonitor
                     var plugin = Activator.CreateInstance(pluginType) as IPlugin;
                  
                     Debug.WriteLine($"Created plugin instance '{plugin?.GetName()}'.");
-                    try
-                    {
-                        foreach (var item in plugin.GetMultipleHolder())
+                   
+                        foreach (var item in plugin.GetPlaceHolder())
                         {
                             Debug.WriteLine($"###{item.Key} - {item.Value()}");
                             new MethodExecutor(item.Key.ToUpper(), Globals.Methods, item.Value);
                         }
                         
-                    }
-                    catch (NotImplementedException)
-                    {
-                       new MethodExecutor(plugin.GetPlaceHolder(), Globals.Methods, plugin.Main);
-                    }
-
+                   
+                   
 
 
                 }

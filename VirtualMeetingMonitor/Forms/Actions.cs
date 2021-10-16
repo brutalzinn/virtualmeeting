@@ -1,13 +1,17 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VirtualMeetingMonitor.pluginUtils;
 using VirtualMeetingMonitor.Utils;
+using VisualMeetingPluginInterface;
 
 namespace VirtualMeetingMonitor.Forms
 {
@@ -24,9 +28,31 @@ namespace VirtualMeetingMonitor.Forms
         {
 
         }
+        private void SavePluginsConfig()
+        {
+            foreach (var loader in Globals.loaders)
+            {
+                foreach (var pluginType in loader
+                    .LoadDefaultAssembly()
+                    .GetTypes()
+                    .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsAbstract))
+                {
+                    // This assumes the implementation of IPlugin has a parameterless constructor
+                    var plugin = Activator.CreateInstance(pluginType) as IPlugin;
+                    var configData = plugin.getConfigData();
+                    Debug.WriteLine($"CONFIG SAVED {configData}");
+                    if (configData != null)
+                    {
+                        PluginUtils.saveData(CurrentProfile,configData, plugin.GetName());
+                    }
 
+                }
+
+            }
+        }
         private void CloseForm(DialogResult result)
         {
+            SavePluginsConfig();
             SaveCustomDays();
             SaveDataGrid();
             DialogResult = result;
@@ -102,6 +128,48 @@ namespace VirtualMeetingMonitor.Forms
                 SelecionaTodos();
             }
         }
+        private void LoadPluginsControllers()
+        {
+            foreach (var loader in Globals.loaders)
+            {
+                foreach (var pluginType in loader
+                    .LoadDefaultAssembly()
+                    .GetTypes()
+                    .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsAbstract))
+                {
+                    // This assumes the implementation of IPlugin has a parameterless constructor
+                    var plugin = Activator.CreateInstance(pluginType) as IPlugin;
+                    Dictionary<string, Func<object, dynamic>> interfaces = plugin.Interfaces();
+                    if (interfaces != null)
+                    {
+                     
+                         Debug.WriteLine($"plugin usercontroll '{plugin?.GetName()}'.");
+                        foreach (KeyValuePair<string, Func<object, dynamic>> p in interfaces)
+                        {
+                            TabPage tp = new TabPage { };
+                            tp.Text = p.Key;
+                            
+
+                            UserControl controller = p.Value(null) as UserControl;
+
+                            dynamic pluginConfig = PluginUtils.loadData(CurrentProfile, plugin.GetName());
+                            if (pluginConfig != null)
+                            {
+                                controller = p.Value(pluginConfig) as UserControl;
+                            }
+
+                            tp.Controls.Add(controller);
+                            tabControl1.TabPages.Add(tp);
+                        
+                        
+                        }
+                       
+                        
+                    }
+                }
+
+            }
+        }
         private void Actions_Load(object sender, EventArgs e)
         {
             if (!CurrentProfile.DevMode)
@@ -111,6 +179,7 @@ namespace VirtualMeetingMonitor.Forms
            
             LoadCustomDataGrid();
             LoadCustomDays();
+            LoadPluginsControllers();
         }
     }
 }
