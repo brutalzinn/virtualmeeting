@@ -8,6 +8,7 @@ namespace PluginExampleWithInterface
 {
     public class Config
     {
+
         public string TextBoxValue { get; set; }
         public Config(string textBoxValue)
         {

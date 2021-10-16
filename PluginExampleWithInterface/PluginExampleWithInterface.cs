@@ -29,7 +29,8 @@ namespace PluginExampleWithInterface
         {
             if (data != null)
             {
-                return new ControlConfig(new Config(Convert.ToString(data["TextBoxValue"])));
+                Config configModel = JsonConvert.DeserializeObject<Config>(Convert.ToString(data));
+                return new ControlConfig(configModel);
             }
             else
             {
@@ -42,11 +43,10 @@ namespace PluginExampleWithInterface
         }
 
         public void loadConfigData(dynamic data)
-        {  
-            Globals.saveConfig(new Config(Convert.ToString(data["TextBoxValue"])));
+        {
+            Config configModel = JsonConvert.DeserializeObject<Config>(Convert.ToString(data));
+            Globals.saveConfig(configModel);
         }
-
-      
 
         public string getConfigData()
         {

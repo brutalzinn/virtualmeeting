@@ -19,10 +19,10 @@ namespace PluginExampleWithInterface.Views
             {
                 textBox1.Text = data.TextBoxValue;
             }
-            if (Globals._Config != null)
-            {
-                textBox1.Text = Globals._Config.TextBoxValue;
-            }
+            //if (Globals._Config != null)
+            //{
+            //    textBox1.Text = Globals._Config.TextBoxValue;
+            //}
         }
 
         private void ControlConfig_Load(object sender, EventArgs e)
