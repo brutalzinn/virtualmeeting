@@ -25,18 +25,25 @@ namespace PluginExampleWithInterface
             ControlList.Add("Example config", MethodControlConfig);
             return ControlList;
         }
-        public UserControl MethodControlConfig(dynamic data = null)
+        public UserControl MethodControlConfig(dynamic data)
         {
-            return new ControlConfig(data);
+            if (data != null)
+            {
+                return new ControlConfig(new Config(Convert.ToString(data["TextBoxValue"])));
+            }
+            else
+            {
+                return new ControlConfig(null);
+            }
         }
         private string Main()
         {
-            return $"Eita preula {this.GetName()} rodou ! com {Globals._Config.TextBoxValue}";
+            return $"Eita preula {this.GetName()} rodou ! {Globals._Config.TextBoxValue}";
         }
 
-        public void loadConfigData(dynamic data = null)
-        {
-           // return JsonConvert.SerializeObject(Globals._Config, Formatting.Indented);
+        public void loadConfigData(dynamic data)
+        {  
+            Globals.saveConfig(new Config(Convert.ToString(data["TextBoxValue"])));
         }
 
       

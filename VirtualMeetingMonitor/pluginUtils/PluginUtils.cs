@@ -10,7 +10,7 @@ namespace VirtualMeetingMonitor.pluginUtils
 {
    public class PluginUtils
     {
-        public static void saveData(Profile CurrentProfile, string configData,string pluginName = "")
+        public static void saveData(Profile CurrentProfile, string configData,string pluginName)
         {
             dynamic data = JsonConvert.DeserializeObject<object>(configData);
             data["PluginName"] = pluginName;
@@ -35,7 +35,7 @@ namespace VirtualMeetingMonitor.pluginUtils
                 CurrentProfile.PluginsSettings[i] = data;
             }
         }
-        public static dynamic loadData(Profile CurrentProfile, string pluginName = "")
+        public static dynamic loadData(Profile CurrentProfile, string pluginName)
         {
 
 

@@ -21,6 +21,7 @@ using System.Windows.Forms;
 
 using VirtualMeetingMonitor.formater;
 using VirtualMeetingMonitor.Forms;
+using VirtualMeetingMonitor.pluginUtils;
 using VirtualMeetingMonitor.profile;
 using VirtualMeetingMonitor.Utils;
 using VisualMeetingPluginInterface;
@@ -852,15 +853,26 @@ namespace VirtualMeetingMonitor
                     var plugin = Activator.CreateInstance(pluginType) as IPlugin;
                  
                     Debug.WriteLine($"Created plugin instance '{plugin?.GetName()}'.");
+
+
+                        dynamic pluginConfig = PluginUtils.loadData(Globals.ProfileUtil.CurrentProfile, plugin.GetName());
                    
-                        foreach (var item in plugin.GetPlaceHolder())
+                 
+                        if (pluginConfig != null)
+                        {
+                            plugin.loadConfigData(pluginConfig);
+                        }
+                    
+
+                    foreach (var item in plugin.GetPlaceHolder())
                         {
                             Debug.WriteLine($"###{item.Key} - {item.Value()}");
                             new MethodExecutor(item.Key.ToUpper(), Globals.Methods, item.Value);
                         }
-                        
-                   
-                   
+
+
+                  
+
 
 
                 }

@@ -12,12 +12,16 @@ namespace PluginExampleWithInterface.Views
 {
     public partial class ControlConfig : UserControl
     {
-        public ControlConfig(dynamic data)
+        public ControlConfig(Config data)
         {
             InitializeComponent();
             if (data != null)
             {
-                textBox1.Text = data["TextBoxValue"];
+                textBox1.Text = data.TextBoxValue;
+            }
+            if (Globals._Config != null)
+            {
+                textBox1.Text = Globals._Config.TextBoxValue;
             }
         }
 
