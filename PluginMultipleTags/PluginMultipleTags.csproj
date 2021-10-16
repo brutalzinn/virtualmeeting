@@ -5,7 +5,7 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 
   </PropertyGroup>
-
+	
   <ItemGroup>
     <ProjectReference Include="..\VisualMeetingPluginInterface\VirtualMeetingPluginInterface.csproj" />
   </ItemGroup>
