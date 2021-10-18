@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VirtualMeetingMonitor.ApiPluginManager.models;
 using VirtualMeetingMonitor.formater;
 
 namespace VirtualMeetingMonitor
@@ -158,21 +159,35 @@ namespace VirtualMeetingMonitor
 
             Task.Run(() =>
             {
-                Dictionary<string, string> packages = Workshop.GetPackageList();
+                GenericFiles packages = Workshop.GetPackageList();
 
+            
+
+                
                 Invoke(new Action(() =>
                 {
+
+                    for (var i = 0; i < packages.totalPages; i++)
+                    {
+                        LinkLabel link_label = new LinkLabel();
+                        link_label.Text = i.ToString();
+                        linkLayoutPanel.Controls.Add(link_label);
+                    }
                     WorkshopFetchButton.Text = "Fetch";
                     WorkshopFetchButton.Enabled = true;
 
-                    foreach (KeyValuePair<string, string> package in packages)
+                    foreach (var package in packages.files)
                     {
                         PackageInfoMinimal p = new PackageInfoMinimal();
-                        p.NameLabel.Text = package.Key;
-
+                        p.NameLabel.Text = package.Name;
+                        // p.na.Text = package.User["name"]
+                        p.authorLabel.Text = package.User["name"];
                         p.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
 
                         BrowserPackageList.Controls.Add(p);
+
+                      
+                       
 
                         p.DownloadButton.Click += (o, ce) =>
                         {
@@ -181,7 +196,7 @@ namespace VirtualMeetingMonitor
 
                             WorkshopFetchButton.Enabled = false;
 
-                            Workshop.DownloadPackage(package.Value, package.Key);
+                            Workshop.DownloadPackage(package.Url, package.Name);
 
                             p.DownloadButton.Text = "Download";
                             p.DownloadButton.Enabled = true;

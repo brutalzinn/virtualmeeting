@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VirtualMeetingMonitor.ApiPluginManager.models;
 
 namespace VirtualMeetingMonitor
 {
@@ -21,7 +22,11 @@ namespace VirtualMeetingMonitor
         /// <summary>
         /// String containing address to the ScribeBot-Workshop script repository.
         /// </summary>
+        ///
         public static string WorkshopAddress { get; set; } = $@"https://api.github.com/repos/brutalzinn/zoom-monitor-plugins/contents/";
+
+
+        public static PluginManagerAPI PluginManagerWeb { get; set; } = new PluginManagerAPI();
 
         /// <summary>
         /// WebClient used for simple HTTP Requests. Mainly workshop fetching/downloading.
@@ -57,21 +62,23 @@ namespace VirtualMeetingMonitor
         /// Fetch workshop scripts.
         /// </summary>
         /// <returns>List of downloadable packages.</returns>
-        public static Dictionary<string, string> GetPackageList()
+        public static GenericFiles GetPackageList()
         {
            // Core.WriteLine(new ColorContainer(89, 73, 163), "Fetching workshop list.", new ColorContainer(177, 31, 41), "\nWARNING: Using this function too often might get you temporarily IP banned from Github API!");
 
             var list = new Dictionary<string, string>();
 
-            NetClient.Headers["User-Agent"] = "ScribeBot - Workshop Content Fetching";
+            //    NetClient.Headers["User-Agent"] = "ScribeBot - Workshop Content Fetching";
 
-            IEnumerable<JToken> tokens = JArray.Parse(NetClient.DownloadString(WorkshopAddress)).Children();
-            tokens = tokens.Where(x => !x["name"].ToString().Equals("README.md")).ToList();
-            tokens.ToList().ForEach(x => list[Path.GetFileNameWithoutExtension((string)x["name"])] = (string)x["download_url"]);
+            GenericFiles _files = PluginManagerWeb.getPackages();
+          
+           
+            //tokens = tokens.Where(x => !x["name"].ToString().Equals("README.md")).ToList();
+            //tokens.ToList().ForEach(x => list[Path.GetFileNameWithoutExtension((string)x["name"])] = (string)x["download_url"]);
 
            Core.WriteLine("Workshop list fetched. Happy downloading!");
 
-            return list;
+            return _files;
         }
 
         /// <summary>
