@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace VirtualMeetingMonitor
+namespace VirtualMeetingMonitor.Forms.WorshopForms
 {
     /// <summary>
     /// User Control representing workshop-stored package.

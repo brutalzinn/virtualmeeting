@@ -13,7 +13,7 @@ using System.Windows.Forms;
 using VirtualMeetingMonitor.ApiPluginManager.models;
 using VirtualMeetingMonitor.formater;
 
-namespace VirtualMeetingMonitor
+namespace VirtualMeetingMonitor.Forms.WorshopForms
 {
     /// <summary>
     /// Main interface window.
@@ -233,7 +233,7 @@ namespace VirtualMeetingMonitor
                         LinkLabel link_label = new LinkLabel();
                         link_label.Text = i.ToString();
                         link_label.Tag = i;
-                      //  link_label.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
+                        link_label.Anchor =  AnchorStyles.Right | AnchorStyles.Left;
                         link_label.Click += (o, ce) =>
                         {
                          //   Debug.WriteLine($"BUTTON CLICK: {(int)link_label.Tag}");
@@ -380,6 +380,11 @@ namespace VirtualMeetingMonitor
         private void btn_ok_Click(object sender, EventArgs e)
         {
             CloseForm(DialogResult.OK);
+        }
+
+        private void login1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

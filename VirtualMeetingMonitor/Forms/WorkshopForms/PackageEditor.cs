@@ -13,7 +13,7 @@ using VisualMeetingPluginInterface;
 
 
 //Remake this
-namespace VirtualMeetingMonitor
+namespace VirtualMeetingMonitor.Forms.WorshopForms
 {
     public partial class PackageEditor : System.Windows.Forms.Form
     {

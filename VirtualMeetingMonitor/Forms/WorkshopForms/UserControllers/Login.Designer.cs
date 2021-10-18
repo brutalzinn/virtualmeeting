@@ -1,4 +1,4 @@
-﻿namespace VirtualMeetingMonitor.Forms.Workshop.UserControllers
+﻿namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
 {
     partial class Login
     {
@@ -32,26 +32,28 @@
             this.txb_password = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txb_email
             // 
-            this.txb_email.Location = new System.Drawing.Point(113, 41);
+            this.txb_email.Location = new System.Drawing.Point(47, 14);
             this.txb_email.Name = "txb_email";
-            this.txb_email.Size = new System.Drawing.Size(292, 23);
+            this.txb_email.Size = new System.Drawing.Size(160, 23);
             this.txb_email.TabIndex = 0;
+            this.txb_email.Text = "teste@hotmail.com";
             // 
             // txb_password
             // 
-            this.txb_password.Location = new System.Drawing.Point(113, 106);
+            this.txb_password.Location = new System.Drawing.Point(47, 53);
             this.txb_password.Name = "txb_password";
-            this.txb_password.Size = new System.Drawing.Size(292, 23);
+            this.txb_password.Size = new System.Drawing.Size(160, 23);
             this.txb_password.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(69, 44);
+            this.label1.Location = new System.Drawing.Point(3, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 15);
             this.label1.TabIndex = 2;
@@ -60,22 +62,32 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(69, 109);
+            this.label2.Location = new System.Drawing.Point(3, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 15);
             this.label2.TabIndex = 3;
             this.label2.Text = "label2";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(101, 94);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(106, 30);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Connect";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txb_password);
             this.Controls.Add(this.txb_email);
             this.Name = "Login";
-            this.Size = new System.Drawing.Size(504, 181);
+            this.Size = new System.Drawing.Size(224, 137);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -87,5 +99,6 @@
         private System.Windows.Forms.TextBox txb_password;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
     }
 }

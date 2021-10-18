@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace VirtualMeetingMonitor
+namespace VirtualMeetingMonitor.Forms.WorshopForms
 {
     partial class PackageInfoMinimal
     {

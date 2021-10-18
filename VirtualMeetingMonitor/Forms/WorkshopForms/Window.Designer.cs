@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace VirtualMeetingMonitor
+namespace VirtualMeetingMonitor.Forms.WorshopForms
 {
     partial class Window
     {
@@ -71,6 +71,8 @@ namespace VirtualMeetingMonitor
             this.packageDescription = new System.Windows.Forms.TextBox();
             this.linkLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.pluginManager1 = new VirtualMeetingMonitor.Forms.WorshopForms.UserControllers.PluginManager();
+            this.login1 = new VirtualMeetingMonitor.Forms.WorshopForms.UserControllers.Login();
             this.btn_ok = new System.Windows.Forms.Button();
             this.packageFolderSelectDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
@@ -92,6 +94,7 @@ namespace VirtualMeetingMonitor
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // consolePanel
@@ -616,13 +619,31 @@ namespace VirtualMeetingMonitor
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.pluginManager1);
+            this.tabPage1.Controls.Add(this.login1);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(274, 577);
             this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "My Plugins";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // pluginManager1
+            // 
+            this.pluginManager1.Location = new System.Drawing.Point(6, 172);
+            this.pluginManager1.Name = "pluginManager1";
+            this.pluginManager1.Size = new System.Drawing.Size(262, 236);
+            this.pluginManager1.TabIndex = 1;
+            // 
+            // login1
+            // 
+            this.login1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.login1.Location = new System.Drawing.Point(3, 3);
+            this.login1.Name = "login1";
+            this.login1.Size = new System.Drawing.Size(268, 181);
+            this.login1.TabIndex = 0;
+            this.login1.Load += new System.EventHandler(this.login1_Load);
             // 
             // btn_ok
             // 
@@ -686,6 +707,7 @@ namespace VirtualMeetingMonitor
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -734,6 +756,8 @@ namespace VirtualMeetingMonitor
         private TableLayoutPanel linkLayoutPanel;
         private TabPage tabPage1;
         private Button btn_ok;
+        private Forms.WorshopForms.UserControllers.Login login1;
+        private Forms.WorshopForms.UserControllers.PluginManager pluginManager1;
 
         public RichTextBox ConsoleOutput { get => consoleOutput; set => consoleOutput = value; }
         public TextBox ConsoleInput { get => consoleInput; set => consoleInput = value; }

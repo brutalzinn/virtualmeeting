@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace VirtualMeetingMonitor.Forms.Workshop.UserControllers
+namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
 {
     public partial class Login : UserControl
     {
