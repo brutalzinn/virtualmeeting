@@ -23,7 +23,6 @@ namespace VirtualMeetingMonitor
         /// String containing address to the ScribeBot-Workshop script repository.
         /// </summary>
         ///
-        public static string WorkshopAddress { get; set; } = $@"https://api.github.com/repos/brutalzinn/zoom-monitor-plugins/contents/";
 
 
         public static PluginManagerAPI PluginManagerWeb { get; set; } = new PluginManagerAPI();
@@ -62,23 +61,24 @@ namespace VirtualMeetingMonitor
         /// Fetch workshop scripts.
         /// </summary>
         /// <returns>List of downloadable packages.</returns>
-        public static GenericFiles GetPackageList()
+        public static GenericFiles GetPackageList(int page = 0, int size = 3)
         {
            // Core.WriteLine(new ColorContainer(89, 73, 163), "Fetching workshop list.", new ColorContainer(177, 31, 41), "\nWARNING: Using this function too often might get you temporarily IP banned from Github API!");
 
-            var list = new Dictionary<string, string>();
 
             //    NetClient.Headers["User-Agent"] = "ScribeBot - Workshop Content Fetching";
 
-            GenericFiles _files = PluginManagerWeb.getPackages();
-          
-           
+            GenericFiles Files = PluginManagerWeb.getPackages(page,size);
+
+            Debug.WriteLine($"CURRENT PAGE: {Files.currentPage}");
+            Debug.WriteLine($"TOTAL PAGES: {Files.totalPages}");
+            Debug.WriteLine($"TOTAL ITEMS: {Files.totalItems}");
             //tokens = tokens.Where(x => !x["name"].ToString().Equals("README.md")).ToList();
             //tokens.ToList().ForEach(x => list[Path.GetFileNameWithoutExtension((string)x["name"])] = (string)x["download_url"]);
 
-           Core.WriteLine("Workshop list fetched. Happy downloading!");
+            Core.WriteLine($"Workshop list fetched. Happy downloading! {Files.currentPage}");
 
-            return _files;
+            return Files;
         }
 
         /// <summary>

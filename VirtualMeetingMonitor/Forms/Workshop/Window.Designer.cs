@@ -44,54 +44,54 @@ namespace VirtualMeetingMonitor
             this.consoleClearButton = new System.Windows.Forms.Button();
             this.CursorPosDisplay = new System.Windows.Forms.Label();
             this.layoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.optionsPanel = new System.Windows.Forms.TabControl();
+            this.scriptsPage = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.scriptStop = new System.Windows.Forms.Button();
+            this.openPackagesFolderButton = new System.Windows.Forms.Button();
+            this.installedPackagesPanel = new System.Windows.Forms.Panel();
+            this.installedPackagesList = new System.Windows.Forms.TableLayoutPanel();
+            this.workshopPage = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.workshopFetchButton = new System.Windows.Forms.Button();
+            this.browserPackagePanel = new System.Windows.Forms.Panel();
+            this.browserPackageList = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.packageCreateFolder = new System.Windows.Forms.Button();
+            this.packageSelectFolder = new System.Windows.Forms.Button();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.packageName = new System.Windows.Forms.TextBox();
+            this.packageAuthors = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.packageDescription = new System.Windows.Forms.TextBox();
+            this.linkLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_ok = new System.Windows.Forms.Button();
             this.packageFolderSelectDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.btn_ok = new System.Windows.Forms.Button();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.workshopPage = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.packageDescription = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.packageAuthors = new System.Windows.Forms.TextBox();
-            this.packageName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.packageSelectFolder = new System.Windows.Forms.Button();
-            this.packageCreateFolder = new System.Windows.Forms.Button();
-            this.browserPackagePanel = new System.Windows.Forms.Panel();
-            this.browserPackageList = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.workshopFetchButton = new System.Windows.Forms.Button();
-            this.scriptsPage = new System.Windows.Forms.TabPage();
-            this.installedPackagesPanel = new System.Windows.Forms.Panel();
-            this.installedPackagesList = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.openPackagesFolderButton = new System.Windows.Forms.Button();
-            this.scriptStop = new System.Windows.Forms.Button();
-            this.optionsPanel = new System.Windows.Forms.TabControl();
-            this.linkLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.consolePanel.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.consoleContainer.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.layoutPanel.SuspendLayout();
+            this.optionsPanel.SuspendLayout();
+            this.scriptsPage.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            this.installedPackagesPanel.SuspendLayout();
             this.workshopPage.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
+            this.browserPackagePanel.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
-            this.browserPackagePanel.SuspendLayout();
-            this.tableLayoutPanel7.SuspendLayout();
-            this.scriptsPage.SuspendLayout();
-            this.installedPackagesPanel.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
-            this.optionsPanel.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // consolePanel
@@ -257,39 +257,101 @@ namespace VirtualMeetingMonitor
             this.layoutPanel.Size = new System.Drawing.Size(792, 686);
             this.layoutPanel.TabIndex = 1;
             // 
-            // packageFolderSelectDialog
+            // optionsPanel
             // 
-            this.packageFolderSelectDialog.RootFolder = System.Environment.SpecialFolder.Startup;
+            this.optionsPanel.Controls.Add(this.scriptsPage);
+            this.optionsPanel.Controls.Add(this.workshopPage);
+            this.optionsPanel.Controls.Add(this.tabPage1);
+            this.optionsPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.optionsPanel.Location = new System.Drawing.Point(505, 5);
+            this.optionsPanel.Margin = new System.Windows.Forms.Padding(5);
+            this.optionsPanel.Name = "optionsPanel";
+            this.optionsPanel.SelectedIndex = 0;
+            this.optionsPanel.Size = new System.Drawing.Size(282, 605);
+            this.optionsPanel.TabIndex = 1;
+            this.optionsPanel.SelectedIndexChanged += new System.EventHandler(this.optionsPanel_SelectedIndexChanged);
             // 
-            // toolTip
+            // scriptsPage
             // 
-            this.toolTip.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip_Popup);
+            this.scriptsPage.Controls.Add(this.tableLayoutPanel5);
+            this.scriptsPage.Controls.Add(this.installedPackagesPanel);
+            this.scriptsPage.Location = new System.Drawing.Point(4, 24);
+            this.scriptsPage.Margin = new System.Windows.Forms.Padding(0);
+            this.scriptsPage.Name = "scriptsPage";
+            this.scriptsPage.Padding = new System.Windows.Forms.Padding(10);
+            this.scriptsPage.Size = new System.Drawing.Size(274, 577);
+            this.scriptsPage.TabIndex = 0;
+            this.scriptsPage.Text = "Packages";
+            this.scriptsPage.UseVisualStyleBackColor = true;
             // 
-            // notifyIcon1
+            // tableLayoutPanel5
             // 
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "notifyIcon1";
+            this.tableLayoutPanel5.BackColor = System.Drawing.Color.Transparent;
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel5.Controls.Add(this.scriptStop, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.openPackagesFolderButton, 0, 0);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(8, 486);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(258, 32);
+            this.tableLayoutPanel5.TabIndex = 8;
             // 
-            // btn_ok
+            // scriptStop
             // 
-            this.btn_ok.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_ok.Location = new System.Drawing.Point(503, 618);
-            this.btn_ok.Name = "btn_ok";
-            this.btn_ok.Size = new System.Drawing.Size(286, 45);
-            this.btn_ok.TabIndex = 9;
-            this.btn_ok.Text = "OK";
-            this.btn_ok.UseVisualStyleBackColor = true;
-            this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
+            this.scriptStop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scriptStop.Image = ((System.Drawing.Image)(resources.GetObject("scriptStop.Image")));
+            this.scriptStop.Location = new System.Drawing.Point(32, 0);
+            this.scriptStop.Margin = new System.Windows.Forms.Padding(0);
+            this.scriptStop.Name = "scriptStop";
+            this.scriptStop.Size = new System.Drawing.Size(226, 32);
+            this.scriptStop.TabIndex = 2;
+            this.scriptStop.Text = "Stop";
+            this.scriptStop.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.scriptStop.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTip.SetToolTip(this.scriptStop, "Use \'BREAK\' button to stop script at any time.");
+            this.scriptStop.UseVisualStyleBackColor = true;
+            this.scriptStop.Click += new System.EventHandler(this.scriptStop_Click);
             // 
-            // tabPage1
+            // openPackagesFolderButton
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(774, 13);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.openPackagesFolderButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.openPackagesFolderButton.Image = ((System.Drawing.Image)(resources.GetObject("openPackagesFolderButton.Image")));
+            this.openPackagesFolderButton.Location = new System.Drawing.Point(0, 0);
+            this.openPackagesFolderButton.Margin = new System.Windows.Forms.Padding(0);
+            this.openPackagesFolderButton.Name = "openPackagesFolderButton";
+            this.openPackagesFolderButton.Size = new System.Drawing.Size(32, 32);
+            this.openPackagesFolderButton.TabIndex = 0;
+            this.openPackagesFolderButton.UseVisualStyleBackColor = true;
+            this.openPackagesFolderButton.Click += new System.EventHandler(this.openPackagesFolderButton_Click);
+            // 
+            // installedPackagesPanel
+            // 
+            this.installedPackagesPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.installedPackagesPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.installedPackagesPanel.Controls.Add(this.installedPackagesList);
+            this.installedPackagesPanel.Location = new System.Drawing.Point(8, 8);
+            this.installedPackagesPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.installedPackagesPanel.Name = "installedPackagesPanel";
+            this.installedPackagesPanel.Size = new System.Drawing.Size(258, 472);
+            this.installedPackagesPanel.TabIndex = 7;
+            // 
+            // installedPackagesList
+            // 
+            this.installedPackagesList.AutoScroll = true;
+            this.installedPackagesList.BackColor = System.Drawing.Color.Transparent;
+            this.installedPackagesList.ColumnCount = 1;
+            this.installedPackagesList.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.installedPackagesList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.installedPackagesList.Location = new System.Drawing.Point(0, 0);
+            this.installedPackagesList.Margin = new System.Windows.Forms.Padding(0);
+            this.installedPackagesList.Name = "installedPackagesList";
+            this.installedPackagesList.RowCount = 1;
+            this.installedPackagesList.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.installedPackagesList.Size = new System.Drawing.Size(256, 470);
+            this.installedPackagesList.TabIndex = 0;
             // 
             // workshopPage
             // 
@@ -323,162 +385,31 @@ namespace VirtualMeetingMonitor
             this.tableLayoutPanel6.Size = new System.Drawing.Size(264, 567);
             this.tableLayoutPanel6.TabIndex = 0;
             // 
-            // groupBox1
+            // tableLayoutPanel7
             // 
-            this.groupBox1.Controls.Add(this.tableLayoutPanel4);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(5, 309);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox1.Size = new System.Drawing.Size(254, 253);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Create Package";
+            this.tableLayoutPanel7.ColumnCount = 1;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Controls.Add(this.workshopFetchButton, 0, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 274);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(258, 27);
+            this.tableLayoutPanel7.TabIndex = 1;
             // 
-            // tableLayoutPanel4
+            // workshopFetchButton
             // 
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel8, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel9, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(10, 23);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(5);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(234, 200);
-            this.tableLayoutPanel4.TabIndex = 0;
-            // 
-            // tableLayoutPanel9
-            // 
-            this.tableLayoutPanel9.ColumnCount = 2;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel9.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel9.Controls.Add(this.packageName, 1, 0);
-            this.tableLayoutPanel9.Controls.Add(this.packageAuthors, 1, 1);
-            this.tableLayoutPanel9.Controls.Add(this.label4, 0, 3);
-            this.tableLayoutPanel9.Controls.Add(this.packageDescription, 1, 3);
-            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
-            this.tableLayoutPanel9.RowCount = 4;
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(234, 168);
-            this.tableLayoutPanel9.TabIndex = 1;
-            // 
-            // packageDescription
-            // 
-            this.packageDescription.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.packageDescription.Location = new System.Drawing.Point(85, 71);
-            this.packageDescription.Margin = new System.Windows.Forms.Padding(5);
-            this.packageDescription.Multiline = true;
-            this.packageDescription.Name = "packageDescription";
-            this.packageDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.packageDescription.Size = new System.Drawing.Size(144, 92);
-            this.packageDescription.TabIndex = 7;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(5, 71);
-            this.label4.Margin = new System.Windows.Forms.Padding(5);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(70, 92);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Description:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // packageAuthors
-            // 
-            this.packageAuthors.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.packageAuthors.Location = new System.Drawing.Point(85, 38);
-            this.packageAuthors.Margin = new System.Windows.Forms.Padding(5);
-            this.packageAuthors.Name = "packageAuthors";
-            this.packageAuthors.Size = new System.Drawing.Size(144, 23);
-            this.packageAuthors.TabIndex = 3;
-            // 
-            // packageName
-            // 
-            this.packageName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.packageName.Location = new System.Drawing.Point(85, 5);
-            this.packageName.Margin = new System.Windows.Forms.Padding(5);
-            this.packageName.Name = "packageName";
-            this.packageName.Size = new System.Drawing.Size(144, 23);
-            this.packageName.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(5, 38);
-            this.label2.Margin = new System.Windows.Forms.Padding(5);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 23);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Authors:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(5, 5);
-            this.label1.Margin = new System.Windows.Forms.Padding(5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 23);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Name:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // tableLayoutPanel8
-            // 
-            this.tableLayoutPanel8.ColumnCount = 2;
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.Controls.Add(this.packageCreateFolder, 1, 0);
-            this.tableLayoutPanel8.Controls.Add(this.packageSelectFolder, 0, 0);
-            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 168);
-            this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
-            this.tableLayoutPanel8.RowCount = 1;
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(234, 32);
-            this.tableLayoutPanel8.TabIndex = 0;
-            // 
-            // packageSelectFolder
-            // 
-            this.packageSelectFolder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.packageSelectFolder.Image = ((System.Drawing.Image)(resources.GetObject("packageSelectFolder.Image")));
-            this.packageSelectFolder.Location = new System.Drawing.Point(0, 0);
-            this.packageSelectFolder.Margin = new System.Windows.Forms.Padding(0);
-            this.packageSelectFolder.Name = "packageSelectFolder";
-            this.packageSelectFolder.Size = new System.Drawing.Size(32, 32);
-            this.packageSelectFolder.TabIndex = 0;
-            this.packageSelectFolder.UseVisualStyleBackColor = true;
-            this.packageSelectFolder.Click += new System.EventHandler(this.packageSelectFolder_Click);
-            // 
-            // packageCreateFolder
-            // 
-            this.packageCreateFolder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.packageCreateFolder.Enabled = false;
-            this.packageCreateFolder.Location = new System.Drawing.Point(32, 0);
-            this.packageCreateFolder.Margin = new System.Windows.Forms.Padding(0);
-            this.packageCreateFolder.Name = "packageCreateFolder";
-            this.packageCreateFolder.Size = new System.Drawing.Size(202, 32);
-            this.packageCreateFolder.TabIndex = 0;
-            this.packageCreateFolder.Text = "Create";
-            this.packageCreateFolder.UseVisualStyleBackColor = true;
-            this.packageCreateFolder.Click += new System.EventHandler(this.packageCreateFolder_Click);
+            this.workshopFetchButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.workshopFetchButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.workshopFetchButton.Location = new System.Drawing.Point(0, 0);
+            this.workshopFetchButton.Margin = new System.Windows.Forms.Padding(0);
+            this.workshopFetchButton.Name = "workshopFetchButton";
+            this.workshopFetchButton.Size = new System.Drawing.Size(258, 27);
+            this.workshopFetchButton.TabIndex = 2;
+            this.workshopFetchButton.Text = "Fetch";
+            this.workshopFetchButton.UseVisualStyleBackColor = true;
+            this.workshopFetchButton.Click += new System.EventHandler(this.workshopFetchButton_Click);
             // 
             // browserPackagePanel
             // 
@@ -509,140 +440,213 @@ namespace VirtualMeetingMonitor
             this.browserPackageList.Size = new System.Drawing.Size(252, 229);
             this.browserPackageList.TabIndex = 1;
             // 
-            // tableLayoutPanel7
+            // groupBox1
             // 
-            this.tableLayoutPanel7.ColumnCount = 1;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Controls.Add(this.workshopFetchButton, 0, 0);
-            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 274);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 1;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(258, 27);
-            this.tableLayoutPanel7.TabIndex = 1;
+            this.groupBox1.Controls.Add(this.tableLayoutPanel4);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(5, 309);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
+            this.groupBox1.Size = new System.Drawing.Size(254, 253);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Create Package";
             // 
-            // workshopFetchButton
+            // tableLayoutPanel4
             // 
-            this.workshopFetchButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.workshopFetchButton.Location = new System.Drawing.Point(0, 0);
-            this.workshopFetchButton.Margin = new System.Windows.Forms.Padding(0);
-            this.workshopFetchButton.Name = "workshopFetchButton";
-            this.workshopFetchButton.Size = new System.Drawing.Size(258, 27);
-            this.workshopFetchButton.TabIndex = 2;
-            this.workshopFetchButton.Text = "Fetch";
-            this.workshopFetchButton.UseVisualStyleBackColor = true;
-            this.workshopFetchButton.Click += new System.EventHandler(this.workshopFetchButton_Click);
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel8, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel9, 0, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(10, 23);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(5);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(234, 200);
+            this.tableLayoutPanel4.TabIndex = 0;
             // 
-            // scriptsPage
+            // tableLayoutPanel8
             // 
-            this.scriptsPage.Controls.Add(this.tableLayoutPanel5);
-            this.scriptsPage.Controls.Add(this.installedPackagesPanel);
-            this.scriptsPage.Location = new System.Drawing.Point(4, 24);
-            this.scriptsPage.Margin = new System.Windows.Forms.Padding(0);
-            this.scriptsPage.Name = "scriptsPage";
-            this.scriptsPage.Padding = new System.Windows.Forms.Padding(10);
-            this.scriptsPage.Size = new System.Drawing.Size(274, 530);
-            this.scriptsPage.TabIndex = 0;
-            this.scriptsPage.Text = "Packages";
-            this.scriptsPage.UseVisualStyleBackColor = true;
+            this.tableLayoutPanel8.ColumnCount = 2;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel8.Controls.Add(this.packageCreateFolder, 1, 0);
+            this.tableLayoutPanel8.Controls.Add(this.packageSelectFolder, 0, 0);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 168);
+            this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 1;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(234, 32);
+            this.tableLayoutPanel8.TabIndex = 0;
             // 
-            // installedPackagesPanel
+            // packageCreateFolder
             // 
-            this.installedPackagesPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.installedPackagesPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.installedPackagesPanel.Controls.Add(this.installedPackagesList);
-            this.installedPackagesPanel.Location = new System.Drawing.Point(8, 8);
-            this.installedPackagesPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.installedPackagesPanel.Name = "installedPackagesPanel";
-            this.installedPackagesPanel.Size = new System.Drawing.Size(258, 472);
-            this.installedPackagesPanel.TabIndex = 7;
+            this.packageCreateFolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.packageCreateFolder.Enabled = false;
+            this.packageCreateFolder.Location = new System.Drawing.Point(32, 0);
+            this.packageCreateFolder.Margin = new System.Windows.Forms.Padding(0);
+            this.packageCreateFolder.Name = "packageCreateFolder";
+            this.packageCreateFolder.Size = new System.Drawing.Size(202, 32);
+            this.packageCreateFolder.TabIndex = 0;
+            this.packageCreateFolder.Text = "Create";
+            this.packageCreateFolder.UseVisualStyleBackColor = true;
+            this.packageCreateFolder.Click += new System.EventHandler(this.packageCreateFolder_Click);
             // 
-            // installedPackagesList
+            // packageSelectFolder
             // 
-            this.installedPackagesList.AutoScroll = true;
-            this.installedPackagesList.BackColor = System.Drawing.Color.Transparent;
-            this.installedPackagesList.ColumnCount = 1;
-            this.installedPackagesList.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.installedPackagesList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.installedPackagesList.Location = new System.Drawing.Point(0, 0);
-            this.installedPackagesList.Margin = new System.Windows.Forms.Padding(0);
-            this.installedPackagesList.Name = "installedPackagesList";
-            this.installedPackagesList.RowCount = 1;
-            this.installedPackagesList.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.installedPackagesList.Size = new System.Drawing.Size(256, 470);
-            this.installedPackagesList.TabIndex = 0;
+            this.packageSelectFolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.packageSelectFolder.Image = ((System.Drawing.Image)(resources.GetObject("packageSelectFolder.Image")));
+            this.packageSelectFolder.Location = new System.Drawing.Point(0, 0);
+            this.packageSelectFolder.Margin = new System.Windows.Forms.Padding(0);
+            this.packageSelectFolder.Name = "packageSelectFolder";
+            this.packageSelectFolder.Size = new System.Drawing.Size(32, 32);
+            this.packageSelectFolder.TabIndex = 0;
+            this.packageSelectFolder.UseVisualStyleBackColor = true;
+            this.packageSelectFolder.Click += new System.EventHandler(this.packageSelectFolder_Click);
             // 
-            // tableLayoutPanel5
+            // tableLayoutPanel9
             // 
-            this.tableLayoutPanel5.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel5.Controls.Add(this.scriptStop, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.openPackagesFolderButton, 0, 0);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(8, 486);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(258, 32);
-            this.tableLayoutPanel5.TabIndex = 8;
+            this.tableLayoutPanel9.ColumnCount = 2;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel9.Controls.Add(this.label2, 0, 1);
+            this.tableLayoutPanel9.Controls.Add(this.packageName, 1, 0);
+            this.tableLayoutPanel9.Controls.Add(this.packageAuthors, 1, 1);
+            this.tableLayoutPanel9.Controls.Add(this.label4, 0, 3);
+            this.tableLayoutPanel9.Controls.Add(this.packageDescription, 1, 3);
+            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 4;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(234, 168);
+            this.tableLayoutPanel9.TabIndex = 1;
             // 
-            // openPackagesFolderButton
+            // label1
             // 
-            this.openPackagesFolderButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.openPackagesFolderButton.Image = ((System.Drawing.Image)(resources.GetObject("openPackagesFolderButton.Image")));
-            this.openPackagesFolderButton.Location = new System.Drawing.Point(0, 0);
-            this.openPackagesFolderButton.Margin = new System.Windows.Forms.Padding(0);
-            this.openPackagesFolderButton.Name = "openPackagesFolderButton";
-            this.openPackagesFolderButton.Size = new System.Drawing.Size(32, 32);
-            this.openPackagesFolderButton.TabIndex = 0;
-            this.openPackagesFolderButton.UseVisualStyleBackColor = true;
-            this.openPackagesFolderButton.Click += new System.EventHandler(this.openPackagesFolderButton_Click);
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(5, 5);
+            this.label1.Margin = new System.Windows.Forms.Padding(5);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 23);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Name:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // scriptStop
+            // label2
             // 
-            this.scriptStop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scriptStop.Image = ((System.Drawing.Image)(resources.GetObject("scriptStop.Image")));
-            this.scriptStop.Location = new System.Drawing.Point(32, 0);
-            this.scriptStop.Margin = new System.Windows.Forms.Padding(0);
-            this.scriptStop.Name = "scriptStop";
-            this.scriptStop.Size = new System.Drawing.Size(226, 32);
-            this.scriptStop.TabIndex = 2;
-            this.scriptStop.Text = "Stop";
-            this.scriptStop.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.scriptStop.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.toolTip.SetToolTip(this.scriptStop, "Use \'BREAK\' button to stop script at any time.");
-            this.scriptStop.UseVisualStyleBackColor = true;
-            this.scriptStop.Click += new System.EventHandler(this.scriptStop_Click);
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(5, 38);
+            this.label2.Margin = new System.Windows.Forms.Padding(5);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 23);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Authors:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // optionsPanel
+            // packageName
             // 
-            this.optionsPanel.Controls.Add(this.scriptsPage);
-            this.optionsPanel.Controls.Add(this.workshopPage);
-            this.optionsPanel.Controls.Add(this.tabPage1);
-            this.optionsPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.optionsPanel.Location = new System.Drawing.Point(505, 5);
-            this.optionsPanel.Margin = new System.Windows.Forms.Padding(5);
-            this.optionsPanel.Name = "optionsPanel";
-            this.optionsPanel.SelectedIndex = 0;
-            this.optionsPanel.Size = new System.Drawing.Size(282, 605);
-            this.optionsPanel.TabIndex = 1;
-            this.optionsPanel.SelectedIndexChanged += new System.EventHandler(this.optionsPanel_SelectedIndexChanged);
+            this.packageName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.packageName.Location = new System.Drawing.Point(85, 5);
+            this.packageName.Margin = new System.Windows.Forms.Padding(5);
+            this.packageName.Name = "packageName";
+            this.packageName.Size = new System.Drawing.Size(144, 23);
+            this.packageName.TabIndex = 2;
+            // 
+            // packageAuthors
+            // 
+            this.packageAuthors.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.packageAuthors.Location = new System.Drawing.Point(85, 38);
+            this.packageAuthors.Margin = new System.Windows.Forms.Padding(5);
+            this.packageAuthors.Name = "packageAuthors";
+            this.packageAuthors.Size = new System.Drawing.Size(144, 23);
+            this.packageAuthors.TabIndex = 3;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Location = new System.Drawing.Point(5, 71);
+            this.label4.Margin = new System.Windows.Forms.Padding(5);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(70, 92);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Description:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // packageDescription
+            // 
+            this.packageDescription.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.packageDescription.Location = new System.Drawing.Point(85, 71);
+            this.packageDescription.Margin = new System.Windows.Forms.Padding(5);
+            this.packageDescription.Multiline = true;
+            this.packageDescription.Name = "packageDescription";
+            this.packageDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.packageDescription.Size = new System.Drawing.Size(144, 92);
+            this.packageDescription.TabIndex = 7;
             // 
             // linkLayoutPanel
             // 
-            this.linkLayoutPanel.ColumnCount = 1;
-            this.linkLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.linkLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.linkLayoutPanel.AutoSize = true;
+            this.linkLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.linkLayoutPanel.ColumnCount = 3;
+            this.linkLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.linkLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.linkLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.linkLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.linkLayoutPanel.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
             this.linkLayoutPanel.Location = new System.Drawing.Point(3, 244);
             this.linkLayoutPanel.Name = "linkLayoutPanel";
             this.linkLayoutPanel.RowCount = 1;
-            this.linkLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.linkLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.linkLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.linkLayoutPanel.Size = new System.Drawing.Size(258, 24);
             this.linkLayoutPanel.TabIndex = 4;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(274, 577);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btn_ok
+            // 
+            this.btn_ok.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_ok.Location = new System.Drawing.Point(503, 618);
+            this.btn_ok.Name = "btn_ok";
+            this.btn_ok.Size = new System.Drawing.Size(286, 45);
+            this.btn_ok.TabIndex = 9;
+            this.btn_ok.Text = "OK";
+            this.btn_ok.UseVisualStyleBackColor = true;
+            this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
+            // 
+            // packageFolderSelectDialog
+            // 
+            this.packageFolderSelectDialog.RootFolder = System.Environment.SpecialFolder.Startup;
+            // 
+            // toolTip
+            // 
+            this.toolTip.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip_Popup);
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "notifyIcon1";
             // 
             // Window
             // 
@@ -666,21 +670,22 @@ namespace VirtualMeetingMonitor
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.layoutPanel.ResumeLayout(false);
+            this.optionsPanel.ResumeLayout(false);
+            this.scriptsPage.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.installedPackagesPanel.ResumeLayout(false);
             this.workshopPage.ResumeLayout(false);
             this.workshopPage.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel9.ResumeLayout(false);
-            this.tableLayoutPanel9.PerformLayout();
-            this.tableLayoutPanel8.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
+            this.tableLayoutPanel7.ResumeLayout(false);
             this.browserPackagePanel.ResumeLayout(false);
             this.browserPackagePanel.PerformLayout();
-            this.tableLayoutPanel7.ResumeLayout(false);
-            this.scriptsPage.ResumeLayout(false);
-            this.installedPackagesPanel.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.optionsPanel.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel8.ResumeLayout(false);
+            this.tableLayoutPanel9.ResumeLayout(false);
+            this.tableLayoutPanel9.PerformLayout();
             this.ResumeLayout(false);
 
         }

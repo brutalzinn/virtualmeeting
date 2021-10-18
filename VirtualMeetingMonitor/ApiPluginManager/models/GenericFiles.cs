@@ -9,6 +9,7 @@ namespace VirtualMeetingMonitor.ApiPluginManager.models
     public class GenericFiles
     {
         public int totalItems { get; set; }
+
         public List<FileModel> files = new List<FileModel>();
         public int totalPages { get; set; }
         public int currentPage { get; set; }

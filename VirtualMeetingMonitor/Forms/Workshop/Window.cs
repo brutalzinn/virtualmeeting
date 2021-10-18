@@ -149,83 +149,105 @@ namespace VirtualMeetingMonitor
             //    }));
             //}
         }
-
-        private void workshopFetchButton_Click(object sender, EventArgs e)
+        private void LoadWorkList(int page = 0, int size = 3)
         {
+
             WorkshopFetchButton.Text = "Fetching..";
             WorkshopFetchButton.Enabled = false;
 
             BrowserPackageList.Controls.Clear();
+          
+            Task.Run(() =>
+            {
+                GenericFiles packages = Workshop.GetPackageList(page, size);
 
+                Invoke(new Action(() =>
+            {
+           
+                WorkshopFetchButton.Text = "Fetch";
+                WorkshopFetchButton.Enabled = true;
+                Core.WriteLine($"Current page: {packages.currentPage} - {page}");
+                foreach (var package in packages.files)
+                {
+                    PackageInfoMinimal p = new PackageInfoMinimal();
+                    p.NameLabel.Text = package.Name;
+                    // p.na.Text = package.User["name"]
+                    p.authorLabel.Text = package.User["name"];
+                    p.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
+
+                    BrowserPackageList.Controls.Add(p);
+
+
+
+
+                    p.DownloadButton.Click += (o, ce) =>
+                    {
+                        p.DownloadButton.Text = "Downloading..";
+                        p.DownloadButton.Enabled = false;
+
+                        WorkshopFetchButton.Enabled = false;
+
+                        Workshop.DownloadPackage(package.Url, package.Name);
+
+                        p.DownloadButton.Text = "Download";
+                        p.DownloadButton.Enabled = true;
+
+                        WorkshopFetchButton.Text = "Fetch";
+                        WorkshopFetchButton.Enabled = true;
+
+                        InstalledPackagesList.Controls.Clear();
+
+                        Workshop.GetInstalled().ToList().ForEach(x =>
+                        {
+                            Dictionary<string, string> packageInfo = x.GetInfo();
+
+                            PackageInfo i = new PackageInfo();
+                            i.NameLabel.Text = packageInfo["Name"];
+                            i.AuthorLabel.Text = packageInfo["Authors"];
+                            i.DescLabel.Text = packageInfo["Description"];
+                            i.Package = x;
+
+                            i.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
+
+                            InstalledPackagesList.Controls.Add(i);
+
+
+                        });
+                    };
+                }
+            }));
+            });
+
+        }
+        private void workshopFetchButton_Click(object sender, EventArgs e)
+        {
+            linkLayoutPanel.Controls.Clear();
             Task.Run(() =>
             {
                 GenericFiles packages = Workshop.GetPackageList();
-
-            
-
-                
                 Invoke(new Action(() =>
                 {
-
+                    Debug.WriteLine($"COUNT TOTAL: {packages.totalPages}");
                     for (var i = 0; i < packages.totalPages; i++)
                     {
                         LinkLabel link_label = new LinkLabel();
                         link_label.Text = i.ToString();
+                        link_label.Tag = i;
+                      //  link_label.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
+                        link_label.Click += (o, ce) =>
+                        {
+                         //   Debug.WriteLine($"BUTTON CLICK: {(int)link_label.Tag}");
+                          LoadWorkList((int)link_label.Tag);
+                        };
                         linkLayoutPanel.Controls.Add(link_label);
                     }
-                    WorkshopFetchButton.Text = "Fetch";
-                    WorkshopFetchButton.Enabled = true;
+                   // LoadWorkList();
 
-                    foreach (var package in packages.files)
-                    {
-                        PackageInfoMinimal p = new PackageInfoMinimal();
-                        p.NameLabel.Text = package.Name;
-                        // p.na.Text = package.User["name"]
-                        p.authorLabel.Text = package.User["name"];
-                        p.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
-
-                        BrowserPackageList.Controls.Add(p);
-
-                      
-                       
-
-                        p.DownloadButton.Click += (o, ce) =>
-                        {
-                            p.DownloadButton.Text = "Downloading..";
-                            p.DownloadButton.Enabled = false;
-
-                            WorkshopFetchButton.Enabled = false;
-
-                            Workshop.DownloadPackage(package.Url, package.Name);
-
-                            p.DownloadButton.Text = "Download";
-                            p.DownloadButton.Enabled = true;
-
-                            WorkshopFetchButton.Text = "Fetch";
-                            WorkshopFetchButton.Enabled = true;
-
-                            InstalledPackagesList.Controls.Clear();
-
-                            Workshop.GetInstalled().ToList().ForEach(x =>
-                            {
-                                Dictionary<string, string> packageInfo = x.GetInfo();
-
-                                PackageInfo i = new PackageInfo();
-                                i.NameLabel.Text = packageInfo["Name"];
-                                i.AuthorLabel.Text = packageInfo["Authors"];
-                                i.DescLabel.Text = packageInfo["Description"];
-                                i.Package = x;
-
-                                i.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
-
-                                InstalledPackagesList.Controls.Add(i);
-
-                               
-                            });
-                        };
-                    }
                 }));
+
             });
+
+            LoadWorkList();
         }
 
         private void packageSelectFolder_Click(object sender, EventArgs e)
