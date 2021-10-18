@@ -120,9 +120,8 @@
     <AssemblyInfo AssemblyInfoFiles="@(AssemblyInfoFiles)" AssemblyCopyright="$(AssemblyCopyright)" AssemblyVersion="$(VersionNumber)" AssemblyFileVersion="$(VersionNumber)">
     </AssemblyInfo>
   </Target>
-	<Target Name="SpicNSpan"
-		AfterTargets="Clean">
-		<RemoveDir Directories="$(OutDir)\plugins"/>
+	<Target Name="SpicNSpan" AfterTargets="Clean">
+		<RemoveDir Directories="$(OutDir)\plugins" />
 	</Target>
   <ItemGroup>
     <Reference Include="AutoUpdater.NET">
