@@ -139,33 +139,35 @@ namespace VirtualMeetingMonitor.Forms
                     .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsAbstract))
                 {
                     // This assumes the implementation of IPlugin has a parameterless constructor
-                    var plugin = Activator.CreateInstance(pluginType) as InterfacePlugin;
-                    Dictionary<string, Func<object, dynamic>> interfaces = plugin.Interfaces();
-                    if (interfaces != null)
+                    var plugin = Activator.CreateInstance(pluginType) as IPlugin;
+                    if (plugin is InterfacePlugin pluginWithInterface)
                     {
-                     
-                         Debug.WriteLine($"plugin usercontroll '{plugin?.Name()}'.");
-                        foreach (KeyValuePair<string, Func<object, dynamic>> p in interfaces)
+                        Dictionary<string, Func<object, dynamic>> interfaces = pluginWithInterface.Interfaces();
+                        if (interfaces != null)
                         {
-                            TabPage tp = new TabPage { };
-                            tp.Text = p.Key;
-                            
 
-                            UserControl controller = p.Value(null) as UserControl;
-
-                            dynamic pluginConfig = PluginUtils.loadData(CurrentProfile, plugin.Name());
-                            if (pluginConfig != null)
+                            Debug.WriteLine($"plugin usercontroll '{pluginWithInterface?.Name()}'.");
+                            foreach (KeyValuePair<string, Func<object, dynamic>> p in interfaces)
                             {
-                                controller = p.Value(pluginConfig) as UserControl;
+                                TabPage tp = new TabPage { };
+                                tp.Text = p.Key;
+
+
+                                UserControl controller = p.Value(null) as UserControl;
+
+                                dynamic pluginConfig = PluginUtils.loadData(CurrentProfile, pluginWithInterface.Name());
+                                if (pluginConfig != null)
+                                {
+                                    controller = p.Value(pluginConfig) as UserControl;
+                                }
+
+                                tp.Controls.Add(controller);
+                                tabControl1.TabPages.Add(tp);
+
+
                             }
 
-                            tp.Controls.Add(controller);
-                            tabControl1.TabPages.Add(tp);
-                        
-                        
                         }
-                       
-                        
                     }
                 }
 

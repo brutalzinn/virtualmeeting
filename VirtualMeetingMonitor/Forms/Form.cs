@@ -859,11 +859,11 @@ namespace VirtualMeetingMonitor
 
                         dynamic pluginConfig = PluginUtils.loadData(Globals.ProfileUtil.CurrentProfile, plugin?.Name());
 
-                    if (plugin is ConfigData newLocalFoo)
+                    if (plugin is ConfigData PluginConfigData)
                     {
                         if (pluginConfig != null)
                         {
-                            newLocalFoo.loadConfigData(pluginConfig);
+                            PluginConfigData.loadConfigData(pluginConfig);
                         }
                     }
                     Debug.WriteLine($"PLUGIN:{plugin?.Name()} - {plugin?.Version()} - {plugin?.PluginId()} ");
@@ -871,7 +871,7 @@ namespace VirtualMeetingMonitor
 
                     foreach (var item in plugin.GetPlaceHolder())
                         {
-                            Debug.WriteLine($"###{item.Key} - {item.Value()}");
+                            
                             new MethodExecutor(item.Key.ToUpper(), Globals.Methods, item.Value);
                         }
 
