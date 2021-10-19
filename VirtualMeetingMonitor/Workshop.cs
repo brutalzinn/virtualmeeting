@@ -41,11 +41,11 @@ namespace VirtualMeetingMonitor
         {
             var packages = new List<Package>();
 
-            Directory.GetFiles(Core.PluginFolder, "*.zip").ToList().ForEach(x =>
-            {
-                var package = new Package(x);
-                packages.Add(package);
-            });
+            //Directory.GetFiles(Core.PluginFolder, "*.zip").ToList().ForEach(x =>
+            //{
+            //    var package = new Package(x);
+            //    packages.Add(package);
+            //});
 
             Directory.GetDirectories(Core.PluginFolder).ToList().ForEach(x =>
             {

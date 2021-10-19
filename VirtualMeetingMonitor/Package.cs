@@ -11,6 +11,7 @@ using Newtonsoft.Json.Linq;
 using System.Dynamic;
 using McMaster.NETCore.Plugins;
 using VisualMeetingPluginInterface;
+using VirtualMeetingMonitor.ApiPluginManager.models;
 
 
 //TO-DO: Remake this entire class
@@ -63,6 +64,41 @@ namespace VirtualMeetingMonitor
             return new Package($@"plugins\{packageName}");
 
         }
+
+        public static dynamic GetPluginInfo(string filename)
+        {
+           
+
+            PluginLoader _loader = PluginLoader.CreateFromAssemblyFile(filename, new[] { typeof(IPlugin) });
+
+            foreach (var pluginType in _loader
+                .LoadDefaultAssembly()
+                .GetTypes()
+                .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsAbstract))
+            {
+                // This assumes the implementation of IPlugin has a parameterless constructor
+                var plugin = Activator.CreateInstance(pluginType) as IPlugin;
+
+                dynamic json = new ExpandoObject();
+                json.Authors = plugin.Authors();
+                json.Contact = plugin.Contact();
+                json.Name = plugin.Name();
+                json.Description = plugin.Description();
+                json.Version = plugin.Version();
+                json.PluginId = plugin.getPluginId();
+
+                Debug.WriteLine($"DEBUG:{json} - {plugin.Name()}");
+                return json;
+
+
+                //new MethodExecutor(plugin.GetPlaceHolder(), Globals.Methods, plugin.Main);
+
+            }
+            return null;
+           
+        }
+
+
         public static string GetPackageInfo(string ArchivePath)
         {
             List<PluginLoader> loaders = new List<PluginLoader>();
@@ -91,10 +127,12 @@ namespace VirtualMeetingMonitor
                         Name = plugin.Name(),
                         Description = plugin.Description(),
                         Authors = plugin.Authors(),
-                        Contact = plugin.Contact()
+                        Contact = plugin.Contact(),
+                        Version = plugin.Version(),
+                        PluginId = plugin.getPluginId()
                     }, Formatting.Indented);
 
-
+                
                     //new MethodExecutor(plugin.GetPlaceHolder(), Globals.Methods, plugin.Main);
                 }
             }

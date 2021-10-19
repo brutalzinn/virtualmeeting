@@ -12,6 +12,13 @@ namespace VirtualMeetingMonitor.ApiPluginManager.models
         public string Type { get; set; }
         public string Url { get; set; }
         public string Name { get; set; }
+
+        public string Crc { get; set; }
+
+        public string Hash { get; set; }
+
+        public string PluginId { get; set; }
+
         public dynamic User { get; set; }
 
         public dynamic Version { get; set; }

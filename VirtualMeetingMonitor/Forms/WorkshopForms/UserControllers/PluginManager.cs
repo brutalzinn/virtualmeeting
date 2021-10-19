@@ -1,4 +1,5 @@
 ﻿using Cyclic.Redundancy.Check;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -66,9 +67,23 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                
+     
+               
                 Hash = GetHashSha(openFileDialog1);
                 Crc32 = GetHashCrc(openFileDialog1);
                 Filename = openFileDialog1.FileName;
+                dynamic pluginInfo = Package.GetPluginInfo(openFileDialog1.FileName);
+                if (pluginInfo != null)
+                {
+                        lbl_pluginInfo.Text = $"Name:{pluginInfo.Name}\n" +
+                        $"Description:{pluginInfo.Description}\n " +
+                        $"Version:{pluginInfo.Version}\n" +
+                        $"Hash:{Hash}\n" +
+                        $"Crc32:{Crc32}\n " +
+                        $"PluginId:{pluginInfo.PluginId}";
+                      
+                }
             }       
         }
 
