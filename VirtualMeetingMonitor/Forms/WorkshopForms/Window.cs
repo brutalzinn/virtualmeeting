@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -24,7 +25,10 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
         public Window()
         {
             InitializeComponent();
-            Text = Globals.getAppName("PLUGIN MANAGER");
+            Core.UserAccount.OnLoginSucess += UserAccount_OnLoginSucess;
+            Core.UserAccount.OnLoginError += UserAccount_OnLoginError;
+
+             Text = Globals.getAppName("PLUGIN MANAGER");
 
             //InfoVersion.Text = Application.ProductVersion;
 
@@ -72,6 +76,17 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
      //           }));
      //       };
      //       timer.Start();
+        }
+
+        private void UserAccount_OnLoginError()
+        {
+            Core.WriteLine(new ColorContainer(255, 0, 0), "Authentication failed");
+        }
+
+        private void UserAccount_OnLoginSucess()
+        {
+            Core.WriteLine("Welcome,", new ColorContainer(255, 0, 255) , Core.UserAccount.Name);
+            Text = $"{Globals.getAppName("PLUGIN MANAGER")} - {Core.UserAccount.Name}";
         }
 
         private void scriptStop_Click(object sender, EventArgs e)

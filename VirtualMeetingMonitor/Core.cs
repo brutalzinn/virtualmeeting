@@ -23,6 +23,7 @@ namespace VirtualMeetingMonitor
  
     using Newtonsoft.Json;
     using VirtualMeetingMonitor.Forms.WorshopForms;
+    using VirtualMeetingMonitor.ApiPluginManager.models;
 
     /// <summary>
     /// Class containing core functionality.
@@ -31,15 +32,16 @@ namespace VirtualMeetingMonitor
         {
             public static string ReleaseAddress { get; private set; } = @"https://api.github.com/repos/jonekcode/ScribeBot/releases";
 
+            public static UserModel UserAccount = new UserModel();
 
 
-             public static string PluginFolder = Path.Combine(AppContext.BaseDirectory, "plugins");
+            public static string PluginFolder = Path.Combine(AppContext.BaseDirectory, "plugins");
 
 
         /// <summary>
         /// Current version of ScribeBot.
         /// </summary>
-        public static string Version { get; private set; }
+            public static string Version { get; private set; }
 
             /// <summary>
             /// Timestamp of when ScribeBot was ran.

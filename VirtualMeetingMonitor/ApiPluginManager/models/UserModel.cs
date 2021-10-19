@@ -40,12 +40,28 @@ namespace VirtualMeetingMonitor.ApiPluginManager.models
             Token = token;
             OnLoginSucess.Invoke();
         }
-
-     
+        private void Clear()
+        {
+            Token = null;
+            Name = null;
+            Id = 0;
+            Rank = null;
+            Token = null;
+            Status = false;
+        }
+        public void Error()
+        {
+            Clear();
+            OnLoginError?.Invoke();
+        }
         public void Logout()
         {
-            Token = "";
-            OnLoginLogout.Invoke();
+            Clear();
+            OnLoginLogout?.Invoke();
+        }
+        public void onLogin()
+        {
+            OnLoginSucess?.Invoke();
         }
         
     }

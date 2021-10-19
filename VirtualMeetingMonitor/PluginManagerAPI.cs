@@ -14,7 +14,6 @@ namespace VirtualMeetingMonitor
     {
         private readonly string url = "http://localhost:8000"; //esp 8266 fixed ip
 
-        public UserModel UserAccount { get; set; } = new UserModel();
 
         public bool addUser(UserModel body) => callAuthUser(body) == HttpStatusCode.OK;
 
@@ -35,14 +34,22 @@ namespace VirtualMeetingMonitor
             json.password = body.Password;
             request.AddJsonBody(json);
             var query = client.Execute(request);
-
+            string tokenOriginal = JsonConvert.DeserializeObject<UserModel>(query.Content).Token;
             string token = JsonConvert.DeserializeObject<UserModel>(query.Content).Token?.Split('.')[1];
             if (token != null) {
-            UserAccount = JsonConvert.DeserializeObject<UserModel>(Core.DecodeBase64(token));
-            return query.StatusCode;
+           var user_info = JsonConvert.DeserializeObject<UserModel>(Core.DecodeBase64(token));
+
+            Core.UserAccount.Id = user_info.Id;
+            Core.UserAccount.Token = tokenOriginal;
+            Core.UserAccount.Rank = user_info.Rank;
+            Core.UserAccount.Name = user_info.Name;
+            Core.UserAccount.Email = user_info.Email;
+            Core.UserAccount.onLogin();
+           return query.StatusCode;
             }
             else
-            {               
+            {
+                Core.UserAccount.Error();
                 return HttpStatusCode.BadRequest;
             }
         }
