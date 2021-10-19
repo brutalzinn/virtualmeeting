@@ -38,7 +38,7 @@ namespace VirtualMeetingMonitor.Forms
                     .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsAbstract))
                 {
                     // This assumes the implementation of IPlugin has a parameterless constructor
-                    var plugin = Activator.CreateInstance(pluginType) as ConfigData;
+                    var plugin = Activator.CreateInstance(pluginType) as ConfigDataPlugin;
                     var configData = plugin.getConfigData();
                     Debug.WriteLine($"CONFIG SAVED {configData}");
                     if (configData != null)

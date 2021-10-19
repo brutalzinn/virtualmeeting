@@ -8,7 +8,7 @@ using VisualMeetingPluginInterface;
 
 namespace PluginExampleWithInterface
 {
-    internal class PluginExampleWithInterface : IPlugin, InterfacePlugin, ConfigData
+    internal class PluginExampleWithInterface : IPlugin, InterfacePlugin, ConfigDataPlugin
     {
         public Dictionary<string, Func<string>> PlaceHolders = new Dictionary<string, Func<string>>();
 
@@ -73,21 +73,15 @@ namespace PluginExampleWithInterface
         {
             return "PluginExampleWithInterface";
         }
-
-
-
-        public string Version(string versionServer = null)
+        public string PluginId()
         {
-            Assembly thisAssem = typeof(PluginExampleWithInterface).Assembly;
-            AssemblyName thisAssemName = thisAssem.GetName();
-            Version ver = thisAssemName.Version;
-            if (versionServer != null)
-            {
-                return $"{versionServer}-{ver}";
-            }
-            return ver.ToString();
+            //this needs be unique id
+         return "mycustompluginid";
         }
 
 
+     
+
+     
     }
 }

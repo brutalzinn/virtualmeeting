@@ -48,6 +48,11 @@ namespace PluginMultipleTags
         {
             return "robertinho.net";
         }
+
+        public string PluginId()
+        {
+            return "PluginMultiTagsExample";
+        }
         public string Version(string versionServer = null)
         {
             Assembly thisAssem = typeof(PluginExampleMultipleTags).Assembly;
@@ -60,6 +65,6 @@ namespace PluginMultipleTags
             return ver.ToString();
         }
 
-
+       
     }
 }

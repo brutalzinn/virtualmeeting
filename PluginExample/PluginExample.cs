@@ -31,8 +31,13 @@ namespace PluginExample
         {
             return "robertinho.net";
         }
-
+  
         public string Name() => "PluginExample v1";
+
+        public string PluginId()
+        {
+            return "PluginExample";
+        }
 
         private string Main()
         {
@@ -63,5 +68,7 @@ namespace PluginExample
             }
             return ver.ToString();
         }
+
+       
     }
 }
