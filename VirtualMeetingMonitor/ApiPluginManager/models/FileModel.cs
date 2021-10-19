@@ -18,6 +18,6 @@ namespace VirtualMeetingMonitor.ApiPluginManager.models
 
         public string Description { get; set; }
         public bool Status { get; set; }
-        public string Repository { get; set; }
+        public string Repo { get; set; }
     }
 }

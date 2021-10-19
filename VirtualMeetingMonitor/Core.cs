@@ -103,16 +103,25 @@ namespace VirtualMeetingMonitor
 
         }
 
-            /// <summary>
-            /// Process console input sent while script was running.
-            /// </summary>
-            
-     
-            /// <summary>
-            /// Close user interface and the program.
-            /// </summary>
-            
-            public static void Close()
+        /// <summary>
+        /// Process console input sent while script was running.
+        /// </summary>
+
+
+        /// <summary>
+        /// Close user interface and the program.
+        /// </summary>
+
+        public static string BytesToString(byte[] bytes)
+        {
+            string result = "";
+            foreach (byte b in bytes)
+            {
+                result += b.ToString("x2");
+            }
+            return result;
+        }
+        public static void Close()
             {
                 MainWindow?.Invoke(new Action(() =>
                 {

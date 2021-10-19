@@ -81,7 +81,7 @@ namespace VirtualMeetingMonitor
             notifyIcon.ContextMenuStrip = contextMenuStrip;
 
             timer.Interval = 1000;
-            timer.Enabled = true;
+            timer.Enabled = false;
             timer.Tick += OnTimerEvent;
 
             network.OutsideUDPTafficeReceived += Network_OutsideUDPTafficeReceived;

@@ -33,6 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txb_email
@@ -41,7 +42,7 @@
             this.txb_email.Name = "txb_email";
             this.txb_email.Size = new System.Drawing.Size(160, 23);
             this.txb_email.TabIndex = 0;
-            this.txb_email.Text = "teste@hotmail.com";
+            this.txb_email.Text = "root@root.com";
             // 
             // txb_password
             // 
@@ -49,6 +50,7 @@
             this.txb_password.Name = "txb_password";
             this.txb_password.Size = new System.Drawing.Size(160, 23);
             this.txb_password.TabIndex = 1;
+            this.txb_password.Text = "123";
             // 
             // label1
             // 
@@ -76,11 +78,22 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "Connect";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 84);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 15);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "label3";
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -100,5 +113,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label3;
     }
 }
