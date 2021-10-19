@@ -38,7 +38,7 @@ namespace VirtualMeetingMonitor
         public Package(string path) => ArchivePath = path;
 
      
-        public static void Undo(string packageName)
+        public static void DescompressPackage(string packageName)
         {
             try
             {

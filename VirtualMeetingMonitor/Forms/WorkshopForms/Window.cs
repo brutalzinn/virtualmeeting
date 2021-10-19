@@ -28,7 +28,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
 
             //InfoVersion.Text = Application.ProductVersion;
 
-          //  ConsoleOutput.Font = new System.Drawing.Font(Core.Fonts.Families[0], 10f);
+            ConsoleOutput.Font = new System.Drawing.Font(Core.Fonts.Families[0], 10f);
 
             Package[] installedPackages = Workshop.GetInstalled();
 

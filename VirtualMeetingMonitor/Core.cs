@@ -61,18 +61,13 @@ namespace VirtualMeetingMonitor
             /// </summary>
             public static PrivateFontCollection Fonts { get; set; } = new PrivateFontCollection();
 
-            /// <summary>
-            /// Stream to a date-signed log file.
-            /// </summary>
+            public static StringBuilder Log { get; set; } = new StringBuilder();
 
-            /// <summary>
-            /// Contains console output as a log.
-            /// </summary>
 
-            /// <summary>
-            /// Built-in package editor.
-            /// </summary>
-            public static PackageEditor Editor { get; set; } = new PackageEditor();
+        /// <summary>
+        /// Built-in package editor.
+        /// </summary>
+        public static PackageEditor Editor { get; set; } = new PackageEditor();
 
             /// <summary>
             /// Queue containing strings inputed via console for processing.
@@ -86,6 +81,7 @@ namespace VirtualMeetingMonitor
             {
             Version = Application.ProductVersion;
 
+            Fonts.AddFontFile($@"{Application.StartupPath}\Fonts\OfficeCodePro-Medium.ttf");
 
             InterfaceThread = new Thread(() =>
             {
@@ -106,7 +102,11 @@ namespace VirtualMeetingMonitor
         /// <summary>
         /// Process console input sent while script was running.
         /// </summary>
-
+        public static void ProcessConsoleInput()
+        {
+           
+            
+        }
 
         /// <summary>
         /// Close user interface and the program.
@@ -141,19 +141,14 @@ namespace VirtualMeetingMonitor
                 }));
             }
 
-            /// <summary>
-            /// Dumps stored log into log file.
-            /// </summary>
+      
             public static void DumpLog()
             {
            //     Log.ToString().Split('\n').ToList().ForEach(x => LogStream.WriteLine(x));
             //    LogStream.Flush();
             }
 
-            /// <summary>
-            /// Write a string of text.
-            /// </summary>
-            /// <param name="value">String to write</param>
+
             public static void Write(string value)
             {
                 MainWindow?.Invoke(new Action(() =>
@@ -195,31 +190,31 @@ namespace VirtualMeetingMonitor
                     MainWindow.ConsoleOutput.AppendText(value + Environment.NewLine);
                 }));
 
-                //Log.Append(value + Environment.NewLine);
+              //  Log.Append(value + Environment.NewLine);
             }
 
-            /// <summary>
-            /// Write a multi-color string of text and append it with a linebreak.
-            /// </summary>
-            /// <param name="args">Strings prepended by colors ex: Color, "text", Color, "text2".</param>
-            public static void WriteLine(params object[] args)
+        /// <summary>
+        /// Write a multi-color string of text and append it with a linebreak.
+        /// </summary>
+        /// <param name="args">Strings prepended by colors ex: Color, "text", Color, "text2".</param>
+        public static void WriteLine(params object[] args)
+        {
+            MainWindow?.Invoke(new Action(() =>
             {
-                MainWindow?.Invoke(new Action(() =>
-                {
-                    MainWindow.ConsoleOutput.AppendText(args);
-                    MainWindow.ConsoleOutput.AppendText(Environment.NewLine);
-                }));
+                MainWindow.ConsoleOutput.AppendText(args);
+                MainWindow.ConsoleOutput.AppendText(Environment.NewLine);
+            }));
 
-                var text = new StringBuilder();
-                for (int i = 0; i < args.Length; i += 2)
-                {
-                    text.Append(args[i + 1].ToString());
-                }
-                text.Append(Environment.NewLine);
-
-                //Log.Append(text);
+            var text = new StringBuilder();
+            for (int i = 0; i < args.Length; i += 2)
+            {
+                text.Append(args[i + 1].ToString());
             }
+            text.Append(Environment.NewLine);
+
+           // Log.Append(text);
         }
+    }
     
 
 }

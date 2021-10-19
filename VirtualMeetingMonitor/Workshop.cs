@@ -76,7 +76,7 @@ namespace VirtualMeetingMonitor
             //tokens = tokens.Where(x => !x["name"].ToString().Equals("README.md")).ToList();
             //tokens.ToList().ForEach(x => list[Path.GetFileNameWithoutExtension((string)x["name"])] = (string)x["download_url"]);
 
-            Core.WriteLine($"Workshop list fetched. Happy downloading! {Files.currentPage}");
+            Core.WriteLine(new ColorContainer(89, 73, 163),$"Workshop list fetched. Happy downloading! {Files.currentPage}");
 
             return Files;
         }
@@ -99,7 +99,7 @@ namespace VirtualMeetingMonitor
 
 
           Core.WriteLine($@"Downloaded workshop package: {name}");
-          Package.Undo(name);
+          Package.DescompressPackage(name);
         }
 
         /// <summary>
