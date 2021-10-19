@@ -39,12 +39,17 @@ namespace VirtualMeetingMonitor.Forms
                 {
                     // This assumes the implementation of IPlugin has a parameterless constructor
                     var plugin = Activator.CreateInstance(pluginType) as ConfigDataPlugin;
-                    var configData = plugin.getConfigData();
+
+                    if (plugin is ConfigDataPlugin PluginConfigData)
+                    {             
+                    var configData = PluginConfigData.getConfigData();
                     Debug.WriteLine($"CONFIG SAVED {configData}");
                     if (configData != null)
                     {
                         
                         PluginUtils.saveData(CurrentProfile,configData, plugin.Name());
+                    }
+
                     }
 
                 }

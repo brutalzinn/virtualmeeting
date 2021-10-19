@@ -9,6 +9,14 @@ namespace VirtualMeetingMonitor.ApiPluginManager.models
 {
     public class UserModel
     {
+        public delegate void Notify();
+
+        public event Notify OnLoginSucess;
+
+        public event Notify OnLoginError;
+
+        public event Notify OnLoginLogout;
+
 
         private string password = "";
         public string Email { get; set; }
@@ -30,6 +38,14 @@ namespace VirtualMeetingMonitor.ApiPluginManager.models
         public UserModel(string token)
         {
             Token = token;
+            OnLoginSucess.Invoke();
+        }
+
+     
+        public void Logout()
+        {
+            Token = "";
+            OnLoginLogout.Invoke();
         }
         
     }

@@ -27,7 +27,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
 
             if (Workshop.PluginManagerWeb.addUser(User))
             {
-                var user = Workshop.PluginManagerWeb.User;
+        //        var user = Workshop.PluginManagerWeb.User;
                 label3.Text = "Status:OK";
             }
             else
