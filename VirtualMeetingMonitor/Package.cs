@@ -67,10 +67,7 @@ namespace VirtualMeetingMonitor
 
         public static dynamic GetPluginInfo(string filename)
         {
-           
-
             PluginLoader _loader = PluginLoader.CreateFromAssemblyFile(filename, new[] { typeof(IPlugin) });
-
             foreach (var pluginType in _loader
                 .LoadDefaultAssembly()
                 .GetTypes()
@@ -86,8 +83,6 @@ namespace VirtualMeetingMonitor
                 json.Description = plugin.Description();
                 json.Version = plugin.Version();
                 json.PluginId = plugin.getPluginId();
-
-                Debug.WriteLine($"DEBUG:{json} - {plugin.Name()}");
                 return json;
 
 

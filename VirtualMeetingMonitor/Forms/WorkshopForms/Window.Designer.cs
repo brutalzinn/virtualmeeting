@@ -70,11 +70,12 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             this.label4 = new System.Windows.Forms.Label();
             this.packageDescription = new System.Windows.Forms.TextBox();
             this.linkLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.tab_login = new System.Windows.Forms.TabPage();
+            this.login1 = new VirtualMeetingMonitor.Forms.WorshopForms.UserControllers.Login();
             this.btn_ok = new System.Windows.Forms.Button();
             this.packageFolderSelectDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.consolePanel.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.consoleContainer.SuspendLayout();
@@ -92,6 +93,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
+            this.tab_login.SuspendLayout();
             this.SuspendLayout();
             // 
             // consolePanel
@@ -261,7 +263,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             // 
             this.optionsPanel.Controls.Add(this.scriptsPage);
             this.optionsPanel.Controls.Add(this.workshopPage);
-            this.optionsPanel.Controls.Add(this.tabPage1);
+            this.optionsPanel.Controls.Add(this.tab_login);
             this.optionsPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.optionsPanel.Location = new System.Drawing.Point(505, 5);
             this.optionsPanel.Margin = new System.Windows.Forms.Padding(5);
@@ -269,7 +271,6 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             this.optionsPanel.SelectedIndex = 0;
             this.optionsPanel.Size = new System.Drawing.Size(282, 605);
             this.optionsPanel.TabIndex = 1;
-            this.optionsPanel.Visible = false;
             this.optionsPanel.SelectedIndexChanged += new System.EventHandler(this.optionsPanel_SelectedIndexChanged);
             // 
             // scriptsPage
@@ -615,6 +616,24 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             this.linkLayoutPanel.Size = new System.Drawing.Size(258, 24);
             this.linkLayoutPanel.TabIndex = 4;
             // 
+            // tab_login
+            // 
+            this.tab_login.Controls.Add(this.login1);
+            this.tab_login.Location = new System.Drawing.Point(4, 24);
+            this.tab_login.Name = "tab_login";
+            this.tab_login.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_login.Size = new System.Drawing.Size(274, 577);
+            this.tab_login.TabIndex = 2;
+            this.tab_login.Text = "Login";
+            this.tab_login.UseVisualStyleBackColor = true;
+            // 
+            // login1
+            // 
+            this.login1.Location = new System.Drawing.Point(26, 15);
+            this.login1.Name = "login1";
+            this.login1.Size = new System.Drawing.Size(224, 137);
+            this.login1.TabIndex = 0;
+            // 
             // btn_ok
             // 
             this.btn_ok.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -638,16 +657,6 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             // 
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "notifyIcon1";
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(274, 577);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "Login";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // Window
             // 
@@ -687,6 +696,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
+            this.tab_login.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -734,7 +744,8 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
         private TextBox packageDescription;
         private TableLayoutPanel linkLayoutPanel;
         private Button btn_ok;
-        private TabPage tabPage1;
+        private TabPage tab_login;
+        private UserControllers.Login login1;
 
         public RichTextBox ConsoleOutput { get => consoleOutput; set => consoleOutput = value; }
         public TextBox ConsoleInput { get => consoleInput; set => consoleInput = value; }

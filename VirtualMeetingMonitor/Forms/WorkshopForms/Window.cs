@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VirtualMeetingMonitor.ApiPluginManager.models;
 using VirtualMeetingMonitor.formater;
+using VirtualMeetingMonitor.Forms.WorkshopForms.UserControllers;
+using VirtualMeetingMonitor.Forms.WorshopForms.UserControllers;
 
 namespace VirtualMeetingMonitor.Forms.WorshopForms
 {
@@ -85,8 +87,25 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
 
         private void UserAccount_OnLoginSucess()
         {
-            Core.WriteLine("Welcome,", new ColorContainer(255, 0, 255) , Core.UserAccount.Name);
-            Text = $"{Globals.getAppName("PLUGIN MANAGER")} - {Core.UserAccount.Name}";
+         //   Core.WriteLine("Welcome,", new ColorContainer(255, 0, 255), Core.UserAccount.Name);
+         //   Text = $"{Globals.getAppName("PLUGIN MANAGER")} - {Core.UserAccount.Name}";
+            tab_login.Text = "Panel";
+            tab_login.Controls.Clear();
+            PluginManager tab_pm = new PluginManager();
+            tab_login.Controls.Add(tab_pm);
+
+            PluginUser tab_pu = new PluginUser();
+            TabPage tb = new TabPage();
+
+            tb.Text = "My Plugins";
+            tb.Controls.Add(tab_pu);
+
+            optionsPanel.Controls.Add(tb);
+
+
+         
+
+
         }
 
         private void scriptStop_Click(object sender, EventArgs e)
