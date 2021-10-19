@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using VisualMeetingPluginInterface;
 
 namespace PluginMultipleTags
@@ -31,7 +32,7 @@ namespace PluginMultipleTags
         {
             return $"This is a tag thread with same plugin {new Random().Next(0, 42).ToString()}";
         }
-        public string GetName() => "Multiple TAGS Plugin";
+        public string Name() => "Multiple TAGS Plugin";
 
         public string Description()
         {
@@ -47,22 +48,18 @@ namespace PluginMultipleTags
         {
             return "robertinho.net";
         }
-
-        public Dictionary<string, Func<object, dynamic>> Interfaces()
+        public string Version(string versionServer = null)
         {
-            return null;
+            Assembly thisAssem = typeof(PluginExampleMultipleTags).Assembly;
+            AssemblyName thisAssemName = thisAssem.GetName();
+            Version ver = thisAssemName.Version;
+            if (versionServer != null)
+            {
+                return $"{versionServer}-{ver}";
+            }
+            return ver.ToString();
         }
 
-        public string getConfigData()
-        {
-            return null;
 
-        }
-
-        public void loadConfigData(dynamic data = null)
-        {
-            
-
-        }
     }
 }

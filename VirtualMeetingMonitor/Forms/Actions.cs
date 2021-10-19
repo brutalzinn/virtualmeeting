@@ -38,12 +38,13 @@ namespace VirtualMeetingMonitor.Forms
                     .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsAbstract))
                 {
                     // This assumes the implementation of IPlugin has a parameterless constructor
-                    var plugin = Activator.CreateInstance(pluginType) as IPlugin;
+                    var plugin = Activator.CreateInstance(pluginType) as ConfigData;
                     var configData = plugin.getConfigData();
                     Debug.WriteLine($"CONFIG SAVED {configData}");
                     if (configData != null)
                     {
-                        PluginUtils.saveData(CurrentProfile,configData, plugin.GetName());
+                        
+                        PluginUtils.saveData(CurrentProfile,configData, plugin.Name());
                     }
 
                 }
@@ -138,12 +139,12 @@ namespace VirtualMeetingMonitor.Forms
                     .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsAbstract))
                 {
                     // This assumes the implementation of IPlugin has a parameterless constructor
-                    var plugin = Activator.CreateInstance(pluginType) as IPlugin;
+                    var plugin = Activator.CreateInstance(pluginType) as InterfacePlugin;
                     Dictionary<string, Func<object, dynamic>> interfaces = plugin.Interfaces();
                     if (interfaces != null)
                     {
                      
-                         Debug.WriteLine($"plugin usercontroll '{plugin?.GetName()}'.");
+                         Debug.WriteLine($"plugin usercontroll '{plugin?.Name()}'.");
                         foreach (KeyValuePair<string, Func<object, dynamic>> p in interfaces)
                         {
                             TabPage tp = new TabPage { };
@@ -152,7 +153,7 @@ namespace VirtualMeetingMonitor.Forms
 
                             UserControl controller = p.Value(null) as UserControl;
 
-                            dynamic pluginConfig = PluginUtils.loadData(CurrentProfile, plugin.GetName());
+                            dynamic pluginConfig = PluginUtils.loadData(CurrentProfile, plugin.Name());
                             if (pluginConfig != null)
                             {
                                 controller = p.Value(pluginConfig) as UserControl;

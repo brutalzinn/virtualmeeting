@@ -2,12 +2,13 @@
 using PluginExampleWithInterface.Views;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Windows.Forms;
 using VisualMeetingPluginInterface;
 
 namespace PluginExampleWithInterface
 {
-    internal class PluginExampleWithInterface : IPlugin
+    internal class PluginExampleWithInterface : IPlugin, InterfacePlugin, ConfigData
     {
         public Dictionary<string, Func<string>> PlaceHolders = new Dictionary<string, Func<string>>();
 
@@ -39,7 +40,7 @@ namespace PluginExampleWithInterface
         }
         private string Main()
         {
-            return $"Eita preula {this.GetName()} rodou ! {Globals._Config.TextBoxValue}";
+            return $"Eita preula {this.Name()} rodou ! {Globals._Config.TextBoxValue}";
         }
 
         public void loadConfigData(dynamic data)
@@ -68,11 +69,25 @@ namespace PluginExampleWithInterface
             return "This plugin is a example of a plugin with interface";
         }
 
-        public string GetName()
+        public string Name()
         {
             return "PluginExampleWithInterface";
         }
 
-      
+
+
+        public string Version(string versionServer = null)
+        {
+            Assembly thisAssem = typeof(PluginExampleWithInterface).Assembly;
+            AssemblyName thisAssemName = thisAssem.GetName();
+            Version ver = thisAssemName.Version;
+            if (versionServer != null)
+            {
+                return $"{versionServer}-{ver}";
+            }
+            return ver.ToString();
+        }
+
+
     }
 }

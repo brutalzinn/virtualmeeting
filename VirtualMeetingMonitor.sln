@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31507.150
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31808.319
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtualMeetingMonitor", "VirtualMeetingMonitor\VirtualMeetingMonitor.csproj", "{9081CB91-06DE-441A-ACB1-B8C14C6B9194}"
 EndProject
@@ -20,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{3E06
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interface", "Interface", "{0CA84CBC-2728-4F38-83A5-38A9E7720B8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginExampleWithInterface", "PluginExampleWithInterface\PluginExampleWithInterface.csproj", "{CF2C1A54-34D4-4C97-B410-AB52A3BD7F85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginExampleWithInterface", "PluginExampleWithInterface\PluginExampleWithInterface.csproj", "{CF2C1A54-34D4-4C97-B410-AB52A3BD7F85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

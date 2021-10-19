@@ -1,11 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace VisualMeetingPluginInterface
 {
     public interface IPlugin
     {
-        string GetName();
+      
+        string Name();
+
+        string PluginId()
+        {
+            string packageId = Regex.Replace(this.Name(), @"\s+", "");
+            return packageId.ToLower();
+        }
 
         string Description();
 
@@ -13,19 +21,23 @@ namespace VisualMeetingPluginInterface
 
         string Contact();
 
- 
+        string Version(string versionServer = null);
+
+   
         Dictionary<string, Func<string>> GetPlaceHolder();
 
-
-        // needs be optional.
-
+    }
+    public interface InterfacePlugin: IPlugin
+    {
         Dictionary<string, Func<object, dynamic>> Interfaces();
+    }
 
+    public interface ConfigData : IPlugin
+    {
         string getConfigData();
 
         void loadConfigData(dynamic data = null);
     }
 
-    
 
-    }
+}

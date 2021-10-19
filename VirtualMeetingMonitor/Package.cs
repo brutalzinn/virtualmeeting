@@ -88,7 +88,7 @@ namespace VirtualMeetingMonitor
                     var plugin = Activator.CreateInstance(pluginType) as IPlugin;
                     json = JsonConvert.SerializeObject(new
                     {
-                        Name = plugin.GetName(),
+                        Name = plugin.Name(),
                         Description = plugin.Description(),
                         Authors = plugin.Authors(),
                         Contact = plugin.Contact()

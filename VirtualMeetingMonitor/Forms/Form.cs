@@ -850,19 +850,24 @@ namespace VirtualMeetingMonitor
                     .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsAbstract))
                 {
                     // This assumes the implementation of IPlugin has a parameterless constructor
-                    var plugin = Activator.CreateInstance(pluginType) as IPlugin;
-                 
-                    Debug.WriteLine($"Created plugin instance '{plugin?.GetName()}'.");
-
-
-                        dynamic pluginConfig = PluginUtils.loadData(Globals.ProfileUtil.CurrentProfile, plugin.GetName());
+                    IPlugin plugin = (IPlugin)Activator.CreateInstance(pluginType) ;
                    
-                 
+                     
+
+
+                        //Debug.WriteLine($"Created plugin instance '{plugin?.Name()}'.");
+
+                        dynamic pluginConfig = PluginUtils.loadData(Globals.ProfileUtil.CurrentProfile, plugin?.Name());
+
+                    if (plugin is ConfigData newLocalFoo)
+                    {
                         if (pluginConfig != null)
                         {
-                            plugin.loadConfigData(pluginConfig);
+                            newLocalFoo.loadConfigData(pluginConfig);
                         }
-                    
+                    }
+                    Debug.WriteLine($"PLUGIN:{plugin?.Name()} - {plugin?.Version()} - {plugin?.PluginId()} ");
+
 
                     foreach (var item in plugin.GetPlaceHolder())
                         {
@@ -897,7 +902,9 @@ namespace VirtualMeetingMonitor
                         sharedTypes: new[] { typeof(IPlugin) });
                     Globals.loaders.Add(loader);
                 }
+             
             }
+
             lbl_plugin_count.Text = $"Plugins: {Globals.loaders.Count} loaded";
         }
         private void Dev_ButtonTeste_Click(object sender, EventArgs e)

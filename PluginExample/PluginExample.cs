@@ -2,6 +2,7 @@
 using VisualMeetingPluginInterface;
 using RestSharp;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace PluginExample
 {
@@ -31,7 +32,7 @@ namespace PluginExample
             return "robertinho.net";
         }
 
-        public string GetName() => "PluginExample v1";
+        public string Name() => "PluginExample v1";
 
         private string Main()
         {
@@ -48,19 +49,19 @@ namespace PluginExample
             return client.Execute(request).Content;
         }
 
-        public Dictionary<string, Func<object, dynamic>> Interfaces()
-        {
-            return null;
-        }
+     
 
-        public string getConfigData()
+      
+        public string Version(string versionServer = null)
         {
-            return null;
-        }
-
-        public void loadConfigData(dynamic data = null)
-        {
-        
+            Assembly thisAssem = typeof(PluginExample).Assembly;
+            AssemblyName thisAssemName = thisAssem.GetName();
+            Version ver = thisAssemName.Version;
+            if (versionServer != null)
+            {
+                return $"{versionServer}-{ver}";
+            }
+            return ver.ToString();
         }
     }
 }

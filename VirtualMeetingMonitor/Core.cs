@@ -121,6 +121,18 @@ namespace VirtualMeetingMonitor
             }
             return result;
         }
+        public static string DecodeBase64(string token)
+        {
+            token = token.Replace('_', '/').Replace('-', '+');
+            switch (token.Length % 4)
+            {
+                case 2: token += "=="; break;
+                case 3: token += "="; break;
+            }
+            var decoded = Convert.FromBase64String(token);
+            var decodedToken = System.Text.Encoding.Default.GetString(decoded);
+            return decodedToken;
+        }
         public static void Close()
             {
                 MainWindow?.Invoke(new Action(() =>

@@ -21,21 +21,11 @@ namespace VirtualMeetingMonitor
         public bool addPackage(FileModel body) => callAddPackage(body) == HttpStatusCode.OK;
         public GenericFiles getPackages(int page = 0, int size = 3) =>  CallPackageList(page,size);
 
-        public string DecodeBase64(string token)
-        {
-            token = token.Replace('_', '/').Replace('-', '+');
-            switch (token.Length % 4)
-            {
-                case 2: token += "=="; break;
-                case 3: token += "="; break;
-            }
-            var decoded = Convert.FromBase64String(token);
-            var decodedToken = System.Text.Encoding.Default.GetString(decoded);
-            return decodedToken;
-        }
+    
 
         private HttpStatusCode callAuthUser(UserModel body)
         {
+
             RestClient client = new RestClient(url);
 
             const string api = "/login";
@@ -45,12 +35,17 @@ namespace VirtualMeetingMonitor
             json.password = body.Password;
             request.AddJsonBody(json);
             var query = client.Execute(request);
-            string token = JsonConvert.DeserializeObject<UserModel>(query.Content).Token.Split('.')[1];
-            Debug.WriteLine($"TOKEN:|{token}|");
-            Debug.WriteLine(DecodeBase64(token));
-       
-            User = JsonConvert.DeserializeObject<UserModel>(DecodeBase64(token));
+
+            string token = JsonConvert.DeserializeObject<UserModel>(query.Content).Token?.Split('.')[1];
+            if (token != null) { 
+            User = JsonConvert.DeserializeObject<UserModel>(Core.DecodeBase64(token));
+
             return query.StatusCode;
+            }
+            else
+            {
+                return HttpStatusCode.BadRequest;
+            }
         }
 
             private HttpStatusCode callAddPackage(FileModel body)
