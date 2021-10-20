@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VirtualMeetingMonitor.ApiPluginManager.models;
 using VirtualMeetingMonitor.formater;
+using VirtualMeetingMonitor.Forms.WorkshopForms.Package;
 using VirtualMeetingMonitor.Forms.WorkshopForms.UserControllers;
 using VirtualMeetingMonitor.Forms.WorshopForms.UserControllers;
 
@@ -87,20 +88,38 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
 
         private void UserAccount_OnLoginSucess()
         {
-         //   Core.WriteLine("Welcome,", new ColorContainer(255, 0, 255), Core.UserAccount.Name);
-         //   Text = $"{Globals.getAppName("PLUGIN MANAGER")} - {Core.UserAccount.Name}";
-            tab_login.Text = "Panel";
+            //   Core.WriteLine("Welcome,", new ColorContainer(255, 0, 255), Core.UserAccount.Name);
+            //   Text = $"{Globals.getAppName("PLUGIN MANAGER")} - {Core.UserAccount.Name}";
+
+            Button btn_plg_update = new Button();
+            btn_plg_update.Text = "SEND PLUGIN UPDATE";
+            btn_plg_update.Dock = DockStyle.Top;
+            btn_plg_update.Click += (o, ce) => {
+
+                PackageManageForm frm = new PackageManageForm();
+                frm.lbl_package_info.Text = "PLUGIN UPDATE CENTER";
+                frm.ShowDialog();
+
+            };
+
+            tab_login.Text = "User Panel";
             tab_login.Controls.Clear();
-            PluginManager tab_pm = new PluginManager();
-            tab_login.Controls.Add(tab_pm);
+            tab_login.Controls.Add(btn_plg_update);
 
             PluginUser tab_pu = new PluginUser();
+        
+            //btn_plg_update.Dock = DockStyle.Top;
+
+            tab_pu.Dock = DockStyle.Fill;
+         
             LoadWorkList(tab_pu.browserPackageList,isUser: true);
 
             TabPage tb = new TabPage();
 
             tb.Text = "My Plugins";
+           
             tb.Controls.Add(tab_pu);
+
 
             optionsPanel.Controls.Add(tb);
 
@@ -192,14 +211,14 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             WorkshopFetchButton.Enabled = false;
 
             browserList.Controls.Clear();
-          
+
             Task.Run(() =>
             {
                 GenericFiles packages = Workshop.GetPackageList(page, size, isUser);
 
                 Invoke(new Action(() =>
             {
-           
+
                 WorkshopFetchButton.Text = "Fetch";
                 WorkshopFetchButton.Enabled = true;
                 Core.WriteLine($"Current page: {packages.currentPage} - {page}");
@@ -208,9 +227,27 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
                     PackageInfoMinimal p = new PackageInfoMinimal();
                     p.NameLabel.Text = package.Name;
                     // p.na.Text = package.User["name"]
-                    p.authorLabel.Text = package.User["name"];
+                    p.AuthorLabel.Text = package.User["name"];
                     p.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
                     browserList.Controls.Add(p);
+                    //if (isUser)
+                    //{
+                    //    p.btn_manage.Visible = true;
+                    //    p.btn_manage.Click += (o, ce) =>
+                    //    {
+                    //        PackageManageForm frm = new PackageManageForm();
+                    //        string info = $"{package.Name} \n" +
+                    //        $"{package.Version.file_version}";
+                         
+                    //        frm.lbl_package_info.Text = info;
+
+                    //        frm.ShowDialog();
+
+
+
+
+                    //    };
+                    //  }
                     p.DownloadButton.Click += (o, ce) =>
                     {
                         p.DownloadButton.Text = "Downloading..";

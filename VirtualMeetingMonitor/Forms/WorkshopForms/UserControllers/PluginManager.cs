@@ -35,6 +35,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
         private string PluginName { get; set; }   
 
         private string PluginId { get; set; }
+        private bool isUpdate { get; set; } = false;
 
 
         private void PluginManager_Load(object sender, EventArgs e)
@@ -100,28 +101,20 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
                 }
             }       
         }
-
-        private void button2_Click(object sender, EventArgs e)
+        public void Submit(bool _isUpdate = false)
         {
+            isUpdate = _isUpdate;
             progressBar1.Maximum = 100;
             BackgroundWorker _worker = new BackgroundWorker();
             _worker.WorkerReportsProgress = true;
             _worker.DoWork += _worker_DoWork;
-           
+
             _worker.ProgressChanged += _worker_ProgressChanged;
             _worker.RunWorkerAsync();
-
-            //FileModel _file = new FileModel();
-            //_file.Name = PluginName;
-            //_file.Filename = Filename;
-            //_file.Description = Description;
-            //_file.Repo = txb_repo.Text;
-            //_file.Version = new ExpandoObject();
-            //_file.Version.version = Version;
-            //_file.Version.sha = Hash;
-            //_file.Version.crc = Crc32;
-            //_file.Version.unique_id = PluginId;
-            //Workshop.PluginManagerWeb.addPackage(_file);
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Submit(isUpdate);
         }
 
         private void _worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -167,15 +160,35 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
                 _file.Version.sha = Hash;
                 _file.Version.crc = Crc32;
                 _file.Version.unique_id = PluginId;
-                if (Workshop.PluginManagerWeb.addPackage(_file))
+                switch (isUpdate)
                 {
-                    worker.ReportProgress(100);
+                    case true:
+                        if (Workshop.PluginManagerWeb.updatePackage(_file))
+                        {
+                            worker.ReportProgress(100);
+                        }
+                        else
+                        {
+                            WriteTextSafe(lbl_status, Workshop.PluginManagerWeb.getResponseContent());
+                            e.Cancel = true;
+                        }
+                        break;
+                    case false:
+                        if (Workshop.PluginManagerWeb.addPackage(_file))
+                        {
+                            worker.ReportProgress(100);
+                        }
+                        else
+                        {
+                            WriteTextSafe(lbl_status, Workshop.PluginManagerWeb.getResponseContent());
+                            e.Cancel = true;
+                        }
+
+
+                        break;
                 }
-                else
-                {
-                    WriteTextSafe(lbl_status, Workshop.PluginManagerWeb.getResponseContent());
-                    e.Cancel = true;
-                }
+           
+               
 
                 System.Threading.Thread.Sleep(500);
                 worker.ReportProgress(Workshop.PluginManagerWeb.getProgress());

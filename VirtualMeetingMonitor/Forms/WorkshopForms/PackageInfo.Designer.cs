@@ -36,8 +36,8 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             this.nameLabel = new System.Windows.Forms.Label();
             this.authorLabel = new System.Windows.Forms.Label();
             this.descLabel = new System.Windows.Forms.Label();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -60,7 +60,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(236, 115);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(236, 136);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -125,6 +125,17 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             this.descLabel.Text = "label3";
             this.descLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(55, 31);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "INFO";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.AutoSize = true;
@@ -141,17 +152,6 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(234, 37);
             this.tableLayoutPanel3.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(55, 31);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "INFO";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // PackageInfo
             // 
@@ -182,8 +182,8 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label authorLabel;
         private System.Windows.Forms.Label descLabel;
-        private TableLayoutPanel tableLayoutPanel3;
         private Package package;
+        private TableLayoutPanel tableLayoutPanel3;
         private Button button1;
 
         public Label NameLabel { get => nameLabel; set => nameLabel = value; }

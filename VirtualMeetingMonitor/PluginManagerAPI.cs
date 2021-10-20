@@ -27,6 +27,7 @@ namespace VirtualMeetingMonitor
         private void ProgressBar(int value) => ProgressValue = value;
 
         public bool addUser(UserModel body) => callAuthUser(body) == HttpStatusCode.OK;
+        public bool updatePackage(FileModel body) => callUpdatePackage(body) == HttpStatusCode.OK;
 
         public bool addPackage(FileModel body) => callAddPackage(body) == HttpStatusCode.OK;
         public GenericFiles getPackages(int page = 0, int size = 3, bool isUser = false) =>  CallPackageList(page,size,isUser);
@@ -91,12 +92,43 @@ namespace VirtualMeetingMonitor
             {
               ProgressBar(100);
             }
-       
-
             return query.StatusCode;
-
-
         }
+
+        private HttpStatusCode callUpdatePackage(FileModel body)
+        {
+            RestClient client = new RestClient(url);
+            var request = new RestRequest($"/files/update/{Convert.ToString(body.Version.unique_id)}", Method.PUT)
+            {
+                AlwaysMultipartFormData = true
+            };
+            ProgressBar(5);
+
+            request.AddHeader("Content-Type", "multipart/form-data");
+            request.AddHeader("Authorization", $"Bearer {Core.UserAccount.Token}");
+            request.AddFile("plugin", body.Filename);
+            ProgressBar(25);
+            request.AddParameter("name", body.Name);
+            request.AddParameter("description", body.Description);
+            request.AddParameter("repo", body.Repo);
+            request.AddParameter("version", Convert.ToString(body.Version.version));
+            request.AddParameter("crc", Convert.ToString(body.Version.crc));
+            request.AddParameter("sha", Convert.ToString(body.Version.sha));
+            ProgressBar(50);
+            var query = client.Execute(request);
+            if (query.StatusCode != HttpStatusCode.OK)
+            {
+                dynamic json = JsonConvert.DeserializeObject(query.Content);
+                ResponseContent(Convert.ToString(json.error));
+                ProgressBar(0);
+            }
+            else
+            {
+                ProgressBar(100);
+            }
+            return query.StatusCode;
+        }
+
         private GenericFiles CallPackageList(int page, int size,bool isUser)
         {
             RestClient client = new RestClient(url);

@@ -29,5 +29,15 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
         {
 
         }
+
+        private void downloadButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_manage_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

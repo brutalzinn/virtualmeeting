@@ -34,7 +34,8 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.nameLabel = new System.Windows.Forms.Label();
             this.downloadButton = new System.Windows.Forms.Button();
-            this.authorLabel = new System.Windows.Forms.Label();
+            this.btn_manage = new System.Windows.Forms.Button();
+            this.AuthorLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -49,7 +50,8 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.downloadButton, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.authorLabel, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btn_manage, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.AuthorLabel, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -106,17 +108,28 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             this.downloadButton.TabIndex = 2;
             this.downloadButton.Text = "Download";
             this.downloadButton.UseVisualStyleBackColor = false;
+            this.downloadButton.Click += new System.EventHandler(this.downloadButton_Click);
             // 
-            // authorLabel
+            // btn_manage
             // 
-            this.authorLabel.AutoSize = true;
-            this.authorLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.authorLabel.Location = new System.Drawing.Point(189, 1);
-            this.authorLabel.Name = "authorLabel";
-            this.authorLabel.Size = new System.Drawing.Size(86, 29);
-            this.authorLabel.TabIndex = 3;
-            this.authorLabel.Text = "author";
-            this.authorLabel.Click += new System.EventHandler(this.author_Click);
+            this.btn_manage.Location = new System.Drawing.Point(189, 34);
+            this.btn_manage.Name = "btn_manage";
+            this.btn_manage.Size = new System.Drawing.Size(75, 23);
+            this.btn_manage.TabIndex = 3;
+            this.btn_manage.Text = "MANAGE";
+            this.btn_manage.UseVisualStyleBackColor = true;
+            this.btn_manage.Visible = false;
+            this.btn_manage.Click += new System.EventHandler(this.btn_manage_Click);
+            // 
+            // AuthorLabel
+            // 
+            this.AuthorLabel.AutoSize = true;
+            this.AuthorLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AuthorLabel.Location = new System.Drawing.Point(189, 1);
+            this.AuthorLabel.Name = "AuthorLabel";
+            this.AuthorLabel.Size = new System.Drawing.Size(86, 29);
+            this.AuthorLabel.TabIndex = 4;
+            this.AuthorLabel.Text = "label1";
             // 
             // PackageInfoMinimal
             // 
@@ -144,10 +157,10 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label nameLabel;
-        private System.Windows.Forms.Label AuthorLabel;
 
         private Button downloadButton;
-        public Label authorLabel { get => AuthorLabel; set => AuthorLabel = value; }
+        public Label AuthorLabel;
+        public Button btn_manage;
 
         public Label NameLabel { get => nameLabel; set => nameLabel = value; }
         public Button RunButton { get => downloadButton; set => downloadButton = value; }
