@@ -95,6 +95,8 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             tab_login.Controls.Add(tab_pm);
 
             PluginUser tab_pu = new PluginUser();
+            LoadWorkList(tab_pu.browserPackageList,isUser: true);
+
             TabPage tb = new TabPage();
 
             tb.Text = "My Plugins";
@@ -183,17 +185,17 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             //    }));
             //}
         }
-        private void LoadWorkList(int page = 0, int size = 3)
+        private void LoadWorkList(TableLayoutPanel browserList, int page = 0, int size = 3, bool isUser = false)
         {
 
             WorkshopFetchButton.Text = "Fetching..";
             WorkshopFetchButton.Enabled = false;
 
-            BrowserPackageList.Controls.Clear();
+            browserList.Controls.Clear();
           
             Task.Run(() =>
             {
-                GenericFiles packages = Workshop.GetPackageList(page, size);
+                GenericFiles packages = Workshop.GetPackageList(page, size, isUser);
 
                 Invoke(new Action(() =>
             {
@@ -208,12 +210,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
                     // p.na.Text = package.User["name"]
                     p.authorLabel.Text = package.User["name"];
                     p.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
-
-                    BrowserPackageList.Controls.Add(p);
-
-
-
-
+                    browserList.Controls.Add(p);
                     p.DownloadButton.Click += (o, ce) =>
                     {
                         p.DownloadButton.Text = "Downloading..";
@@ -271,7 +268,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
                         link_label.Click += (o, ce) =>
                         {
                          //   Debug.WriteLine($"BUTTON CLICK: {(int)link_label.Tag}");
-                          LoadWorkList((int)link_label.Tag);
+                          LoadWorkList(browserPackageList,(int)link_label.Tag);
                         };
                         linkLayoutPanel.Controls.Add(link_label);
                     }
@@ -281,7 +278,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
 
             });
 
-            LoadWorkList();
+            LoadWorkList(browserPackageList);
         }
 
         private void packageSelectFolder_Click(object sender, EventArgs e)

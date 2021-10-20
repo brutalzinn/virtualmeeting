@@ -63,6 +63,6 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel browserPackageList;
+        public System.Windows.Forms.TableLayoutPanel browserPackageList;
     }
 }

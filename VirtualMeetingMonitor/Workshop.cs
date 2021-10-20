@@ -61,23 +61,17 @@ namespace VirtualMeetingMonitor
         /// Fetch workshop scripts.
         /// </summary>
         /// <returns>List of downloadable packages.</returns>
-        public static GenericFiles GetPackageList(int page = 0, int size = 3)
+        public static GenericFiles GetPackageList(int page = 0, int size = 3, bool isUser = false)
         {
-           // Core.WriteLine(new ColorContainer(89, 73, 163), "Fetching workshop list.", new ColorContainer(177, 31, 41), "\nWARNING: Using this function too often might get you temporarily IP banned from Github API!");
-
-
-            //    NetClient.Headers["User-Agent"] = "ScribeBot - Workshop Content Fetching";
-
-            GenericFiles Files = PluginManagerWeb.getPackages(page,size);
-
-            Debug.WriteLine($"CURRENT PAGE: {Files.currentPage}");
-            Debug.WriteLine($"TOTAL PAGES: {Files.totalPages}");
-            Debug.WriteLine($"TOTAL ITEMS: {Files.totalItems}");
-            //tokens = tokens.Where(x => !x["name"].ToString().Equals("README.md")).ToList();
-            //tokens.ToList().ForEach(x => list[Path.GetFileNameWithoutExtension((string)x["name"])] = (string)x["download_url"]);
-
+            GenericFiles Files;
+            if (!isUser) { 
+             Files = PluginManagerWeb.getPackages(page, size, isUser);
+            }
+            else
+            {
+                Files = PluginManagerWeb.getPackages(page, size, isUser);
+            }
             Core.WriteLine(new ColorContainer(89, 73, 163),$"Workshop list fetched. Happy downloading! {Files.currentPage}");
-
             return Files;
         }
 

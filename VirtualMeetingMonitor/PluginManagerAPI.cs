@@ -29,7 +29,7 @@ namespace VirtualMeetingMonitor
         public bool addUser(UserModel body) => callAuthUser(body) == HttpStatusCode.OK;
 
         public bool addPackage(FileModel body) => callAddPackage(body) == HttpStatusCode.OK;
-        public GenericFiles getPackages(int page = 0, int size = 3) =>  CallPackageList(page,size);
+        public GenericFiles getPackages(int page = 0, int size = 3, bool isUser = false) =>  CallPackageList(page,size,isUser);
         private HttpStatusCode callAuthUser(UserModel body)
         {
             RestClient client = new RestClient(url);
@@ -67,9 +67,9 @@ namespace VirtualMeetingMonitor
                 AlwaysMultipartFormData = true
             };
             ProgressBar(5);
-            string token = Core.UserAccount.Token;
+           
             request.AddHeader("Content-Type", "multipart/form-data");
-            request.AddHeader("Authorization", $"Bearer {token}");
+            request.AddHeader("Authorization", $"Bearer {Core.UserAccount.Token}");
             request.AddFile("plugin",body.Filename);
             ProgressBar(25);
             request.AddParameter("name", body.Name);
@@ -97,10 +97,20 @@ namespace VirtualMeetingMonitor
 
 
         }
-        private GenericFiles CallPackageList(int page, int size)
+        private GenericFiles CallPackageList(int page, int size,bool isUser)
         {
-            RestClient client = new RestClient(url);      
-            var request = new RestRequest($"/files?page={page}&size={size}", Method.GET);
+            RestClient client = new RestClient(url);
+            RestRequest request;
+            if (!isUser)
+            {
+                request = new RestRequest($"/files?page={page}&size={size}", Method.GET);
+            }
+            else
+            {
+                request = new RestRequest($"/user/files?page={page}&size={size}", Method.GET);
+                request.AddHeader("Authorization", $"Bearer {Core.UserAccount.Token}");
+
+            }
             request.AddParameter("page", page, ParameterType.UrlSegment);
             request.AddParameter("size", size, ParameterType.UrlSegment);
             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
