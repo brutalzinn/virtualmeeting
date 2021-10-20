@@ -30,7 +30,11 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
 
         private string Version { get; set; }
 
-        private string Version { get; set; }
+        private string Description { get; set; }
+
+        private string PluginName { get; set; }   
+
+        private string PluginId { get; set; }
 
 
         private void PluginManager_Load(object sender, EventArgs e)
@@ -72,21 +76,26 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                
-     
-               
+
+                dynamic pluginInfo = Package.GetPluginInfo(openFileDialog1.FileName);
+
+
                 Hash = GetHashSha(openFileDialog1);
                 Crc32 = GetHashCrc(openFileDialog1);
                 Filename = openFileDialog1.FileName;
-                dynamic pluginInfo = Package.GetPluginInfo(openFileDialog1.FileName);
+                PluginName = pluginInfo.Name;
+                Version = pluginInfo.Version;
+                Description = pluginInfo.Description;
+                PluginId = pluginInfo.PluginId;
+
                 if (pluginInfo != null)
                 {
-                        lbl_pluginInfo.Text = $"Name:{pluginInfo.Name}\n" +
-                        $"Description:{pluginInfo.Description}\n " +
-                        $"Version:{pluginInfo.Version}\n" +
+                        lbl_pluginInfo.Text = $"Name:{PluginName}\n" +
+                        $"Description:{Description}\n " +
+                        $"Version:{Version}\n" +
                         $"Hash:{Hash}\n" +
                         $"Crc32:{Crc32}\n " +
-                        $"PluginId:{pluginInfo.PluginId}";
+                        $"PluginId:{PluginId}";
                       
                 }
             }       
@@ -94,19 +103,33 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
 
         private void button2_Click(object sender, EventArgs e)
         {
-             FileModel _file = new FileModel();
-            _file.Name = "Plugin Upado";
+            BackgroundWorker _worker = new BackgroundWorker();
+            _worker.DoWork += _worker_DoWork;
+            _worker.ProgressChanged += _worker_ProgressChanged;
+            _worker.WorkerReportsProgress = true;
+            _worker.RunWorkerAsync();
+
+         
+        }
+
+        private void _worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressBar1.Value = e.ProgressPercentage;
+        }
+
+        private void _worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            FileModel _file = new FileModel();
+            _file.Name = PluginName;
             _file.Filename = Filename;
-            _file.Description = "Descrição obrigatória. blalbla";
-            _file.Repo = "http://github.com/teste/pluginupado";
+            _file.Description = Description;
+            _file.Repo = txb_repo.Text.Length > 0 ? txb_repo.Text : "";
             _file.Version = new ExpandoObject();
-            _file.Version.version = "1.0.0.0";
+            _file.Version.version = Version;
             _file.Version.sha = Hash;
             _file.Version.crc = Crc32;
-          
-
-
-         Workshop.PluginManagerWeb.addPackage(_file);    
+            _file.Version.unique_id = PluginId;
+            Workshop.PluginManagerWeb.addPackage(_file);
         }
     }
 }

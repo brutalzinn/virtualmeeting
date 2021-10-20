@@ -56,7 +56,8 @@ namespace VirtualMeetingMonitor
             {
                 AlwaysMultipartFormData = true
             };
-            string token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IlJvb3QgdXNlciIsImVtYWlsIjoicm9vdEByb290LmNvbSIsInJhbmsiOjEsImlhdCI6MTYzNDYwNDU2NCwiZXhwIjoxNjM0NjkwOTY0fQ.5ifac6yOSrhfmlr1BPc0awML7hwZhvBrZSnjyyvI7U4";
+
+            string token = Core.UserAccount.Token;
             request.AddHeader("Content-Type", "multipart/form-data");
             request.AddHeader("Authorization", $"Bearer {token}");
             request.AddFile("plugin",body.Filename);
@@ -66,6 +67,7 @@ namespace VirtualMeetingMonitor
             request.AddParameter("version", Convert.ToString(body.Version.version));
             request.AddParameter("crc", Convert.ToString(body.Version.crc));
             request.AddParameter("sha", Convert.ToString(body.Version.sha));
+            request.AddParameter("unique_id", Convert.ToString(body.Version.unique_id));
             return client.Execute(request).StatusCode;
         }
         private GenericFiles CallPackageList(int page, int size)
