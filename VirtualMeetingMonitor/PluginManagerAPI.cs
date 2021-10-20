@@ -76,10 +76,10 @@ namespace VirtualMeetingMonitor
             request.AddParameter("name", body.Name);
             request.AddParameter("description", body.Description);
             request.AddParameter("repo", body.Repo);
-            request.AddParameter("version", Convert.ToString(body.Version.version));
-            request.AddParameter("crc", Convert.ToString(body.Version.crc));
-            request.AddParameter("sha", Convert.ToString(body.Version.sha));
-            request.AddParameter("unique_id", Convert.ToString(body.Version.unique_id));
+            request.AddParameter("version", body.Version.Version);
+            request.AddParameter("crc", body.Version.Crc);
+            request.AddParameter("sha", body.Version.Hash);
+            request.AddParameter("unique_id", body.Version.Unique_id);
             ProgressBar(50);
             var query = client.Execute(request);
             if(query.StatusCode != HttpStatusCode.OK)
@@ -98,7 +98,7 @@ namespace VirtualMeetingMonitor
         private HttpStatusCode callUpdatePackage(FileModel body)
         {
             RestClient client = new RestClient(url);
-            var request = new RestRequest($"/files/update/{Convert.ToString(body.Version.unique_id)}", Method.PUT)
+            var request = new RestRequest($"/files/update/{body.Version.Unique_id}", Method.PUT)
             {
                 AlwaysMultipartFormData = true
             };
@@ -111,9 +111,9 @@ namespace VirtualMeetingMonitor
             request.AddParameter("name", body.Name);
             request.AddParameter("description", body.Description);
             request.AddParameter("repo", body.Repo);
-            request.AddParameter("version", Convert.ToString(body.Version.version));
-            request.AddParameter("crc", Convert.ToString(body.Version.crc));
-            request.AddParameter("sha", Convert.ToString(body.Version.sha));
+            request.AddParameter("version", body.Version.Version);
+            request.AddParameter("crc", body.Version.Crc);
+            request.AddParameter("sha", body.Version.Hash);
             ProgressBar(50);
             var query = client.Execute(request);
             if (query.StatusCode != HttpStatusCode.OK)

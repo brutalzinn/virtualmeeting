@@ -114,6 +114,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
         }
         private void button2_Click(object sender, EventArgs e)
         {
+            progressBar1.Value = 0;
             Submit(isUpdate);
         }
 
@@ -155,11 +156,13 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
                 _file.Filename = Filename;
                 _file.Description = Description;
                 _file.Repo = txb_repo.Text.Length > 0 ? txb_repo.Text : "";
-                _file.Version = new ExpandoObject();
-                _file.Version.version = Version;
-                _file.Version.sha = Hash;
-                _file.Version.crc = Crc32;
-                _file.Version.unique_id = PluginId;
+                _file.Version = new VersionModel
+                {
+                    Version = Version,
+                    Hash = Hash,
+                    Crc = Crc32,
+                    Unique_id = PluginId
+                };
                 switch (isUpdate)
                 {
                     case true:

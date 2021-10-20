@@ -21,7 +21,7 @@ namespace VirtualMeetingMonitor.ApiPluginManager.models
 
         public dynamic User { get; set; }
 
-        public dynamic Version { get; set; }
+        public VersionModel Version { get; set; }
 
         public string Description { get; set; }
         public bool Status { get; set; }
