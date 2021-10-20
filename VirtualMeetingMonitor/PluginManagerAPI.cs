@@ -4,6 +4,7 @@ using RestSharp;
 using System;
 using System.Diagnostics;
 using System.Dynamic;
+using System.IO;
 using System.Net;
 using System.Text;
 using VirtualMeetingMonitor.ApiPluginManager.models;
@@ -19,14 +20,9 @@ namespace VirtualMeetingMonitor
 
         public bool addPackage(FileModel body) => callAddPackage(body) == HttpStatusCode.OK;
         public GenericFiles getPackages(int page = 0, int size = 3) =>  CallPackageList(page,size);
-
-    
-
         private HttpStatusCode callAuthUser(UserModel body)
         {
-
             RestClient client = new RestClient(url);
-
             const string api = "/login";
             var request = new RestRequest(api, Method.POST);
             dynamic json = new ExpandoObject();
@@ -37,8 +33,7 @@ namespace VirtualMeetingMonitor
             string tokenOriginal = JsonConvert.DeserializeObject<UserModel>(query.Content).Token;
             string token = JsonConvert.DeserializeObject<UserModel>(query.Content).Token?.Split('.')[1];
             if (token != null) {
-           var user_info = JsonConvert.DeserializeObject<UserModel>(Core.DecodeBase64(token));
-
+            var user_info = JsonConvert.DeserializeObject<UserModel>(Core.DecodeBase64(token));
             Core.UserAccount.Id = user_info.Id;
             Core.UserAccount.Token = tokenOriginal;
             Core.UserAccount.Rank = user_info.Rank;
@@ -53,8 +48,8 @@ namespace VirtualMeetingMonitor
                 return HttpStatusCode.BadRequest;
             }
         }
-
-            private HttpStatusCode callAddPackage(FileModel body)
+      
+        private HttpStatusCode callAddPackage(FileModel body)
         {
             RestClient client = new RestClient(url);
             var request = new RestRequest("/files/upload", Method.POST)

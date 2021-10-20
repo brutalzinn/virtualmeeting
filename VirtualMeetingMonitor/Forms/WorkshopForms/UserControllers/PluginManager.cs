@@ -28,6 +28,11 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
 
         private string Filename { get; set; }
 
+        private string Version { get; set; }
+
+        private string Version { get; set; }
+
+
         private void PluginManager_Load(object sender, EventArgs e)
         {
 
@@ -98,8 +103,9 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
             _file.Version.version = "1.0.0.0";
             _file.Version.sha = Hash;
             _file.Version.crc = Crc32;
+          
 
-         
+
          Workshop.PluginManagerWeb.addPackage(_file);    
         }
     }
