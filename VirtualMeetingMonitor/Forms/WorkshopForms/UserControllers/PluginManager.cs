@@ -103,33 +103,90 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
 
         private void button2_Click(object sender, EventArgs e)
         {
+            progressBar1.Maximum = 100;
             BackgroundWorker _worker = new BackgroundWorker();
-            _worker.DoWork += _worker_DoWork;
-            _worker.ProgressChanged += _worker_ProgressChanged;
             _worker.WorkerReportsProgress = true;
+            _worker.DoWork += _worker_DoWork;
+           
+            _worker.ProgressChanged += _worker_ProgressChanged;
             _worker.RunWorkerAsync();
 
-         
+            //FileModel _file = new FileModel();
+            //_file.Name = PluginName;
+            //_file.Filename = Filename;
+            //_file.Description = Description;
+            //_file.Repo = txb_repo.Text;
+            //_file.Version = new ExpandoObject();
+            //_file.Version.version = Version;
+            //_file.Version.sha = Hash;
+            //_file.Version.crc = Crc32;
+            //_file.Version.unique_id = PluginId;
+            //Workshop.PluginManagerWeb.addPackage(_file);
         }
 
         private void _worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar1.Value = e.ProgressPercentage;
         }
+        public void WriteTextSafe(Control control, string text)
+        {
 
+            MethodInvoker method = delegate
+            {
+                control.Text = text;
+
+            };
+
+            if (control.InvokeRequired)
+            {
+                // Call this same method but append THREAD2 to the text
+                BeginInvoke(method);
+            }
+            else
+                control.Text = text;
+        }
         private void _worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            FileModel _file = new FileModel();
-            _file.Name = PluginName;
-            _file.Filename = Filename;
-            _file.Description = Description;
-            _file.Repo = txb_repo.Text.Length > 0 ? txb_repo.Text : "";
-            _file.Version = new ExpandoObject();
-            _file.Version.version = Version;
-            _file.Version.sha = Hash;
-            _file.Version.crc = Crc32;
-            _file.Version.unique_id = PluginId;
-            Workshop.PluginManagerWeb.addPackage(_file);
+
+            BackgroundWorker worker = sender as BackgroundWorker;
+
+            if ((worker.CancellationPending == true))
+            {
+                e.Cancel = true;
+              
+            }
+            else
+            {
+                FileModel _file = new FileModel();
+                _file.Name = PluginName;
+                _file.Filename = Filename;
+                _file.Description = Description;
+                _file.Repo = txb_repo.Text.Length > 0 ? txb_repo.Text : "";
+                _file.Version = new ExpandoObject();
+                _file.Version.version = Version;
+                _file.Version.sha = Hash;
+                _file.Version.crc = Crc32;
+                _file.Version.unique_id = PluginId;
+                if (Workshop.PluginManagerWeb.addPackage(_file))
+                {
+                    worker.ReportProgress(100);
+                }
+                else
+                {
+                    WriteTextSafe(lbl_status, Workshop.PluginManagerWeb.getResponseContent());
+                    e.Cancel = true;
+                }
+
+                System.Threading.Thread.Sleep(500);
+                worker.ReportProgress(Workshop.PluginManagerWeb.getProgress());
+            }
+
+           
+        }
+
+        private void lbl_status_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
