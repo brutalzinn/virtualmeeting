@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace VirtualMeetingMonitor.ApiPluginManager.models
+namespace VirtualMeetingMonitor.PluginManager.models
 {
     public class UserModel
     {

@@ -7,31 +7,27 @@ using System.Dynamic;
 using System.IO;
 using System.Net;
 using System.Text;
-using VirtualMeetingMonitor.ApiPluginManager.models;
+using VirtualMeetingMonitor.PluginManager.models;
 
-namespace VirtualMeetingMonitor
+namespace VirtualMeetingMonitor.PluginManager
 {
     public class PluginManagerAPI
     {
         private readonly string url = "http://localhost:8000"; //esp 8266 fixed ip
-
         private int ProgressValue { get; set; } = 0;
         private string Response { get; set; }
-
         private void ResponseContent(string value) => Response = value;
-
         public string getResponseContent() => Response;
-
         public int getProgress() => ProgressValue;
-
         private void ProgressBar(int value) => ProgressValue = value;
+        public bool addUser(UserModel body) => CallAuthUser(body) == HttpStatusCode.OK;
 
-        public bool addUser(UserModel body) => callAuthUser(body) == HttpStatusCode.OK;
-        public bool updatePackage(FileModel body) => callUpdatePackage(body) == HttpStatusCode.OK;
+        public bool CheckPluginVersion(string unique_id) => CallCheckPluginId(unique_id);
 
-        public bool addPackage(FileModel body) => callAddPackage(body) == HttpStatusCode.OK;
+        public bool updatePackage(FileModel body) => CallUpdatePackage(body) == HttpStatusCode.OK;
+        public bool addPackage(FileModel body) => CallAddPackage(body) == HttpStatusCode.OK;
         public GenericFiles getPackages(int page = 0, int size = 3, bool isUser = false) =>  CallPackageList(page,size,isUser);
-        private HttpStatusCode callAuthUser(UserModel body)
+        private HttpStatusCode CallAuthUser(UserModel body)
         {
             RestClient client = new RestClient(url);
             const string api = "/login";
@@ -58,9 +54,8 @@ namespace VirtualMeetingMonitor
                 Core.UserAccount.Error();
                 return HttpStatusCode.BadRequest;
             }
-        }
-      
-        private HttpStatusCode callAddPackage(FileModel body)
+        }     
+        private HttpStatusCode CallAddPackage(FileModel body)
         {
             RestClient client = new RestClient(url);
             var request = new RestRequest("/files/upload", Method.POST)
@@ -95,7 +90,12 @@ namespace VirtualMeetingMonitor
             return query.StatusCode;
         }
 
-        private HttpStatusCode callUpdatePackage(FileModel body)
+        /// <summary>
+        /// needs refactor this method to do a really progressbar
+        /// </summary>
+        /// <param name="body"></param>
+        /// <returns></returns>
+        private HttpStatusCode CallUpdatePackage(FileModel body)
         {
             RestClient client = new RestClient(url);
             var request = new RestRequest($"/files/update/{body.Version.Unique_id}", Method.PUT)
@@ -128,7 +128,6 @@ namespace VirtualMeetingMonitor
             }
             return query.StatusCode;
         }
-
         private GenericFiles CallPackageList(int page, int size,bool isUser)
         {
             RestClient client = new RestClient(url);
@@ -141,7 +140,6 @@ namespace VirtualMeetingMonitor
             {
                 request = new RestRequest($"/user/files?page={page}&size={size}", Method.GET);
                 request.AddHeader("Authorization", $"Bearer {Core.UserAccount.Token}");
-
             }
             request.AddParameter("page", page, ParameterType.UrlSegment);
             request.AddParameter("size", size, ParameterType.UrlSegment);
@@ -149,6 +147,15 @@ namespace VirtualMeetingMonitor
             var queryResult = client.Execute(request);
             GenericFiles configModel = JsonConvert.DeserializeObject<GenericFiles>(queryResult.Content);
             return configModel;
+        }
+
+        private bool CallCheckPluginId(string unique_id)
+        {
+            RestClient client = new RestClient(url);
+            RestRequest request = new RestRequest($"/version/check/{unique_id}", Method.GET);
+            request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
+            var queryResult = client.Execute(request);
+            return queryResult.StatusCode == HttpStatusCode.OK;
         }
     }
 }

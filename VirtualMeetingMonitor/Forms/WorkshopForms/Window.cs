@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using VirtualMeetingMonitor.ApiPluginManager.models;
+using VirtualMeetingMonitor.PluginManager.models;
 using VirtualMeetingMonitor.formater;
 using VirtualMeetingMonitor.Forms.WorkshopForms.Package;
 using VirtualMeetingMonitor.Forms.WorkshopForms.UserControllers;

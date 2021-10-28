@@ -8,7 +8,6 @@ namespace VisualMeetingPluginInterface
     public interface IPlugin
     {
 
-       
         string Name();
 
         string Description();
@@ -17,18 +16,12 @@ namespace VisualMeetingPluginInterface
 
         string Contact();
 
-
-        string PluginId();
-
         Dictionary<string, Func<string>> GetPlaceHolder();
 
-
         string getPluginId()
-        {
-            string packageId = Regex.Replace(this.PluginId(), @"\s+", "");
-            return $"{GetType().Namespace}.{packageId}".ToLower();
+        {          
+            return GetType().Namespace.ToLower();
         }
-
 
         string Version(string versionServer = null)
         {

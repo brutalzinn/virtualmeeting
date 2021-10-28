@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using VirtualMeetingMonitor.ApiPluginManager.models;
+using VirtualMeetingMonitor.PluginManager.models;
 
 namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
 {

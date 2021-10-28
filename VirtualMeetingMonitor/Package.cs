@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 using System.Dynamic;
 using McMaster.NETCore.Plugins;
 using VisualMeetingPluginInterface;
-using VirtualMeetingMonitor.ApiPluginManager.models;
+using VirtualMeetingMonitor.PluginManager.models;
 
 
 //TO-DO: Remake this entire class

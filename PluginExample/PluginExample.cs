@@ -34,10 +34,6 @@ namespace PluginExample
   
         public string Name() => "PluginExample v1";
 
-        public string PluginId()
-        {
-            return "PluginExample";
-        }
 
         private string Main()
         {

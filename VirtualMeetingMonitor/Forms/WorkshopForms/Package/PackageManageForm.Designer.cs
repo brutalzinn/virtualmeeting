@@ -46,7 +46,7 @@
             // pluginManager1
             // 
             this.pluginManager1.AutoSize = true;
-            this.pluginManager1.Location = new System.Drawing.Point(-2, 46);
+            this.pluginManager1.Location = new System.Drawing.Point(-2, 45);
             this.pluginManager1.Name = "pluginManager1";
             this.pluginManager1.Size = new System.Drawing.Size(326, 404);
             this.pluginManager1.TabIndex = 1;

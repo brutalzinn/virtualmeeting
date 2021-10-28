@@ -12,7 +12,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using VirtualMeetingMonitor.ApiPluginManager.models;
+using VirtualMeetingMonitor.PluginManager.models;
 
 namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
 {
@@ -96,10 +96,19 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
                         $"Version:{Version}\n" +
                         $"Hash:{Hash}\n" +
                         $"Crc32:{Crc32}\n " +
-                        $"PluginId:{PluginId}";
-                      
+                        $"PluginId:{PluginId}";                  
                 }
-            }       
+
+                isUpdate = Workshop.PluginManagerWeb.CheckPluginVersion(PluginId);
+
+                if (isUpdate) {
+                    btn_submit.Text = "Release new version";
+                }
+                else
+                {
+                    btn_submit.Text = "Upload";
+                }
+            }
         }
         public void Submit(bool _isUpdate = false)
         {

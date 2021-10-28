@@ -23,7 +23,7 @@ namespace VirtualMeetingMonitor
  
     using Newtonsoft.Json;
     using VirtualMeetingMonitor.Forms.WorshopForms;
-    using VirtualMeetingMonitor.ApiPluginManager.models;
+    using VirtualMeetingMonitor.PluginManager.models;
 
     /// <summary>
     /// Class containing core functionality.

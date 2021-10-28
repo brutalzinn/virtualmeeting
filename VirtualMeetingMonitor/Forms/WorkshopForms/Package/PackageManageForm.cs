@@ -24,15 +24,13 @@ namespace VirtualMeetingMonitor.Forms.WorkshopForms.Package
 
         private void PackageManageForm_Load(object sender, EventArgs e)
         {
-            pluginManager1.btn_submit.Text = "Release new version";
-            pluginManager1.btn_submit.Click += Btn_submit_Click;
+            //pluginManager1.btn_submit.Text = "Release new version";
+            //pluginManager1.btn_submit.Click += Btn_submit_Click;
         }
 
         private void Btn_submit_Click(object sender, EventArgs e)
         {
-
-            pluginManager1.Submit(true);
-          
+            //pluginManager1.Submit(true);       
         }
 
         private void pluginManager1_Load_1(object sender, EventArgs e)
