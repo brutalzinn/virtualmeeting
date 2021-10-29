@@ -16,6 +16,8 @@ using VirtualMeetingMonitor.formater;
 using VirtualMeetingMonitor.Forms.WorkshopForms.Package;
 using VirtualMeetingMonitor.Forms.WorkshopForms.UserControllers;
 using VirtualMeetingMonitor.Forms.WorshopForms.UserControllers;
+using VirtualMeetingMonitor.PluginManager;
+using VirtualMeetingMonitor.PluginManagerAPI.models;
 
 namespace VirtualMeetingMonitor.Forms.WorshopForms
 {
@@ -25,6 +27,8 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
     public partial class Window : System.Windows.Forms.Form
     {
         private List<string> commands = new List<string>();
+        private List<PluginUpdateRequest> updateModel = new List<PluginUpdateRequest>();
+
         public Window()
         {
             InitializeComponent();
@@ -38,47 +42,51 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             ConsoleOutput.Font = new System.Drawing.Font(Core.Fonts.Families[0], 10f);
 
             Package[] installedPackages = Workshop.GetInstalled();
-
+           
             installedPackages.ToList().ForEach(x =>
             {
                 Dictionary<string, string> packageInfo = x.GetInfo();
 
                 PackageInfo p = new PackageInfo();
+
                 p.NameLabel.Text = packageInfo["Name"];
                 p.AuthorLabel.Text = packageInfo["Authors"];
                 p.DescLabel.Text = packageInfo["Description"];
                 p.Package = x;
-
                 p.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
 
                 InstalledPackagesList.Controls.Add(p);
+                updateModel.Add(new PluginUpdateRequest(packageInfo["PluginId"]));
 
-               
+
             });
 
-     //       var hoverColor = new ColorContainer(0, 0, 0);
-     //       var cursorPos = new PointContainer(0, 0);
+            Core.WriteLine(new ColorContainer(255, 0, 0), $"Console started.");
+           
+           
+            //       var hoverColor = new ColorContainer(0, 0, 0);
+            //       var cursorPos = new PointContainer(0, 0);
 
-     //       var timer = new System.Timers.Timer();
-     //       timer.Interval = 1000;
-     //       timer.Elapsed += (s, a) =>
-     //       {
-     //           if (this == null)
-     //               return;
+            //       var timer = new System.Timers.Timer();
+            //       timer.Interval = 1000;
+            //       timer.Elapsed += (s, a) =>
+            //       {
+            //           if (this == null)
+            //               return;
 
-     //           cursorPos = InputWrapper.GetCursorPos();
-     //           hoverColor = ScreenWrapper.GetPixels(cursorPos.X, cursorPos.Y, 1, 1)[0][0];
-                
-     //           Invoke(new Action(() =>
-     //           {
-					//if (IsDisposed)
-					//	return;
+            //           cursorPos = InputWrapper.GetCursorPos();
+            //           hoverColor = ScreenWrapper.GetPixels(cursorPos.X, cursorPos.Y, 1, 1)[0][0];
 
-     //               ColorDisplay.Text = $"R: {hoverColor.R} G: {hoverColor.G} B: {hoverColor.B}";
-     //               CursorPosDisplay.Text = $"X: {cursorPos.X} Y: {cursorPos.Y}";
-     //           }));
-     //       };
-     //       timer.Start();
+            //           Invoke(new Action(() =>
+            //           {
+            //if (IsDisposed)
+            //	return;
+
+            //               ColorDisplay.Text = $"R: {hoverColor.R} G: {hoverColor.G} B: {hoverColor.B}";
+            //               CursorPosDisplay.Text = $"X: {cursorPos.X} Y: {cursorPos.Y}";
+            //           }));
+            //       };
+            //       timer.Start();
         }
 
         private void UserAccount_OnLoginError()
@@ -428,6 +436,12 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
         private void Window_Load(object sender, EventArgs e)
         {
             Core.WriteLine(new ColorContainer(255, 73, 255), $"You are running on version {Application.ProductVersion}");
+
+         
+            foreach (var item in Workshop.PluginManagerWeb.CheckLocalPluginVersion(updateModel))
+            {
+                Core.WriteLine(new ColorContainer(255, 0, 0), $"Plugin update found {item.unique_id} - {item.status}");
+            }
         }
 
         private void optionsPanel_SelectedIndexChanged(object sender, EventArgs e)

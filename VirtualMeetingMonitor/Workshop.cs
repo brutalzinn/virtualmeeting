@@ -26,7 +26,7 @@ namespace VirtualMeetingMonitor
         ///
 
 
-        public static PluginManagerAPI PluginManagerWeb { get; set; } = new PluginManagerAPI();
+        public static PluginManagerAPIConnector PluginManagerWeb { get; set; } = new PluginManagerAPIConnector();
 
         /// <summary>
         /// WebClient used for simple HTTP Requests. Mainly workshop fetching/downloading.

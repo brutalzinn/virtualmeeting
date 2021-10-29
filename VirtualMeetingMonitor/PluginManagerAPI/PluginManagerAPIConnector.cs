@@ -2,16 +2,18 @@
 using Newtonsoft.Json;
 using RestSharp;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Dynamic;
 using System.IO;
 using System.Net;
 using System.Text;
 using VirtualMeetingMonitor.PluginManager.models;
+using VirtualMeetingMonitor.PluginManagerAPI.models;
 
 namespace VirtualMeetingMonitor.PluginManager
 {
-    public class PluginManagerAPI
+    public class PluginManagerAPIConnector
     {
         private readonly string url = "http://localhost:8000"; //esp 8266 fixed ip
         private int ProgressValue { get; set; } = 0;
@@ -156,6 +158,22 @@ namespace VirtualMeetingMonitor.PluginManager
             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
             var queryResult = client.Execute(request);
             return queryResult.StatusCode == HttpStatusCode.OK;
+        }
+
+        public List<PluginUpdateResponse> CheckLocalPluginVersion(List<PluginUpdateRequest> body) => CallPackageUpdates(body) ;
+
+        private List<PluginUpdateResponse> CallPackageUpdates(List<PluginUpdateRequest> body)
+        {
+            RestClient client = new RestClient(url);
+            RestRequest request;
+         
+            request = new RestRequest($"/version/check", Method.POST);
+            
+            request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
+            request.AddJsonBody(body);
+            var queryResult = client.Execute(request);
+            List<PluginUpdateResponse> configModel = JsonConvert.DeserializeObject<List<PluginUpdateResponse>>(queryResult.Content);
+            return configModel;
         }
     }
 }

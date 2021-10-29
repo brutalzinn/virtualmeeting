@@ -159,31 +159,28 @@ namespace VirtualMeetingMonitor
         /// <returns>Package name, authors, description etc.</returns>
         public Dictionary<string, string> GetInfo()
         {
-            string contents;
-            if (IsZipped)
-            {
-                var archive = ZipFile.OpenRead(ArchivePath);
+           // string contents;
+            //if (IsZipped)
+            //{
+            //    var archive = ZipFile.OpenRead(ArchivePath);
 
-                var reader = new StreamReader(archive.GetEntry("info.json").Open());
+            //    var reader = new StreamReader(archive.GetEntry("info.json").Open());
 
-                contents = reader.ReadToEnd();
+            //    contents = reader.ReadToEnd();
 
-                //Neccessary force-disposal and close to preven IO exceptions.
-                reader.Dispose();
-                archive.Dispose();
-            }
-            else
-            {
-                string path = $@"{ArchivePath}\info.json";
-                if (!File.Exists(path))
-                {
-                    File.WriteAllText(path, GetPackageInfo(ArchivePath));
-                }
+            //    //Neccessary force-disposal and close to preven IO exceptions.
+            //    reader.Dispose();
+            //    archive.Dispose();
+            //}
+            //else
+            //{
+             
+                 
+                
 
-                contents = File.ReadAllText($@"{ArchivePath}\info.json");
-            }
+            //}
 
-            return JsonConvert.DeserializeObject<Dictionary<string, string>>(contents);
+            return JsonConvert.DeserializeObject<Dictionary<string, string>>(GetPackageInfo(ArchivePath));
         }
         
         /// <summary>
