@@ -48,22 +48,7 @@ namespace PluginMultipleTags
         {
             return "robertinho.net";
         }
-
-        public string PluginId()
-        {
-            return "PluginMultiTagsExample";
-        }
-        public string Version(string versionServer = null)
-        {
-            Assembly thisAssem = typeof(PluginExampleMultipleTags).Assembly;
-            AssemblyName thisAssemName = thisAssem.GetName();
-            Version ver = thisAssemName.Version;
-            if (versionServer != null)
-            {
-                return $"{versionServer}-{ver}";
-            }
-            return ver.ToString();
-        }
+   
 
        
     }

@@ -200,8 +200,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
                         break;
                 }
            
-               
-
+        
                 System.Threading.Thread.Sleep(500);
                 worker.ReportProgress(Workshop.PluginManagerWeb.getProgress());
             }

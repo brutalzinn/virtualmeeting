@@ -469,7 +469,31 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
 
         private void consoleOutput_LinkClicked(object sender, LinkClickedEventArgs e)
         {
-            System.Diagnostics.Debug.Print(e.LinkText);
+            var link = e.LinkText.Split(',');
+
+
+            Workshop.DownloadPackage(link[0], link[1].Replace("+", " "));
+
+        
+
+            InstalledPackagesList.Controls.Clear();
+
+            Workshop.GetInstalled().ToList().ForEach(x =>
+            {
+                Dictionary<string, string> packageInfo = x.GetInfo();
+
+                PackageInfo i = new PackageInfo();
+                i.NameLabel.Text = packageInfo["Name"];
+                i.AuthorLabel.Text = packageInfo["Authors"];
+                i.DescLabel.Text = packageInfo["Description"];
+                i.Package = x;
+
+                i.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
+
+                InstalledPackagesList.Controls.Add(i);
+
+
+            });
 
         }
     }

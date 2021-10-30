@@ -59,7 +59,10 @@ namespace VirtualMeetingMonitor
 
             return packages.ToArray();
         }
-
+        /// <summary>
+        /// This method is be used to check versions
+        /// </summary>
+        /// <param name="data"></param>
         public static void CheckPluginVersion(PluginUpdateResponse data)
         {
             if(installedPackages != null)
@@ -74,11 +77,11 @@ namespace VirtualMeetingMonitor
                         var version2 = new Version(packageInfo["Version"]);
                         var result = version1.CompareTo(version2);
                         if (result > 0)
+                        {
                             Core.WriteLine($"{packageInfo["Name"]} tem uma atualização. \n Instalada: {packageInfo["Version"]} Disponível: {data.version}");
-                       // Core.MainWindow.ConsoleOutput.SetBounds(10, 10, 200, 100);
-                            Core.MainWindow.ConsoleOutput.SelectedRtf = @"{\rtf1 {\field{\*\fldinst{HYPERLINK " + data.url + @" }}{\fldrslt{\cf1 Clique aqui para atualizar.\cf0 }}}}";
-                        // Core.MainWindow.ConsoleOutput.Rtf = @"{\rtf1 {\field{\*\fldinst{HYPERLINK ""https://www.example.com/"" }}{\fldrslt{\cf1 Clique aqui para atualizar.\cf0 }}}}";
-                    }
+                            Core.MainWindow.ConsoleOutput.SelectedRtf = @"{\rtf1 {\field{\*\fldinst{HYPERLINK " + data.url + "," + packageInfo["Name"].Replace(" ", "+") + @" }}{\fldrslt{\cf1 Clique aqui para atualizar.\cf0 }}}}";
+                        }
+                   }
                 });
                
             }
