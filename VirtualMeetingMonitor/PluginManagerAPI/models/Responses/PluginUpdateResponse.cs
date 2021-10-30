@@ -13,6 +13,9 @@ namespace VirtualMeetingMonitor.PluginManagerAPI.models
 
         public string version { get; set; }
 
+        public string url { get; set; }
+
+
         public bool status { get; set; }
 
     }

@@ -115,7 +115,6 @@ namespace VirtualMeetingMonitor
                     .GetTypes()
                     .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsAbstract))
                 {
-                    // This assumes the implementation of IPlugin has a parameterless constructor
                     var plugin = Activator.CreateInstance(pluginType) as IPlugin;
                     json = JsonConvert.SerializeObject(new
                     {
@@ -125,10 +124,7 @@ namespace VirtualMeetingMonitor
                         Contact = plugin.Contact(),
                         Version = plugin.Version(),
                         PluginId = plugin.getPluginId()
-                    }, Formatting.Indented);
-
-                
-                    //new MethodExecutor(plugin.GetPlaceHolder(), Globals.Methods, plugin.Main);
+                    }, Formatting.Indented);            
                 }
             }
             return json;
@@ -159,27 +155,6 @@ namespace VirtualMeetingMonitor
         /// <returns>Package name, authors, description etc.</returns>
         public Dictionary<string, string> GetInfo()
         {
-           // string contents;
-            //if (IsZipped)
-            //{
-            //    var archive = ZipFile.OpenRead(ArchivePath);
-
-            //    var reader = new StreamReader(archive.GetEntry("info.json").Open());
-
-            //    contents = reader.ReadToEnd();
-
-            //    //Neccessary force-disposal and close to preven IO exceptions.
-            //    reader.Dispose();
-            //    archive.Dispose();
-            //}
-            //else
-            //{
-             
-                 
-                
-
-            //}
-
             return JsonConvert.DeserializeObject<Dictionary<string, string>>(GetPackageInfo(ArchivePath));
         }
         

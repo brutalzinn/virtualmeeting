@@ -15,6 +15,8 @@ namespace VirtualMeetingMonitor.PluginManagerAPI.models
 
         public string unique_id { get; set; }
 
-    
+
+
+
     }
 }

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VirtualMeetingMonitor.PluginManager;
 using VirtualMeetingMonitor.PluginManager.models;
+using VirtualMeetingMonitor.PluginManagerAPI.models;
 
 namespace VirtualMeetingMonitor
 {
@@ -25,6 +26,7 @@ namespace VirtualMeetingMonitor
         /// </summary>
         ///
 
+        public static Package[] installedPackages { get; set; }
 
         public static PluginManagerAPIConnector PluginManagerWeb { get; set; } = new PluginManagerAPIConnector();
 
@@ -58,6 +60,31 @@ namespace VirtualMeetingMonitor
             return packages.ToArray();
         }
 
+        public static void CheckPluginVersion(PluginUpdateResponse data)
+        {
+            if(installedPackages != null)
+            if (data.status)
+            {
+                installedPackages.ToList().ForEach(x =>
+                {
+                    Dictionary<string, string> packageInfo = x.GetInfo();
+                    if (packageInfo["PluginId"] == data.unique_id)
+                    {
+                        var version1 = new Version(data.version);
+                        var version2 = new Version(packageInfo["Version"]);
+                        var result = version1.CompareTo(version2);
+                        if (result > 0)
+                            Core.WriteLine($"{packageInfo["Name"]} tem uma atualização. \n Instalada: {packageInfo["Version"]} Disponível: {data.version}");
+                       // Core.MainWindow.ConsoleOutput.SetBounds(10, 10, 200, 100);
+                            Core.MainWindow.ConsoleOutput.SelectedRtf = @"{\rtf1 {\field{\*\fldinst{HYPERLINK " + data.url + @" }}{\fldrslt{\cf1 Clique aqui para atualizar.\cf0 }}}}";
+                        // Core.MainWindow.ConsoleOutput.Rtf = @"{\rtf1 {\field{\*\fldinst{HYPERLINK ""https://www.example.com/"" }}{\fldrslt{\cf1 Clique aqui para atualizar.\cf0 }}}}";
+                    }
+                });
+               
+            }
+
+
+        }
         /// <summary>
         /// Fetch workshop scripts.
         /// </summary>

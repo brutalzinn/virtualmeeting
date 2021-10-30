@@ -41,14 +41,14 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
 
             ConsoleOutput.Font = new System.Drawing.Font(Core.Fonts.Families[0], 10f);
 
-            Package[] installedPackages = Workshop.GetInstalled();
-           
-            installedPackages.ToList().ForEach(x =>
+            Workshop.installedPackages = Workshop.GetInstalled();
+
+            Workshop.installedPackages.ToList().ForEach(x =>
             {
                 Dictionary<string, string> packageInfo = x.GetInfo();
 
                 PackageInfo p = new PackageInfo();
-
+             
                 p.NameLabel.Text = packageInfo["Name"];
                 p.AuthorLabel.Text = packageInfo["Authors"];
                 p.DescLabel.Text = packageInfo["Description"];
@@ -57,8 +57,6 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
 
                 InstalledPackagesList.Controls.Add(p);
                 updateModel.Add(new PluginUpdateRequest(packageInfo["PluginId"]));
-
-
             });
 
             Core.WriteLine(new ColorContainer(255, 0, 0), $"Console started.");
@@ -438,9 +436,9 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             Core.WriteLine(new ColorContainer(255, 73, 255), $"You are running on version {Application.ProductVersion}");
 
          
-            foreach (var item in Workshop.PluginManagerWeb.CheckLocalPluginVersion(updateModel))
+            foreach (PluginUpdateResponse item in Workshop.PluginManagerWeb.CheckLocalPluginVersion(updateModel))
             {
-                Core.WriteLine(new ColorContainer(255, 0, 0), $"Plugin update found {item.unique_id} - {item.status}");
+                Workshop.CheckPluginVersion(item);
             }
         }
 
@@ -466,6 +464,12 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
 
         private void login1_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void consoleOutput_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            System.Diagnostics.Debug.Print(e.LinkText);
 
         }
     }

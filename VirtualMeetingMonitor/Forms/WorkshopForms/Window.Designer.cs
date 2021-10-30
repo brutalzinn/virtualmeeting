@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
+using VirtualMeetingMonitor.Utils;
 
 namespace VirtualMeetingMonitor.Forms.WorshopForms
 {
@@ -38,7 +39,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             this.consoleInput = new System.Windows.Forms.TextBox();
             this.consoleRun = new System.Windows.Forms.Button();
             this.consoleContainer = new System.Windows.Forms.Panel();
-            this.consoleOutput = new System.Windows.Forms.RichTextBox();
+            this.consoleOutput = new VirtualMeetingMonitor.Utils.ExRichText();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.ColorDisplay = new System.Windows.Forms.Label();
             this.consoleClearButton = new System.Windows.Forms.Button();
@@ -180,6 +181,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
             this.consoleOutput.Size = new System.Drawing.Size(460, 453);
             this.consoleOutput.TabIndex = 0;
             this.consoleOutput.Text = "";
+            this.consoleOutput.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.consoleOutput_LinkClicked);
             this.consoleOutput.TextChanged += new System.EventHandler(this.consoleOutput_TextChanged);
             // 
             // tableLayoutPanel2
@@ -705,7 +707,6 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
 
         private System.Windows.Forms.GroupBox consolePanel;
         private System.Windows.Forms.TableLayoutPanel layoutPanel;
-        private RichTextBox consoleOutput;
         private TextBox consoleInput;
         private Button consoleRun;
         private Panel consoleContainer;
@@ -746,8 +747,9 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
         private Button btn_ok;
         private TabPage tab_login;
         private UserControllers.Login login1;
+        private ExRichText consoleOutput;
 
-        public RichTextBox ConsoleOutput { get => consoleOutput; set => consoleOutput = value; }
+        public ExRichText ConsoleOutput { get => consoleOutput; set => consoleOutput = value; }
         public TextBox ConsoleInput { get => consoleInput; set => consoleInput = value; }
         public Button ConsoleRun { get => consoleRun; set => consoleRun = value; }
         public Button ScriptStop { get => scriptStop; set => scriptStop = value; }
