@@ -162,7 +162,6 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
                 var archive = ZipFile.Open($@"{FolderPath}.zip", ZipArchiveMode.Create);
                 Directory.GetFiles(FolderPath).ToList().ForEach(x => archive.CreateEntryFromFile(x, Path.GetFileName(x)));
                 archive.Dispose();
-
                 FileModel _file = new FileModel();
                 _file.Name = PluginName;
                 _file.Filename = FolderPath + ".zip";
