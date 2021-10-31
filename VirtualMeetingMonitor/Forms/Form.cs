@@ -41,7 +41,6 @@ namespace VirtualMeetingMonitor
         //google sheets integration
        
 
-        private  bool GoogleEnabled = false;
         private bool NotificationEnabled = false;
         private bool DevMode = false;
         private string LangDirectory = "language";
@@ -141,33 +140,8 @@ namespace VirtualMeetingMonitor
         /// <param name="day"></param>
         /// <returns></returns>
         /// 
-        //private void checkGoogleKey()
-        //{
-        //    if (File.Exists(GoogleSecret))
-        //    {
+       
 
-        //        GoogleCredential credential;
-        //        using (var stream = new FileStream(GoogleSecret, FileMode.Open, FileAccess.Read))
-        //        {
-        //            credential = GoogleCredential.FromStream(stream)
-        //                .CreateScoped(Scopes);
-        //        }
-        //        service = new SheetsService(new BaseClientService.Initializer()
-        //        {
-        //            HttpClientInitializer = credential,
-        //            ApplicationName = ApplicationName,
-        //        });
-        //        GoogleEnabled = true;
-                
-        //        WriteTextSafe(Status, CheckGoogleConnection() ? Globals.getKey("google_status_connected") : Globals.getKey("google_status_error"));
-        //    }
-        //    else
-        //    {
-        //        GoogleEnabled = false;
-        //        WriteTextSafe(Status, Globals.getKey("google_status_error_critical"));
-        //    }
-        //}
-   
         static string setHours(int day)
         {
             if (Enum.IsDefined(typeof(CustomDays), day))
@@ -194,8 +168,23 @@ namespace VirtualMeetingMonitor
             {
                 return;
             }
-           
-        }
+            foreach (var loader in Globals.loaders)
+            {
+                foreach (var pluginType in loader
+                    .LoadDefaultAssembly()
+                    .GetTypes()
+                    .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsAbstract))
+                {
+                    // This assumes the implementation of IPlugin has a parameterless constructor
+                    IPlugin plugin = (IPlugin)Activator.CreateInstance(pluginType);
+                    if (plugin is IService IServicePlugin)
+                    {
+                        IServicePlugin.Executor(oblist);
+                    }
+                }
+            }
+
+             }
 
         //static void ReadEntries()
         //{
@@ -386,11 +375,9 @@ namespace VirtualMeetingMonitor
             LogMeeting(Globals.getKey("meeting_log_ended"));
             try
             {
-                if (GoogleEnabled)
-                {
+               
                     CreateEntry();
 
-                }
             }
             catch
             {

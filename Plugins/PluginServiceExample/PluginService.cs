@@ -6,6 +6,11 @@ using System.Windows.Forms;
 using PluginServiceExample.Views;
 using Google.Apis.Sheets.v4;
 using Google.Apis.Sheets.v4.Data;
+using System.IO;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Services;
+using System.Reflection;
+using System.Diagnostics;
 
 namespace PluginServiceExample
 {
@@ -16,8 +21,6 @@ namespace PluginServiceExample
         static readonly string[] Scopes = { SheetsService.Scope.Spreadsheets };
         static readonly string ApplicationName = "Virtual Meeting";
         static readonly string GoogleSecret = "client_secret.json";
-        private static string SpreadsheetId = "";
-        private static string sheet = "";
         static SheetsService service;
 
 
@@ -38,7 +41,10 @@ namespace PluginServiceExample
 
         public void Executor(List<object> values)
         {
-            throw new NotImplementedException();
+            if (Globals._Config.Enabled)
+            {
+                CreateEntry(values);
+            }
         }
         public Dictionary<string, Func<object, dynamic>> Interfaces()
         {
@@ -70,21 +76,50 @@ namespace PluginServiceExample
 
         void CreateEntry(List<object> oblist)
         {
+           
+                if (!checkGoogleKey())
+                {
+                    throw new Exception("Google sheets não habilitado.");
+                }
+                var range = $"{Globals._Config.sheet}!A:C";
+                var valueRange = new ValueRange();
+                valueRange.Values = new List<IList<object>> { oblist };
 
-            var range = $"{sheet}!A:C";
-            var valueRange = new ValueRange();   
-            valueRange.Values = new List<IList<object>> { oblist };
-
-            var appendRequest = service.Spreadsheets.Values.Append(valueRange, SpreadsheetId, range);
-            appendRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.USERENTERED;
-            var appendReponse = appendRequest.Execute();
+                var appendRequest = service.Spreadsheets.Values.Append(valueRange, Globals._Config.SpreadsheetId, range);
+                appendRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.USERENTERED;
+                var appendReponse = appendRequest.Execute();
+            
         }
 
         public string Name()
         {
             return "GoogleAPI service example";
-       }
+        }
 
-   
+        private bool checkGoogleKey()
+        {
+            Assembly thisAssem = GetType().Assembly;
+             string output = Path.Combine(Path.GetDirectoryName(thisAssem.Location),GoogleSecret);           
+            if (File.Exists(output))
+            {
+                GoogleCredential credential;
+                using (var stream = new FileStream(output, FileMode.Open, FileAccess.Read))
+                {
+                    credential = GoogleCredential.FromStream(stream).CreateScoped(Scopes);
+                }
+                service = new SheetsService(new BaseClientService.Initializer()
+                {
+                    HttpClientInitializer = credential,
+                    ApplicationName = ApplicationName,
+                });
+                return true;
+            }
+            else
+            {
+               return false;
+            }
+        }
+
+
     }
 }

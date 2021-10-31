@@ -35,12 +35,13 @@
             this.textbox_googleSheetsID = new System.Windows.Forms.TextBox();
             this.label_sheets_id = new System.Windows.Forms.Label();
             this.label_link_howto = new System.Windows.Forms.LinkLabel();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(23, 88);
+            this.checkBox1.Location = new System.Drawing.Point(14, 118);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(83, 19);
             this.checkBox1.TabIndex = 0;
@@ -101,7 +102,7 @@
             // label_link_howto
             // 
             this.label_link_howto.AutoSize = true;
-            this.label_link_howto.Location = new System.Drawing.Point(14, 121);
+            this.label_link_howto.Location = new System.Drawing.Point(13, 149);
             this.label_link_howto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_link_howto.Name = "label_link_howto";
             this.label_link_howto.Size = new System.Drawing.Size(176, 15);
@@ -109,10 +110,21 @@
             this.label_link_howto.TabStop = true;
             this.label_link_howto.Text = "How to configure google sheets";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(14, 80);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(134, 23);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "Select secret json file";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ServiceView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label_link_howto);
             this.Controls.Add(this.label_sheetname);
             this.Controls.Add(this.textbox_sheetname);
@@ -121,7 +133,7 @@
             this.Controls.Add(this.label_sheets_id);
             this.Controls.Add(this.checkBox1);
             this.Name = "ServiceView";
-            this.Size = new System.Drawing.Size(447, 151);
+            this.Size = new System.Drawing.Size(447, 197);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,5 +148,6 @@
         private System.Windows.Forms.TextBox textbox_googleSheetsID;
         private System.Windows.Forms.Label label_sheets_id;
         private System.Windows.Forms.LinkLabel label_link_howto;
+        private System.Windows.Forms.Button button1;
     }
 }

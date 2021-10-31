@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -49,6 +52,23 @@ namespace PluginServiceExample.Views
         private void textbox_sheetname_TextChanged(object sender, EventArgs e)
         {
             SaveConfig();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Assembly thisAssem = GetType().Assembly;
+                //Debug.WriteLine(openFileDialog.FileName);
+                //Debug.WriteLine(Path.GetDirectoryName(thisAssem.Location));
+                //Debug.WriteLine("-----");
+                //Debug.WriteLine(thisAssem.Location);
+                string output = Path.Combine(Path.GetDirectoryName(thisAssem.Location), Path.GetFileName(openFileDialog.FileName));
+
+                File.Copy(openFileDialog.FileName, output, true);
+               
+            }
         }
     }
 }
