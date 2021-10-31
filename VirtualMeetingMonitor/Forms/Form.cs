@@ -706,7 +706,6 @@ namespace VirtualMeetingMonitor
                 case "bodyTapped":
                     break;
             }
-            Console.WriteLine("################" + strArgs.UserInput["delay"]);
             switch (strArgs.UserInput["delay"])
             {
                 case "1":               

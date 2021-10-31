@@ -73,11 +73,6 @@ namespace PluginExampleWithInterface
         {
             return "PluginExampleWithInterface";
         }
-        public string PluginId()
-        {
-            //this needs be unique id
-         return "mycustompluginid";
-        }
 
 
      

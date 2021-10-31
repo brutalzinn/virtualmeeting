@@ -47,5 +47,11 @@ namespace PluginInterface
         void loadConfigData(dynamic data = null);
     }
 
+    public interface IServiceExternalAPI : IPlugin
+    {
+
+        void Executor(List<object> values);
+       
+    }
 
 }
