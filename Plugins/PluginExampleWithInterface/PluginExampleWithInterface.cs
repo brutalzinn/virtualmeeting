@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace PluginExampleWithInterface
 {
-    internal class PluginExampleWithInterface : IPlugin, InterfacePlugin, ConfigDataPlugin, ITextFormat
+    internal class PluginExampleWithInterface : IPlugin, IVisual, IConfig, ITextFormat
     {
         public Dictionary<string, Func<string>> PlaceHolders = new Dictionary<string, Func<string>>();
 
@@ -43,9 +43,9 @@ namespace PluginExampleWithInterface
             return $"Eita preula {this.Name()} rodou ! {Globals._Config.TextBoxValue}";
         }
 
-        public void loadConfigData(dynamic data)
+        public void loadConfigData(string data)
         {
-            Config configModel = JsonConvert.DeserializeObject<Config>(Convert.ToString(data));
+            Config configModel = JsonConvert.DeserializeObject<Config>(data);
             Globals.saveConfig(configModel);
         }
 

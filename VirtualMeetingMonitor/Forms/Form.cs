@@ -856,13 +856,14 @@ namespace VirtualMeetingMonitor
 
                         //Debug.WriteLine($"Created plugin instance '{plugin?.Name()}'.");
 
-                        dynamic pluginConfig = PluginUtils.loadData(Globals.ProfileUtil.CurrentProfile, plugin?.Name());
 
-                    if (plugin is ConfigDataPlugin PluginConfigData)
+                    if (plugin is IConfig IConfigPlugin)
                     {
+                        dynamic pluginConfig = PluginUtils.loadData(Globals.ProfileUtil.CurrentProfile, IConfigPlugin);
+
                         if (pluginConfig != null)
                         {
-                            PluginConfigData.loadConfigData(pluginConfig);
+                            IConfigPlugin.loadConfigData(pluginConfig);
                         }
                     }
                     Debug.WriteLine($"PLUGIN:{plugin?.Name()}-{plugin?.getPluginId()} ");

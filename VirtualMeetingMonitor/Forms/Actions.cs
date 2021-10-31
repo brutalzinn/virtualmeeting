@@ -39,16 +39,16 @@ namespace VirtualMeetingMonitor.Forms
                     .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsAbstract))
                 {
                     // This assumes the implementation of IPlugin has a parameterless constructor
-                    var plugin = Activator.CreateInstance(pluginType) as ConfigDataPlugin;
+                    var plugin = Activator.CreateInstance(pluginType) as IConfig;
 
-                    if (plugin is ConfigDataPlugin PluginConfigData)
+                    if (plugin is IConfig PluginConfigData)
                     {             
                     var configData = PluginConfigData.getConfigData();
                     Debug.WriteLine($"CONFIG SAVED {configData}");
                     if (configData != null)
                     {
                         
-                        PluginUtils.saveData(CurrentProfile,configData, plugin.Name());
+                        PluginUtils.saveData(CurrentProfile, PluginConfigData);
                     }
 
                     }
@@ -60,7 +60,7 @@ namespace VirtualMeetingMonitor.Forms
         private void CloseForm(DialogResult result)
         {
             SavePluginsConfig();
-            SaveCustomDays();
+           // SaveCustomDays();
             SaveDataGrid();
             DialogResult = result;
             Close();
@@ -146,13 +146,14 @@ namespace VirtualMeetingMonitor.Forms
                 {
                     // This assumes the implementation of IPlugin has a parameterless constructor
                     var plugin = Activator.CreateInstance(pluginType) as IPlugin;
-                    if (plugin is InterfacePlugin pluginWithInterface)
+                    switch (plugin)
                     {
-                        Dictionary<string, Func<object, dynamic>> interfaces = pluginWithInterface.Interfaces();
+                    case IVisual IVisualPlugin:                         
+                        Dictionary<string, Func<object, dynamic>> interfaces = IVisualPlugin.Interfaces();
                         if (interfaces != null)
                         {
 
-                            Debug.WriteLine($"plugin usercontroll '{pluginWithInterface?.Name()}'.");
+                            Debug.WriteLine($"plugin usercontroll '{IVisualPlugin?.Name()}'.");
                             foreach (KeyValuePair<string, Func<object, dynamic>> p in interfaces)
                             {
                                 TabPage tp = new TabPage { };
@@ -160,11 +161,13 @@ namespace VirtualMeetingMonitor.Forms
 
 
                                 UserControl controller = p.Value(null) as UserControl;
-
-                                dynamic pluginConfig = PluginUtils.loadData(CurrentProfile, pluginWithInterface.Name());
+                                if (plugin is IConfig IConfigPlugin)
+                                {                            
+                                dynamic pluginConfig = PluginUtils.loadData(CurrentProfile, IConfigPlugin);                               
                                 if (pluginConfig != null)
                                 {
                                     controller = p.Value(pluginConfig) as UserControl;
+                                }
                                 }
 
                                 tp.Controls.Add(controller);
@@ -174,8 +177,14 @@ namespace VirtualMeetingMonitor.Forms
                             }
 
                         }
-                    }
+                     break;
+
+                        case IService IServicePlugin:
+
+                        break;
+                    
                 }
+            }
 
             }
         }
@@ -187,7 +196,7 @@ namespace VirtualMeetingMonitor.Forms
             }
            
             LoadCustomDataGrid();
-            LoadCustomDays();
+           // LoadCustomDays();
             LoadPluginsControllers();
         }
     }

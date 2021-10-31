@@ -31,12 +31,13 @@ namespace VirtualMeetingMonitor.Forms
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tab_test = new System.Windows.Forms.TabPage();
+            this.customTagsTest1 = new VirtualMeetingMonitor.ActionsControl.CustomTagsTest();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.customDataGrid1 = new VirtualMeetingMonitor.ActionsControl.CustomDataGrid();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.customDayList = new VirtualMeetingMonitor.ActionsControl.CustomDay();
             this.btn_ok = new System.Windows.Forms.Button();
-            this.customTagsTest1 = new VirtualMeetingMonitor.ActionsControl.CustomTagsTest();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tab_test.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -46,6 +47,7 @@ namespace VirtualMeetingMonitor.Forms
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tab_test);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Location = new System.Drawing.Point(14, 14);
@@ -65,6 +67,14 @@ namespace VirtualMeetingMonitor.Forms
             this.tab_test.TabIndex = 2;
             this.tab_test.Text = "Test";
             this.tab_test.UseVisualStyleBackColor = true;
+            // 
+            // customTagsTest1
+            // 
+            this.customTagsTest1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customTagsTest1.Location = new System.Drawing.Point(3, 3);
+            this.customTagsTest1.Name = "customTagsTest1";
+            this.customTagsTest1.Size = new System.Drawing.Size(891, 339);
+            this.customTagsTest1.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -123,13 +133,15 @@ namespace VirtualMeetingMonitor.Forms
             this.btn_ok.UseVisualStyleBackColor = true;
             this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
             // 
-            // customTagsTest1
+            // tabPage3
             // 
-            this.customTagsTest1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customTagsTest1.Location = new System.Drawing.Point(3, 3);
-            this.customTagsTest1.Name = "customTagsTest1";
-            this.customTagsTest1.Size = new System.Drawing.Size(891, 339);
-            this.customTagsTest1.TabIndex = 0;
+            this.tabPage3.Location = new System.Drawing.Point(4, 24);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(897, 345);
+            this.tabPage3.TabIndex = 3;
+            this.tabPage3.Text = "Services";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // Actions
             // 
@@ -160,5 +172,6 @@ namespace VirtualMeetingMonitor.Forms
         private ActionsControl.CustomDataGrid customDataGrid1;
         private System.Windows.Forms.TabPage tab_test;
         private ActionsControl.CustomTagsTest customTagsTest1;
+        private System.Windows.Forms.TabPage tabPage3;
     }
 }

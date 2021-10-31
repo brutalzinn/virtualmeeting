@@ -34,16 +34,16 @@ namespace PluginInterface
             return ver.ToString();
         }
     }
-    public interface InterfacePlugin: IPlugin
+    public interface IVisual: IPlugin
     {
         Dictionary<string, Func<object, dynamic>> Interfaces();
     }
 
-    public interface ConfigDataPlugin : IPlugin
+    public interface IConfig : IPlugin
     {
         string getConfigData();
 
-        void loadConfigData(dynamic data = null);
+        void loadConfigData(string data = null);
     }
 
     public interface ITextFormat : IPlugin
@@ -51,7 +51,7 @@ namespace PluginInterface
         Dictionary<string, Func<string>> GetPlaceHolder();
 
     }
-    public interface IServiceExternalAPI : IPlugin
+    public interface IService: IPlugin
     {
 
         void Executor(List<object> values);

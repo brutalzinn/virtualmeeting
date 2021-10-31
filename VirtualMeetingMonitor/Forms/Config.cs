@@ -213,7 +213,8 @@ namespace VirtualMeetingMonitor
             if (_actions.DialogResult == DialogResult.OK)
             {
                 Globals.ProfileUtil.profiles[Globals.ProfileUtil.profiles.FindIndex((prof) => prof.UniqueId == _actions.CurrentProfile.UniqueId)] = _actions.CurrentProfile;
-                
+                _actions.Dispose();
+
             }
         }
     }

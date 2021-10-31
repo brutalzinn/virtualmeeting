@@ -1,10 +1,12 @@
 ﻿using PluginInterface;
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+
 
 namespace PluginServiceExample
 {
-    internal class PluginService : IPlugin, IServiceExternalAPI
+    internal class PluginService : IPlugin, IService, IConfig
     {
         public string Authors()
         {
@@ -25,6 +27,18 @@ namespace PluginServiceExample
         {
             throw new NotImplementedException();
         }
+
+        public void loadConfigData(string data)
+        {
+            Config configModel = JsonConvert.DeserializeObject<Config>(data);
+            Globals.saveConfig(configModel);
+        }
+
+        public string getConfigData()
+        {
+            return JsonConvert.SerializeObject(Globals._Config, Formatting.Indented);
+        }
+
 
         public string Name()
         {

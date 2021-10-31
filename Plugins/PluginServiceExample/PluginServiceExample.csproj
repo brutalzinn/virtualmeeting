@@ -9,6 +9,10 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<OutputPath>$(SolutionDir)\VirtualMeetingMonitor\bin\Debug\plugins\PluginServiceExample</OutputPath>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Interface\PluginInterface.csproj" />
   </ItemGroup>
