@@ -110,9 +110,6 @@
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\VisualMeetingPluginInterface\VirtualMeetingPluginInterface.csproj" />
-  </ItemGroup>
   <PropertyGroup>
     <Version Condition="'$(Version)' == ''">1.0.0.1</Version>
     <AssemblyVersion>1.0.0.1</AssemblyVersion>
@@ -136,6 +133,9 @@
     <Content Include="info.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Interface\PluginInterface.csproj" />
   </ItemGroup>
   
   <ItemGroup>

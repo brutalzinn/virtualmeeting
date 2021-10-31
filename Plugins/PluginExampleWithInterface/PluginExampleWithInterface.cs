@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
 using PluginExampleWithInterface.Views;
+using PluginInterface;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Windows.Forms;
-using VisualMeetingPluginInterface;
 
 namespace PluginExampleWithInterface
 {

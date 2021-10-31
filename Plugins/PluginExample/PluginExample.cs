@@ -1,8 +1,8 @@
 ﻿using System;
-using VisualMeetingPluginInterface;
 using RestSharp;
 using System.Collections.Generic;
 using System.Reflection;
+using PluginInterface;
 
 namespace PluginExample
 {

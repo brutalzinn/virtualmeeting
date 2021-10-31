@@ -10,8 +10,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Dynamic;
 using McMaster.NETCore.Plugins;
-using VisualMeetingPluginInterface;
 using VirtualMeetingMonitor.PluginManager.models;
+using PluginInterface;
 
 
 //TO-DO: Remake this entire class

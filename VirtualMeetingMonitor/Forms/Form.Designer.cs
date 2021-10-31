@@ -72,18 +72,25 @@
             this.lbl_arduino_status = new System.Windows.Forms.Label();
             this.lbl_tags_count = new System.Windows.Forms.Label();
             this.lbl_plugin_count = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.Dev_ClearConfigs = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.Dev_TestGoogle = new System.Windows.Forms.Button();
+            this.Dev_ButtonTeste = new System.Windows.Forms.Button();
             this.Dev_Config = new System.Windows.Forms.Button();
             this.Dev_helpButton = new System.Windows.Forms.Button();
-            this.Dev_ButtonTeste = new System.Windows.Forms.Button();
-            this.Dev_ClearConfigs = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dev_btn_pluginmanage = new System.Windows.Forms.Button();
             this.label_outbound = new System.Windows.Forms.Label();
             this.internetWorker = new System.ComponentModel.BackgroundWorker();
             this.contextMenuStrip.SuspendLayout();
             this.devGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon
@@ -296,7 +303,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_udp_packts.AutoSize = true;
             this.label_udp_packts.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label_udp_packts.Location = new System.Drawing.Point(302, 9);
+            this.label_udp_packts.Location = new System.Drawing.Point(362, 9);
             this.label_udp_packts.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_udp_packts.Name = "label_udp_packts";
             this.label_udp_packts.Size = new System.Drawing.Size(80, 16);
@@ -309,7 +316,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_inbound.AutoSize = true;
             this.label_inbound.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label_inbound.Location = new System.Drawing.Point(318, 44);
+            this.label_inbound.Location = new System.Drawing.Point(378, 44);
             this.label_inbound.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_inbound.Name = "label_inbound";
             this.label_inbound.Size = new System.Drawing.Size(22, 16);
@@ -323,7 +330,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_total.AutoSize = true;
             this.label_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label_total.Location = new System.Drawing.Point(318, 113);
+            this.label_total.Location = new System.Drawing.Point(378, 113);
             this.label_total.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_total.Name = "label_total";
             this.label_total.Size = new System.Drawing.Size(22, 16);
@@ -376,7 +383,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.InboundTxt.AutoSize = true;
             this.InboundTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.InboundTxt.Location = new System.Drawing.Point(394, 47);
+            this.InboundTxt.Location = new System.Drawing.Point(454, 47);
             this.InboundTxt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.InboundTxt.Name = "InboundTxt";
             this.InboundTxt.Size = new System.Drawing.Size(28, 13);
@@ -389,7 +396,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.OutboundTxt.AutoSize = true;
             this.OutboundTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.OutboundTxt.Location = new System.Drawing.Point(394, 81);
+            this.OutboundTxt.Location = new System.Drawing.Point(454, 81);
             this.OutboundTxt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.OutboundTxt.Name = "OutboundTxt";
             this.OutboundTxt.Size = new System.Drawing.Size(28, 13);
@@ -402,7 +409,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TotalTxt.AutoSize = true;
             this.TotalTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.TotalTxt.Location = new System.Drawing.Point(394, 115);
+            this.TotalTxt.Location = new System.Drawing.Point(454, 115);
             this.TotalTxt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TotalTxt.Name = "TotalTxt";
             this.TotalTxt.Size = new System.Drawing.Size(28, 13);
@@ -428,7 +435,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(79, 25);
+            this.button1.Location = new System.Drawing.Point(80, 16);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(63, 45);
@@ -441,7 +448,7 @@
             // 
             this.Dev_LabelMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Dev_LabelMode.AutoSize = true;
-            this.Dev_LabelMode.Location = new System.Drawing.Point(331, 350);
+            this.Dev_LabelMode.Location = new System.Drawing.Point(391, 350);
             this.Dev_LabelMode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Dev_LabelMode.Name = "Dev_LabelMode";
             this.Dev_LabelMode.Size = new System.Drawing.Size(84, 15);
@@ -450,23 +457,15 @@
             // 
             // devGroupBox
             // 
-            this.devGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.devGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.devGroupBox.Controls.Add(this.groupBox1);
-            this.devGroupBox.Controls.Add(this.button3);
-            this.devGroupBox.Controls.Add(this.Dev_TestGoogle);
-            this.devGroupBox.Controls.Add(this.Dev_Config);
-            this.devGroupBox.Controls.Add(this.Dev_helpButton);
-            this.devGroupBox.Controls.Add(this.Dev_ButtonTeste);
-            this.devGroupBox.Controls.Add(this.Dev_ClearConfigs);
-            this.devGroupBox.Controls.Add(this.button2);
-            this.devGroupBox.Controls.Add(this.button1);
+            this.devGroupBox.Controls.Add(this.tabControl1);
             this.devGroupBox.Enabled = false;
             this.devGroupBox.Location = new System.Drawing.Point(8, 167);
             this.devGroupBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.devGroupBox.Name = "devGroupBox";
             this.devGroupBox.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.devGroupBox.Size = new System.Drawing.Size(414, 164);
+            this.devGroupBox.Size = new System.Drawing.Size(468, 172);
             this.devGroupBox.TabIndex = 18;
             this.devGroupBox.TabStop = false;
             this.devGroupBox.Text = "Developer mode";
@@ -478,7 +477,7 @@
             this.groupBox1.Controls.Add(this.lbl_arduino_status);
             this.groupBox1.Controls.Add(this.lbl_tags_count);
             this.groupBox1.Controls.Add(this.lbl_plugin_count);
-            this.groupBox1.Location = new System.Drawing.Point(294, 21);
+            this.groupBox1.Location = new System.Drawing.Point(325, 37);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(113, 127);
             this.groupBox1.TabIndex = 22;
@@ -521,9 +520,48 @@
             this.lbl_plugin_count.TabIndex = 0;
             this.lbl_plugin_count.Text = "Plugins: {count}";
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(4, 21);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(315, 143);
+            this.tabControl1.TabIndex = 20;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.Dev_ClearConfigs);
+            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.button3);
+            this.tabPage1.Controls.Add(this.button2);
+            this.tabPage1.Controls.Add(this.Dev_TestGoogle);
+            this.tabPage1.Controls.Add(this.Dev_ButtonTeste);
+            this.tabPage1.Controls.Add(this.Dev_Config);
+            this.tabPage1.Controls.Add(this.Dev_helpButton);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(307, 115);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // Dev_ClearConfigs
+            // 
+            this.Dev_ClearConfigs.Location = new System.Drawing.Point(230, 67);
+            this.Dev_ClearConfigs.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.Dev_ClearConfigs.Name = "Dev_ClearConfigs";
+            this.Dev_ClearConfigs.Size = new System.Drawing.Size(59, 45);
+            this.Dev_ClearConfigs.TabIndex = 18;
+            this.Dev_ClearConfigs.Text = "Clear configs";
+            this.Dev_ClearConfigs.UseVisualStyleBackColor = true;
+            this.Dev_ClearConfigs.Click += new System.EventHandler(this.Dev_ClearConfigs_Click);
+            // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(7, 25);
+            this.button3.Location = new System.Drawing.Point(8, 17);
             this.button3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(64, 44);
@@ -532,9 +570,19 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(79, 68);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(63, 45);
+            this.button2.TabIndex = 17;
+            this.button2.Text = "Stop all";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // Dev_TestGoogle
             // 
-            this.Dev_TestGoogle.Location = new System.Drawing.Point(7, 103);
+            this.Dev_TestGoogle.Location = new System.Drawing.Point(7, 67);
             this.Dev_TestGoogle.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Dev_TestGoogle.Name = "Dev_TestGoogle";
             this.Dev_TestGoogle.Size = new System.Drawing.Size(65, 45);
@@ -543,9 +591,20 @@
             this.Dev_TestGoogle.UseVisualStyleBackColor = true;
             this.Dev_TestGoogle.Click += new System.EventHandler(this.Dev_TestGoogle_Click);
             // 
+            // Dev_ButtonTeste
+            // 
+            this.Dev_ButtonTeste.Location = new System.Drawing.Point(151, 16);
+            this.Dev_ButtonTeste.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.Dev_ButtonTeste.Name = "Dev_ButtonTeste";
+            this.Dev_ButtonTeste.Size = new System.Drawing.Size(68, 44);
+            this.Dev_ButtonTeste.TabIndex = 19;
+            this.Dev_ButtonTeste.Text = "TESTE";
+            this.Dev_ButtonTeste.UseVisualStyleBackColor = true;
+            this.Dev_ButtonTeste.Click += new System.EventHandler(this.Dev_ButtonTeste_Click);
+            // 
             // Dev_Config
             // 
-            this.Dev_Config.Location = new System.Drawing.Point(150, 103);
+            this.Dev_Config.Location = new System.Drawing.Point(150, 67);
             this.Dev_Config.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Dev_Config.Name = "Dev_Config";
             this.Dev_Config.Size = new System.Drawing.Size(68, 46);
@@ -556,7 +615,7 @@
             // 
             // Dev_helpButton
             // 
-            this.Dev_helpButton.Location = new System.Drawing.Point(226, 24);
+            this.Dev_helpButton.Location = new System.Drawing.Point(227, 16);
             this.Dev_helpButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Dev_helpButton.Name = "Dev_helpButton";
             this.Dev_helpButton.Size = new System.Drawing.Size(63, 45);
@@ -565,37 +624,26 @@
             this.Dev_helpButton.UseVisualStyleBackColor = true;
             this.Dev_helpButton.Click += new System.EventHandler(this.Dev_helpButton_Click);
             // 
-            // Dev_ButtonTeste
+            // tabPage2
             // 
-            this.Dev_ButtonTeste.Location = new System.Drawing.Point(150, 25);
-            this.Dev_ButtonTeste.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Dev_ButtonTeste.Name = "Dev_ButtonTeste";
-            this.Dev_ButtonTeste.Size = new System.Drawing.Size(68, 44);
-            this.Dev_ButtonTeste.TabIndex = 19;
-            this.Dev_ButtonTeste.Text = "TESTE";
-            this.Dev_ButtonTeste.UseVisualStyleBackColor = true;
-            this.Dev_ButtonTeste.Click += new System.EventHandler(this.Dev_ButtonTeste_Click);
+            this.tabPage2.Controls.Add(this.dev_btn_pluginmanage);
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(307, 115);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // Dev_ClearConfigs
+            // dev_btn_pluginmanage
             // 
-            this.Dev_ClearConfigs.Location = new System.Drawing.Point(230, 103);
-            this.Dev_ClearConfigs.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Dev_ClearConfigs.Name = "Dev_ClearConfigs";
-            this.Dev_ClearConfigs.Size = new System.Drawing.Size(59, 45);
-            this.Dev_ClearConfigs.TabIndex = 18;
-            this.Dev_ClearConfigs.Text = "Clear configs";
-            this.Dev_ClearConfigs.UseVisualStyleBackColor = true;
-            this.Dev_ClearConfigs.Click += new System.EventHandler(this.Dev_ClearConfigs_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(79, 104);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(63, 45);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "Stop all";
-            this.button2.UseVisualStyleBackColor = true;
+            this.dev_btn_pluginmanage.Location = new System.Drawing.Point(11, 11);
+            this.dev_btn_pluginmanage.Name = "dev_btn_pluginmanage";
+            this.dev_btn_pluginmanage.Size = new System.Drawing.Size(58, 42);
+            this.dev_btn_pluginmanage.TabIndex = 0;
+            this.dev_btn_pluginmanage.Text = "plugin manager";
+            this.dev_btn_pluginmanage.UseVisualStyleBackColor = true;
+            this.dev_btn_pluginmanage.Click += new System.EventHandler(this.dev_btn_pluginmanage_Click);
             // 
             // label_outbound
             // 
@@ -603,7 +651,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_outbound.AutoSize = true;
             this.label_outbound.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label_outbound.Location = new System.Drawing.Point(318, 77);
+            this.label_outbound.Location = new System.Drawing.Point(378, 77);
             this.label_outbound.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_outbound.Name = "label_outbound";
             this.label_outbound.Size = new System.Drawing.Size(18, 16);
@@ -620,7 +668,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(429, 374);
+            this.ClientSize = new System.Drawing.Size(489, 374);
             this.Controls.Add(this.label_outbound);
             this.Controls.Add(this.devGroupBox);
             this.Controls.Add(this.Dev_LabelMode);
@@ -652,6 +700,9 @@
             this.devGroupBox.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -710,6 +761,10 @@
         private System.Windows.Forms.ToolStripMenuItem onAirOffToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem pluginManagertoolStripMenuItem;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button dev_btn_pluginmanage;
     }
 }
 

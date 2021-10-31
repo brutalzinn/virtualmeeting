@@ -435,8 +435,9 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
         {
             Core.WriteLine(new ColorContainer(255, 73, 255), $"You are running on version {Application.ProductVersion}");
 
-         
-            foreach (PluginUpdateResponse item in Workshop.PluginManagerWeb.CheckLocalPluginVersion(updateModel))
+            var list = Workshop.PluginManagerWeb.CheckLocalPluginVersion(updateModel);
+            if(list != null)
+            foreach (PluginUpdateResponse item in list)
             {
                 Workshop.CheckPluginVersion(item);
             }

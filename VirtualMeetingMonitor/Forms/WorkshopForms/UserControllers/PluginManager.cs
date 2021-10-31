@@ -77,10 +77,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-
                 dynamic pluginInfo = Package.GetPluginInfo(openFileDialog1.FileName);
-
-
                 Hash = GetHashSha(openFileDialog1);
                 Crc32 = GetHashCrc(openFileDialog1);
                 Filename = openFileDialog1.FileName;
@@ -98,9 +95,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
                         $"Crc32:{Crc32}\n " +
                         $"PluginId:{PluginId}";                  
                 }
-
                 isUpdate = Workshop.PluginManagerWeb.CheckPluginVersion(PluginId);
-
                 if (isUpdate) {
                     btn_submit.Text = "Release new version";
                 }
@@ -117,7 +112,6 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
             BackgroundWorker _worker = new BackgroundWorker();
             _worker.WorkerReportsProgress = true;
             _worker.DoWork += _worker_DoWork;
-
             _worker.ProgressChanged += _worker_ProgressChanged;
             _worker.RunWorkerAsync();
         }
@@ -133,16 +127,13 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
         }
         public void WriteTextSafe(Control control, string text)
         {
-
             MethodInvoker method = delegate
             {
                 control.Text = text;
 
             };
-
             if (control.InvokeRequired)
             {
-                // Call this same method but append THREAD2 to the text
                 BeginInvoke(method);
             }
             else
@@ -150,7 +141,6 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
         }
         private void _worker_DoWork(object sender, DoWorkEventArgs e)
         {
-
             BackgroundWorker worker = sender as BackgroundWorker;
 
             if ((worker.CancellationPending == true))
@@ -195,12 +185,8 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
                             WriteTextSafe(lbl_status, Workshop.PluginManagerWeb.getResponseContent());
                             e.Cancel = true;
                         }
-
-
                         break;
-                }
-           
-        
+                } 
                 System.Threading.Thread.Sleep(500);
                 worker.ReportProgress(Workshop.PluginManagerWeb.getProgress());
             }

@@ -5,10 +5,9 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 
   </PropertyGroup>
-	
-  <ItemGroup>
-    <ProjectReference Include="..\VisualMeetingPluginInterface\VirtualMeetingPluginInterface.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Interface\PluginInterface.csproj" />
+	</ItemGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>$(SolutionDir)\VirtualMeetingMonitor\bin\Debug\plugins\PluginMultipleTags</OutputPath>
   </PropertyGroup>

@@ -6,6 +6,7 @@ using Google.Apis.Sheets.v4.Data;
 using McMaster.NETCore.Plugins;
 using Microsoft.Toolkit.Uwp.Notifications;
 using Newtonsoft.Json;
+using PluginInterface;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,6 @@ using VirtualMeetingMonitor.Forms;
 using VirtualMeetingMonitor.pluginUtils;
 using VirtualMeetingMonitor.profile;
 using VirtualMeetingMonitor.Utils;
-using VisualMeetingPluginInterface;
 using Windows.ApplicationModel.Activation;
 using Windows.Data.Xml.Dom;
 using Windows.Foundation.Collections;
@@ -866,7 +866,7 @@ namespace VirtualMeetingMonitor
                             PluginConfigData.loadConfigData(pluginConfig);
                         }
                     }
-                    Debug.WriteLine($"PLUGIN:{plugin?.Name()}-{plugin?.Version()}-{plugin?.getPluginId()} ");
+                    Debug.WriteLine($"PLUGIN:{plugin?.Name()}-{plugin?.getPluginId()} ");
 
 
                     foreach (var item in plugin.GetPlaceHolder())
@@ -972,6 +972,10 @@ namespace VirtualMeetingMonitor
            
         }
 
-      
+        private void dev_btn_pluginmanage_Click(object sender, EventArgs e)
+        {
+            Core.Initialize();
+
+        }
     }
 }

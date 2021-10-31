@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PluginInterface;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VirtualMeetingMonitor.pluginUtils;
 using VirtualMeetingMonitor.Utils;
-using VisualMeetingPluginInterface;
+
 
 namespace VirtualMeetingMonitor.Forms
 {
