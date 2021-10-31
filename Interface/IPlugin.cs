@@ -7,21 +7,14 @@ namespace PluginInterface
 {
     public interface IPlugin
     {
-
         string Name();
-
         string Description();
-
         string Authors();
-
         string Contact();
-
-
         string getPluginId()
         {          
             return GetType().Namespace.ToLower();
         }
-
         string Version(string versionServer = null)
         {
             Assembly thisAssem = GetType().Assembly;
@@ -42,20 +35,16 @@ namespace PluginInterface
     public interface IConfig : IPlugin
     {
         string getConfigData();
-
         void loadConfigData(dynamic data = null);
     }
 
     public interface ITextFormat : IPlugin
     {
         Dictionary<string, Func<string>> GetPlaceHolder();
-
     }
     public interface IService: IPlugin
     {
-
         void Executor(List<object> values);
-       
     }
 
 }

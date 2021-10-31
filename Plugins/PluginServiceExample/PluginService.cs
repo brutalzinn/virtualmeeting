@@ -22,29 +22,17 @@ namespace PluginServiceExample
         static readonly string ApplicationName = "Virtual Meeting";
         static readonly string GoogleSecret = "client_secret.json";
         static SheetsService service;
-
-
         public string Authors()
         {
             return "brutalzinn";
         }
-
         public string Contact()
         {
             return "brutalzinn";
         }
-
         public string Description()
         {
             return "Google Sheets connetor - Oficial";
-        }
-
-        public void Executor(List<object> values)
-        {
-            if (Globals._Config.Enabled)
-            {
-                CreateEntry(values);
-            }
         }
         public Dictionary<string, Func<object, dynamic>> Interfaces()
         {
@@ -68,34 +56,34 @@ namespace PluginServiceExample
             Config configModel = JsonConvert.DeserializeObject<Config>(Convert.ToString(data));
             Globals.saveConfig(configModel);
         }
-
         public string getConfigData()
         {
             return JsonConvert.SerializeObject(Globals._Config, Formatting.Indented);
         }
-
-        void CreateEntry(List<object> oblist)
+        public void Executor(List<object> values)
         {
-           
-                if (!checkGoogleKey())
-                {
-                    throw new Exception("Google sheets não habilitado.");
-                }
-                var range = $"{Globals._Config.sheet}!A:C";
-                var valueRange = new ValueRange();
-                valueRange.Values = new List<IList<object>> { oblist };
-
-                var appendRequest = service.Spreadsheets.Values.Append(valueRange, Globals._Config.SpreadsheetId, range);
-                appendRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.USERENTERED;
-                var appendReponse = appendRequest.Execute();
-            
+            if (Globals._Config.Enabled)
+            {
+                CreateEntry(values);
+            }
         }
-
+        private void CreateEntry(List<object> oblist)
+        {         
+            if (!checkGoogleKey())
+            {
+                throw new Exception("Google sheets não habilitado.");
+            }
+            var range = $"{Globals._Config.sheet}!A:C";
+            var valueRange = new ValueRange();
+            valueRange.Values = new List<IList<object>> { oblist };
+            var appendRequest = service.Spreadsheets.Values.Append(valueRange, Globals._Config.SpreadsheetId, range);
+            appendRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.USERENTERED;
+            var appendReponse = appendRequest.Execute();          
+        }
         public string Name()
         {
             return "GoogleAPI service example";
         }
-
         private bool checkGoogleKey()
         {
             Assembly thisAssem = GetType().Assembly;
@@ -119,7 +107,5 @@ namespace PluginServiceExample
                return false;
             }
         }
-
-
     }
 }

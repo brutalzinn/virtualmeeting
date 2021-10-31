@@ -11,11 +11,7 @@ namespace PluginExampleWithInterface
     internal class PluginExampleWithInterface : IPlugin, IVisual, IConfig, ITextFormat
     {
         public Dictionary<string, Func<string>> PlaceHolders = new Dictionary<string, Func<string>>();
-
         public Dictionary<string, Func<object, dynamic>> ControlList = new Dictionary<string, Func<object, dynamic>>();
-
-
-
         public Dictionary<string, Func<string>> GetPlaceHolder()
         {
             PlaceHolders.Add("PLUGININTERFACE", Main);
@@ -42,41 +38,30 @@ namespace PluginExampleWithInterface
         {
             return $"Eita preula {this.Name()} rodou ! {Globals._Config.TextBoxValue}";
         }
-
         public void loadConfigData(dynamic data)
         {
             Config configModel = JsonConvert.DeserializeObject<Config>(Convert.ToString(data));
             Globals.saveConfig(configModel);
         }
-
         public string getConfigData()
         {
             return JsonConvert.SerializeObject(Globals._Config, Formatting.Indented);
         }
-
         public string Authors()
         {
             return "brutalzinn";
         }
-
         public string Contact()
         {
             return "robertinho.net";
         }
-
         public string Description()
         {
             return "This plugin is a example of a plugin with interface";
         }
-
         public string Name()
         {
             return "PluginExampleWithInterface";
         }
-
-
-     
-
-     
     }
 }

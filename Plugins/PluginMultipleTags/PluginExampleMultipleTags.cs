@@ -8,7 +8,6 @@ namespace PluginMultipleTags
 {
     internal class PluginExampleMultipleTags : IPlugin, ITextFormat
     {
-
         Dictionary<string, Func<string>> PlaceHolders = new Dictionary<string, Func<string>>();
         public Dictionary<string, Func<string>> GetPlaceHolder()
         {
@@ -17,14 +16,10 @@ namespace PluginMultipleTags
             PlaceHolders.Add("TAG3", TAGTHREE);
             return PlaceHolders;
         }
-
-   
-
         private string TAGONE()
         {
             return "This is a tag one with same plugin";
         }
-
         private string TAGTWO()
         {
             return "This is a tag two with same plugin";
@@ -39,18 +34,13 @@ namespace PluginMultipleTags
         {
             return "Esse é um plugin com múltiplas tags";
         }
-
         public string Authors()
         {
             return "brutalzinn";
         }
-
         public string Contact()
         {
             return "robertinho.net";
-        }
-   
-
-       
+        } 
     }
 }
