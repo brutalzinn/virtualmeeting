@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Dynamic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -26,6 +27,8 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
         private string Crc32 { get; set; }
 
         private string Hash { get; set; }
+
+        private string FolderPath { get; set; }
 
         private string Filename { get; set; }
 
@@ -83,6 +86,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                dynamic pluginInfo = JsonConvert.DeserializeObject<dynamic>(Package.GetPackageInfo(folderBrowserDialog1.SelectedPath));
+                FolderPath = folderBrowserDialog1.SelectedPath;
                 Filename = pluginInfo.Filename;
                 Hash = GetHashSha(Filename);
                 Crc32 = GetHashCrc(Filename);
@@ -155,9 +159,13 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
             }
             else
             {
+                var archive = ZipFile.Open($@"{FolderPath}.zip", ZipArchiveMode.Create);
+                Directory.GetFiles(FolderPath).ToList().ForEach(x => archive.CreateEntryFromFile(x, Path.GetFileName(x)));
+                archive.Dispose();
+
                 FileModel _file = new FileModel();
                 _file.Name = PluginName;
-                _file.Filename = Filename;
+                _file.Filename = FolderPath +".zip";
                 _file.Description = Description;
                 _file.Repo = txb_repo.Text.Length > 0 ? txb_repo.Text : "";
                 _file.Version = new VersionModel
@@ -166,7 +174,8 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
                     Hash = Hash,
                     Crc = Crc32,
                     Unique_id = PluginId
-                };
+                };             
+
                 switch (isUpdate)
                 {
                     case true:
