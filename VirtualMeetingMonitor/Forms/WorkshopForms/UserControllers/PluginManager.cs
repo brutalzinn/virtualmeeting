@@ -165,7 +165,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
 
                 FileModel _file = new FileModel();
                 _file.Name = PluginName;
-                _file.Filename = FolderPath +".zip";
+                _file.Filename = FolderPath + ".zip";
                 _file.Description = Description;
                 _file.Repo = txb_repo.Text.Length > 0 ? txb_repo.Text : "";
                 _file.Version = new VersionModel
