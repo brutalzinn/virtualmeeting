@@ -1,8 +1,4 @@
 ﻿using AutoUpdaterDotNET;
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Services;
-using Google.Apis.Sheets.v4;
-using Google.Apis.Sheets.v4.Data;
 using McMaster.NETCore.Plugins;
 using Microsoft.Toolkit.Uwp.Notifications;
 using Newtonsoft.Json;
@@ -44,18 +40,15 @@ namespace VirtualMeetingMonitor
         private const string LogFileName = "meetings.txt";
         //google sheets integration
        
-        static readonly string[] Scopes = { SheetsService.Scope.Spreadsheets };
-        static readonly string ApplicationName = "Virtual Meeting";
-        static readonly string GoogleSecret = "client_secret.json";
+
         private  bool GoogleEnabled = false;
         private bool NotificationEnabled = false;
         private bool DevMode = false;
         private string LangDirectory = "language";
-        private static  string SpreadsheetId = "";
-        private static string sheet = "";
+ 
         private int timeout = Properties.Settings.Default.timeout;
         private bool IsSleep = false;
-        static SheetsService service;
+     
         public enum Days
         {
             Sunday = 0,
@@ -142,32 +135,38 @@ namespace VirtualMeetingMonitor
             enableSleepToolStripMenuItem.Text = Globals.getKey("notifications_tool_strip_menu_activate");
 
         }
-        private void checkGoogleKey()
-        {
-            if (File.Exists(GoogleSecret))
-            {
+        /// <summary>
+        /// Google sheets migration process to plugin
+        /// </summary>
+        /// <param name="day"></param>
+        /// <returns></returns>
+        /// 
+        //private void checkGoogleKey()
+        //{
+        //    if (File.Exists(GoogleSecret))
+        //    {
 
-                GoogleCredential credential;
-                using (var stream = new FileStream(GoogleSecret, FileMode.Open, FileAccess.Read))
-                {
-                    credential = GoogleCredential.FromStream(stream)
-                        .CreateScoped(Scopes);
-                }
-                service = new SheetsService(new BaseClientService.Initializer()
-                {
-                    HttpClientInitializer = credential,
-                    ApplicationName = ApplicationName,
-                });
-                GoogleEnabled = true;
+        //        GoogleCredential credential;
+        //        using (var stream = new FileStream(GoogleSecret, FileMode.Open, FileAccess.Read))
+        //        {
+        //            credential = GoogleCredential.FromStream(stream)
+        //                .CreateScoped(Scopes);
+        //        }
+        //        service = new SheetsService(new BaseClientService.Initializer()
+        //        {
+        //            HttpClientInitializer = credential,
+        //            ApplicationName = ApplicationName,
+        //        });
+        //        GoogleEnabled = true;
                 
-                WriteTextSafe(Status, CheckGoogleConnection() ? Globals.getKey("google_status_connected") : Globals.getKey("google_status_error"));
-            }
-            else
-            {
-                GoogleEnabled = false;
-                WriteTextSafe(Status, Globals.getKey("google_status_error_critical"));
-            }
-        }
+        //        WriteTextSafe(Status, CheckGoogleConnection() ? Globals.getKey("google_status_connected") : Globals.getKey("google_status_error"));
+        //    }
+        //    else
+        //    {
+        //        GoogleEnabled = false;
+        //        WriteTextSafe(Status, Globals.getKey("google_status_error_critical"));
+        //    }
+        //}
    
         static string setHours(int day)
         {
@@ -183,10 +182,6 @@ namespace VirtualMeetingMonitor
         void CreateEntry()
         {
 
-
-
-            var range = $"{sheet}!A:C";
-            var valueRange = new ValueRange();
             var oblist = new List<object>();
             if (Globals.ProfileUtil.CurrentProfile.CustomDataGrid != null)
             {
@@ -200,51 +195,51 @@ namespace VirtualMeetingMonitor
                 return;
             }
            
-            valueRange.Values = new List<IList<object>> { oblist };
-
-            var appendRequest = service.Spreadsheets.Values.Append(valueRange, SpreadsheetId, range);
-            appendRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.USERENTERED;
-            var appendReponse = appendRequest.Execute();
         }
 
-        static void ReadEntries()
-        {
-            var range = $"{sheet}!A:C";
-            SpreadsheetsResource.ValuesResource.GetRequest request =
-                    service.Spreadsheets.Values.Get(SpreadsheetId, range);
+        //static void ReadEntries()
+        //{
+        //    var range = $"{sheet}!A:C";
+        //    SpreadsheetsResource.ValuesResource.GetRequest request =
+        //            service.Spreadsheets.Values.Get(SpreadsheetId, range);
 
-            var response = request.Execute();
-            IList<IList<object>> values = response.Values;
-            if (values != null && values.Count > 0)
-            {
-                foreach (var row in values)
-                {
-                    // Print columns A to F, which correspond to indices 0 and 4.
-                    Console.WriteLine("{0}", row[0]);
-                }
-            }
-            else
-            {
-                Console.WriteLine("No data found.");
-            }
-        }
-        static bool CheckGoogleConnection()
-        {
-            try
-            {
-                var range = $"{sheet}!A:C";
-                SpreadsheetsResource.ValuesResource.GetRequest request =
-                        service.Spreadsheets.Values.Get(SpreadsheetId, range);
+        //    var response = request.Execute();
+        //    IList<IList<object>> values = response.Values;
+        //    if (values != null && values.Count > 0)
+        //    {
+        //        foreach (var row in values)
+        //        {
+        //            // Print columns A to F, which correspond to indices 0 and 4.
+        //            Console.WriteLine("{0}", row[0]);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("No data found.");
+        //    }
+        //}
 
-                var response = request.Execute();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+        /// <summary>
+        /// Migration process to google plugn
+        /// </summary>
+        /// <param name="ipHeader"></param>
+        //static bool CheckGoogleConnection()
+        //{
+        //    try
+        //    {
+        //        var range = $"{sheet}!A:C";
+        //        SpreadsheetsResource.ValuesResource.GetRequest request =
+        //                service.Spreadsheets.Values.Get(SpreadsheetId, range);
+
+        //        var response = request.Execute();
+        //        return true;
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
           
-        }
+        //}
 
         private void Network_OutsideUDPTafficeReceived(IPHeader ipHeader)
         {
@@ -563,6 +558,12 @@ namespace VirtualMeetingMonitor
                 //notifyIcon.Visible = true;
             }
         }
+        /// <summary>
+        /// Google sheets migration process to plugin
+        /// </summary>
+        /// <param name="day"></param>
+        /// <returns></returns>
+        /// 
         public void LanguageChangedEvent()
         {
 
@@ -571,7 +572,7 @@ namespace VirtualMeetingMonitor
             if (Globals.CurrentLanguage != null)
             {
               //  LanguageConfig();
-                checkGoogleKey();
+               // checkGoogleKey();
             }
         }
         private void LanguageLoad()
@@ -787,15 +788,18 @@ namespace VirtualMeetingMonitor
         {
           
         }
+        /// <summary>
+        /// Migration process to google sheets plugin
+        /// </summary>
         private void UpdateProfileSettings()
         {
             //            private static string SpreadsheetId = Properties.Settings.Default.googlesheetsID;
             //private static string sheet = Properties.Settings.Default.sheetName;
-            SpreadsheetId = Globals.ProfileUtil.CurrentProfile.GoogleKey;
-            sheet = Globals.ProfileUtil.CurrentProfile.SheetId;
-            Text = $"{ApplicationName} - {Globals.ProfileUtil.CurrentProfile.Name}";
+           // SpreadsheetId = Globals.ProfileUtil.CurrentProfile.GoogleKey;
+        //    sheet = Globals.ProfileUtil.CurrentProfile.SheetId;
+         //   Text = $"{ApplicationName} - {Globals.ProfileUtil.CurrentProfile.Name}";
             Translate();
-            checkGoogleKey();
+         //   checkGoogleKey();
             Console.WriteLine("EVENT CALLED");
     }
         private void LoadProfiles()
@@ -820,7 +824,7 @@ namespace VirtualMeetingMonitor
             ProfileUtils profiles = JsonConvert.DeserializeObject<ProfileUtils>(json);
             Globals.ProfileUtil.profiles = profiles.profiles;
             Globals.ProfileUtil.CurrentProfile = profiles.CurrentProfile;
-            Text = $"{ApplicationName} - {Globals.ProfileUtil.CurrentProfile.Name}";
+            //Text = $"{ApplicationName} - {Globals.ProfileUtil.CurrentProfile.Name}";
             Globals.ProfileUtil.ProfileChanged += UpdateProfileSettings;
 
         }

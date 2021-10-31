@@ -11,6 +11,10 @@ namespace PluginServiceExample
 
         public bool Enabled { get; set; }
 
+        public string SpreadsheetId { get; set; }
+
+        public string sheet { get; set; }
+
         public Config(bool enabled)
         {
             Enabled = enabled;

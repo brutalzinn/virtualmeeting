@@ -64,10 +64,10 @@ namespace VirtualMeetingMonitor
             label_profile.Text = Globals.getKey("form_config_label_profile");
             label_timeout.Text = Globals.getKey("form_config_label_timeout");
             label_language.Text = Globals.getKey("form_config_label_language");
-            label_sheetname.Text = Globals.getKey("form_config_sheets_name");
-            label_sheets_id.Text = Globals.getKey("form_config_sheets_id");
-            button_paste_googlesheets.Text = Globals.getKey("form_config_paste_button");
-            label_link_howto.Text = Globals.getKey("form_config_how_to_link");
+           // label_sheetname.Text = Globals.getKey("form_config_sheets_name");
+           /// label_sheets_id.Text = Globals.getKey("form_config_sheets_id");
+           // button_paste_googlesheets.Text = Globals.getKey("form_config_paste_button");
+           // label_link_howto.Text = Globals.getKey("form_config_how_to_link");
             btnSaveProfile.Text = Globals.getKey("form_config_button_save_profile");
             button_ok.Text = Globals.getKey("button_ok");
             button_cancel.Text = Globals.getKey("button_cancel");
@@ -90,8 +90,8 @@ namespace VirtualMeetingMonitor
             
             Globals.ProfileUtil.CurrentProfile.Language = Globals.CurrentLanguage.getFileName();
             Globals.ProfileUtil.CurrentProfile.Timeout = Convert.ToInt32(textBox1.Text);
-            Globals.ProfileUtil.CurrentProfile.GoogleKey = textbox_googleSheetsID.Text;
-            Globals.ProfileUtil.CurrentProfile.SheetId = textbox_sheetname.Text;
+          //  Globals.ProfileUtil.CurrentProfile.GoogleKey = textbox_googleSheetsID.Text;
+          //  Globals.ProfileUtil.CurrentProfile.SheetId = textbox_sheetname.Text;
             Globals.ProfileUtil.CurrentProfile.CustomTime = textBoxCustomTimer.Text;
             Globals.ProfileUtil.CurrentProfile.DevMode = chk_devmode.Checked;
             Globals.ProfileUtil.CallUpdateProfile();
@@ -123,15 +123,15 @@ namespace VirtualMeetingMonitor
             if (googleUrlArray.Length >= 2)
             {
                 string googleSheetsID = google_sheets_url.Split('/')[googleUrlArray.Length - 2];
-                textbox_googleSheetsID.Text = googleSheetsID;
+                //textbox_googleSheetsID.Text = googleSheetsID;
             }
         }
         private void SaveProfile(Profile _profile)
         {
-            _profile.GoogleKey = textbox_googleSheetsID.Text;
+         //   _profile.GoogleKey = textbox_googleSheetsID.Text;
            _profile.Timeout = Convert.ToInt32(textBox1.Text);
             _profile.CustomTime = textBoxCustomTimer.Text;
-             _profile.SheetId = textbox_sheetname.Text;
+        //     _profile.SheetId = textbox_sheetname.Text;
             _profile.DevMode = chk_devmode.Checked;
             if (comboBox1.SelectedItem != null)
             {
@@ -145,10 +145,10 @@ namespace VirtualMeetingMonitor
        //     Globals.CurrentLanguage = (Language)comboBox1.SelectedItem;
             cbxProfile.SelectedIndex = cbxProfile.FindStringExact(_profile.Name);
 
-            textbox_googleSheetsID.Text = _profile.GoogleKey;
+            //textbox_googleSheetsID.Text = _profile.GoogleKey;
             textBox1.Text = _profile.Timeout.ToString();
             textBoxCustomTimer.Text = _profile.CustomTime ;
-            textbox_sheetname.Text = _profile.SheetId ;
+        //    textbox_sheetname.Text = _profile.SheetId ;
             chk_devmode.Checked = _profile.DevMode;
            comboBox1.SelectedIndex = comboBox1.FindStringExact(Globals.languages.Find((lang) => lang.getFileName() == _profile.Language).ToString());
         }
