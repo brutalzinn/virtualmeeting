@@ -78,8 +78,9 @@ namespace VirtualMeetingMonitor
                         var result = version1.CompareTo(version2);
                         if (result > 0)
                         {
+                    
                             Core.WriteLine($"{packageInfo["Name"]} tem uma atualização. \n Instalada: {packageInfo["Version"]} Disponível: {data.version}");
-                            Core.MainWindow.ConsoleOutput.SelectedRtf = @"{\rtf1 {\field{\*\fldinst{HYPERLINK " + data.url + "," + packageInfo["Name"].Replace(" ", "+") + @" }}{\fldrslt{\cf1 Clique aqui para atualizar.\cf0 }}}}";
+                            Core.MainWindow.ConsoleOutput.SelectedRtf = @"{\rtf1 {\field{\*\fldinst{HYPERLINK " + data.url + "," + Path.GetFileName(x.ArchivePath).Replace(" ", "+") + @" }}{\fldrslt{\cf1 Clique aqui para atualizar.\cf0 }}}}";
                         }
                    }
                 });

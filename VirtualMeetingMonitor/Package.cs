@@ -96,38 +96,42 @@ namespace VirtualMeetingMonitor
 
         public static string GetPackageInfo(string ArchivePath)
         {
-            List<PluginLoader> loaders = new List<PluginLoader>();
-            string json = "";
-            var dirName = Path.GetFileName(ArchivePath);
-            var pluginDll = Path.Combine(ArchivePath, dirName + ".dll");
-            if (File.Exists(pluginDll))
-            {
-                var loader = PluginLoader.CreateFromAssemblyFile(
-                    pluginDll,
-                    sharedTypes: new[] { typeof(IPlugin) });
-                loaders.Add(loader);
-            }
-
-            foreach (var loader in loaders)
-            {
-                foreach (var pluginType in loader
-                    .LoadDefaultAssembly()
-                    .GetTypes()
-                    .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsAbstract))
+            List<PluginLoader> loaders = new List<PluginLoader>();   
+            foreach (string dll in Directory.GetFiles(ArchivePath, "*.dll"))
+            {   
+               if (File.Exists(dll))
                 {
-                    var plugin = Activator.CreateInstance(pluginType) as IPlugin;
-                    json = JsonConvert.SerializeObject(new
-                    {
-                        Name = plugin.Name(),
-                        Description = plugin.Description(),
-                        Authors = plugin.Authors(),
-                        Contact = plugin.Contact(),
-                        Version = plugin.Version(),
-                        PluginId = plugin.getPluginId()
-                    }, Formatting.Indented);            
+                    var loader = PluginLoader.CreateFromAssemblyFile(
+                        dll,
+                        sharedTypes: new[] { typeof(IPlugin) });
+                    loaders.Add(loader);
                 }
             }
-            return json;
+         
+                foreach (var loader in loaders)
+                {
+                    foreach (var pluginType in loader
+                        .LoadDefaultAssembly()
+                        .GetTypes()
+                        .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsAbstract))
+                    {
+                        var plugin = Activator.CreateInstance(pluginType) as IPlugin;
+                        return JsonConvert.SerializeObject(new
+                        {
+                            Filename = pluginType.Assembly.Location,
+                            Name = plugin.Name(),
+                            Description = plugin.Description(),
+                            Authors = plugin.Authors(),
+                            Contact = plugin.Contact(),
+                            Version = plugin.Version(),
+                            PluginId = plugin.getPluginId()
+                        }, Formatting.Indented);
+                    }
+                }
+
+            return null;
+           
+          
         }
         public static Package Create(string packageName, string[] filePaths)
         {

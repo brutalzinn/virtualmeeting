@@ -399,7 +399,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
 
         private void openPackagesFolderButton_Click(object sender, EventArgs e)
         {
-            Process.Start($@"{Application.ExecutablePath}\plugins");
+            Process.Start("explorer.exe",$@"{Application.StartupPath}\\plugins");
 
         }
 
@@ -471,15 +471,11 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
         private void consoleOutput_LinkClicked(object sender, LinkClickedEventArgs e)
         {
             var link = e.LinkText.Split(',');
-
-
-            Workshop.DownloadPackage(link[0], link[1].Replace("+", " "));
-
-        
-
+            Workshop.DownloadPackage(link[0], link[1].Replace("+", " "));     
             InstalledPackagesList.Controls.Clear();
+            Workshop.installedPackages = Workshop.GetInstalled();
 
-            Workshop.GetInstalled().ToList().ForEach(x =>
+            Workshop.installedPackages.ToList().ForEach(x =>
             {
                 Dictionary<string, string> packageInfo = x.GetInfo();
 

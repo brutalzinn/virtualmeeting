@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Dynamic;
 using System.IO;
@@ -43,21 +44,25 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
 
         }
 
-        private static string GetHashSha(OpenFileDialog openfile)
+        private static string GetHashSha(string file)
         {
             using (SHA256 mySHA256 = SHA256.Create())
             {
                 try
                 {
-                    FileStream fileStream = (FileStream)openfile.OpenFile();
-                    // Be sure it's positioned to the beginning of the stream.
-                    fileStream.Position = 0;
-                    // Compute the hash of the fileStream.
-                    byte[] hashValue = mySHA256.ComputeHash(fileStream);
-                    fileStream.Close();
 
+
+                    using (FileStream fs = File.OpenRead(file))
+                    {
+
+                        // Be sure it's positioned to the beginning of the stream.
+                        fs.Position = 0;
+                        // Compute the hash of the fileStream.
+                        byte[] hashValue = mySHA256.ComputeHash(fs);
+                        return Core.BytesToString(hashValue);
+                    }
                     // Write the name and hash value of the file to the console.
-                    return Core.BytesToString(hashValue);
+                   
                     // Close the file.
                 }
                 catch (IOException f)
@@ -67,20 +72,20 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
                 }
             }
         }
-        private static string GetHashCrc(OpenFileDialog openfile)
+        private static string GetHashCrc(string file)
         {
             CRC cRC = new CRC();
-            byte [] hash = cRC.ComputeHash((FileStream)openfile.OpenFile());
+            byte [] hash = cRC.ComputeHash(File.OpenRead(file));
             return Core.BytesToString(hash);
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
-                dynamic pluginInfo = Package.GetPluginInfo(openFileDialog1.FileName);
-                Hash = GetHashSha(openFileDialog1);
-                Crc32 = GetHashCrc(openFileDialog1);
-                Filename = openFileDialog1.FileName;
+               dynamic pluginInfo = JsonConvert.DeserializeObject<dynamic>(Package.GetPackageInfo(folderBrowserDialog1.SelectedPath));
+                Filename = pluginInfo.Filename;
+                Hash = GetHashSha(Filename);
+                Crc32 = GetHashCrc(Filename);
                 PluginName = pluginInfo.Name;
                 Version = pluginInfo.Version;
                 Description = pluginInfo.Description;
