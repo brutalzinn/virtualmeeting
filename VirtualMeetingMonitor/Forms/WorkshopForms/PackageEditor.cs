@@ -63,11 +63,19 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms
                 {
                     // This assumes the implementation of IPlugin has a parameterless constructor
                     var plugin = Activator.CreateInstance(pluginType) as IPlugin;
-                  
-                        foreach (var item in plugin.GetPlaceHolder())
+
+                    if (plugin is ITextFormat PluginTextFormat)
+                    {
+                        if (PluginTextFormat != null)
                         {
-                            listBox1.Items.Add($"TAG: [{item.Key.ToUpper()}] : {item.Value()}");
+                            foreach (var item in PluginTextFormat.GetPlaceHolder())
+                            {
+                                listBox1.Items.Add($"TAG: [{item.Key.ToUpper()}] : {item.Value()}");
+                            }
                         }
+                    }
+
+              
 
                    
                  

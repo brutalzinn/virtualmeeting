@@ -13,7 +13,7 @@ namespace PluginServiceExample
 
         public string Contact()
         {
-            return "";
+            return "brutalzinn";
         }
 
         public string Description()
@@ -26,14 +26,6 @@ namespace PluginServiceExample
             throw new NotImplementedException();
         }
 
-     
-
-        public Dictionary<string, Func<string>> GetPlaceHolder()
-        {
-            throw new NotImplementedException();
-        }
-
-  
         public string Name()
         {
             return "GoogleAPI service example";

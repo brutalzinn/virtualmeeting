@@ -6,7 +6,7 @@ using PluginInterface;
 
 namespace PluginExample
 {
-    internal class PluginExample : IPlugin
+    internal class PluginExample : IPlugin, ITextFormat
     {
         private Dictionary<string, Func<string>> PlaceHolders = new Dictionary<string, Func<string>>();
 

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace PluginExampleWithInterface
 {
-    internal class PluginExampleWithInterface : IPlugin, InterfacePlugin, ConfigDataPlugin
+    internal class PluginExampleWithInterface : IPlugin, InterfacePlugin, ConfigDataPlugin, ITextFormat
     {
         public Dictionary<string, Func<string>> PlaceHolders = new Dictionary<string, Func<string>>();
 

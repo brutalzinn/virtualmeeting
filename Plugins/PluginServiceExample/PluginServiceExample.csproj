@@ -2,10 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
   </PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<OutputPath>$(SolutionDir)\VirtualMeetingMonitor\bin\Debug\plugins\PluginInterface</OutputPath>
+		<OutputPath>$(SolutionDir)\VirtualMeetingMonitor\bin\Debug\plugins\PluginServiceExample</OutputPath>
 	</PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Interface\PluginInterface.csproj" />

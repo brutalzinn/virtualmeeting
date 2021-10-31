@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace PluginMultipleTags
 {
-    internal class PluginExampleMultipleTags : IPlugin
+    internal class PluginExampleMultipleTags : IPlugin, ITextFormat
     {
 
         Dictionary<string, Func<string>> PlaceHolders = new Dictionary<string, Func<string>>();

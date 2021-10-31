@@ -101,7 +101,11 @@ namespace VirtualMeetingMonitor
             }
             else
             {
-                Files = PluginManagerWeb.getPackages(page, size, isUser);
+              Files = PluginManagerWeb.getPackages(page, size, isUser);
+            }
+            if(Files == null)
+            {
+                return null;
             }
             Core.WriteLine(new ColorContainer(89, 73, 163),$"Workshop list fetched. Happy downloading! {Files.currentPage}");
             return Files;

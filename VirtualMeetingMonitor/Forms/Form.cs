@@ -867,12 +867,17 @@ namespace VirtualMeetingMonitor
                     }
                     Debug.WriteLine($"PLUGIN:{plugin?.Name()}-{plugin?.getPluginId()} ");
 
-
-                    foreach (var item in plugin.GetPlaceHolder())
+                    if (plugin is ITextFormat PluginTextFormat)
+                    {
+                        if (PluginTextFormat != null)
                         {
-                            
-                            new MethodExecutor(item.Key.ToUpper(), Globals.Methods, item.Value);
+                            foreach (var item in PluginTextFormat.GetPlaceHolder())
+                            {
+                                new MethodExecutor(item.Key.ToUpper(), Globals.Methods, item.Value);
+                            }
                         }
+                    }
+                 
 
 
                   

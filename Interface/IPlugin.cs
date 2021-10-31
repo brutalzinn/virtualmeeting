@@ -16,7 +16,6 @@ namespace PluginInterface
 
         string Contact();
 
-        Dictionary<string, Func<string>> GetPlaceHolder();
 
         string getPluginId()
         {          
@@ -47,6 +46,11 @@ namespace PluginInterface
         void loadConfigData(dynamic data = null);
     }
 
+    public interface ITextFormat : IPlugin
+    {
+        Dictionary<string, Func<string>> GetPlaceHolder();
+
+    }
     public interface IServiceExternalAPI : IPlugin
     {
 
