@@ -37,7 +37,6 @@ namespace VirtualMeetingMonitor.Forms
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.customDayList = new VirtualMeetingMonitor.ActionsControl.CustomDay();
             this.btn_ok = new System.Windows.Forms.Button();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tab_test.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -47,7 +46,6 @@ namespace VirtualMeetingMonitor.Forms
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tab_test);
-            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Location = new System.Drawing.Point(14, 14);
@@ -133,16 +131,6 @@ namespace VirtualMeetingMonitor.Forms
             this.btn_ok.UseVisualStyleBackColor = true;
             this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 24);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(897, 345);
-            this.tabPage3.TabIndex = 3;
-            this.tabPage3.Text = "Services";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
             // Actions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -172,6 +160,5 @@ namespace VirtualMeetingMonitor.Forms
         private ActionsControl.CustomDataGrid customDataGrid1;
         private System.Windows.Forms.TabPage tab_test;
         private ActionsControl.CustomTagsTest customTagsTest1;
-        private System.Windows.Forms.TabPage tabPage3;
     }
 }

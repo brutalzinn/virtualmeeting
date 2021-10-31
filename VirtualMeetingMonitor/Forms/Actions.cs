@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VirtualMeetingMonitor.ActionsControl.Services;
 using VirtualMeetingMonitor.pluginUtils;
 using VirtualMeetingMonitor.Utils;
 
@@ -46,8 +47,7 @@ namespace VirtualMeetingMonitor.Forms
                     var configData = PluginConfigData.getConfigData();
                     Debug.WriteLine($"CONFIG SAVED {configData}");
                     if (configData != null)
-                    {
-                        
+                    {                     
                         PluginUtils.saveData(CurrentProfile, PluginConfigData);
                     }
 
@@ -172,16 +172,11 @@ namespace VirtualMeetingMonitor.Forms
 
                                 tp.Controls.Add(controller);
                                 tabControl1.TabPages.Add(tp);
-
-
                             }
-
                         }
                      break;
 
-                        case IService IServicePlugin:
-
-                        break;
+               
                     
                 }
             }

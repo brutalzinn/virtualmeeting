@@ -2,12 +2,15 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-
+using System.Windows.Forms;
+using PluginServiceExample.Views;
 
 namespace PluginServiceExample
 {
-    internal class PluginService : IPlugin, IService, IConfig
+    internal class PluginService : IPlugin, IService, IConfig, IVisual
     {
+        public Dictionary<string, Func<object, dynamic>> ControlList = new Dictionary<string, Func<object, dynamic>>();
+
         public string Authors()
         {
             return "brutalzinn";
@@ -27,10 +30,26 @@ namespace PluginServiceExample
         {
             throw new NotImplementedException();
         }
-
-        public void loadConfigData(string data)
+        public Dictionary<string, Func<object, dynamic>> Interfaces()
         {
-            Config configModel = JsonConvert.DeserializeObject<Config>(data);
+            ControlList.Add(Name(), MethodControlConfig);
+            return ControlList;
+        }
+        public UserControl MethodControlConfig(dynamic data)
+        {
+            if (data != null)
+            {
+                Config configModel = JsonConvert.DeserializeObject<Config>(Convert.ToString(data));
+                return new ServiceView(configModel);
+            }
+            else
+            {
+                return new ServiceView(null);
+            }
+        }
+        public void loadConfigData(dynamic data)
+        {
+            Config configModel = JsonConvert.DeserializeObject<Config>(Convert.ToString(data));
             Globals.saveConfig(configModel);
         }
 
@@ -44,5 +63,7 @@ namespace PluginServiceExample
         {
             return "GoogleAPI service example";
        }
+
+   
     }
 }

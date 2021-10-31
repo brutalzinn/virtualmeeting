@@ -43,7 +43,7 @@ namespace PluginInterface
     {
         string getConfigData();
 
-        void loadConfigData(string data = null);
+        void loadConfigData(dynamic data = null);
     }
 
     public interface ITextFormat : IPlugin

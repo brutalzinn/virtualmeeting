@@ -43,9 +43,9 @@ namespace PluginExampleWithInterface
             return $"Eita preula {this.Name()} rodou ! {Globals._Config.TextBoxValue}";
         }
 
-        public void loadConfigData(string data)
+        public void loadConfigData(dynamic data)
         {
-            Config configModel = JsonConvert.DeserializeObject<Config>(data);
+            Config configModel = JsonConvert.DeserializeObject<Config>(Convert.ToString(data));
             Globals.saveConfig(configModel);
         }
 
