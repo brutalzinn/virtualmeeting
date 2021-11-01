@@ -63,5 +63,10 @@ namespace PluginExampleWithInterface
         {
             return "PluginExampleWithInterface";
         }
+
+        public Dictionary<string, Func<object, string>> GetCustomPlaceHolder()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

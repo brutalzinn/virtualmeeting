@@ -17,6 +17,7 @@ using System.Threading;
 using System.Windows.Forms;
 
 using VirtualMeetingMonitor.formater;
+
 using VirtualMeetingMonitor.Forms;
 using VirtualMeetingMonitor.pluginUtils;
 using VirtualMeetingMonitor.profile;
@@ -841,12 +842,6 @@ namespace VirtualMeetingMonitor
                 {
                     // This assumes the implementation of IPlugin has a parameterless constructor
                     IPlugin plugin = (IPlugin)Activator.CreateInstance(pluginType) ;
-                   
-                     
-
-
-                        //Debug.WriteLine($"Created plugin instance '{plugin?.Name()}'.");
-
 
                     if (plugin is IConfig IConfigPlugin)
                     {
@@ -867,20 +862,15 @@ namespace VirtualMeetingMonitor
                             {
                                 new MethodExecutor(item.Key.ToUpper(), Globals.Methods, item.Value);
                             }
+                            foreach (var item in PluginTextFormat.GetCustomPlaceHolder())
+                            {
+                                new MethodExecutor(item.Key.ToUpper(), Globals.Methods, item.Value);
+                                Debug.WriteLine($"####CAD PLUGIN:{plugin?.Name()}-{plugin?.getPluginId()} ");
+                            }
                         }
                     }
-                 
-
-
-                  
-
-
-
                 }
-
-            }
-
-          
+            }  
             Globals.CustomFormater = new CustomerFormatter(Globals.Methods);
             lbl_tags_count.Text = $"Tags: {Globals.Methods.Count} loaded";
         }

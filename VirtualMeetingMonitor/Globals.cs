@@ -22,6 +22,7 @@ namespace VirtualMeetingMonitor
         public static string UpdateUrl = "http://robertocpaes.dev/update.xml";
         public static List<MethodExecutor> Methods = new List<MethodExecutor>();
 
+
         public static CustomerFormatter CustomFormater { get; set; }
 
         public static CustomDay CustomDays { get; set; }

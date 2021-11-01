@@ -41,6 +41,8 @@ namespace PluginInterface
     public interface ITextFormat : IPlugin
     {
         Dictionary<string, Func<string>> GetPlaceHolder();
+
+        Dictionary<string, Func<string, object>> GetCustomPlaceHolder() => new Dictionary<string, Func<string, object>>();
     }
     public interface IService: IPlugin
     {

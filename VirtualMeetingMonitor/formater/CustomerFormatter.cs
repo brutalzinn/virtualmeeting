@@ -9,10 +9,15 @@ namespace VirtualMeetingMonitor
 
         public List<MethodExecutor> Functions { get; set; }
 
+
         public CustomerFormatter(List<MethodExecutor> functions)
         {
             Functions = functions;
         }
+       
+
+
+    
     }
     
     

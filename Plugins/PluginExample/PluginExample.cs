@@ -9,10 +9,23 @@ namespace PluginExample
     internal class PluginExample : IPlugin, ITextFormat
     {
         private Dictionary<string, Func<string>> PlaceHolders = new Dictionary<string, Func<string>>();
+        private Dictionary<string, Func<string, object>> CustomPlaceHolders = new Dictionary<string, Func<string, object>>();
+
         public Dictionary<string, Func<string>> GetPlaceHolder()
         {
             PlaceHolders.Add("PLUGINEXAMPLE", Main);
             return PlaceHolders;
+        }
+        public Dictionary<string, Func<string, object>> GetCustomPlaceHolder()
+        {
+            CustomPlaceHolders.Add("CUSTOMTAG",(v) => Colorizer(v));
+            return CustomPlaceHolders;
+        }
+
+     
+        private object Colorizer(string text)
+        {
+            return text + "Opa, rodou. ";
         }
         public string Description()
         {
@@ -47,6 +60,8 @@ namespace PluginExample
                 return $"{versionServer}-{ver}";
             }
             return ver.ToString();
-        }    
+        }
+
+   
     }
 }

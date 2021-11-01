@@ -41,6 +41,11 @@ namespace PluginMultipleTags
         public string Contact()
         {
             return "robertinho.net";
-        } 
+        }
+
+        public Dictionary<string, Func<object, string>> GetCustomPlaceHolder()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
