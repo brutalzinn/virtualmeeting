@@ -74,7 +74,7 @@ namespace VirtualMeetingMonitor
             notifyIcon.ContextMenuStrip = contextMenuStrip;
 
             timer.Interval = 1000;
-            timer.Enabled = false;
+            timer.Enabled = true;
             timer.Tick += OnTimerEvent;
 
             network.OutsideUDPTafficeReceived += Network_OutsideUDPTafficeReceived;
@@ -259,6 +259,22 @@ namespace VirtualMeetingMonitor
             {
                 return;
             }
+            foreach (var loader in Globals.loaders)
+            {
+                foreach (var pluginType in loader
+                    .LoadDefaultAssembly()
+                    .GetTypes()
+                    .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsAbstract))
+                {
+                    // This assumes the implementation of IPlugin has a parameterless constructor
+                    IPlugin plugin = (IPlugin)Activator.CreateInstance(pluginType);
+                    if (plugin is IEvent IServicePlugin)
+                    {
+                        IServicePlugin.Meeting_OnMeetingStarted();
+                    }
+                }
+            }
+
             int hue = 0;
             int sat = 254;
 
@@ -372,7 +388,21 @@ namespace VirtualMeetingMonitor
         }
         private void EndMeeting()
         {
-   
+            foreach (var loader in Globals.loaders)
+            {
+                foreach (var pluginType in loader
+                    .LoadDefaultAssembly()
+                    .GetTypes()
+                    .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsAbstract))
+                {
+                    // This assumes the implementation of IPlugin has a parameterless constructor
+                    IPlugin plugin = (IPlugin)Activator.CreateInstance(pluginType);
+                    if (plugin is IEvent IServicePlugin)
+                    {
+                        IServicePlugin.Meeting_OnMeetingEnded();
+                    }
+                }
+            }
             LogMeeting(Globals.getKey("meeting_log_ended"));
             try
             {
@@ -686,6 +716,7 @@ namespace VirtualMeetingMonitor
             switch (strArgs.Arguments)
             {
                 case "Yes":
+               
                     break;
                 case "No":
                     call_running = false;

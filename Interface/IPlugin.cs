@@ -49,4 +49,18 @@ namespace PluginInterface
         void Executor(List<object> values);
     }
 
+    public interface IEvent : IPlugin
+    {
+        public void Meeting_OnMeetingStarted()
+        {
+
+        }
+
+       public void Meeting_OnMeetingEnded()
+        {
+
+        }
+
+    }
+
 }

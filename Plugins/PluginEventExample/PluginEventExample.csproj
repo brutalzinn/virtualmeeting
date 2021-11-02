@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Interface\PluginInterface.csproj" />
+  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<OutputPath>$(SolutionDir)\VirtualMeetingMonitor\bin\Debug\plugins\PluginEventExample</OutputPath>
+	</PropertyGroup>
+
+</Project>

@@ -18,7 +18,7 @@ namespace VirtualMeetingMonitor
       readonly string[] WebExIps = { "62.109.", "64.68.", "66.114.", "66.163.", "69.26.", "114.29.", "150.253.", "170.72.", "170.133.", "173.39.", "173.243.",
                               "207.182.", "209.197.", "210.4.", "216.151." };
 
-      readonly string[] DiscordIps = { "162.245.", "213.179." };
+      readonly string[] DiscordIps = { "162.245.", "213.179.", "185.50.","185.41." };
       readonly string[] AWSChimeIps = { "99.77." };
 
         private string MeetingIp = "";

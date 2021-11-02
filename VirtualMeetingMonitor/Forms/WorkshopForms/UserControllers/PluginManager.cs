@@ -114,9 +114,8 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
                 }
             }
         }
-        public void Submit(bool _isUpdate = false)
+        public void Submit()
         {
-            isUpdate = _isUpdate;
             progressBar1.Maximum = 100;
             BackgroundWorker _worker = new BackgroundWorker();
             _worker.WorkerReportsProgress = true;
@@ -127,7 +126,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
         private void button2_Click(object sender, EventArgs e)
         {
             progressBar1.Value = 0;
-            Submit(isUpdate);
+            Submit();
         }
 
         private void _worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -159,7 +158,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
             }
             else
             {
-                var archive = ZipFile.Open($@"{FolderPath}.zip", ZipArchiveMode.Create);
+                var archive = ZipFile.Open($@"{FolderPath}.zip", ZipArchiveMode.Update);
                 Directory.GetFiles(FolderPath).ToList().ForEach(x => archive.CreateEntryFromFile(x, Path.GetFileName(x)));
                 archive.Dispose();
                 FileModel _file = new FileModel();
@@ -201,6 +200,7 @@ namespace VirtualMeetingMonitor.Forms.WorshopForms.UserControllers
                         break;
                 } 
                 System.Threading.Thread.Sleep(500);
+                File.Delete($@"{FolderPath}.zip");
                 worker.ReportProgress(Workshop.PluginManagerWeb.getProgress());
             }
 
